@@ -2,15 +2,15 @@ import json
 
 def load_fhir_structure(file_path):
     """
-    Lädt die FHIR Strukturdefinition aus einer lokalen JSON-Datei.
+    Loads the FHIR structure definition from a local JSON file.
     """
     with open(file_path, 'r') as file:
         return json.load(file)
 
 def compare_structures(kbv_structure, epa_structure):
     """
-    Vergleicht eine KBV-Strukturdefinition mit dem ePA-Profil.
-    Es wird geprüft, ob alle Eigenschaften des KBV-Profils im ePA-Profil vorhanden sind.
+    Compares a KBV structure definition with the ePA profile.
+    Checks if all properties of the KBV profile are present in the ePA profile.
     """
     kbv_elements = {element['path']: element for element in kbv_structure['snapshot']['element']}
     epa_elements = {element['path']: element for element in epa_structure['snapshot']['element']}
@@ -20,23 +20,38 @@ def compare_structures(kbv_structure, epa_structure):
         if path not in epa_elements:
             missing_in_epa.append(path)
 
-    return missing_in_epa
+    return sorted(missing_in_epa)
 
 def compare_all_kbv_to_epa(kbv_files, epa_file):
     """
-    Vergleicht alle KBV-Profile mit dem ePA-Profil und berichtet über fehlende Eigenschaften im ePA-Profil.
+    Compares all KBV profiles with the ePA profile and reports on properties from the KBV profiles missing in the ePA profile.
     """
     epa_structure = load_fhir_structure(epa_file)
+    all_missing = []
+    individual_missing = {}
+
     for kbv_file in kbv_files:
         kbv_structure = load_fhir_structure(kbv_file)
-        print(f"\nVergleich von {kbv_file} mit ePA-Profil:")
         missing_in_epa = compare_structures(kbv_structure, epa_structure)
-        if not missing_in_epa:
-            print("Alle Eigenschaften des KBV-Profils sind im ePA-Profil vorhanden.")
-        else:
-            print("Folgende Eigenschaften des KBV-Profils fehlen im ePA-Profil:")
-            for path in missing_in_epa:
-                print(path)
+        individual_missing[kbv_file] = missing_in_epa
+        all_missing.extend(missing_in_epa)
+
+    # Find properties from KBV profiles missing in the ePA profile
+    missing_in_all = set(all_missing)
+    for missing in individual_missing.values():
+        missing_in_all.intersection_update(missing)
+
+    # Sort and display properties from KBV profiles missing in the ePA profile
+    print("\nProperties from KBV profiles missing in the ePA profile:")
+    for path in sorted(missing_in_all):
+        print(path)
+
+    # Display specific properties from each KBV profile missing in the ePA profile
+    for kbv_file, missing in individual_missing.items():
+        specific_missing = sorted(set(missing) - missing_in_all)
+        print(f"\nProperties from KBV Profile '{kbv_file}' missing in the ePA profile:")
+        for path in specific_missing:
+            print(path)
 
 def main():
     epa_file = 'data/StructureDefinition/epa-medication.json'
