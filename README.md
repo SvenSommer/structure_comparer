@@ -38,7 +38,7 @@ Medication.extension.value[x].userSelected
 Medication.extension.value[x].version
 ```
 
-### Additional properties missing in KBV Profile 'KBV_PR_ERP_Medication_Ingredient' and 'KBV_PR_ERP_Medication_PZN', not in common missing list:
+### Additional properties missing in KBV Profile `KBV_PR_ERP_Medication_Ingredient` and `KBV_PR_ERP_Medication_PZN`, not in common missing list:
 ```
 Medication.amount.numerator.extension.extension
 Medication.amount.numerator.extension.id
@@ -47,5 +47,4 @@ Medication.amount.numerator.extension.value[x]
 ```
 
 ## Conclusion
-The differences outlined above primarily reflect the additional metadata and extension elements present in the KBV profiles that are not found in the ePA profile. These discrepancies indicate potential areas of incompatibility that might need to be addressed in data integration or mapping processes. It is essential to evaluate the clinical relevance and necessity of these elements in specific use cases.
-
+The differences outlined above primarily reflect the additional metadata and extension elements present in the KBV profiles that are not found in the ePA profile. These discrepancies indicate potential areas of incompatibility that might need to be addressed in data integration or mapping processes.
