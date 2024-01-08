@@ -2,7 +2,7 @@
 ## Overview
 This document provides a summary of the differences between the KBV Medication profiles and the ePA Medication profile, as identified by the compare.py script. The differences are predominantly in the metadata and extension elements of the FHIR Medication resource.
 
-## Differences (present in KBV-profiles but not in ePA-Profiles)
+## Differences
 ### Properties missing in the ePA profile and present in all KBV profiles:
 ```
 Medication.meta.extension
