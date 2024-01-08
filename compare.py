@@ -20,38 +20,38 @@ def compare_structures(kbv_structure, epa_structure):
         if path not in epa_elements:
             missing_in_epa.append(path)
 
-    return sorted(missing_in_epa)
+    return set(missing_in_epa)
 
 def compare_all_kbv_to_epa(kbv_files, epa_file):
     """
     Compares all KBV profiles with the ePA profile and reports on properties from the KBV profiles missing in the ePA profile.
     """
     epa_structure = load_fhir_structure(epa_file)
-    all_missing = []
     individual_missing = {}
+    common_missing = None
 
     for kbv_file in kbv_files:
         kbv_structure = load_fhir_structure(kbv_file)
         missing_in_epa = compare_structures(kbv_structure, epa_structure)
         individual_missing[kbv_file] = missing_in_epa
-        all_missing.extend(missing_in_epa)
 
-    # Find properties from KBV profiles missing in the ePA profile
-    missing_in_all = set(all_missing)
-    for missing in individual_missing.values():
-        missing_in_all.intersection_update(missing)
+        if common_missing is None:
+            common_missing = missing_in_epa
+        else:
+            common_missing.intersection_update(missing_in_epa)
 
-    # Sort and display properties from KBV profiles missing in the ePA profile
-    print("\nProperties from KBV profiles missing in the ePA profile:")
-    for path in sorted(missing_in_all):
+    # Display properties missing in all KBV profiles
+    print("\nProperties missing in the ePA profile and present in all KBV profiles:")
+    for path in sorted(common_missing):
         print(path)
 
-    # Display specific properties from each KBV profile missing in the ePA profile
+    # Display specific properties missing in each KBV profile, not included in the common list
     for kbv_file, missing in individual_missing.items():
-        specific_missing = sorted(set(missing) - missing_in_all)
-        print(f"\nProperties from KBV Profile '{kbv_file}' missing in the ePA profile:")
-        for path in specific_missing:
-            print(path)
+        specific_missing = sorted(missing - common_missing)
+        if specific_missing:
+            print(f"\nAdditional properties missing in KBV Profile '{kbv_file}', not in common missing list:")
+            for path in specific_missing:
+                print(path)
 
 def main():
     epa_file = 'data/StructureDefinition/epa-medication.json'
