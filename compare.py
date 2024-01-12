@@ -1,4 +1,5 @@
 import json
+import os
 
 def load_fhir_structure(file_path):
     """
@@ -8,25 +9,34 @@ def load_fhir_structure(file_path):
         return json.load(file)
     
 def extract_elements(structure):
-        elements = set()
-        for element in structure['snapshot']['element']:
-            # Add the base path of the element
-            elements.add(element['path'])
+    elements = set()
+    for element in structure['snapshot']['element']:
+        # Ignore elements ending with 'slice(url)'
+        if element['path'].endswith('slice(url)'):
+            continue
 
-            # Check for specific extensions
-            if 'extension' in element and 'type' in element:
-                for type_entry in element['type']:
-                    if type_entry.get('code') == 'Extension' and 'profile' in type_entry:
-                        for profile in type_entry['profile']:
-                            elements.add(f"{element['path']}:{element.get('sliceName', '')}({profile})")
+        # Add the base path of the element
+        elements.add(element['path'])
 
-            # Check for and add slices
-            if 'slicing' in element and 'discriminator' in element['slicing']:
-                for discriminator in element['slicing']['discriminator']:
-                    if isinstance(discriminator, dict) and 'path' in discriminator:
-                        elements.add(f"{element['path']}.slice({discriminator['path']})")
+        # Check for specific extensions
+        if 'extension' in element and 'type' in element:
+            for type_entry in element['type']:
+                if type_entry.get('code') == 'Extension' and 'profile' in type_entry:
+                    for profile in type_entry['profile']:
+                        extension_path = f"{element['path']}:{element.get('sliceName', '')}({profile})"
+                        # Ignore extensions ending with 'slice(url)'
+                        if not extension_path.endswith('slice(url)'):
+                            elements.add(extension_path)
 
-        return elements
+        # Check for and add slices, ignoring 'slice(url)' endings
+        if 'slicing' in element and 'discriminator' in element['slicing']:
+            for discriminator in element['slicing']['discriminator']:
+                if isinstance(discriminator, dict) and 'path' in discriminator:
+                    slice_path = f"{element['path']}.slice({discriminator['path']})"
+                    if not slice_path.endswith('slice(url)'):
+                        elements.add(slice_path)
+
+    return elements
 
 def compare_structures(kbv_structure, epa_structure):
     """
@@ -77,34 +87,50 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
 
     return presence_data
 
+def determine_remark(prop, presences):
+    """
+    Generates a remark based on the presence of the property in all profiles
+    and if it's an extension in the KBV profiles.
+    """
+    if all(presences):
+        return "Eigenschaft und Wert werden übernommen"
+    elif any("extension" in prop for presence in presences if presence):
+        return "Extension und Values werden übernommen"
+    else:
+        return ""
 
 def create_results_md(presence_data):
     """
-    Creates a Markdown file with comparison results, sorted alphabetically by property.
+    Creates individual Markdown files for each comparison result, sorted alphabetically by property.
+    Files are named after the ePA profile and stored in a 'results' folder.
     Displays KBV profiles first, followed by the ePA profile, and adds an empty "Remarks" column.
-    Removes '.json' from file names in the display.
+    Removes '.json' from file names in the display. Escapes pipe symbols in property names.
     """
-    with open('results.md', 'w') as md_file:
-        for (kbv_group, epa_file), data in presence_data.items():
-            # Remove '.json' from file names
-            clean_kbv_group = [kbv_file.replace('.json', '') for kbv_file in kbv_group]
-            clean_epa_file = epa_file.replace('.json', '')
+    results_folder = 'results'
+    if not os.path.exists(results_folder):
+        os.makedirs(results_folder)
 
+    for (kbv_group, epa_file), data in presence_data.items():
+        clean_kbv_group = [kbv_file.replace('.json', '') for kbv_file in kbv_group]
+        clean_epa_file = epa_file.replace('.json', '')
+        file_path = os.path.join(results_folder, f"{clean_epa_file}.md")
+
+        with open(file_path, 'w') as md_file:
             md_file.write(f"## Comparison: {', '.join(clean_kbv_group)} vs {clean_epa_file}\n")
-            md_file.write("| Property | " + " | ".join([f"{kbv_file}" for kbv_file in clean_kbv_group]) + " | ePA | Bemerkung |\n")
+            md_file.write("| Property | " + " | ".join([f"{kbv_file}" for kbv_file in clean_kbv_group]) + " | ePA | Bemerkungen |\n")
             md_file.write("|---" * (len(clean_kbv_group) + 3) + "|\n")
 
-            # Sort properties alphabetically
             for prop in sorted(data.keys()):
+                # Escape pipe symbols in property names
+                prop_escaped = prop.replace('|', '&#124;')
                 presences = data[prop]
-                row = f"| {prop} | " + " | ".join(["X" if presence else "" for presence in presences[1:]]) + " | " + ("X" if presences[0] else "") + " | |\n"
+                remark = determine_remark(prop, presences)
+                row = f"| {prop_escaped} | " + " | ".join(["X" if presence else "" for presence in presences[1:]]) + " | " + ("X" if presences[0] else "") + f" | {remark} |\n"
                 md_file.write(row)
-
 
 
 # Define the datapath
 datapath = 'data/StructureDefinition/'
-
 
 # Define the profiles to compare
 profiles_to_compare = [
