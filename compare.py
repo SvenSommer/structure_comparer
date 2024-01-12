@@ -9,60 +9,85 @@ def load_fhir_structure(file_path):
 
 def compare_structures(kbv_structure, epa_structure):
     """
-    Compares a KBV structure definition with the ePA profile.
-    Checks if all properties of the KBV profile are present in the ePA profile.
+    Returns a set of all properties from both structures.
     """
     kbv_elements = {element['path']: element for element in kbv_structure['snapshot']['element']}
     epa_elements = {element['path']: element for element in epa_structure['snapshot']['element']}
-    missing_in_epa = []
 
-    for path in kbv_elements:
-        if path not in epa_elements:
-            missing_in_epa.append(path)
+    return set(kbv_elements.keys()) | set(epa_elements.keys())
 
-    return set(missing_in_epa)
-
-def compare_all_kbv_to_epa(kbv_files, epa_file):
+def determine_property_presence(profiles_to_compare, datapath):
     """
-    Compares all KBV profiles with the ePA profile and reports on properties from the KBV profiles missing in the ePA profile.
+    Determines which properties are present in each profile.
     """
-    epa_structure = load_fhir_structure(epa_file)
-    individual_missing = {}
-    common_missing = None
+    all_properties = {}
+    for kbv_group, epa_file in profiles_to_compare:
+        epa_structure = load_fhir_structure(datapath + epa_file)
+        properties = set()
 
-    for kbv_file in kbv_files:
-        kbv_structure = load_fhir_structure(kbv_file)
-        missing_in_epa = compare_structures(kbv_structure, epa_structure)
-        individual_missing[kbv_file] = missing_in_epa
+        for kbv_file in kbv_group:
+            kbv_structure = load_fhir_structure(datapath + kbv_file)
+            properties |= compare_structures(kbv_structure, epa_structure)
 
-        if common_missing is None:
-            common_missing = missing_in_epa
-        else:
-            common_missing.intersection_update(missing_in_epa)
+        all_properties[(tuple(kbv_group), epa_file)] = properties
 
-    # Display properties missing in all KBV profiles
-    print("\nProperties missing in the ePA profile and present in all KBV profiles:")
-    for path in sorted(common_missing):
-        print(path)
+    return all_properties
 
-    # Display specific properties missing in each KBV profile, not included in the common list
-    for kbv_file, missing in individual_missing.items():
-        specific_missing = sorted(missing - common_missing)
-        if specific_missing:
-            print(f"\nAdditional properties missing in KBV Profile '{kbv_file}', not in common missing list:")
-            for path in specific_missing:
-                print(path)
+def check_property_presence(all_properties, profiles_to_compare, datapath):
+    """
+    Checks presence of each property in each profile.
+    """
+    presence_data = {}
+    for (kbv_group, epa_file), properties in all_properties.items():
+        epa_structure = load_fhir_structure(datapath + epa_file)
+        epa_elements = {element['path']: element for element in epa_structure['snapshot']['element']}
 
-def main():
-    epa_file = 'data/StructureDefinition/epa-medication.json'
-    kbv_files = [
-        'data/StructureDefinition/KBV_PR_ERP_Medication_Compounding.json',
-        'data/StructureDefinition/KBV_PR_ERP_Medication_FreeText.json',
-        'data/StructureDefinition/KBV_PR_ERP_Medication_Ingredient.json',
-        'data/StructureDefinition/KBV_PR_ERP_Medication_PZN.json'
-    ]
+        presence_data[(tuple(kbv_group), epa_file)] = {}
+        for prop in properties:
+            presence_data[(tuple(kbv_group), epa_file)][prop] = [prop in epa_elements]
 
-    compare_all_kbv_to_epa(kbv_files, epa_file)
+            for kbv_file in kbv_group:
+                kbv_structure = load_fhir_structure(datapath + kbv_file)
+                kbv_elements = {element['path']: element for element in kbv_structure['snapshot']['element']}
+                presence_data[(tuple(kbv_group), epa_file)][prop].append(prop in kbv_elements)
 
-if __name__ == "__main__":
-    main()
+    return presence_data
+
+def create_results_md(presence_data):
+    """
+    Creates a Markdown file with comparison results.
+    """
+    with open('results.md', 'w') as md_file:
+        for (kbv_group, epa_file), data in presence_data.items():
+            md_file.write(f"## Comparison: {', '.join(kbv_group)} vs {epa_file}\n")
+            md_file.write("| Property | ePA | " + " | ".join([f"{kbv_file}" for kbv_file in kbv_group]) + " |\n")
+            md_file.write("|---" * (len(kbv_group) + 2) + "|\n")
+            for prop, presences in data.items():
+                row = f"| {prop} | " + " | ".join(["X" if presence else "" for presence in presences]) + " |\n"
+                md_file.write(row)
+
+# Define the datapath
+datapath = 'data/StructureDefinition/'
+
+
+# Define the profiles to compare
+profiles_to_compare = [
+    ([
+        'KBV_PR_ERP_Medication_Compounding.json',
+        'KBV_PR_ERP_Medication_FreeText.json',
+        'KBV_PR_ERP_Medication_Ingredient.json',
+        'KBV_PR_ERP_Medication_PZN.json'
+    ], 'epa-medication.json'),
+    (['KBV_PR_FOR_Practitioner.json'], 'PractitionerDirectory.json'),
+    (['KBV_PR_ERP_Prescription.json'], 'epa-medication-request.json'),
+    (['KBV_PR_FOR_Organization.json'], 'OrganizationDirectory.json')
+]
+
+# Determine which properties are present in each profile
+all_properties = determine_property_presence(profiles_to_compare, datapath)
+
+# Check the presence of each property in each profile
+presence_data = check_property_presence(all_properties, profiles_to_compare, datapath)
+
+# Create the results.md file
+create_results_md(presence_data)
