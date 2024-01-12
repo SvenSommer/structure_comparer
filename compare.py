@@ -55,14 +55,17 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
 
 def create_results_md(presence_data):
     """
-    Creates a Markdown file with comparison results.
+    Creates a Markdown file with comparison results, sorted alphabetically by property.
     """
     with open('results.md', 'w') as md_file:
         for (kbv_group, epa_file), data in presence_data.items():
             md_file.write(f"## Comparison: {', '.join(kbv_group)} vs {epa_file}\n")
             md_file.write("| Property | ePA | " + " | ".join([f"{kbv_file}" for kbv_file in kbv_group]) + " |\n")
             md_file.write("|---" * (len(kbv_group) + 2) + "|\n")
-            for prop, presences in data.items():
+
+            # Sort properties alphabetically
+            for prop in sorted(data.keys()):
+                presences = data[prop]
                 row = f"| {prop} | " + " | ".join(["X" if presence else "" for presence in presences]) + " |\n"
                 md_file.write(row)
 
