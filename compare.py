@@ -7,33 +7,41 @@ def load_fhir_structure(file_path):
     """
     with open(file_path, 'r') as file:
         return json.load(file)
-    
+
 def extract_elements(structure):
     elements = set()
     for element in structure['snapshot']['element']:
-        # Ignore elements ending with 'slice(url)'
-        if element['path'].endswith('slice(url)'):
+        path = element['path']
+        path_split = path.split('.')
+
+        # Ignore elements with having specific path endings
+        ignore_ends = ['id']
+        if path_split[-1] == 'id':
+            continue
+
+        # Ignore elements where the cardinality is set to zero
+        if element['max'] == '0' or element['max'] == 0:
             continue
 
         # Add the base path of the element
-        elements.add(element['path'])
+        elements.add(path)
 
         # Check for specific extensions
         if 'extension' in element and 'type' in element:
             for type_entry in element['type']:
                 if type_entry.get('code') == 'Extension' and 'profile' in type_entry:
                     for profile in type_entry['profile']:
-                        extension_path = f"{element['path']}:{element.get('sliceName', '')}({profile})"
+                        extension_path = f"{path}:{element.get('sliceName', '')}({profile})"
                         # Ignore extensions ending with 'slice(url)'
-                        if not extension_path.endswith('slice(url)'):
+                        if not extension_path.endswith('slice(url)') and not extension_path.endswith('slice($this)') :
                             elements.add(extension_path)
 
         # Check for and add slices, ignoring 'slice(url)' endings
         if 'slicing' in element and 'discriminator' in element['slicing']:
             for discriminator in element['slicing']['discriminator']:
                 if isinstance(discriminator, dict) and 'path' in discriminator:
-                    slice_path = f"{element['path']}.slice({discriminator['path']})"
-                    if not slice_path.endswith('slice(url)'):
+                    slice_path = f"{path}.slice({discriminator['path']})"
+                    if not slice_path.endswith('slice(url)') and not slice_path.endswith('slice($this)'):
                         elements.add(slice_path)
 
     return elements
