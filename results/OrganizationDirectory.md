@@ -15,63 +15,31 @@
 | Organization.address.line.extension:Hausnummer(http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber) | X |  | Extension und Values werden übernommen |
 | Organization.address.line.extension:Strasse(http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName) | X |  | Extension und Values werden übernommen |
 | Organization.address.line.value | X |  |  |
-| Organization.address.period.end | X |  |  |
-| Organization.address.period.extension | X |  | Extension und Values werden übernommen |
-| Organization.address.period.start | X |  |  |
 | Organization.address.postalCode | X |  |  |
 | Organization.address.slice(type) | X |  |  |
 | Organization.address.type | X |  |  |
 | Organization.alias |  | X |  |
 | Organization.contact |  | X |  |
-| Organization.contact.address | X | X | Eigenschaft und Wert werden übernommen |
-| Organization.contact.address.city | X |  |  |
-| Organization.contact.address.country | X |  |  |
-| Organization.contact.address.district | X |  |  |
-| Organization.contact.address.extension | X |  | Extension und Values werden übernommen |
-| Organization.contact.address.line | X |  |  |
-| Organization.contact.address.period | X |  |  |
-| Organization.contact.address.postalCode | X |  |  |
-| Organization.contact.address.state | X |  |  |
-| Organization.contact.address.text | X |  |  |
-| Organization.contact.address.type | X |  |  |
-| Organization.contact.address.use | X |  |  |
-| Organization.contact.extension | X | X | Eigenschaft und Wert werden übernommen |
-| Organization.contact.modifierExtension | X | X | Eigenschaft und Wert werden übernommen |
-| Organization.contact.name | X | X | Eigenschaft und Wert werden übernommen |
-| Organization.contact.purpose | X | X | Eigenschaft und Wert werden übernommen |
-| Organization.contact.telecom | X | X | Eigenschaft und Wert werden übernommen |
+| Organization.contact.address |  | X |  |
+| Organization.contact.extension |  | X | Extension und Values werden übernommen |
+| Organization.contact.modifierExtension |  | X |  |
+| Organization.contact.name |  | X |  |
+| Organization.contact.purpose |  | X |  |
+| Organization.contact.telecom |  | X |  |
 | Organization.contained |  | X |  |
 | Organization.endpoint |  | X |  |
 | Organization.extension | X | X | Eigenschaft und Wert werden übernommen |
 | Organization.identifier | X | X | Eigenschaft und Wert werden übernommen |
-| Organization.identifier.assigner | X |  |  |
-| Organization.identifier.assigner.display | X |  |  |
-| Organization.identifier.assigner.extension | X |  | Extension und Values werden übernommen |
-| Organization.identifier.assigner.identifier | X |  |  |
-| Organization.identifier.assigner.identifier.assigner | X |  |  |
-| Organization.identifier.assigner.identifier.extension | X |  | Extension und Values werden übernommen |
-| Organization.identifier.assigner.identifier.period | X |  |  |
-| Organization.identifier.assigner.identifier.system | X |  |  |
-| Organization.identifier.assigner.identifier.type | X |  |  |
-| Organization.identifier.assigner.identifier.use | X |  |  |
-| Organization.identifier.assigner.identifier.value | X |  |  |
-| Organization.identifier.assigner.reference | X |  |  |
-| Organization.identifier.assigner.type | X |  |  |
 | Organization.identifier.extension | X |  | Extension und Values werden übernommen |
-| Organization.identifier.period | X |  |  |
 | Organization.identifier.slice(system) |  | X |  |
 | Organization.identifier.slice(type) | X |  |  |
 | Organization.identifier.system | X |  |  |
 | Organization.identifier.type | X |  |  |
 | Organization.identifier.type.coding | X |  |  |
 | Organization.identifier.type.coding.code | X |  |  |
-| Organization.identifier.type.coding.display | X |  |  |
 | Organization.identifier.type.coding.extension | X |  | Extension und Values werden übernommen |
 | Organization.identifier.type.coding.system | X |  |  |
-| Organization.identifier.type.coding.userSelected | X |  |  |
-| Organization.identifier.type.coding.version | X |  |  |
 | Organization.identifier.type.extension | X |  | Extension und Values werden übernommen |
-| Organization.identifier.type.text | X |  |  |
 | Organization.identifier.use | X |  |  |
 | Organization.identifier.value | X |  |  |
 | Organization.implicitRules |  | X |  |

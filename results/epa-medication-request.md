@@ -13,10 +13,10 @@
 | MedicationRequest.dispenseRequest.expectedSupplyDuration |  | X |  |
 | MedicationRequest.dispenseRequest.extension | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.dispenseRequest.initialFill |  | X |  |
-| MedicationRequest.dispenseRequest.initialFill.duration | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.dispenseRequest.initialFill.extension | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.dispenseRequest.initialFill.modifierExtension | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.dispenseRequest.initialFill.quantity | X | X | Eigenschaft und Wert werden übernommen |
+| MedicationRequest.dispenseRequest.initialFill.duration |  | X |  |
+| MedicationRequest.dispenseRequest.initialFill.extension |  | X | Extension und Values werden übernommen |
+| MedicationRequest.dispenseRequest.initialFill.modifierExtension |  | X |  |
+| MedicationRequest.dispenseRequest.initialFill.quantity |  | X |  |
 | MedicationRequest.dispenseRequest.modifierExtension | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.dispenseRequest.numberOfRepeatsAllowed |  | X |  |
 | MedicationRequest.dispenseRequest.performer |  | X |  |
@@ -32,10 +32,10 @@
 | MedicationRequest.dosageInstruction.additionalInstruction |  | X |  |
 | MedicationRequest.dosageInstruction.asNeeded[x] |  | X |  |
 | MedicationRequest.dosageInstruction.doseAndRate |  | X |  |
-| MedicationRequest.dosageInstruction.doseAndRate.dose[x] | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.dosageInstruction.doseAndRate.extension | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.dosageInstruction.doseAndRate.rate[x] | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.dosageInstruction.doseAndRate.type | X | X | Eigenschaft und Wert werden übernommen |
+| MedicationRequest.dosageInstruction.doseAndRate.dose[x] |  | X |  |
+| MedicationRequest.dosageInstruction.doseAndRate.extension |  | X | Extension und Values werden übernommen |
+| MedicationRequest.dosageInstruction.doseAndRate.rate[x] |  | X |  |
+| MedicationRequest.dosageInstruction.doseAndRate.type |  | X |  |
 | MedicationRequest.dosageInstruction.extension | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.dosageInstruction.extension.extension | X |  | Extension und Values werden übernommen |
 | MedicationRequest.dosageInstruction.extension.url | X |  | Extension und Values werden übernommen |

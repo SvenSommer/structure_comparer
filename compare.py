@@ -1,5 +1,6 @@
 import json
 import os
+from typing import List
 
 def load_fhir_structure(file_path):
     """
@@ -8,19 +9,34 @@ def load_fhir_structure(file_path):
     with open(file_path, 'r') as file:
         return json.load(file)
 
+def should_ignore(path: str, ignore_paths: List[str]) -> bool:
+    for ignored in ignore_paths:
+        if path.startswith(ignored):
+            return True
+    return False
+
 def extract_elements(structure):
     elements = set()
+
+    ignore_paths = []
+
     for element in structure['snapshot']['element']:
-        path = element['path']
+        path: str = element['path']
         path_split = path.split('.')
+
+        # Skip elements that are children of ignored nodes
+        if should_ignore(path, ignore_paths):
+            continue
 
         # Ignore elements with having specific path endings
         ignore_ends = ['id']
-        if path_split[-1] == 'id':
+        if path_split[-1] in ignore_ends:
             continue
 
         # Ignore elements where the cardinality is set to zero
         if element['max'] == '0' or element['max'] == 0:
+            # Extend list of nodes that are remove due cardinality
+            ignore_paths.append(path)
             continue
 
         # Add the base path of the element

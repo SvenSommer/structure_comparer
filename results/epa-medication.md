@@ -30,91 +30,89 @@
 | Medication.batch.modifierExtension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
 | Medication.code | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
 | Medication.code.coding | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.code.coding.code | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.code.coding.display | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.code.coding.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.code.coding.system | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.code.coding.userSelected | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.code.coding.version | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.code.coding.code |  |  |  | X | X |  |
+| Medication.code.coding.display |  |  |  |  | X |  |
+| Medication.code.coding.extension |  |  |  | X | X | Extension und Values werden übernommen |
+| Medication.code.coding.system |  |  |  | X | X |  |
+| Medication.code.coding.userSelected |  |  |  |  | X |  |
+| Medication.code.coding.version |  |  |  |  | X |  |
 | Medication.code.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
 | Medication.code.text | X | X |  | X | X |  |
 | Medication.contained |  |  |  |  | X |  |
 | Medication.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.extension.extension | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.url | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x] | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].code | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].coding | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].coding.code | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].coding.display | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].coding.extension | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].coding.system | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].coding.userSelected |  | X | X |  |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].coding.version | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].extension | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].system | X | X | X | X |  | Extension und Values werden übernommen |
-| Medication.extension.value[x].text |  | X | X |  |  | Extension und Values werden übernommen |
-| Medication.extension:Arzneimittelkategorie(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category) | X | X | X | X |  | Extension und Values werden übernommen |
+| Medication.extension.extension | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.url | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x] | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x].code | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x].coding | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x].coding.code | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x].coding.display | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x].coding.extension | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x].coding.system | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x].coding.version | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x].extension | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension.value[x].system | X |  |  | X |  | Extension und Values werden übernommen |
+| Medication.extension:Arzneimittelkategorie(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category) | X |  |  | X |  | Extension und Values werden übernommen |
 | Medication.extension:Herstellungsanweisung(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_CompoundingInstruction) | X |  |  |  |  | Extension und Values werden übernommen |
-| Medication.extension:Impfstoff(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine) | X | X | X | X |  | Extension und Values werden übernommen |
+| Medication.extension:Impfstoff(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine) | X |  |  | X |  | Extension und Values werden übernommen |
 | Medication.extension:Kategorie(https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type&#124;1.3.0) | X |  |  | X |  | Extension und Values werden übernommen |
-| Medication.extension:Normgroesse(http://fhir.de/StructureDefinition/normgroesse) |  |  | X | X |  | Extension und Values werden übernommen |
+| Medication.extension:Normgroesse(http://fhir.de/StructureDefinition/normgroesse) |  |  |  | X |  | Extension und Values werden übernommen |
 | Medication.extension:RxPrescriptionProcessIdentifier(https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension) |  |  |  |  | X | Extension und Values werden übernommen |
 | Medication.extension:Verpackung(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Packaging) | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.form | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.form.coding | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.form.coding.code | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.form.coding.display | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.form.coding.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.form.coding.system | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.form.coding.userSelected | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.form.coding.version | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.form.coding |  |  |  | X | X |  |
+| Medication.form.coding.code |  |  |  |  | X |  |
+| Medication.form.coding.display |  |  |  |  | X |  |
+| Medication.form.coding.extension |  |  |  |  | X | Extension und Values werden übernommen |
+| Medication.form.coding.system |  |  |  |  | X |  |
+| Medication.form.coding.userSelected |  |  |  |  | X |  |
+| Medication.form.coding.version |  |  |  |  | X |  |
 | Medication.form.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
 | Medication.form.text | X | X | X |  | X |  |
 | Medication.identifier |  |  |  |  | X |  |
 | Medication.implicitRules |  |  |  |  | X |  |
 | Medication.ingredient | X |  | X |  | X |  |
-| Medication.ingredient.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.extension | X |  | X |  | X | Extension und Values werden übernommen |
 | Medication.ingredient.extension.extension | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.ingredient.extension.url | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.ingredient.extension.value[x] | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.ingredient.extension:Darreichungsform(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Form) | X |  |  |  |  | Extension und Values werden übernommen |
-| Medication.ingredient.isActive |  | X |  | X | X |  |
-| Medication.ingredient.item[x] | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].coding | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].coding.code | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].coding.display | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].coding.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].coding.system | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].coding.userSelected | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].coding.version | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].display | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].identifier | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].reference | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].text | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.item[x].type | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.modifierExtension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength.denominator | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength.denominator.code |  | X |  | X | X |  |
-| Medication.ingredient.strength.denominator.comparator |  | X |  | X | X |  |
-| Medication.ingredient.strength.denominator.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength.denominator.system |  | X |  | X | X |  |
-| Medication.ingredient.strength.denominator.unit |  | X |  | X | X |  |
-| Medication.ingredient.strength.denominator.value | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.isActive |  |  |  |  | X |  |
+| Medication.ingredient.item[x] | X |  | X |  | X |  |
+| Medication.ingredient.item[x].coding | X |  | X |  | X |  |
+| Medication.ingredient.item[x].coding.code |  |  | X |  | X |  |
+| Medication.ingredient.item[x].coding.display |  |  |  |  | X |  |
+| Medication.ingredient.item[x].coding.extension |  |  | X |  | X | Extension und Values werden übernommen |
+| Medication.ingredient.item[x].coding.system |  |  | X |  | X |  |
+| Medication.ingredient.item[x].coding.userSelected |  |  |  |  | X |  |
+| Medication.ingredient.item[x].coding.version |  |  |  |  | X |  |
+| Medication.ingredient.item[x].display |  |  |  |  | X |  |
+| Medication.ingredient.item[x].extension | X |  | X |  | X | Extension und Values werden übernommen |
+| Medication.ingredient.item[x].identifier |  |  |  |  | X |  |
+| Medication.ingredient.item[x].reference |  |  |  |  | X |  |
+| Medication.ingredient.item[x].text | X |  | X |  | X |  |
+| Medication.ingredient.item[x].type |  |  |  |  | X |  |
+| Medication.ingredient.modifierExtension | X |  | X |  | X |  |
+| Medication.ingredient.strength | X |  | X |  | X |  |
+| Medication.ingredient.strength.denominator | X |  | X |  | X |  |
+| Medication.ingredient.strength.denominator.code |  |  |  |  | X |  |
+| Medication.ingredient.strength.denominator.comparator |  |  |  |  | X |  |
+| Medication.ingredient.strength.denominator.extension | X |  | X |  | X | Extension und Values werden übernommen |
+| Medication.ingredient.strength.denominator.system |  |  |  |  | X |  |
+| Medication.ingredient.strength.denominator.unit |  |  |  |  | X |  |
+| Medication.ingredient.strength.denominator.value | X |  | X |  | X |  |
+| Medication.ingredient.strength.extension | X |  | X |  | X | Extension und Values werden übernommen |
 | Medication.ingredient.strength.extension.extension | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.ingredient.strength.extension.url | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.ingredient.strength.extension.value[x] | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.ingredient.strength.extension:MengeFreitext(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount) | X |  |  |  |  | Extension und Values werden übernommen |
-| Medication.ingredient.strength.numerator | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength.numerator.code | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength.numerator.comparator |  | X |  | X | X |  |
-| Medication.ingredient.strength.numerator.extension | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength.numerator.system | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength.numerator.unit | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.ingredient.strength.numerator.value | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.strength.numerator | X |  | X |  | X |  |
+| Medication.ingredient.strength.numerator.code | X |  | X |  | X |  |
+| Medication.ingredient.strength.numerator.comparator |  |  |  |  | X |  |
+| Medication.ingredient.strength.numerator.extension | X |  | X |  | X | Extension und Values werden übernommen |
+| Medication.ingredient.strength.numerator.system | X |  | X |  | X |  |
+| Medication.ingredient.strength.numerator.unit | X |  | X |  | X |  |
+| Medication.ingredient.strength.numerator.value | X |  | X |  | X |  |
 | Medication.language |  |  |  |  | X |  |
 | Medication.manufacturer |  |  |  |  | X |  |
 | Medication.manufacturer.display |  |  |  |  | X |  |

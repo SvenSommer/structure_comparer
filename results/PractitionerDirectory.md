@@ -3,49 +3,23 @@
 |---|---|---|---|
 | Practitioner | X | X | Eigenschaft und Wert werden übernommen |
 | Practitioner.active |  | X |  |
-| Practitioner.address | X | X | Eigenschaft und Wert werden übernommen |
+| Practitioner.address |  | X |  |
 | Practitioner.birthDate |  | X |  |
-| Practitioner.birthDate.extension | X |  | Extension und Values werden übernommen |
-| Practitioner.birthDate.extension.url | X |  | Extension und Values werden übernommen |
-| Practitioner.birthDate.extension.value[x] | X |  | Extension und Values werden übernommen |
-| Practitioner.birthDate.extension:data-absent-reason(http://hl7.org/fhir/StructureDefinition/data-absent-reason) | X |  | Extension und Values werden übernommen |
-| Practitioner.birthDate.value | X |  |  |
 | Practitioner.communication |  | X |  |
 | Practitioner.contained |  | X |  |
 | Practitioner.extension | X | X | Eigenschaft und Wert werden übernommen |
 | Practitioner.gender |  | X |  |
-| Practitioner.gender.extension | X |  | Extension und Values werden übernommen |
-| Practitioner.gender.extension:other-amtlich(http://fhir.de/StructureDefinition/gender-amtlich-de&#124;1.3.2) | X |  | Extension und Values werden übernommen |
-| Practitioner.gender.value | X |  |  |
 | Practitioner.identifier | X | X | Eigenschaft und Wert werden übernommen |
-| Practitioner.identifier.assigner | X |  |  |
-| Practitioner.identifier.assigner.display | X |  |  |
-| Practitioner.identifier.assigner.extension | X |  | Extension und Values werden übernommen |
-| Practitioner.identifier.assigner.identifier | X |  |  |
-| Practitioner.identifier.assigner.identifier.assigner | X |  |  |
-| Practitioner.identifier.assigner.identifier.extension | X |  | Extension und Values werden übernommen |
-| Practitioner.identifier.assigner.identifier.period | X |  |  |
-| Practitioner.identifier.assigner.identifier.system | X |  |  |
-| Practitioner.identifier.assigner.identifier.type | X |  |  |
-| Practitioner.identifier.assigner.identifier.use | X |  |  |
-| Practitioner.identifier.assigner.identifier.value | X |  |  |
-| Practitioner.identifier.assigner.reference | X |  |  |
-| Practitioner.identifier.assigner.type | X |  |  |
 | Practitioner.identifier.extension | X |  | Extension und Values werden übernommen |
-| Practitioner.identifier.period | X |  |  |
 | Practitioner.identifier.slice(system) |  | X |  |
 | Practitioner.identifier.slice(type) | X |  |  |
 | Practitioner.identifier.system | X |  |  |
 | Practitioner.identifier.type | X |  |  |
 | Practitioner.identifier.type.coding | X |  |  |
 | Practitioner.identifier.type.coding.code | X |  |  |
-| Practitioner.identifier.type.coding.display | X |  |  |
 | Practitioner.identifier.type.coding.extension | X |  | Extension und Values werden übernommen |
 | Practitioner.identifier.type.coding.system | X |  |  |
-| Practitioner.identifier.type.coding.userSelected | X |  |  |
-| Practitioner.identifier.type.coding.version | X |  |  |
 | Practitioner.identifier.type.extension | X |  | Extension und Values werden übernommen |
-| Practitioner.identifier.type.text | X |  |  |
 | Practitioner.identifier.use | X |  |  |
 | Practitioner.identifier.value | X |  |  |
 | Practitioner.implicitRules |  | X |  |
@@ -78,7 +52,7 @@
 | Practitioner.name.family.extension:vorsatzwort(http://hl7.org/fhir/StructureDefinition/humanname-own-prefix) | X |  | Extension und Values werden übernommen |
 | Practitioner.name.family.value | X |  |  |
 | Practitioner.name.given | X | X | Eigenschaft und Wert werden übernommen |
-| Practitioner.name.period | X | X | Eigenschaft und Wert werden übernommen |
+| Practitioner.name.period |  | X |  |
 | Practitioner.name.prefix | X | X | Eigenschaft und Wert werden übernommen |
 | Practitioner.name.prefix.extension | X |  | Extension und Values werden übernommen |
 | Practitioner.name.prefix.extension.url | X |  | Extension und Values werden übernommen |
@@ -86,8 +60,8 @@
 | Practitioner.name.prefix.extension:prefix-qualifier(http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier) | X |  | Extension und Values werden übernommen |
 | Practitioner.name.prefix.value | X |  |  |
 | Practitioner.name.slice(use) | X |  |  |
-| Practitioner.name.suffix | X | X | Eigenschaft und Wert werden übernommen |
-| Practitioner.name.text | X | X | Eigenschaft und Wert werden übernommen |
+| Practitioner.name.suffix |  | X |  |
+| Practitioner.name.text |  | X |  |
 | Practitioner.name.use | X | X | Eigenschaft und Wert werden übernommen |
 | Practitioner.photo |  | X |  |
 | Practitioner.qualification | X | X | Eigenschaft und Wert werden übernommen |
@@ -97,7 +71,6 @@
 | Practitioner.qualification.code.coding.extension | X |  | Extension und Values werden übernommen |
 | Practitioner.qualification.code.coding.system | X |  |  |
 | Practitioner.qualification.code.extension | X |  | Extension und Values werden übernommen |
-| Practitioner.qualification.code.text | X |  |  |
 | Practitioner.qualification.extension | X | X | Eigenschaft und Wert werden übernommen |
 | Practitioner.qualification.identifier | X | X | Eigenschaft und Wert werden übernommen |
 | Practitioner.qualification.issuer | X | X | Eigenschaft und Wert werden übernommen |
