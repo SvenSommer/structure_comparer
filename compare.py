@@ -7,11 +7,11 @@ from classification import Classification
 
 
 COLORS = {
-    Classification.USE: "lightgreen",
-    Classification.NOT_USE: "LightPink",
-    Classification.EXTENSION: "yellow",
-    Classification.MANUAL: "lightcyan",
-    Classification.OTHER: "red"
+    Classification.USE: "#E3FCEF",
+    Classification.NOT_USE: "#FFEBE6",
+    Classification.EXTENSION: "#FFFAE6",
+    Classification.MANUAL: "#B3F5FF",
+    Classification.OTHER: "#FFBDAD"
 }
 
 REMARKS = {
