@@ -64,6 +64,10 @@ def extract_elements(structure):
         path: str = element['id']
         path_split = path.split('.')
 
+        # Skip base element
+        if len(path_split) == 1:
+            continue
+
         # Skip elements that are children of ignored nodes
         if should_ignore(path, ignore_paths):
             continue

@@ -1,8 +1,8 @@
 ## Comparison: KBV_PR_FOR_Organization vs OrganizationDirectory
 <style>
-    .compTable tr:nth-child(1) { background: lightgreen; }
-    .compTable tr:nth-child(2) { background: LightPink; }
-    .compTable tr:nth-child(3) { background: lightgreen; }
+    .compTable tr:nth-child(1) { background: LightPink; }
+    .compTable tr:nth-child(2) { background: lightgreen; }
+    .compTable tr:nth-child(3) { background: yellow; }
     .compTable tr:nth-child(4) { background: yellow; }
     .compTable tr:nth-child(5) { background: yellow; }
     .compTable tr:nth-child(6) { background: yellow; }
@@ -13,7 +13,7 @@
     .compTable tr:nth-child(11) { background: yellow; }
     .compTable tr:nth-child(12) { background: yellow; }
     .compTable tr:nth-child(13) { background: yellow; }
-    .compTable tr:nth-child(14) { background: yellow; }
+    .compTable tr:nth-child(14) { background: LightPink; }
     .compTable tr:nth-child(15) { background: LightPink; }
     .compTable tr:nth-child(16) { background: LightPink; }
     .compTable tr:nth-child(17) { background: LightPink; }
@@ -21,11 +21,11 @@
     .compTable tr:nth-child(19) { background: LightPink; }
     .compTable tr:nth-child(20) { background: LightPink; }
     .compTable tr:nth-child(21) { background: LightPink; }
-    .compTable tr:nth-child(22) { background: LightPink; }
-    .compTable tr:nth-child(23) { background: lightgreen; }
-    .compTable tr:nth-child(24) { background: LightPink; }
-    .compTable tr:nth-child(25) { background: yellow; }
-    .compTable tr:nth-child(26) { background: LightPink; }
+    .compTable tr:nth-child(22) { background: lightgreen; }
+    .compTable tr:nth-child(23) { background: LightPink; }
+    .compTable tr:nth-child(24) { background: yellow; }
+    .compTable tr:nth-child(25) { background: LightPink; }
+    .compTable tr:nth-child(26) { background: yellow; }
     .compTable tr:nth-child(27) { background: yellow; }
     .compTable tr:nth-child(28) { background: yellow; }
     .compTable tr:nth-child(29) { background: yellow; }
@@ -33,8 +33,8 @@
     .compTable tr:nth-child(31) { background: yellow; }
     .compTable tr:nth-child(32) { background: yellow; }
     .compTable tr:nth-child(33) { background: yellow; }
-    .compTable tr:nth-child(34) { background: yellow; }
-    .compTable tr:nth-child(35) { background: LightPink; }
+    .compTable tr:nth-child(34) { background: LightPink; }
+    .compTable tr:nth-child(35) { background: yellow; }
     .compTable tr:nth-child(36) { background: yellow; }
     .compTable tr:nth-child(37) { background: yellow; }
     .compTable tr:nth-child(38) { background: yellow; }
@@ -50,8 +50,8 @@
     .compTable tr:nth-child(48) { background: yellow; }
     .compTable tr:nth-child(49) { background: yellow; }
     .compTable tr:nth-child(50) { background: yellow; }
-    .compTable tr:nth-child(51) { background: yellow; }
-    .compTable tr:nth-child(52) { background: LightPink; }
+    .compTable tr:nth-child(51) { background: LightPink; }
+    .compTable tr:nth-child(52) { background: yellow; }
     .compTable tr:nth-child(53) { background: yellow; }
     .compTable tr:nth-child(54) { background: yellow; }
     .compTable tr:nth-child(55) { background: yellow; }
@@ -67,13 +67,13 @@
     .compTable tr:nth-child(65) { background: yellow; }
     .compTable tr:nth-child(66) { background: yellow; }
     .compTable tr:nth-child(67) { background: yellow; }
-    .compTable tr:nth-child(68) { background: yellow; }
+    .compTable tr:nth-child(68) { background: LightPink; }
     .compTable tr:nth-child(69) { background: LightPink; }
     .compTable tr:nth-child(70) { background: LightPink; }
-    .compTable tr:nth-child(71) { background: LightPink; }
-    .compTable tr:nth-child(72) { background: lightgreen; }
-    .compTable tr:nth-child(73) { background: LightPink; }
-    .compTable tr:nth-child(74) { background: lightcyan; }
+    .compTable tr:nth-child(71) { background: lightgreen; }
+    .compTable tr:nth-child(72) { background: LightPink; }
+    .compTable tr:nth-child(73) { background: lightcyan; }
+    .compTable tr:nth-child(74) { background: LightPink; }
     .compTable tr:nth-child(75) { background: LightPink; }
     .compTable tr:nth-child(76) { background: LightPink; }
     .compTable tr:nth-child(77) { background: LightPink; }
@@ -84,10 +84,10 @@
     .compTable tr:nth-child(82) { background: LightPink; }
     .compTable tr:nth-child(83) { background: LightPink; }
     .compTable tr:nth-child(84) { background: LightPink; }
-    .compTable tr:nth-child(85) { background: LightPink; }
-    .compTable tr:nth-child(86) { background: lightgreen; }
-    .compTable tr:nth-child(87) { background: LightPink; }
-    .compTable tr:nth-child(88) { background: lightgreen; }
+    .compTable tr:nth-child(85) { background: lightgreen; }
+    .compTable tr:nth-child(86) { background: LightPink; }
+    .compTable tr:nth-child(87) { background: lightgreen; }
+    .compTable tr:nth-child(88) { background: yellow; }
     .compTable tr:nth-child(89) { background: yellow; }
     .compTable tr:nth-child(90) { background: yellow; }
     .compTable tr:nth-child(91) { background: yellow; }
@@ -97,14 +97,12 @@
     .compTable tr:nth-child(95) { background: yellow; }
     .compTable tr:nth-child(96) { background: yellow; }
     .compTable tr:nth-child(97) { background: yellow; }
-    .compTable tr:nth-child(98) { background: yellow; }
-    .compTable tr:nth-child(99) { background: LightPink; }
+    .compTable tr:nth-child(98) { background: LightPink; }
 </style>
 <div class="compTable">
 
 | Property | KBV_PR_FOR_Organization | ePA | Bemerkungen |
 |---|---|---|---|
-| Organization | X | X | Eigenschaft und Wert werden übernommen |
 | Organization.active |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | Organization.address | X | X | Eigenschaft und Wert werden übernommen |
 | Organization.address.slice(type) | X |  | Extension und Values werden übernommen |
