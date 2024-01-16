@@ -37,37 +37,37 @@
     .compTable tr:nth-child(35) { background: LightPink; }
     .compTable tr:nth-child(36) { background: LightPink; }
     .compTable tr:nth-child(37) { background: LightPink; }
-    .compTable tr:nth-child(38) { background: LightPink; }
+    .compTable tr:nth-child(38) { background: lightgreen; }
     .compTable tr:nth-child(39) { background: LightPink; }
     .compTable tr:nth-child(40) { background: LightPink; }
-    .compTable tr:nth-child(41) { background: yellow; }
+    .compTable tr:nth-child(41) { background: LightPink; }
     .compTable tr:nth-child(42) { background: yellow; }
     .compTable tr:nth-child(43) { background: yellow; }
     .compTable tr:nth-child(44) { background: yellow; }
     .compTable tr:nth-child(45) { background: yellow; }
-    .compTable tr:nth-child(46) { background: LightPink; }
+    .compTable tr:nth-child(46) { background: yellow; }
     .compTable tr:nth-child(47) { background: LightPink; }
     .compTable tr:nth-child(48) { background: LightPink; }
     .compTable tr:nth-child(49) { background: LightPink; }
     .compTable tr:nth-child(50) { background: LightPink; }
     .compTable tr:nth-child(51) { background: LightPink; }
-    .compTable tr:nth-child(52) { background: lightgreen; }
-    .compTable tr:nth-child(53) { background: lightcyan; }
-    .compTable tr:nth-child(54) { background: lightgreen; }
-    .compTable tr:nth-child(55) { background: LightPink; }
-    .compTable tr:nth-child(56) { background: lightgreen; }
-    .compTable tr:nth-child(57) { background: LightPink; }
+    .compTable tr:nth-child(52) { background: LightPink; }
+    .compTable tr:nth-child(53) { background: lightgreen; }
+    .compTable tr:nth-child(54) { background: red; }
+    .compTable tr:nth-child(55) { background: lightgreen; }
+    .compTable tr:nth-child(56) { background: LightPink; }
+    .compTable tr:nth-child(57) { background: lightgreen; }
     .compTable tr:nth-child(58) { background: LightPink; }
-    .compTable tr:nth-child(59) { background: lightcyan; }
+    .compTable tr:nth-child(59) { background: LightPink; }
     .compTable tr:nth-child(60) { background: LightPink; }
-    .compTable tr:nth-child(61) { background: yellow; }
+    .compTable tr:nth-child(61) { background: LightPink; }
     .compTable tr:nth-child(62) { background: lightcyan; }
-    .compTable tr:nth-child(63) { background: lightgreen; }
-    .compTable tr:nth-child(64) { background: lightcyan; }
-    .compTable tr:nth-child(65) { background: lightgreen; }
-    .compTable tr:nth-child(66) { background: LightPink; }
+    .compTable tr:nth-child(63) { background: lightcyan; }
+    .compTable tr:nth-child(64) { background: lightgreen; }
+    .compTable tr:nth-child(65) { background: lightcyan; }
+    .compTable tr:nth-child(66) { background: lightgreen; }
     .compTable tr:nth-child(67) { background: LightPink; }
-    .compTable tr:nth-child(68) { background: LightPink; }
+    .compTable tr:nth-child(68) { background: lightgreen; }
     .compTable tr:nth-child(69) { background: LightPink; }
     .compTable tr:nth-child(70) { background: LightPink; }
     .compTable tr:nth-child(71) { background: LightPink; }
@@ -75,20 +75,23 @@
     .compTable tr:nth-child(73) { background: LightPink; }
     .compTable tr:nth-child(74) { background: LightPink; }
     .compTable tr:nth-child(75) { background: LightPink; }
-    .compTable tr:nth-child(76) { background: lightgreen; }
-    .compTable tr:nth-child(77) { background: lightcyan; }
+    .compTable tr:nth-child(76) { background: LightPink; }
+    .compTable tr:nth-child(77) { background: LightPink; }
     .compTable tr:nth-child(78) { background: lightgreen; }
-    .compTable tr:nth-child(79) { background: LightPink; }
+    .compTable tr:nth-child(79) { background: lightcyan; }
     .compTable tr:nth-child(80) { background: lightgreen; }
     .compTable tr:nth-child(81) { background: LightPink; }
-    .compTable tr:nth-child(82) { background: LightPink; }
-    .compTable tr:nth-child(83) { background: lightcyan; }
+    .compTable tr:nth-child(82) { background: lightgreen; }
+    .compTable tr:nth-child(83) { background: LightPink; }
     .compTable tr:nth-child(84) { background: LightPink; }
-    .compTable tr:nth-child(85) { background: lightgreen; }
-    .compTable tr:nth-child(86) { background: lightgreen; }
-    .compTable tr:nth-child(87) { background: yellow; }
-    .compTable tr:nth-child(88) { background: LightPink; }
+    .compTable tr:nth-child(85) { background: lightcyan; }
+    .compTable tr:nth-child(86) { background: LightPink; }
+    .compTable tr:nth-child(87) { background: lightgreen; }
+    .compTable tr:nth-child(88) { background: lightgreen; }
     .compTable tr:nth-child(89) { background: LightPink; }
+    .compTable tr:nth-child(90) { background: LightPink; }
+    .compTable tr:nth-child(91) { background: LightPink; }
+    .compTable tr:nth-child(92) { background: LightPink; }
 </style>
 <div class="compTable">
 
@@ -131,6 +134,7 @@
 | MedicationRequest.dosageInstruction.route |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.dosageInstruction.sequence |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.dosageInstruction.site |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| MedicationRequest.dosageInstruction.text | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.dosageInstruction.timing |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.encounter |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.eventHistory |  | X | Bleibt vorerst leer, da keine Quellinformationen |
@@ -141,25 +145,26 @@
 | MedicationRequest.extension:Zuzahlungsstatus<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment) | X |  | Extension und Values werden übernommen |
 | MedicationRequest.groupIdentifier |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.identifier |  | X | Bleibt vorerst leer, da keine Quellinformationen |
-| MedicationRequest.identifier:rxPrescriptionProcessIdentifier |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| MedicationRequest.identifier:rxPrescriptionProcessIdentifier |  | X | Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben. |
 | MedicationRequest.implicitRules |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.instantiatesCanonical |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.instantiatesUri |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.insurance | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.insurance.reference | X |  |  |
+| MedicationRequest.insurance.reference | X |  | Wird beim Mapping ignoriert |
 | MedicationRequest.intent | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.language |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.medication[x] | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.medication[x].display |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.medication[x].identifier |  | X | Bleibt vorerst leer, da keine Quellinformationen |
-| MedicationRequest.medication[x].reference |  | X |  |
+| MedicationRequest.medication[x].reference |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.medication[x].type |  | X | Bleibt vorerst leer, da keine Quellinformationen |
-| MedicationRequest.medication[x]:medicationReference | X |  | Extension und Values werden übernommen |
-| MedicationRequest.medication[x]:medicationReference.reference | X |  |  |
+| MedicationRequest.medication[x]:medicationReference | X |  | Die Referenz der KBV-Medikation wird durch eine Referenz auf eine EPA-Medikation ersetzt. |
+| MedicationRequest.medication[x]:medicationReference.reference | X |  | Die Referenz ergibt sich aus der neu erzeugten EPA-Medikation. |
 | MedicationRequest.meta | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.meta.profile | X |  |  |
+| MedicationRequest.meta.profile | X |  | Wird fix auf 'https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication' gesetzt |
 | MedicationRequest.note | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.note.author[x] |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| MedicationRequest.note.text | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.note.time |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.performer |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.performerType |  | X | Bleibt vorerst leer, da keine Quellinformationen |
@@ -170,17 +175,18 @@
 | MedicationRequest.recorder |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.reported[x] |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.requester | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.requester.reference | X |  |  |
+| MedicationRequest.requester.reference | X |  | Wird entfernt, später durch MedicationService selbst gesetzt |
 | MedicationRequest.status | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.statusReason |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.subject | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.subject.display |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.subject.identifier |  | X | Bleibt vorerst leer, da keine Quellinformationen |
-| MedicationRequest.subject.reference | X | X |  |
+| MedicationRequest.subject.reference | X | X | Wird entfernt, später durch MedicationService selbst gesetzt |
 | MedicationRequest.subject.type |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.substitution | X | X | Eigenschaft und Wert werden übernommen |
 | MedicationRequest.substitution.allowed[x] | X | X | Eigenschaft und Wert werden übernommen |
-| MedicationRequest.substitution.allowed[x]:allowedBoolean | X |  | Extension und Values werden übernommen |
+| MedicationRequest.substitution.allowed[x]:allowedBoolean | X |  | Einschränkung wird nicht übernommen |
 | MedicationRequest.substitution.reason |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | MedicationRequest.supportingInformation |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| MedicationRequest.text |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 </div>

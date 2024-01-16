@@ -1,15 +1,10 @@
 import json
 import os
 from typing import List, Tuple
-from enum import Enum
 
+from manual_entries import MANUAL_ENTRIES
+from classification import Classification
 
-class Classification(Enum):
-    USE = 1
-    NOT_USE = 2
-    EXTENSION = 3
-    MANUAL = 4
-    OTHER = 5
 
 COLORS = {
     Classification.USE: "lightgreen",
@@ -26,6 +21,22 @@ REMARKS = {
     Classification.MANUAL: "",
     Classification.OTHER: ""
 }
+
+IGNORE_ENDS = [
+    'id',
+    'extension',
+    'modifierExtension'
+]
+
+IGNORE_SLICES = [
+    'slice(url)',
+    'slice($this)',
+    'slice(system)',
+    'slice(type)',
+    'slice(use)',
+    # workaround for 'slice(code.coding.system)'
+    'system)'
+]
 
 MANUAL_SUFFIXES = [
     "reference",
@@ -73,11 +84,8 @@ def extract_elements(structure):
             continue
 
         # Ignore elements with having specific path endings
-        ignore_ends = ['id', 'extension', 'modifierExtension', 'text']
-        if path_split[-1] in ignore_ends:
+        if path_split[-1] in IGNORE_ENDS:
             continue
-
-        # TODO: reference
 
         # Ignore elements where the cardinality is set to zero
         if element['max'] == '0' or element['max'] == 0:
@@ -99,7 +107,8 @@ def extract_elements(structure):
             for discriminator in element['slicing']['discriminator']:
                 if isinstance(discriminator, dict) and 'path' in discriminator:
                     slice_path = f"{path}.slice({discriminator['path']})"
-                    if not slice_path.endswith('slice(url)') and not slice_path.endswith('slice($this)'):
+                    slice_path_split = slice_path.split('.')
+                    if not slice_path_split[-1] in IGNORE_SLICES:
                         elements.add(slice_path)
 
     return elements
@@ -164,7 +173,9 @@ def gen_row(prop: str, presences: List[str]) -> Tuple[str, Classification]:
     kbv_presences, epa_presence = presences[1:], presences[0]
 
     # Determine classification based on presences
-    if prop.split('.')[-1] in MANUAL_SUFFIXES:
+    if prop in MANUAL_ENTRIES:
+        classification = MANUAL_ENTRIES[prop].get("classification", Classification.MANUAL)
+    elif prop.split('.')[-1] in MANUAL_SUFFIXES:
         classification = Classification.MANUAL
     elif any(kbv_presences):
         if epa_presence:
@@ -174,7 +185,8 @@ def gen_row(prop: str, presences: List[str]) -> Tuple[str, Classification]:
     else:
         classification = Classification.NOT_USE
 
-    row = row = [prop_escaped] + ["X" if presence else "" for presence in presences[1:]] + ["X" if presences[0] else "", REMARKS[classification]]
+    row = [prop_escaped] + ["X" if presence else "" for presence in presences[1:]] + \
+        ["X" if presences[0] else "", MANUAL_ENTRIES[prop]['remark'] if prop in MANUAL_ENTRIES and 'remark' in MANUAL_ENTRIES[prop] else REMARKS[classification]]
     row = "| " + " | ".join(row) + " |"
     return row, classification
 
