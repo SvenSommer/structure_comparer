@@ -56,7 +56,7 @@ def should_ignore(path: str, ignore_paths: List[str]) -> bool:
             return True
     return False
 
-def get_extension(element: dict, path: str) -> str | None:
+def get_extension(element: dict, path: str) -> str :
     if 'extension' in element and 'type' in element:
         for type_entry in element['type']:
             if type_entry.get('code') == 'Extension' and 'profile' in type_entry:
@@ -162,71 +162,81 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
 
     return presence_data
 
-def gen_row(prop: str, presences: List[str]) -> Tuple[str, Classification]:
-    """
-    Generates a row for the MD file and returns classification for style entry
-    """
-    # Escape pipe symbols in property names
-    prop_escaped = prop.replace('|', '&#124;')
-
-    # Split presences into KBV and ePA ones
+def gen_row(prop: str, presences: List[str]) -> Tuple[List[str], Classification]:
     kbv_presences, epa_presence = presences[1:], presences[0]
+    
+    classification = classify_property(prop, kbv_presences, epa_presence)
+    remark = MANUAL_ENTRIES[prop]['remark'] if prop in MANUAL_ENTRIES and 'remark' in MANUAL_ENTRIES[prop] else REMARKS[classification]
+    row_data = [prop] + ["X" if presence else "" for presence in presences[1:]] + [remark]
+    
+    return row_data, classification
 
-    # Determine classification based on presences
+def classify_property(prop, kbv_presences, epa_presence):
     if prop in MANUAL_ENTRIES:
-        classification = MANUAL_ENTRIES[prop].get("classification", Classification.MANUAL)
-    elif prop.split('.')[-1] in MANUAL_SUFFIXES:
-        classification = Classification.MANUAL
-    elif any(kbv_presences):
-        if epa_presence:
-            classification = Classification.USE
-        else:
-            classification = Classification.EXTENSION
-    else:
-        classification = Classification.NOT_USE
+        return MANUAL_ENTRIES[prop].get("classification", Classification.MANUAL)
+    if prop.split('.')[-1] in MANUAL_SUFFIXES:
+        return Classification.MANUAL
+    if any(kbv_presences):
+        return Classification.USE if epa_presence else Classification.EXTENSION
+    return Classification.NOT_USE
 
-    row = [prop_escaped] + ["X" if presence else "" for presence in presences[1:]] + \
-        ["X" if presences[0] else "", MANUAL_ENTRIES[prop]['remark'] if prop in MANUAL_ENTRIES and 'remark' in MANUAL_ENTRIES[prop] else REMARKS[classification]]
-    row = "| " + " | ".join(row) + " |"
-    return row, classification
+def is_light_color(hex_color: str) -> bool:
+    r, g, b = int(hex_color[1:3], 16), int(hex_color[3:5], 16), int(hex_color[5:7], 16)
+    luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+    return luminance > 0.5
 
 def gen_table_style(classifications: List[Classification]) -> str:
-    styles = [f"    .compTable tr:nth-child({idx+1}) {{ background: {COLORS[classification]}; }}" for idx, classification in enumerate(classifications)]
-    style_lines = ["<style>"] + styles + ["</style>"]
-    return "\n".join(style_lines)
+    styles = []
+    for idx, classification in enumerate(classifications):
+        bg_color = COLORS.get(classification, "#FFFFFF")
+        text_color = "#000000" if is_light_color(bg_color) else "#FFFFFF"
+        # Increased specificity by targeting the tbody and using !important
+        styles.append(f"#resultsTable tbody tr:nth-child({idx + 1}) {{ background-color: {bg_color} !important; color: {text_color} !important; }}")
 
-def create_results_md(presence_data):
-    """
-    Creates individual Markdown files for each comparison result, sorted alphabetically by property.
-    Files are named after the ePA profile and stored in a 'results' folder.
-    Displays KBV profiles first, followed by the ePA profile, and adds an empty "Remarks" column.
-    Removes '.json' from file names in the display. Escapes pipe symbols in property names.
-    """
-    results_folder = 'results'
+    return "<style>\n" + "\n".join(styles) + "\n</style>"
+
+
+
+def generate_html_table(rows: List[Tuple[List[str], Classification]], clean_kbv_group) -> str:
+    header = "<thead><tr><th>Property</th>" + "".join(f"<th>{file}</th>" for file in clean_kbv_group) + "<th>ePA</th><th>Remarks</th></tr></thead>"
+    body = "<tbody>\n" + "\n".join("<tr>" + "".join(f"<td>{item}</td>" for item in row_data) + "</tr>" for row_data, _ in rows) + "</tbody>"
+    return "<table id='resultsTable' class='display' style='width:100%'>\n" + header + "\n" + body + "\n</table>"
+
+def create_results_html(presence_data):
+    results_folder = 'docs'
     if not os.path.exists(results_folder):
         os.makedirs(results_folder)
 
     for (kbv_group, epa_file), data in presence_data.items():
-        clean_kbv_group = [kbv_file.replace('.json', '') for kbv_file in kbv_group]
+        clean_kbv_group = [file.replace('.json', '') for file in kbv_group]
         clean_epa_file = epa_file.replace('.json', '')
-        file_path = os.path.join(results_folder, f"{clean_epa_file}.md")
-
-        with open(file_path, 'w') as md_file:
-            # Process the rows
+        file_path = os.path.join(results_folder, f"{clean_epa_file}.html")
+        with open(file_path, 'w') as html_file:
             rows = [gen_row(prop, presences) for prop, presences in sorted(data.items())]
-            # Extract the property rows and classifications
-            property_lines, classifications = list(zip(*rows))
-            lines = [
-                f"## Comparison: {', '.join(clean_kbv_group)} vs {clean_epa_file}",
-                gen_table_style(classifications),
-                "<div class=\"compTable\">\n",
-                "| Property | " + " | ".join([f"{kbv_file}" for kbv_file in clean_kbv_group]) + " | ePA | Bemerkungen |",
-                "|---" * (len(clean_kbv_group) + 3) + "|",
-                ]
-            lines += property_lines
-            lines.append("</div>")
+            _, classifications = zip(*rows)
 
-            md_file.write('\n'.join(lines))
+            html_table = [
+                "<html><head><title>Comparison Results</title>",
+                "<link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>",
+                "<script type='text/javascript' src='https://code.jquery.com/jquery-3.6.0.min.js'></script>",
+                "<script type='text/javascript' src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>",
+                "</head><body>",
+                gen_table_style(classifications),
+                f"<h2>Comparison: {', '.join(clean_kbv_group)} vs {clean_epa_file}</h2>",
+                generate_html_table(rows, clean_kbv_group),
+                "<script>",
+                "$(document).ready(function() {",
+                "    $('#resultsTable').DataTable();",
+                "});",
+                "</script>",
+                "</body></html>"
+            ]
+
+            html_file.write('\n'.join(html_table))
+
+
+
+
 
 
 # Define the datapath
@@ -251,5 +261,5 @@ all_properties = determine_property_presence(profiles_to_compare, datapath)
 # Check the presence of each property in each profile
 presence_data = check_property_presence(all_properties, profiles_to_compare, datapath)
 
-# Create the results.md file
-create_results_md(presence_data)
+# Create the result html files
+create_results_html(presence_data)
