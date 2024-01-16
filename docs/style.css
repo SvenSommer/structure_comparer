@@ -28,7 +28,32 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Custom styles for DataTables */
+.row-use {
+    background-color: #E3FCEF;
+    color: #000000;
+}
+
+.row-not-use {
+    background-color: #FFEBE6;
+    color: #000000;
+}
+
+.row-extension {
+    background-color: #FFFAE6;
+    color: #000000;
+}
+
+.row-manual {
+    background-color: #B3F5FF;
+    color: #000000;
+}
+
+.row-other {
+    background-color: #FFBDAD;
+    color: #000000;
+}
+
+
 .dataTables_wrapper {
     margin: 20px 0;
 }
