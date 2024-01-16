@@ -6,7 +6,7 @@ This document provides a summary of the differences between the KBV E-Rezept pro
 
 ## Hosted Results
 The results of the comparison can be viewed directly through these hosted links:
-- [Organization Directory](https://svensommer.github.io/structure_comparer/OrganizationDirectory.html)
-- [Practitioner Directory](https://svensommer.github.io/structure_comparer/PractitionerDirectory.html)
-- [ePA Medication Request](https://svensommer.github.io/structure_comparer/epa-medication-request.html)
-- [ePA Medication](https://svensommer.github.io/structure_comparer/epa-medication.html)
+- [KBV_PR_FOR_Organization in OrganizationDirectory](https://svensommer.github.io/structure_comparer/OrganizationDirectory.html)
+- [KBV_PR_FOR_Practitioner in PractitionerDirectory](https://svensommer.github.io/structure_comparer/PractitionerDirectory.html)
+- [KBV_PR_ERP_Prescription in epa-medication-request](https://svensommer.github.io/structure_comparer/epa-medication-request.html)
+- [KBV_PR_ERP_Medication_Compounding, KBV_PR_ERP_Medication_FreeText, KBV_PR_ERP_Medication_Ingredient, KBV_PR_ERP_Medication_PZN in epa-medication](https://svensommer.github.io/structure_comparer/epa-medication.html)
