@@ -1,6 +1,36 @@
 import json
 import os
-from typing import List
+from typing import List, Tuple
+from enum import Enum
+
+
+class Classification(Enum):
+    USE = 1
+    NOT_USE = 2
+    EXTENSION = 3
+    MANUAL = 4
+    OTHER = 5
+
+COLORS = {
+    Classification.USE: "lightgreen",
+    Classification.NOT_USE: "LightPink",
+    Classification.EXTENSION: "yellow",
+    Classification.MANUAL: "lightcyan",
+    Classification.OTHER: "red"
+}
+
+REMARKS = {
+    Classification.USE: "Eigenschaft und Wert werden übernommen",
+    Classification.NOT_USE: "Bleibt vorerst leer, da keine Quellinformationen",
+    Classification.EXTENSION: "Extension und Values werden übernommen",
+    Classification.MANUAL: "",
+    Classification.OTHER: ""
+}
+
+MANUAL_SUFFIXES = [
+    "reference",
+    "profile"
+]
 
 def load_fhir_structure(file_path):
     """
@@ -119,17 +149,35 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
 
     return presence_data
 
-def determine_remark(prop, presences):
+def gen_row(prop: str, presences: List[str]) -> Tuple[str, Classification]:
     """
-    Generates a remark based on the presence of the property in all profiles
-    and if it's an extension in the KBV profiles.
+    Generates a row for the MD file and returns classification for style entry
     """
-    if all(presences):
-        return "Eigenschaft und Wert werden übernommen"
-    elif any("extension" in prop for presence in presences if presence):
-        return "Extension und Values werden übernommen"
+    # Escape pipe symbols in property names
+    prop_escaped = prop.replace('|', '&#124;')
+
+    # Split presences into KBV and ePA ones
+    kbv_presences, epa_presence = presences[1:], presences[0]
+
+    # Determine classification based on presences
+    if prop.split('.')[-1] in MANUAL_SUFFIXES:
+        classification = Classification.MANUAL
+    elif any(kbv_presences):
+        if epa_presence:
+            classification = Classification.USE
+        else:
+            classification = Classification.EXTENSION
     else:
-        return ""
+        classification = Classification.NOT_USE
+
+    row = row = [prop_escaped] + ["X" if presence else "" for presence in presences[1:]] + ["X" if presences[0] else "", REMARKS[classification]]
+    row = "| " + " | ".join(row) + " |"
+    return row, classification
+
+def gen_table_style(classifications: List[Classification]) -> str:
+    styles = [f"    .compTable tr:nth-child({idx+1}) {{ background: {COLORS[classification]}; }}" for idx, classification in enumerate(classifications)]
+    style_lines = ["<style>"] + styles + ["</style>"]
+    return "\n".join(style_lines)
 
 def create_results_md(presence_data):
     """
@@ -148,17 +196,21 @@ def create_results_md(presence_data):
         file_path = os.path.join(results_folder, f"{clean_epa_file}.md")
 
         with open(file_path, 'w') as md_file:
-            md_file.write(f"## Comparison: {', '.join(clean_kbv_group)} vs {clean_epa_file}\n")
-            md_file.write("| Property | " + " | ".join([f"{kbv_file}" for kbv_file in clean_kbv_group]) + " | ePA | Bemerkungen |\n")
-            md_file.write("|---" * (len(clean_kbv_group) + 3) + "|\n")
+            # Process the rows
+            rows = [gen_row(prop, presences) for prop, presences in sorted(data.items())]
+            # Extract the property rows and classifications
+            property_lines, classifications = list(zip(*rows))
+            lines = [
+                f"## Comparison: {', '.join(clean_kbv_group)} vs {clean_epa_file}",
+                gen_table_style(classifications),
+                "<div class=\"compTable\">\n",
+                "| Property | " + " | ".join([f"{kbv_file}" for kbv_file in clean_kbv_group]) + " | ePA | Bemerkungen |",
+                "|---" * (len(clean_kbv_group) + 3) + "|",
+                ]
+            lines += property_lines
+            lines.append("</div>")
 
-            for prop in sorted(data.keys()):
-                # Escape pipe symbols in property names
-                prop_escaped = prop.replace('|', '&#124;')
-                presences = data[prop]
-                remark = determine_remark(prop, presences)
-                row = f"| {prop_escaped} | " + " | ".join(["X" if presence else "" for presence in presences[1:]]) + " | " + ("X" if presences[0] else "") + f" | {remark} |\n"
-                md_file.write(row)
+            md_file.write('\n'.join(lines))
 
 
 # Define the datapath

@@ -1,150 +1,302 @@
 ## Comparison: KBV_PR_ERP_Medication_Compounding, KBV_PR_ERP_Medication_FreeText, KBV_PR_ERP_Medication_Ingredient, KBV_PR_ERP_Medication_PZN vs epa-medication
+<style>
+    .compTable tr:nth-child(1) { background: lightgreen; }
+    .compTable tr:nth-child(2) { background: lightgreen; }
+    .compTable tr:nth-child(3) { background: lightgreen; }
+    .compTable tr:nth-child(4) { background: LightPink; }
+    .compTable tr:nth-child(5) { background: LightPink; }
+    .compTable tr:nth-child(6) { background: LightPink; }
+    .compTable tr:nth-child(7) { background: LightPink; }
+    .compTable tr:nth-child(8) { background: lightgreen; }
+    .compTable tr:nth-child(9) { background: lightgreen; }
+    .compTable tr:nth-child(10) { background: lightgreen; }
+    .compTable tr:nth-child(11) { background: LightPink; }
+    .compTable tr:nth-child(12) { background: yellow; }
+    .compTable tr:nth-child(13) { background: yellow; }
+    .compTable tr:nth-child(14) { background: lightgreen; }
+    .compTable tr:nth-child(15) { background: lightgreen; }
+    .compTable tr:nth-child(16) { background: LightPink; }
+    .compTable tr:nth-child(17) { background: lightgreen; }
+    .compTable tr:nth-child(18) { background: lightgreen; }
+    .compTable tr:nth-child(19) { background: lightgreen; }
+    .compTable tr:nth-child(20) { background: lightgreen; }
+    .compTable tr:nth-child(21) { background: lightgreen; }
+    .compTable tr:nth-child(22) { background: LightPink; }
+    .compTable tr:nth-child(23) { background: LightPink; }
+    .compTable tr:nth-child(24) { background: LightPink; }
+    .compTable tr:nth-child(25) { background: LightPink; }
+    .compTable tr:nth-child(26) { background: LightPink; }
+    .compTable tr:nth-child(27) { background: LightPink; }
+    .compTable tr:nth-child(28) { background: LightPink; }
+    .compTable tr:nth-child(29) { background: LightPink; }
+    .compTable tr:nth-child(30) { background: LightPink; }
+    .compTable tr:nth-child(31) { background: LightPink; }
+    .compTable tr:nth-child(32) { background: LightPink; }
+    .compTable tr:nth-child(33) { background: LightPink; }
+    .compTable tr:nth-child(34) { background: LightPink; }
+    .compTable tr:nth-child(35) { background: LightPink; }
+    .compTable tr:nth-child(36) { background: LightPink; }
+    .compTable tr:nth-child(37) { background: LightPink; }
+    .compTable tr:nth-child(38) { background: LightPink; }
+    .compTable tr:nth-child(39) { background: LightPink; }
+    .compTable tr:nth-child(40) { background: LightPink; }
+    .compTable tr:nth-child(41) { background: LightPink; }
+    .compTable tr:nth-child(42) { background: LightPink; }
+    .compTable tr:nth-child(43) { background: LightPink; }
+    .compTable tr:nth-child(44) { background: LightPink; }
+    .compTable tr:nth-child(45) { background: LightPink; }
+    .compTable tr:nth-child(46) { background: yellow; }
+    .compTable tr:nth-child(47) { background: yellow; }
+    .compTable tr:nth-child(48) { background: yellow; }
+    .compTable tr:nth-child(49) { background: lightgreen; }
+    .compTable tr:nth-child(50) { background: lightgreen; }
+    .compTable tr:nth-child(51) { background: LightPink; }
+    .compTable tr:nth-child(52) { background: lightgreen; }
+    .compTable tr:nth-child(53) { background: LightPink; }
+    .compTable tr:nth-child(54) { background: LightPink; }
+    .compTable tr:nth-child(55) { background: LightPink; }
+    .compTable tr:nth-child(56) { background: yellow; }
+    .compTable tr:nth-child(57) { background: yellow; }
+    .compTable tr:nth-child(58) { background: yellow; }
+    .compTable tr:nth-child(59) { background: yellow; }
+    .compTable tr:nth-child(60) { background: yellow; }
+    .compTable tr:nth-child(61) { background: LightPink; }
+    .compTable tr:nth-child(62) { background: yellow; }
+    .compTable tr:nth-child(63) { background: lightgreen; }
+    .compTable tr:nth-child(64) { background: lightgreen; }
+    .compTable tr:nth-child(65) { background: LightPink; }
+    .compTable tr:nth-child(66) { background: LightPink; }
+    .compTable tr:nth-child(67) { background: LightPink; }
+    .compTable tr:nth-child(68) { background: LightPink; }
+    .compTable tr:nth-child(69) { background: LightPink; }
+    .compTable tr:nth-child(70) { background: LightPink; }
+    .compTable tr:nth-child(71) { background: LightPink; }
+    .compTable tr:nth-child(72) { background: LightPink; }
+    .compTable tr:nth-child(73) { background: LightPink; }
+    .compTable tr:nth-child(74) { background: LightPink; }
+    .compTable tr:nth-child(75) { background: LightPink; }
+    .compTable tr:nth-child(76) { background: LightPink; }
+    .compTable tr:nth-child(77) { background: yellow; }
+    .compTable tr:nth-child(78) { background: yellow; }
+    .compTable tr:nth-child(79) { background: yellow; }
+    .compTable tr:nth-child(80) { background: yellow; }
+    .compTable tr:nth-child(81) { background: LightPink; }
+    .compTable tr:nth-child(82) { background: LightPink; }
+    .compTable tr:nth-child(83) { background: LightPink; }
+    .compTable tr:nth-child(84) { background: lightgreen; }
+    .compTable tr:nth-child(85) { background: yellow; }
+    .compTable tr:nth-child(86) { background: LightPink; }
+    .compTable tr:nth-child(87) { background: lightgreen; }
+    .compTable tr:nth-child(88) { background: lightgreen; }
+    .compTable tr:nth-child(89) { background: lightgreen; }
+    .compTable tr:nth-child(90) { background: LightPink; }
+    .compTable tr:nth-child(91) { background: LightPink; }
+    .compTable tr:nth-child(92) { background: LightPink; }
+    .compTable tr:nth-child(93) { background: LightPink; }
+    .compTable tr:nth-child(94) { background: LightPink; }
+    .compTable tr:nth-child(95) { background: LightPink; }
+    .compTable tr:nth-child(96) { background: LightPink; }
+    .compTable tr:nth-child(97) { background: LightPink; }
+    .compTable tr:nth-child(98) { background: LightPink; }
+    .compTable tr:nth-child(99) { background: LightPink; }
+    .compTable tr:nth-child(100) { background: LightPink; }
+    .compTable tr:nth-child(101) { background: LightPink; }
+    .compTable tr:nth-child(102) { background: LightPink; }
+    .compTable tr:nth-child(103) { background: LightPink; }
+    .compTable tr:nth-child(104) { background: LightPink; }
+    .compTable tr:nth-child(105) { background: LightPink; }
+    .compTable tr:nth-child(106) { background: LightPink; }
+    .compTable tr:nth-child(107) { background: LightPink; }
+    .compTable tr:nth-child(108) { background: LightPink; }
+    .compTable tr:nth-child(109) { background: LightPink; }
+    .compTable tr:nth-child(110) { background: LightPink; }
+    .compTable tr:nth-child(111) { background: LightPink; }
+    .compTable tr:nth-child(112) { background: LightPink; }
+    .compTable tr:nth-child(113) { background: LightPink; }
+    .compTable tr:nth-child(114) { background: yellow; }
+    .compTable tr:nth-child(115) { background: yellow; }
+    .compTable tr:nth-child(116) { background: yellow; }
+    .compTable tr:nth-child(117) { background: yellow; }
+    .compTable tr:nth-child(118) { background: yellow; }
+    .compTable tr:nth-child(119) { background: yellow; }
+    .compTable tr:nth-child(120) { background: LightPink; }
+    .compTable tr:nth-child(121) { background: LightPink; }
+    .compTable tr:nth-child(122) { background: LightPink; }
+    .compTable tr:nth-child(123) { background: lightcyan; }
+    .compTable tr:nth-child(124) { background: LightPink; }
+    .compTable tr:nth-child(125) { background: lightgreen; }
+    .compTable tr:nth-child(126) { background: lightgreen; }
+    .compTable tr:nth-child(127) { background: LightPink; }
+    .compTable tr:nth-child(128) { background: LightPink; }
+    .compTable tr:nth-child(129) { background: LightPink; }
+    .compTable tr:nth-child(130) { background: LightPink; }
+    .compTable tr:nth-child(131) { background: lightgreen; }
+    .compTable tr:nth-child(132) { background: yellow; }
+    .compTable tr:nth-child(133) { background: lightgreen; }
+    .compTable tr:nth-child(134) { background: lightgreen; }
+    .compTable tr:nth-child(135) { background: LightPink; }
+    .compTable tr:nth-child(136) { background: lightgreen; }
+    .compTable tr:nth-child(137) { background: lightgreen; }
+    .compTable tr:nth-child(138) { background: lightgreen; }
+    .compTable tr:nth-child(139) { background: LightPink; }
+    .compTable tr:nth-child(140) { background: LightPink; }
+    .compTable tr:nth-child(141) { background: LightPink; }
+    .compTable tr:nth-child(142) { background: LightPink; }
+    .compTable tr:nth-child(143) { background: lightcyan; }
+    .compTable tr:nth-child(144) { background: LightPink; }
+    .compTable tr:nth-child(145) { background: lightgreen; }
+    .compTable tr:nth-child(146) { background: lightcyan; }
+    .compTable tr:nth-child(147) { background: LightPink; }
+</style>
+<div class="compTable">
+
 | Property | KBV_PR_ERP_Medication_Compounding | KBV_PR_ERP_Medication_FreeText | KBV_PR_ERP_Medication_Ingredient | KBV_PR_ERP_Medication_PZN | ePA | Bemerkungen |
 |---|---|---|---|---|---|---|
 | Medication | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.amount | X |  | X | X | X |  |
-| Medication.amount.denominator | X |  | X | X | X |  |
-| Medication.amount.denominator.code |  |  |  |  | X |  |
-| Medication.amount.denominator.comparator |  |  |  |  | X |  |
-| Medication.amount.denominator.system |  |  |  |  | X |  |
-| Medication.amount.denominator.unit |  |  |  |  | X |  |
-| Medication.amount.denominator.value | X |  | X | X | X |  |
-| Medication.amount.numerator | X |  | X | X | X |  |
-| Medication.amount.numerator.code | X |  | X | X | X |  |
-| Medication.amount.numerator.comparator |  |  |  |  | X |  |
+| Medication.amount | X |  | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.amount.denominator | X |  | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.amount.denominator.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.amount.denominator.comparator |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.amount.denominator.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.amount.denominator.unit |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.amount.denominator.value | X |  | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.amount.numerator | X |  | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.amount.numerator.code | X |  | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.amount.numerator.comparator |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | Medication.amount.numerator.extension:Gesamtmenge<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize) | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.amount.numerator.extension:Packungsgroesse<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize) |  |  | X | X |  | Extension und Values werden übernommen |
-| Medication.amount.numerator.system | X |  | X | X | X |  |
-| Medication.amount.numerator.unit | X |  | X | X | X |  |
-| Medication.amount.numerator.value |  |  |  |  | X |  |
+| Medication.amount.numerator.system | X |  | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.amount.numerator.unit | X |  | X | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.amount.numerator.value |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | Medication.batch | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
 | Medication.batch.expirationDate | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
 | Medication.batch.lotNumber | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
 | Medication.code | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
 | Medication.code.coding | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.code.coding:ASK |  |  |  |  | X |  |
-| Medication.code.coding:ASK.code |  |  |  |  | X |  |
-| Medication.code.coding:ASK.display |  |  |  |  | X |  |
-| Medication.code.coding:ASK.system |  |  |  |  | X |  |
-| Medication.code.coding:ASK.userSelected |  |  |  |  | X |  |
-| Medication.code.coding:ASK.version |  |  |  |  | X |  |
-| Medication.code.coding:ATC-DE |  |  |  |  | X |  |
-| Medication.code.coding:ATC-DE.code |  |  |  |  | X |  |
-| Medication.code.coding:ATC-DE.display |  |  |  |  | X |  |
-| Medication.code.coding:ATC-DE.system |  |  |  |  | X |  |
-| Medication.code.coding:ATC-DE.userSelected |  |  |  |  | X |  |
-| Medication.code.coding:ATC-DE.version |  |  |  |  | X |  |
-| Medication.code.coding:PZN |  |  |  |  | X |  |
-| Medication.code.coding:PZN.code |  |  |  |  | X |  |
-| Medication.code.coding:PZN.display |  |  |  |  | X |  |
-| Medication.code.coding:PZN.system |  |  |  |  | X |  |
-| Medication.code.coding:PZN.userSelected |  |  |  |  | X |  |
-| Medication.code.coding:PZN.version |  |  |  |  | X |  |
-| Medication.code.coding:WG14 |  |  |  |  | X |  |
-| Medication.code.coding:WG14.code |  |  |  |  | X |  |
-| Medication.code.coding:WG14.display |  |  |  |  | X |  |
-| Medication.code.coding:WG14.system |  |  |  |  | X |  |
-| Medication.code.coding:WG14.userSelected |  |  |  |  | X |  |
-| Medication.code.coding:WG14.version |  |  |  |  | X |  |
-| Medication.code.coding:pznCode |  |  |  | X |  |  |
-| Medication.code.coding:pznCode.code |  |  |  | X |  |  |
-| Medication.code.coding:pznCode.system |  |  |  | X |  |  |
-| Medication.code.coding:verordnungskategorieCode | X | X | X |  | X |  |
-| Medication.code.coding:verordnungskategorieCode.code | X | X | X |  | X |  |
-| Medication.code.coding:verordnungskategorieCode.display |  |  |  |  | X |  |
-| Medication.code.coding:verordnungskategorieCode.system | X | X | X |  | X |  |
-| Medication.code.coding:verordnungskategorieCode.userSelected |  |  |  |  | X |  |
-| Medication.code.coding:verordnungskategorieCode.version |  |  |  |  | X |  |
-| Medication.contained |  |  |  |  | X |  |
+| Medication.code.coding:ASK |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ASK.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ASK.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ASK.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ASK.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ASK.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ATC-DE |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ATC-DE.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ATC-DE.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ATC-DE.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ATC-DE.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:ATC-DE.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:PZN |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:PZN.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:PZN.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:PZN.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:PZN.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:PZN.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:WG14 |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:WG14.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:WG14.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:WG14.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:WG14.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:WG14.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:pznCode |  |  |  | X |  | Extension und Values werden übernommen |
+| Medication.code.coding:pznCode.code |  |  |  | X |  | Extension und Values werden übernommen |
+| Medication.code.coding:pznCode.system |  |  |  | X |  | Extension und Values werden übernommen |
+| Medication.code.coding:verordnungskategorieCode | X | X | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.code.coding:verordnungskategorieCode.code | X | X | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.code.coding:verordnungskategorieCode.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:verordnungskategorieCode.system | X | X | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.code.coding:verordnungskategorieCode.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.code.coding:verordnungskategorieCode.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.contained |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | Medication.extension:Arzneimittelkategorie<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category) | X | X | X | X |  | Extension und Values werden übernommen |
 | Medication.extension:Herstellungsanweisung<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_CompoundingInstruction) | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.extension:Impfstoff<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine) | X | X | X | X |  | Extension und Values werden übernommen |
 | Medication.extension:Kategorie<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type&#124;1.3.0) | X |  |  | X |  | Extension und Values werden übernommen |
 | Medication.extension:Normgroesse<br>(http://fhir.de/StructureDefinition/normgroesse) |  |  | X | X |  | Extension und Values werden übernommen |
-| Medication.extension:RxPrescriptionProcessIdentifier<br>(https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension) |  |  |  |  | X | Extension und Values werden übernommen |
+| Medication.extension:RxPrescriptionProcessIdentifier<br>(https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension) |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | Medication.extension:Verpackung<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Packaging) | X |  |  |  |  | Extension und Values werden übernommen |
 | Medication.form | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
-| Medication.form.coding |  |  |  | X | X |  |
-| Medication.form.coding:EDQM |  |  |  |  | X |  |
-| Medication.form.coding:EDQM.code |  |  |  |  | X |  |
-| Medication.form.coding:EDQM.display |  |  |  |  | X |  |
-| Medication.form.coding:EDQM.system |  |  |  |  | X |  |
-| Medication.form.coding:EDQM.userSelected |  |  |  |  | X |  |
-| Medication.form.coding:EDQM.version |  |  |  |  | X |  |
-| Medication.form.coding:KBVDarreichungsform |  |  |  |  | X |  |
-| Medication.form.coding:KBVDarreichungsform.code |  |  |  |  | X |  |
-| Medication.form.coding:KBVDarreichungsform.display |  |  |  |  | X |  |
-| Medication.form.coding:KBVDarreichungsform.system |  |  |  |  | X |  |
-| Medication.form.coding:KBVDarreichungsform.userSelected |  |  |  |  | X |  |
-| Medication.form.coding:KBVDarreichungsform.version |  |  |  |  | X |  |
-| Medication.form.coding:kbvDarreichungsform |  |  |  | X |  |  |
-| Medication.form.coding:kbvDarreichungsform.code |  |  |  | X |  |  |
-| Medication.form.coding:kbvDarreichungsform.display |  |  |  | X |  |  |
-| Medication.form.coding:kbvDarreichungsform.system |  |  |  | X |  |  |
-| Medication.identifier |  |  |  |  | X |  |
-| Medication.identifier:ePAMedicationUniqueIdentifier |  |  |  |  | X |  |
-| Medication.implicitRules |  |  |  |  | X |  |
-| Medication.ingredient | X |  | X |  | X |  |
+| Medication.form.coding |  |  |  | X | X | Eigenschaft und Wert werden übernommen |
+| Medication.form.coding:EDQM |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:EDQM.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:EDQM.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:EDQM.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:EDQM.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:EDQM.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:KBVDarreichungsform |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:KBVDarreichungsform.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:KBVDarreichungsform.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:KBVDarreichungsform.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:KBVDarreichungsform.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:KBVDarreichungsform.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.form.coding:kbvDarreichungsform |  |  |  | X |  | Extension und Values werden übernommen |
+| Medication.form.coding:kbvDarreichungsform.code |  |  |  | X |  | Extension und Values werden übernommen |
+| Medication.form.coding:kbvDarreichungsform.display |  |  |  | X |  | Extension und Values werden übernommen |
+| Medication.form.coding:kbvDarreichungsform.system |  |  |  | X |  | Extension und Values werden übernommen |
+| Medication.identifier |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.identifier:ePAMedicationUniqueIdentifier |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.implicitRules |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
 | Medication.ingredient.extension:Darreichungsform<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Form) | X |  |  |  |  | Extension und Values werden übernommen |
-| Medication.ingredient.isActive |  |  |  |  | X |  |
-| Medication.ingredient.item[x] | X |  | X |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept | X |  | X |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding | X |  | X |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.code |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.display |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.system |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.userSelected |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.version |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.code |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.display |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.system |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.userSelected |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.version |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.code |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.display |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.system |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.userSelected |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.version |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14 |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.code |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.display |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.system |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.userSelected |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.version |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode |  |  | X |  |  |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.code |  |  | X |  |  |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.system |  |  | X |  |  |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode | X |  |  |  |  |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode.code | X |  |  |  |  |  |
-| Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode.system | X |  |  |  |  |  |
-| Medication.ingredient.item[x]:itemReference |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemReference.display |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemReference.identifier |  |  |  |  | X |  |
+| Medication.ingredient.isActive |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x] | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.item[x]:itemCodeableConcept | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:ATC-DE.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14 |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.userSelected |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:WG14.version |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode |  |  | X |  |  | Extension und Values werden übernommen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.code |  |  | X |  |  | Extension und Values werden übernommen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.system |  |  | X |  |  | Extension und Values werden übernommen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode | X |  |  |  |  | Extension und Values werden übernommen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode.code | X |  |  |  |  | Extension und Values werden übernommen |
+| Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode.system | X |  |  |  |  | Extension und Values werden übernommen |
+| Medication.ingredient.item[x]:itemReference |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemReference.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.item[x]:itemReference.identifier |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | Medication.ingredient.item[x]:itemReference.reference |  |  |  |  | X |  |
-| Medication.ingredient.item[x]:itemReference.type |  |  |  |  | X |  |
-| Medication.ingredient.strength | X |  | X |  | X |  |
-| Medication.ingredient.strength.denominator | X |  | X |  | X |  |
-| Medication.ingredient.strength.denominator.code |  |  |  |  | X |  |
-| Medication.ingredient.strength.denominator.comparator |  |  |  |  | X |  |
-| Medication.ingredient.strength.denominator.system |  |  |  |  | X |  |
-| Medication.ingredient.strength.denominator.unit |  |  |  |  | X |  |
-| Medication.ingredient.strength.denominator.value | X |  | X |  | X |  |
+| Medication.ingredient.item[x]:itemReference.type |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.strength | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.strength.denominator | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.strength.denominator.code |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.strength.denominator.comparator |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.strength.denominator.system |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.strength.denominator.unit |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.strength.denominator.value | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
 | Medication.ingredient.strength.extension:MengeFreitext<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount) | X |  |  |  |  | Extension und Values werden übernommen |
-| Medication.ingredient.strength.numerator | X |  | X |  | X |  |
-| Medication.ingredient.strength.numerator.code | X |  | X |  | X |  |
-| Medication.ingredient.strength.numerator.comparator |  |  |  |  | X |  |
-| Medication.ingredient.strength.numerator.system | X |  | X |  | X |  |
-| Medication.ingredient.strength.numerator.unit | X |  | X |  | X |  |
-| Medication.ingredient.strength.numerator.value | X |  | X |  | X |  |
-| Medication.language |  |  |  |  | X |  |
-| Medication.manufacturer |  |  |  |  | X |  |
-| Medication.manufacturer.display |  |  |  |  | X |  |
-| Medication.manufacturer.identifier |  |  |  |  | X |  |
+| Medication.ingredient.strength.numerator | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.strength.numerator.code | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.strength.numerator.comparator |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.ingredient.strength.numerator.system | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.strength.numerator.unit | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.ingredient.strength.numerator.value | X |  | X |  | X | Eigenschaft und Wert werden übernommen |
+| Medication.language |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.manufacturer |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.manufacturer.display |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+| Medication.manufacturer.identifier |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | Medication.manufacturer.reference |  |  |  |  | X |  |
-| Medication.manufacturer.type |  |  |  |  | X |  |
+| Medication.manufacturer.type |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
 | Medication.meta | X | X | X | X | X | Eigenschaft und Wert werden übernommen |
 | Medication.meta.profile | X | X | X | X |  |  |
-| Medication.status |  |  |  |  | X |  |
+| Medication.status |  |  |  |  | X | Bleibt vorerst leer, da keine Quellinformationen |
+</div>
