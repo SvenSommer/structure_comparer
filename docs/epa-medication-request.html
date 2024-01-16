@@ -1,4 +1,6 @@
-<html><head><title>Comparison Results</title>
+<!DOCTYPE html>
+<html><head><title>Mapping: epa-medication-request</title>
+<link rel='stylesheet' type='text/css' href='./style.css'>
 <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
 <script type='text/javascript' src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 <script type='text/javascript' src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>
@@ -97,106 +99,109 @@
 #resultsTable tbody tr:nth-child(91) { background-color: #FFEBE6 !important; color: #000000 !important; }
 #resultsTable tbody tr:nth-child(92) { background-color: #FFEBE6 !important; color: #000000 !important; }
 </style>
-<h2>Comparison: KBV_PR_ERP_Prescription vs epa-medication-request</h2>
+<h2>Mapping: KBV_PR_ERP_Prescription in epa-medication-request</h2>
 <table id='resultsTable' class='display' style='width:100%'>
 <thead><tr><th>Property</th><th>KBV_PR_ERP_Prescription</th><th>ePA</th><th>Remarks</th></tr></thead>
 <tbody>
-<tr><td>MedicationRequest.authoredOn</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.basedOn</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.category</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.contained</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.courseOfTherapyType</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.detectedIssue</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.dispenseInterval</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.expectedSupplyDuration</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.initialFill</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.initialFill.duration</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.initialFill.quantity</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.numberOfRepeatsAllowed</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.performer</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.quantity</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.quantity.code</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.quantity.system</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.quantity.unit</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.quantity.value</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.dispenseRequest.validityPeriod</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.doNotPerform</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.additionalInstruction</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.asNeeded[x]</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.doseAndRate</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.doseAndRate.dose[x]</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.doseAndRate.rate[x]</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.doseAndRate.type</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag)</td><td>X</td><td>Extension und Values werden übernommen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.maxDosePerAdministration</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.maxDosePerLifetime</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.maxDosePerPeriod</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.method</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.patientInstruction</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.route</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.sequence</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.site</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.text</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.dosageInstruction.timing</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.encounter</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.eventHistory</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.extension:BVG<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_BVG)</td><td>X</td><td>Extension und Values werden übernommen</td></tr>
-<tr><td>MedicationRequest.extension:Mehrfachverordnung<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription)</td><td>X</td><td>Extension und Values werden übernommen</td></tr>
-<tr><td>MedicationRequest.extension:Notdienstgebuehr<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee)</td><td>X</td><td>Extension und Values werden übernommen</td></tr>
-<tr><td>MedicationRequest.extension:Unfallinformationen<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident)</td><td>X</td><td>Extension und Values werden übernommen</td></tr>
-<tr><td>MedicationRequest.extension:Zuzahlungsstatus<br>(https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment)</td><td>X</td><td>Extension und Values werden übernommen</td></tr>
-<tr><td>MedicationRequest.groupIdentifier</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.identifier</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.identifier:rxPrescriptionProcessIdentifier</td><td></td><td>Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben.</td></tr>
-<tr><td>MedicationRequest.implicitRules</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.instantiatesCanonical</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.instantiatesUri</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.insurance</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.insurance.reference</td><td>X</td><td>Wird beim Mapping ignoriert</td></tr>
-<tr><td>MedicationRequest.intent</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.language</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.medication[x]</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.medication[x].display</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.medication[x].identifier</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.medication[x].reference</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.medication[x].type</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.medication[x]:medicationReference</td><td>X</td><td>Die Referenz der KBV-Medikation wird durch eine Referenz auf eine EPA-Medikation ersetzt.</td></tr>
-<tr><td>MedicationRequest.medication[x]:medicationReference.reference</td><td>X</td><td>Die Referenz ergibt sich aus der neu erzeugten EPA-Medikation.</td></tr>
-<tr><td>MedicationRequest.meta</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.meta.profile</td><td>X</td><td>Wird fix auf 'https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication' gesetzt</td></tr>
-<tr><td>MedicationRequest.note</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.note.author[x]</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.note.text</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.note.time</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.performer</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.performerType</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.priorPrescription</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.priority</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.reasonCode</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.reasonReference</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.recorder</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.reported[x]</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.requester</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.requester.reference</td><td>X</td><td>Wird entfernt, später durch MedicationService selbst gesetzt</td></tr>
-<tr><td>MedicationRequest.status</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.statusReason</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.subject</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.subject.display</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.subject.identifier</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.subject.reference</td><td>X</td><td>Wird entfernt, später durch MedicationService selbst gesetzt</td></tr>
-<tr><td>MedicationRequest.subject.type</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.substitution</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.substitution.allowed[x]</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
-<tr><td>MedicationRequest.substitution.allowed[x]:allowedBoolean</td><td>X</td><td>Einschränkung wird nicht übernommen</td></tr>
-<tr><td>MedicationRequest.substitution.reason</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.supportingInformation</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
-<tr><td>MedicationRequest.text</td><td></td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr></tbody>
+<tr><td>MedicationRequest.authoredOn</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.basedOn</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.category</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.contained</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.courseOfTherapyType</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.detectedIssue</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.dispenseInterval</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.expectedSupplyDuration</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.initialFill</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.initialFill.duration</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.initialFill.quantity</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.numberOfRepeatsAllowed</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.performer</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.quantity</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.quantity.code</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.quantity.system</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.quantity.unit</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.quantity.value</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.dispenseRequest.validityPeriod</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.doNotPerform</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.additionalInstruction</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.asNeeded[x]</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.doseAndRate</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.doseAndRate.dose[x]</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.doseAndRate.rate[x]</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.doseAndRate.type</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen<br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag)" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag)</a></td><td>X</td><td></td><td>Extension und Values werden übernommen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.maxDosePerAdministration</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.maxDosePerLifetime</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.maxDosePerPeriod</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.method</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.patientInstruction</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.route</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.sequence</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.site</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.text</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.dosageInstruction.timing</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.encounter</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.eventHistory</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.extension:BVG<br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_BVG)" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_BVG)</a></td><td>X</td><td></td><td>Extension und Values werden übernommen</td></tr>
+<tr><td>MedicationRequest.extension:Mehrfachverordnung<br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription)" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription)</a></td><td>X</td><td></td><td>Extension und Values werden übernommen</td></tr>
+<tr><td>MedicationRequest.extension:Notdienstgebuehr<br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee)" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee)</a></td><td>X</td><td></td><td>Extension und Values werden übernommen</td></tr>
+<tr><td>MedicationRequest.extension:Unfallinformationen<br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident)" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident)</a></td><td>X</td><td></td><td>Extension und Values werden übernommen</td></tr>
+<tr><td>MedicationRequest.extension:Zuzahlungsstatus<br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment)" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment)</a></td><td>X</td><td></td><td>Extension und Values werden übernommen</td></tr>
+<tr><td>MedicationRequest.groupIdentifier</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.identifier</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.identifier:rxPrescriptionProcessIdentifier</td><td></td><td>X</td><td>Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben.</td></tr>
+<tr><td>MedicationRequest.implicitRules</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.instantiatesCanonical</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.instantiatesUri</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.insurance</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.insurance.reference</td><td>X</td><td></td><td>Wird beim Mapping ignoriert</td></tr>
+<tr><td>MedicationRequest.intent</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.language</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.medication[x]</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.medication[x].display</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.medication[x].identifier</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.medication[x].reference</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.medication[x].type</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.medication[x]:medicationReference</td><td>X</td><td></td><td>Die Referenz der KBV-Medikation wird durch eine Referenz auf eine EPA-Medikation ersetzt.</td></tr>
+<tr><td>MedicationRequest.medication[x]:medicationReference.reference</td><td>X</td><td></td><td>Die Referenz ergibt sich aus der neu erzeugten EPA-Medikation.</td></tr>
+<tr><td>MedicationRequest.meta</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.meta.profile</td><td>X</td><td></td><td>Wird fix auf '<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication</a>' gesetzt</td></tr>
+<tr><td>MedicationRequest.note</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.note.author[x]</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.note.text</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.note.time</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.performer</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.performerType</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.priorPrescription</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.priority</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.reasonCode</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.reasonReference</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.recorder</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.reported[x]</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.requester</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.requester.reference</td><td>X</td><td></td><td>Wird entfernt, später durch MedicationService selbst gesetzt</td></tr>
+<tr><td>MedicationRequest.status</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.statusReason</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.subject</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.subject.display</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.subject.identifier</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.subject.reference</td><td>X</td><td>X</td><td>Wird entfernt, später durch MedicationService selbst gesetzt</td></tr>
+<tr><td>MedicationRequest.subject.type</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.substitution</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.substitution.allowed[x]</td><td>X</td><td>X</td><td>Eigenschaft und Wert werden übernommen</td></tr>
+<tr><td>MedicationRequest.substitution.allowed[x]:allowedBoolean</td><td>X</td><td></td><td>Einschränkung wird nicht übernommen</td></tr>
+<tr><td>MedicationRequest.substitution.reason</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.supportingInformation</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr>
+<tr><td>MedicationRequest.text</td><td></td><td>X</td><td>Bleibt vorerst leer, da keine Quellinformationen</td></tr></tbody>
 </table>
 <script>
 $(document).ready(function() {
-    $('#resultsTable').DataTable();
+    $('#resultsTable').DataTable({
+        'pageLength': 25,
+        'lengthMenu': [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 150, 'All']]
+    });
 });
 </script>
 </body></html>
