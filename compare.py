@@ -15,13 +15,23 @@ def should_ignore(path: str, ignore_paths: List[str]) -> bool:
             return True
     return False
 
+def get_extension(element: dict, path: str) -> str | None:
+    if 'extension' in element and 'type' in element:
+        for type_entry in element['type']:
+            if type_entry.get('code') == 'Extension' and 'profile' in type_entry:
+                for profile in type_entry['profile']:
+                    extension_path = f"{path}<br>({profile})"
+                    # Ignore extensions ending with 'slice(url)'
+                    if not extension_path.endswith('slice(url)') and not extension_path.endswith('slice($this)') :
+                        return extension_path
+
 def extract_elements(structure):
     elements = set()
 
     ignore_paths = []
 
     for element in structure['snapshot']['element']:
-        path: str = element['path']
+        path: str = element['id']
         path_split = path.split('.')
 
         # Skip elements that are children of ignored nodes
@@ -29,9 +39,11 @@ def extract_elements(structure):
             continue
 
         # Ignore elements with having specific path endings
-        ignore_ends = ['id']
+        ignore_ends = ['id', 'extension', 'modifierExtension', 'text']
         if path_split[-1] in ignore_ends:
             continue
+
+        # TODO: reference
 
         # Ignore elements where the cardinality is set to zero
         if element['max'] == '0' or element['max'] == 0:
@@ -39,18 +51,14 @@ def extract_elements(structure):
             ignore_paths.append(path)
             continue
 
-        # Add the base path of the element
-        elements.add(path)
-
         # Check for specific extensions
-        if 'extension' in element and 'type' in element:
-            for type_entry in element['type']:
-                if type_entry.get('code') == 'Extension' and 'profile' in type_entry:
-                    for profile in type_entry['profile']:
-                        extension_path = f"{path}:{element.get('sliceName', '')}({profile})"
-                        # Ignore extensions ending with 'slice(url)'
-                        if not extension_path.endswith('slice(url)') and not extension_path.endswith('slice($this)') :
-                            elements.add(extension_path)
+        if extension := get_extension(element, path):
+            # Further ignore sub-elements of the extensions
+            ignore_paths.append(path)
+            elements.add(extension)
+        else:
+            # Add the base path of the element
+            elements.add(path)
 
         # Check for and add slices, ignoring 'slice(url)' endings
         if 'slicing' in element and 'discriminator' in element['slicing']:
