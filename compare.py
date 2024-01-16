@@ -1,6 +1,47 @@
 import json
 import os
-from typing import List
+from typing import List, Tuple
+
+from manual_entries import MANUAL_ENTRIES
+from classification import Classification
+
+
+COLORS = {
+    Classification.USE: "#E3FCEF",
+    Classification.NOT_USE: "#FFEBE6",
+    Classification.EXTENSION: "#FFFAE6",
+    Classification.MANUAL: "#B3F5FF",
+    Classification.OTHER: "#FFBDAD"
+}
+
+REMARKS = {
+    Classification.USE: "Eigenschaft und Wert werden übernommen",
+    Classification.NOT_USE: "Bleibt vorerst leer, da keine Quellinformationen",
+    Classification.EXTENSION: "Extension und Values werden übernommen",
+    Classification.MANUAL: "",
+    Classification.OTHER: ""
+}
+
+IGNORE_ENDS = [
+    'id',
+    'extension',
+    'modifierExtension'
+]
+
+IGNORE_SLICES = [
+    'slice(url)',
+    'slice($this)',
+    'slice(system)',
+    'slice(type)',
+    'slice(use)',
+    # workaround for 'slice(code.coding.system)'
+    'system)'
+]
+
+MANUAL_SUFFIXES = [
+    "reference",
+    "profile"
+]
 
 def load_fhir_structure(file_path):
     """
@@ -15,22 +56,35 @@ def should_ignore(path: str, ignore_paths: List[str]) -> bool:
             return True
     return False
 
+def get_extension(element: dict, path: str) -> str | None:
+    if 'extension' in element and 'type' in element:
+        for type_entry in element['type']:
+            if type_entry.get('code') == 'Extension' and 'profile' in type_entry:
+                for profile in type_entry['profile']:
+                    extension_path = f"{path}<br>({profile})"
+                    # Ignore extensions ending with 'slice(url)'
+                    if not extension_path.endswith('slice(url)') and not extension_path.endswith('slice($this)') :
+                        return extension_path
+
 def extract_elements(structure):
     elements = set()
 
     ignore_paths = []
 
     for element in structure['snapshot']['element']:
-        path: str = element['path']
+        path: str = element['id']
         path_split = path.split('.')
+
+        # Skip base element
+        if len(path_split) == 1:
+            continue
 
         # Skip elements that are children of ignored nodes
         if should_ignore(path, ignore_paths):
             continue
 
         # Ignore elements with having specific path endings
-        ignore_ends = ['id']
-        if path_split[-1] in ignore_ends:
+        if path_split[-1] in IGNORE_ENDS:
             continue
 
         # Ignore elements where the cardinality is set to zero
@@ -39,25 +93,22 @@ def extract_elements(structure):
             ignore_paths.append(path)
             continue
 
-        # Add the base path of the element
-        elements.add(path)
-
         # Check for specific extensions
-        if 'extension' in element and 'type' in element:
-            for type_entry in element['type']:
-                if type_entry.get('code') == 'Extension' and 'profile' in type_entry:
-                    for profile in type_entry['profile']:
-                        extension_path = f"{path}:{element.get('sliceName', '')}({profile})"
-                        # Ignore extensions ending with 'slice(url)'
-                        if not extension_path.endswith('slice(url)') and not extension_path.endswith('slice($this)') :
-                            elements.add(extension_path)
+        if extension := get_extension(element, path):
+            # Further ignore sub-elements of the extensions
+            ignore_paths.append(path)
+            elements.add(extension)
+        else:
+            # Add the base path of the element
+            elements.add(path)
 
         # Check for and add slices, ignoring 'slice(url)' endings
         if 'slicing' in element and 'discriminator' in element['slicing']:
             for discriminator in element['slicing']['discriminator']:
                 if isinstance(discriminator, dict) and 'path' in discriminator:
                     slice_path = f"{path}.slice({discriminator['path']})"
-                    if not slice_path.endswith('slice(url)') and not slice_path.endswith('slice($this)'):
+                    slice_path_split = slice_path.split('.')
+                    if not slice_path_split[-1] in IGNORE_SLICES:
                         elements.add(slice_path)
 
     return elements
@@ -111,17 +162,38 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
 
     return presence_data
 
-def determine_remark(prop, presences):
+def gen_row(prop: str, presences: List[str]) -> Tuple[str, Classification]:
     """
-    Generates a remark based on the presence of the property in all profiles
-    and if it's an extension in the KBV profiles.
+    Generates a row for the MD file and returns classification for style entry
     """
-    if all(presences):
-        return "Eigenschaft und Wert werden übernommen"
-    elif any("extension" in prop for presence in presences if presence):
-        return "Extension und Values werden übernommen"
+    # Escape pipe symbols in property names
+    prop_escaped = prop.replace('|', '&#124;')
+
+    # Split presences into KBV and ePA ones
+    kbv_presences, epa_presence = presences[1:], presences[0]
+
+    # Determine classification based on presences
+    if prop in MANUAL_ENTRIES:
+        classification = MANUAL_ENTRIES[prop].get("classification", Classification.MANUAL)
+    elif prop.split('.')[-1] in MANUAL_SUFFIXES:
+        classification = Classification.MANUAL
+    elif any(kbv_presences):
+        if epa_presence:
+            classification = Classification.USE
+        else:
+            classification = Classification.EXTENSION
     else:
-        return ""
+        classification = Classification.NOT_USE
+
+    row = [prop_escaped] + ["X" if presence else "" for presence in presences[1:]] + \
+        ["X" if presences[0] else "", MANUAL_ENTRIES[prop]['remark'] if prop in MANUAL_ENTRIES and 'remark' in MANUAL_ENTRIES[prop] else REMARKS[classification]]
+    row = "| " + " | ".join(row) + " |"
+    return row, classification
+
+def gen_table_style(classifications: List[Classification]) -> str:
+    styles = [f"    .compTable tr:nth-child({idx+1}) {{ background: {COLORS[classification]}; }}" for idx, classification in enumerate(classifications)]
+    style_lines = ["<style>"] + styles + ["</style>"]
+    return "\n".join(style_lines)
 
 def create_results_md(presence_data):
     """
@@ -140,17 +212,21 @@ def create_results_md(presence_data):
         file_path = os.path.join(results_folder, f"{clean_epa_file}.md")
 
         with open(file_path, 'w') as md_file:
-            md_file.write(f"## Comparison: {', '.join(clean_kbv_group)} vs {clean_epa_file}\n")
-            md_file.write("| Property | " + " | ".join([f"{kbv_file}" for kbv_file in clean_kbv_group]) + " | ePA | Bemerkungen |\n")
-            md_file.write("|---" * (len(clean_kbv_group) + 3) + "|\n")
+            # Process the rows
+            rows = [gen_row(prop, presences) for prop, presences in sorted(data.items())]
+            # Extract the property rows and classifications
+            property_lines, classifications = list(zip(*rows))
+            lines = [
+                f"## Comparison: {', '.join(clean_kbv_group)} vs {clean_epa_file}",
+                gen_table_style(classifications),
+                "<div class=\"compTable\">\n",
+                "| Property | " + " | ".join([f"{kbv_file}" for kbv_file in clean_kbv_group]) + " | ePA | Bemerkungen |",
+                "|---" * (len(clean_kbv_group) + 3) + "|",
+                ]
+            lines += property_lines
+            lines.append("</div>")
 
-            for prop in sorted(data.keys()):
-                # Escape pipe symbols in property names
-                prop_escaped = prop.replace('|', '&#124;')
-                presences = data[prop]
-                remark = determine_remark(prop, presences)
-                row = f"| {prop_escaped} | " + " | ".join(["X" if presence else "" for presence in presences[1:]]) + " | " + ("X" if presences[0] else "") + f" | {remark} |\n"
-                md_file.write(row)
+            md_file.write('\n'.join(lines))
 
 
 # Define the datapath
