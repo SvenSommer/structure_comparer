@@ -7,12 +7,12 @@ from manual_entries import MANUAL_ENTRIES
 from classification import Classification
 
 
-COLORS = {
-    Classification.USE: "#E3FCEF",
-    Classification.NOT_USE: "#FFEBE6",
-    Classification.EXTENSION: "#FFFAE6",
-    Classification.MANUAL: "#B3F5FF",
-    Classification.OTHER: "#FFBDAD",
+CSS_CLASS = {
+    Classification.USE: "row-use",
+    Classification.NOT_USE: "row-not-use",
+    Classification.EXTENSION: "row-extension",
+    Classification.MANUAL: "row-manual",
+    Classification.OTHER: "row-other",
 }
 
 REMARKS = {
@@ -168,7 +168,7 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
 
 def gen_row(prop: str, presences: List[str]) -> Tuple[List[str], Classification]:
     kbv_presences, epa_presence = presences[1:], presences[0]
-    
+
     classification = classify_property(prop, kbv_presences, epa_presence)
     remark = MANUAL_ENTRIES[prop]['remark'] if prop in MANUAL_ENTRIES and 'remark' in MANUAL_ENTRIES[prop] else REMARKS[classification]
 
@@ -178,9 +178,14 @@ def gen_row(prop: str, presences: List[str]) -> Tuple[List[str], Classification]
     # Erkenne und formatiere URLs in den Property-Werten
     prop = format_links(prop)
 
-    row_data = [prop] + ["X" if presence else "" for presence in presences[1:]] + ["X" if epa_presence else "", remark]
-    
-    return row_data, classification
+    formatted_presences = ["X" if presence else "" for presence in presences[1:] + [epa_presence]]
+    row_data = f"""<tr class="{CSS_CLASS[classification]}">
+    <td>{prop}</td>
+    {"".join(f"<td>{item}</td>" for item in formatted_presences)}
+    <td>{remark}</td>
+</tr>"""
+
+    return row_data
 
 def format_links(text: str) -> str:
     # Regex zum Erkennen von URLs
@@ -204,20 +209,6 @@ def is_light_color(hex_color: str) -> bool:
     luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
     return luminance > 0.5
 
-
-def gen_table_style(classifications: List[Classification]) -> str:
-    styles = []
-    for idx, classification in enumerate(classifications):
-        bg_color = COLORS.get(classification, "#FFFFFF")
-        text_color = "#000000" if is_light_color(bg_color) else "#FFFFFF"
-        # Increased specificity by targeting the tbody and using !important
-        styles.append(
-            f"#resultsTable tbody tr:nth-child({idx + 1}) {{ background-color: {bg_color} !important; color: {text_color} !important; }}"
-        )
-
-    return "<style>\n" + "\n".join(styles) + "\n</style>"
-
-
 def generate_html_table(
     rows: List[Tuple[List[str], Classification]], clean_kbv_group
 ) -> str:
@@ -228,10 +219,7 @@ def generate_html_table(
     )
     body = (
         "<tbody>\n"
-        + "\n".join(
-            "<tr>" + "".join(f"<td>{item}</td>" for item in row_data) + "</tr>"
-            for row_data, _ in rows
-        )
+        + "\n".join(rows)
         + "</tbody>"
     )
     return (
@@ -256,7 +244,6 @@ def create_results_html(presence_data, css_file_path):
             rows = [
                 gen_row(prop, presences) for prop, presences in sorted(data.items())
             ]
-            _, classifications = zip(*rows)
 
             html_table = [
                 "<!DOCTYPE html>",
@@ -266,7 +253,6 @@ def create_results_html(presence_data, css_file_path):
                 "<script type='text/javascript' src='https://code.jquery.com/jquery-3.6.0.min.js'></script>",
                 "<script type='text/javascript' src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>",
                 "</head><body>",
-                gen_table_style(classifications),
                 f"<h2>Mapping: {', '.join(clean_kbv_group)} in {clean_epa_file}</h2>",
                 generate_html_table(rows, clean_kbv_group),
                 "<script>",
