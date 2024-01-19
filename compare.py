@@ -172,8 +172,14 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
 
     return presence_data
 
+
 def get_remark(prop: str, classification: Classification) -> str:
-    return MANUAL_ENTRIES[prop]['remark'] if prop in MANUAL_ENTRIES and 'remark' in MANUAL_ENTRIES[prop] else REMARKS[classification]
+    return (
+        MANUAL_ENTRIES[prop]["remark"]
+        if prop in MANUAL_ENTRIES and "remark" in MANUAL_ENTRIES[prop]
+        else REMARKS[classification]
+    )
+
 
 def gen_row(prop: str, presences: List[str]) -> Tuple[List[str], Classification]:
     kbv_presences, epa_presence = presences[1:], presences[0]
@@ -187,7 +193,9 @@ def gen_row(prop: str, presences: List[str]) -> Tuple[List[str], Classification]
     # Erkenne und formatiere URLs in den Property-Werten
     prop = format_links(prop)
 
-    formatted_presences = ["X" if presence else "" for presence in presences[1:] + [epa_presence]]
+    formatted_presences = [
+        "X" if presence else "" for presence in presences[1:] + [epa_presence]
+    ]
     row_data = f"""<tr class="{CSS_CLASS[classification]}">
     <td>{prop}</td>
     {"".join(f"<td>{item}</td>" for item in formatted_presences)}
@@ -195,6 +203,7 @@ def gen_row(prop: str, presences: List[str]) -> Tuple[List[str], Classification]
 </tr>"""
 
     return row_data
+
 
 def format_links(text: str) -> str:
     # Regex zum Erkennen von URLs
@@ -218,6 +227,7 @@ def is_light_color(hex_color: str) -> bool:
     luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
     return luminance > 0.5
 
+
 def generate_html_table(
     rows: List[Tuple[List[str], Classification]], clean_kbv_group
 ) -> str:
@@ -226,11 +236,7 @@ def generate_html_table(
         + "".join(f"<th>{file}</th>" for file in clean_kbv_group)
         + "<th>ePA</th><th>Remarks</th></tr></thead>"
     )
-    body = (
-        "<tbody>\n"
-        + "\n".join(rows)
-        + "</tbody>"
-    )
+    body = "<tbody>\n" + "\n".join(rows) + "</tbody>"
     return (
         "<table id='resultsTable' class='display' style='width:100%'>\n"
         + header
@@ -277,6 +283,7 @@ def create_results_html(presence_data, css_file_path):
 
             html_file.write("\n".join(html_table))
 
+
 def gen_structured_results(presence_data: dict) -> dict:
     """
     Generate a structured representation containing the rules for each target profile.
@@ -321,8 +328,12 @@ def gen_structured_results(presence_data: dict) -> dict:
 
             # Fill the classification and remark for this field
             classification = classify_property(field, kbv_presences, epa_presence)
-            mapping[profiles][STRUCT_FIELDS][field_updated][STRUCT_CLASSIFICATION] = classification
-            mapping[profiles][STRUCT_FIELDS][field_updated][STRUCT_REMARK] = get_remark(field, classification)
+            mapping[profiles][STRUCT_FIELDS][field_updated][
+                STRUCT_CLASSIFICATION
+            ] = classification
+            mapping[profiles][STRUCT_FIELDS][field_updated][STRUCT_REMARK] = get_remark(
+                field, classification
+            )
 
     return mapping
 
