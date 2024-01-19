@@ -37,6 +37,13 @@ IGNORE_SLICES = [
 
 MANUAL_SUFFIXES = ["reference", "profile"]
 
+STRUCT_KBV_PROFILES = "kbv_profiles"
+STRUCT_EPA_PROFILE = "epa_profile"
+STRUCT_FIELDS = "fields"
+STRUCT_EXTENSION = "extension"
+STRUCT_CLASSIFICATION = "classification"
+STRUCT_REMARK = "remark"
+
 
 def load_fhir_structure(file_path):
     """
@@ -165,12 +172,14 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
 
     return presence_data
 
+def get_remark(prop: str, classification: Classification) -> str:
+    return MANUAL_ENTRIES[prop]['remark'] if prop in MANUAL_ENTRIES and 'remark' in MANUAL_ENTRIES[prop] else REMARKS[classification]
 
 def gen_row(prop: str, presences: List[str]) -> Tuple[List[str], Classification]:
     kbv_presences, epa_presence = presences[1:], presences[0]
 
     classification = classify_property(prop, kbv_presences, epa_presence)
-    remark = MANUAL_ENTRIES[prop]['remark'] if prop in MANUAL_ENTRIES and 'remark' in MANUAL_ENTRIES[prop] else REMARKS[classification]
+    remark = get_remark(prop, classification)
 
     # Erkenne und formatiere URLs in den Bemerkungen
     remark = format_links(remark)
@@ -268,6 +277,55 @@ def create_results_html(presence_data, css_file_path):
 
             html_file.write("\n".join(html_table))
 
+def gen_structured_results(presence_data: dict) -> dict:
+    """
+    Generate a structured representation containing the rules for each target profile.
+
+    The returned dictionary contains one item for each item in the argument `presence_data`. Each of these items
+    contains the names of KBV and ePA profiles, presence information for each of their fields and their
+    classifications and remarks.
+    """
+    mapping = {}
+    # Iterate over all mappings (each entry are mapping to the same profile)
+    for profiles, presences in presence_data.items():
+        mapping[profiles] = {}
+
+        # Generate the profile names
+        kbv_profiles = [profile.replace(".json", "") for profile in profiles[0]]
+        epa_profile = profiles[1].replace(".json", "")
+
+        # Extract which profiles are KBV and which is the ePA one
+        mapping[profiles][STRUCT_KBV_PROFILES] = kbv_profiles
+        mapping[profiles][STRUCT_EPA_PROFILE] = epa_profile
+
+        # Generate the mapping for all fields in those profiles
+        mapping[profiles][STRUCT_FIELDS] = {}
+        for field, field_presences in presences.items():
+            field_updated = field
+            extension_url = None
+
+            # Get the field name while extracting the canonical for extensions
+            if "extension" in field and "<br>" in field:
+                field_updated, extension_url = field.split("<br>")
+            mapping[profiles][STRUCT_FIELDS][field_updated] = {}
+            if extension_url:
+                mapping[profiles][STRUCT_FIELDS][field_updated][
+                    STRUCT_EXTENSION
+                ] = extension_url
+
+            # Extract the presences for KBV and ePA profiles
+            epa_presence, kbv_presences = field_presences[0], field_presences[1:]
+            mapping[profiles][STRUCT_FIELDS][field_updated][epa_profile] = epa_presence
+            for profile, presence in zip(kbv_profiles, kbv_presences):
+                mapping[profiles][STRUCT_FIELDS][field_updated][profile] = presence
+
+            # Fill the classification and remark for this field
+            classification = classify_property(field, kbv_presences, epa_presence)
+            mapping[profiles][STRUCT_FIELDS][field_updated][STRUCT_CLASSIFICATION] = classification
+            mapping[profiles][STRUCT_FIELDS][field_updated][STRUCT_REMARK] = get_remark(field, classification)
+
+    return mapping
+
 
 # Define the datapath
 datapath = "data/StructureDefinition/"
@@ -296,3 +354,5 @@ presence_data = check_property_presence(all_properties, profiles_to_compare, dat
 
 # Create the result html files
 create_results_html(presence_data, "./style.css")
+
+structured_mapping = gen_structured_results(presence_data)
