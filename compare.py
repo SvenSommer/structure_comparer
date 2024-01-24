@@ -1,7 +1,7 @@
 import json
 import os
 import re
-from typing import List, Tuple
+from typing import List, Tuple, Dict, Any
 import logging
 import re
 from pathlib import Path
@@ -189,22 +189,20 @@ def get_remark(prop: str, classification: Classification) -> str:
     )
 
 
-def gen_row(prop: str, presences: List[str]) -> Tuple[List[str], Classification]:
-    kbv_presences, epa_presence = presences[1:], presences[0]
-
-    classification = classify_property(prop, kbv_presences, epa_presence)
-    remark = get_remark(prop, classification)
-
+def gen_row(
+    prop: str, details: Dict[str, Any], profile_headers: List[str]
+) -> Tuple[List[str], Classification]:
     # Erkenne und formatiere URLs in den Bemerkungen
-    remark = format_links(remark)
+    remark = format_links(details[STRUCT_REMARK])
 
     # Erkenne und formatiere URLs in den Property-Werten
-    prop = format_links(prop)
+    if ext := details.get(STRUCT_EXTENSION):
+        prop = format_links(prop + "<br>" + ext)
 
     formatted_presences = [
-        "X" if presence else "" for presence in presences[1:] + [epa_presence]
+        "X" if details[profile] else "" for profile in profile_headers
     ]
-    row_data = f"""<tr class="{CSS_CLASS[classification]}">
+    row_data = f"""<tr class="{CSS_CLASS[details[STRUCT_CLASSIFICATION]]}">
     <td>{prop}</td>
     {"".join(f"<td>{item}</td>" for item in formatted_presences)}
     <td>{remark}</td>
@@ -254,18 +252,20 @@ def generate_html_table(
     )
 
 
-def create_results_html(presence_data, css_file_path):
+def create_results_html(structured_mapping, css_file_path):
     results_folder = "docs"
     if not os.path.exists(results_folder):
         os.makedirs(results_folder)
 
-    for (kbv_group, epa_file), data in presence_data.items():
-        clean_kbv_group = [file.replace(".json", "") for file in kbv_group]
-        clean_epa_file = epa_file.replace(".json", "")
+    for data in structured_mapping.values():
+        clean_kbv_group = data[STRUCT_KBV_PROFILES]
+        clean_epa_file = data[STRUCT_EPA_PROFILE]
+        profile_headers = data[STRUCT_KBV_PROFILES] + [data[STRUCT_EPA_PROFILE]]
         file_path = os.path.join(results_folder, f"{clean_epa_file}.html")
         with open(file_path, "w") as html_file:
             rows = [
-                gen_row(prop, presences) for prop, presences in sorted(data.items())
+                gen_row(prop, details, profile_headers)
+                for prop, details in sorted(data[STRUCT_FIELDS].items())
             ]
 
             html_table = [
@@ -398,7 +398,7 @@ def gen_mapping_dict(structured_mapping: dict):
                     else:
                         # Log fall-through
                         logger.warning(
-                            f"did not handle {kbv_profile}:{epa_profile}:{field}:{classification} {remark}"
+                            f"gen_mapping_dict: did not handle {kbv_profile}:{epa_profile}:{field}:{classification} {remark}"
                         )
 
             profile_handling[DICT_MAPPINGS] = {
@@ -440,9 +440,12 @@ all_properties = determine_property_presence(profiles_to_compare, datapath)
 # Check the presence of each property in each profile
 presence_data = check_property_presence(all_properties, profiles_to_compare, datapath)
 
-# Create the result html files
-create_results_html(presence_data, "./style.css")
-
+# Generate a structured version of the presence data
 structured_mapping = gen_structured_results(presence_data)
+
+# Create the result html files
+create_results_html(structured_mapping, "./style.css")
+
+# Generate the mapping dict and write to file
 mapping_dict = gen_mapping_dict(structured_mapping)
 Path("mapping.json").write_text(json.dumps(mapping_dict, indent=4))
