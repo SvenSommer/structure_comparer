@@ -8,10 +8,8 @@ from .classification import Classification
 from .consts import (
     STRUCT_CLASSIFICATION,
     STRUCT_EPA_PROFILE,
-    STRUCT_EXTENSION,
     STRUCT_FIELDS,
     STRUCT_KBV_PROFILES,
-    STRUCT_REMARK,
 )
 
 
@@ -32,7 +30,9 @@ STYLE_FILE_NAME = "style.css"
 FILES_FOLDER = Path(__file__).parent / "files"
 
 
-def create_results_html(structured_mapping, results_folder: str | Path):
+def create_results_html(
+    structured_mapping, results_folder: str | Path, show_remarks: bool
+):
     # Convert to Path object if necessary
     if isinstance(results_folder, str):
         results_folder = Path(results_folder)
@@ -63,6 +63,7 @@ def create_results_html(structured_mapping, results_folder: str | Path):
             "target_profile": clean_epa_file,
             "source_profiles": clean_kbv_group,
             "entries": entries,
+            "show_remarks": show_remarks,
         }
 
         content = template.render(**data)

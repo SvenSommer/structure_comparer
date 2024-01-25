@@ -19,17 +19,21 @@
                 <th>{{ profile }}</th>
                 {% endfor -%}
                 <th>{{target_profile }}</th>
+                {%- if show_remarks %}
                 <th>Remarks</th>
+                {%- endif %}
             </tr>
         </thead>
         <tbody>
             {% for prop, entry in entries.items() -%}
             <tr class="{{ entry.css_class }}">
                 <td>{{ prop }}{% if "extension" in entry %}<br>({{ entry["extension"] | format_links }}){% endif %}</td>
-                {% for profile in source_profiles + [target_profile] -%}
+                {%- for profile in source_profiles + [target_profile] %}
                 <td>{% if entry[profile] %}X{% endif %}</td>
-                {% endfor -%}
+                {%- endfor %}
+                {%- if show_remarks %}
                 <td>{{ entry["remark"] | format_links}}</td>
+                {%- endif %}
             </tr>
             {% endfor -%}
         </tbody>

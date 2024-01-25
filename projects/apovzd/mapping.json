@@ -1,0 +1,72 @@
+{
+    "HealthcareServiceApoVzd": {
+        "HealthcareServiceDirectory": {
+            "mappings": {
+                "HealthcareService.active": "HealthcareService.active",
+                "HealthcareService.appointmentRequired": "HealthcareService.appointmentRequired",
+                "HealthcareService.availabilityExceptions": "HealthcareService.availabilityExceptions",
+                "HealthcareService.availableTime": "HealthcareService.availableTime",
+                "HealthcareService.category": "HealthcareService.category",
+                "HealthcareService.characteristic": "HealthcareService.characteristic",
+                "HealthcareService.comment": "HealthcareService.comment",
+                "HealthcareService.communication": "HealthcareService.communication",
+                "HealthcareService.contained": "HealthcareService.contained",
+                "HealthcareService.coverageArea": "HealthcareService.coverageArea",
+                "HealthcareService.eligibility": "HealthcareService.eligibility",
+                "HealthcareService.endpoint": "HealthcareService.endpoint",
+                "HealthcareService.extension:PaymentOptions": "HealthcareService.extension:PaymentOptions",
+                "HealthcareService.extraDetails": "HealthcareService.extraDetails",
+                "HealthcareService.identifier": "HealthcareService.identifier",
+                "HealthcareService.implicitRules": "HealthcareService.implicitRules",
+                "HealthcareService.language": "HealthcareService.language",
+                "HealthcareService.location": "HealthcareService.location",
+                "HealthcareService.meta": "HealthcareService.meta",
+                "HealthcareService.name": "HealthcareService.name",
+                "HealthcareService.notAvailable": "HealthcareService.notAvailable",
+                "HealthcareService.photo": "HealthcareService.photo",
+                "HealthcareService.program": "HealthcareService.program",
+                "HealthcareService.providedBy": "HealthcareService.providedBy",
+                "HealthcareService.referralMethod": "HealthcareService.referralMethod",
+                "HealthcareService.serviceProvisionCode": "HealthcareService.serviceProvisionCode",
+                "HealthcareService.specialty": "HealthcareService.specialty",
+                "HealthcareService.telecom": "HealthcareService.telecom",
+                "HealthcareService.text": "HealthcareService.text",
+                "HealthcareService.type": "HealthcareService.type"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "LocationApoVzd": {
+        "LocationDirectory": {
+            "mappings": {
+                "Location.address": "Location.address",
+                "Location.alias": "Location.alias",
+                "Location.availabilityExceptions": "Location.availabilityExceptions",
+                "Location.contained": "Location.contained",
+                "Location.description": "Location.description",
+                "Location.endpoint": "Location.endpoint",
+                "Location.extension:Accessibilty": "Location.extension:Accessibilty",
+                "Location.extension:Parking": "Location.extension:Parking",
+                "Location.hoursOfOperation": "Location.hoursOfOperation",
+                "Location.identifier": "Location.identifier",
+                "Location.implicitRules": "Location.implicitRules",
+                "Location.language": "Location.language",
+                "Location.managingOrganization": "Location.managingOrganization",
+                "Location.meta": "Location.meta",
+                "Location.mode": "Location.mode",
+                "Location.name": "Location.name",
+                "Location.operationalStatus": "Location.operationalStatus",
+                "Location.partOf": "Location.partOf",
+                "Location.physicalType": "Location.physicalType",
+                "Location.position": "Location.position",
+                "Location.status": "Location.status",
+                "Location.telecom": "Location.telecom",
+                "Location.text": "Location.text",
+                "Location.type": "Location.type"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    }
+}

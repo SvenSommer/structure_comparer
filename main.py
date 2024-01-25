@@ -51,8 +51,9 @@ if __name__ == "__main__":
 
     if args.html:
         # Create the result html files
+        show_remarks = config.get("show_remarks", True)
         html_output_dir = args.project_dir / config.get("html_output_dir", "html")
-        create_results_html(structured_mapping, html_output_dir)
+        create_results_html(structured_mapping, html_output_dir, show_remarks)
 
     if args.json:
         # Generate the mapping dict and write to file
