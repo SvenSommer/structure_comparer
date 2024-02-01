@@ -1,2 +1,7 @@
+# Python specific
 .venv
 __pycache__
+
+# IDE specific
+.vscode
+.history

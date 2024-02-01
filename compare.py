@@ -1,7 +1,10 @@
 import json
 import os
 import re
-from typing import List, Tuple
+from typing import List, Tuple, Dict, Any
+import logging
+import re
+from pathlib import Path
 
 from manual_entries import MANUAL_ENTRIES
 from classification import Classification
@@ -36,6 +39,18 @@ IGNORE_SLICES = [
 ]
 
 MANUAL_SUFFIXES = ["reference", "profile"]
+
+STRUCT_KBV_PROFILES = "kbv_profiles"
+STRUCT_EPA_PROFILE = "epa_profile"
+STRUCT_FIELDS = "fields"
+STRUCT_EXTENSION = "extension"
+STRUCT_CLASSIFICATION = "classification"
+STRUCT_REMARK = "remark"
+
+DICT_MAPPINGS = "mappings"
+DICT_VALUES = "values"
+
+logger = logging.getLogger()
 
 
 def load_fhir_structure(file_path):
@@ -166,26 +181,35 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
     return presence_data
 
 
-def gen_row(prop: str, presences: List[str]) -> Tuple[List[str], Classification]:
-    kbv_presences, epa_presence = presences[1:], presences[0]
+def get_remark(prop: str, classification: Classification) -> str:
+    return (
+        MANUAL_ENTRIES[prop]["remark"]
+        if prop in MANUAL_ENTRIES and "remark" in MANUAL_ENTRIES[prop]
+        else REMARKS[classification]
+    )
 
-    classification = classify_property(prop, kbv_presences, epa_presence)
-    remark = MANUAL_ENTRIES[prop]['remark'] if prop in MANUAL_ENTRIES and 'remark' in MANUAL_ENTRIES[prop] else REMARKS[classification]
 
+def gen_row(
+    prop: str, details: Dict[str, Any], profile_headers: List[str]
+) -> Tuple[List[str], Classification]:
     # Erkenne und formatiere URLs in den Bemerkungen
-    remark = format_links(remark)
+    remark = format_links(details[STRUCT_REMARK])
 
     # Erkenne und formatiere URLs in den Property-Werten
-    prop = format_links(prop)
+    if ext := details.get(STRUCT_EXTENSION):
+        prop = format_links(prop + "<br>" + ext)
 
-    formatted_presences = ["X" if presence else "" for presence in presences[1:] + [epa_presence]]
-    row_data = f"""<tr class="{CSS_CLASS[classification]}">
+    formatted_presences = [
+        "X" if details[profile] else "" for profile in profile_headers
+    ]
+    row_data = f"""<tr class="{CSS_CLASS[details[STRUCT_CLASSIFICATION]]}">
     <td>{prop}</td>
     {"".join(f"<td>{item}</td>" for item in formatted_presences)}
     <td>{remark}</td>
 </tr>"""
 
     return row_data
+
 
 def format_links(text: str) -> str:
     # Regex zum Erkennen von URLs
@@ -209,6 +233,7 @@ def is_light_color(hex_color: str) -> bool:
     luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
     return luminance > 0.5
 
+
 def generate_html_table(
     rows: List[Tuple[List[str], Classification]], clean_kbv_group
 ) -> str:
@@ -217,11 +242,7 @@ def generate_html_table(
         + "".join(f"<th>{file}</th>" for file in clean_kbv_group)
         + "<th>ePA</th><th>Remarks</th></tr></thead>"
     )
-    body = (
-        "<tbody>\n"
-        + "\n".join(rows)
-        + "</tbody>"
-    )
+    body = "<tbody>\n" + "\n".join(rows) + "</tbody>"
     return (
         "<table id='resultsTable' class='display' style='width:100%'>\n"
         + header
@@ -231,18 +252,20 @@ def generate_html_table(
     )
 
 
-def create_results_html(presence_data, css_file_path):
+def create_results_html(structured_mapping, css_file_path):
     results_folder = "docs"
     if not os.path.exists(results_folder):
         os.makedirs(results_folder)
 
-    for (kbv_group, epa_file), data in presence_data.items():
-        clean_kbv_group = [file.replace(".json", "") for file in kbv_group]
-        clean_epa_file = epa_file.replace(".json", "")
+    for data in structured_mapping.values():
+        clean_kbv_group = data[STRUCT_KBV_PROFILES]
+        clean_epa_file = data[STRUCT_EPA_PROFILE]
+        profile_headers = data[STRUCT_KBV_PROFILES] + [data[STRUCT_EPA_PROFILE]]
         file_path = os.path.join(results_folder, f"{clean_epa_file}.html")
         with open(file_path, "w") as html_file:
             rows = [
-                gen_row(prop, presences) for prop, presences in sorted(data.items())
+                gen_row(prop, details, profile_headers)
+                for prop, details in sorted(data[STRUCT_FIELDS].items())
             ]
 
             html_table = [
@@ -267,6 +290,129 @@ def create_results_html(presence_data, css_file_path):
             ]
 
             html_file.write("\n".join(html_table))
+
+
+def gen_structured_results(presence_data: dict) -> dict:
+    """
+    Generate a structured representation containing the rules for each target profile.
+
+    The returned dictionary contains one item for each item in the argument `presence_data`. Each of these items
+    contains the names of KBV and ePA profiles, presence information for each of their fields and their
+    classifications and remarks.
+    """
+    mapping = {}
+    # Iterate over all mappings (each entry are mapping to the same profile)
+    for profiles, presences in presence_data.items():
+        mapping[profiles] = {}
+
+        # Generate the profile names
+        kbv_profiles = [profile.replace(".json", "") for profile in profiles[0]]
+        epa_profile = profiles[1].replace(".json", "")
+
+        # Extract which profiles are KBV and which is the ePA one
+        mapping[profiles][STRUCT_KBV_PROFILES] = kbv_profiles
+        mapping[profiles][STRUCT_EPA_PROFILE] = epa_profile
+
+        # Generate the mapping for all fields in those profiles
+        mapping[profiles][STRUCT_FIELDS] = {}
+        for field, field_presences in presences.items():
+            field_updated = field
+            extension_url = None
+
+            # Get the field name while extracting the canonical for extensions
+            if "extension" in field and "<br>" in field:
+                field_updated, extension_url = field.split("<br>")
+            mapping[profiles][STRUCT_FIELDS][field_updated] = {}
+            if extension_url:
+                mapping[profiles][STRUCT_FIELDS][field_updated][
+                    STRUCT_EXTENSION
+                ] = extension_url
+
+            # Extract the presences for KBV and ePA profiles
+            epa_presence, kbv_presences = field_presences[0], field_presences[1:]
+            mapping[profiles][STRUCT_FIELDS][field_updated][epa_profile] = epa_presence
+            for profile, presence in zip(kbv_profiles, kbv_presences):
+                mapping[profiles][STRUCT_FIELDS][field_updated][profile] = presence
+
+            # Fill the classification and remark for this field
+            classification = classify_property(field, kbv_presences, epa_presence)
+            mapping[profiles][STRUCT_FIELDS][field_updated][
+                STRUCT_CLASSIFICATION
+            ] = classification
+            mapping[profiles][STRUCT_FIELDS][field_updated][STRUCT_REMARK] = get_remark(
+                field, classification
+            )
+
+    return mapping
+
+
+def gen_mapping_dict(structured_mapping: dict):
+    result = {}
+
+    # Regex to extract the field to copy this value to
+    move_rexgex = re.compile(r"[wW]ird in ([\w\.\[\]:]+)")
+
+    # Regex to extract the fixed value to set
+    fix_regex = re.compile(r"Wird fix auf \'([\w:/\.-]+)' gesetzt")
+
+    # Iterate over the different mappings
+    for mappings in structured_mapping.values():
+        epa_profile = mappings[STRUCT_EPA_PROFILE]
+
+        # Iterate over the source profiles
+        # These will be the roots of the mappings
+        for kbv_profile in mappings[STRUCT_KBV_PROFILES]:
+            profile_handling = {DICT_MAPPINGS: {}, DICT_VALUES: {}}
+            for field, presences in mappings[STRUCT_FIELDS].items():
+                classification = presences[STRUCT_CLASSIFICATION]
+                remark = presences[STRUCT_REMARK]
+
+                # If 'manual' and should always be set to a fixed value
+                if classification == Classification.MANUAL and (
+                    match := fix_regex.search(remark)
+                ):
+                    profile_handling[DICT_VALUES][field] = match.group(1)
+
+                # Otherwise only if value is present
+                elif presences[kbv_profile]:
+                    # If field should be used and remark was not changed
+                    if (
+                        classification in [Classification.USE, Classification.EXTENSION]
+                        and remark == REMARKS[classification]
+                    ):
+                        # Put value in the same field
+                        profile_handling[DICT_MAPPINGS][field] = field
+
+                    # If the field should be placed in other field
+                    elif classification in [
+                        Classification.USE,
+                        Classification.EXTENSION,
+                        Classification.MANUAL,
+                    ] and (match := move_rexgex.search(remark)):
+                        # Get new field from regex
+                        profile_handling[DICT_MAPPINGS][field] = match.group(1)
+
+                    # Do not handle when 'not use'
+                    elif classification == Classification.NOT_USE:
+                        pass
+                    else:
+                        # Log fall-through
+                        logger.warning(
+                            f"gen_mapping_dict: did not handle {kbv_profile}:{epa_profile}:{field}:{classification} {remark}"
+                        )
+
+            profile_handling[DICT_MAPPINGS] = {
+                key: value
+                for key, value in sorted(profile_handling[DICT_MAPPINGS].items())
+            }
+            profile_handling[DICT_VALUES] = {
+                key: value
+                for key, value in sorted(profile_handling[DICT_VALUES].items())
+            }
+
+            result[kbv_profile] = {epa_profile: profile_handling}
+
+    return result
 
 
 # Define the datapath
@@ -294,5 +440,12 @@ all_properties = determine_property_presence(profiles_to_compare, datapath)
 # Check the presence of each property in each profile
 presence_data = check_property_presence(all_properties, profiles_to_compare, datapath)
 
+# Generate a structured version of the presence data
+structured_mapping = gen_structured_results(presence_data)
+
 # Create the result html files
-create_results_html(presence_data, "./style.css")
+create_results_html(structured_mapping, "./style.css")
+
+# Generate the mapping dict and write to file
+mapping_dict = gen_mapping_dict(structured_mapping)
+Path("mapping.json").write_text(json.dumps(mapping_dict, indent=4))
