@@ -1,5 +1,5 @@
 import json
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 import logging
 
 from classification import Classification
@@ -181,9 +181,10 @@ def _check_property_presence(all_properties, profiles_to_compare, datapath):
 
 
 def _classify_remark_property(
-    prop,
-    kbv_presences,
-    epa_presence,
+    prop: str,
+    kbv_presences: List[str],
+    epa_presence: str,
+    fields_updates: Dict[str, dict],
 ) -> Tuple[Classification, str]:
     """
     Classify and get the remark for the property
@@ -196,7 +197,13 @@ def _classify_remark_property(
     remark = None
 
     # Split the property in parent and child
-    parent, child = prop.rsplit(".", 1)
+    if (
+        len(prop.rsplit(".", 1)[0]) < len(prop.rsplit(":", 1)[0])
+        and len(prop.rsplit(":", 1)) == 2
+    ):
+        parent, child = prop.rsplit(":", 1)
+    else:
+        parent, child = prop.rsplit(".", 1)
 
     # If there is a manual entry for this property, use it
     if prop in MANUAL_ENTRIES:
@@ -210,6 +217,12 @@ def _classify_remark_property(
     # If the last element from the property is in the manual list, use the manual classification
     elif child in MANUAL_SUFFIXES:
         classification = Classification.MANUAL
+
+    elif (parent_update := fields_updates.get(parent)) and parent_update[
+        STRUCT_CLASSIFICATION
+    ] == Classification.NOT_USE:
+        classification = Classification.NOT_USE
+        remark = parent_update[STRUCT_REMARK]
 
     # If present in any of the KBV profiles
     elif any(kbv_presences):
@@ -255,7 +268,7 @@ def _gen_structured_results(presence_data: dict) -> dict:
 
         # Generate the mapping for all fields in those profiles
         mapping[profiles][STRUCT_FIELDS] = {}
-        for field, field_presences in presences.items():
+        for field, field_presences in sorted(presences.items()):
             field_update = {}
 
             field_updated = field
@@ -275,7 +288,7 @@ def _gen_structured_results(presence_data: dict) -> dict:
 
             # Fill the classification and remark for this field
             classification, remark = _classify_remark_property(
-                field, kbv_presences, epa_presence
+                field, kbv_presences, epa_presence, mapping[profiles][STRUCT_FIELDS]
             )
             field_update[STRUCT_CLASSIFICATION] = classification
             field_update[STRUCT_REMARK] = remark
