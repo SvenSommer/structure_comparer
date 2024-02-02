@@ -106,6 +106,6 @@ def gen_row(
 
 def format_links(text: str) -> str:
     # Regex zum Erkennen von URLs
-    url_pattern = r"(https?://[^\s'\"<>]+)"
+    url_pattern = r"(https?://[\w\.\/\-\|]+)"
     # Ersetze URLs mit einem anklickbaren Link
     return re.sub(url_pattern, r'<a href="\1" target="_blank">\1</a>', text)
