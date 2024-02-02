@@ -1,5 +1,5 @@
 import json
-from typing import List
+from typing import List, Tuple
 import logging
 
 from classification import Classification
@@ -180,22 +180,50 @@ def _check_property_presence(all_properties, profiles_to_compare, datapath):
     return presence_data
 
 
-def _get_remark(prop: str, classification: Classification) -> str:
-    return (
-        MANUAL_ENTRIES[prop]["remark"]
-        if prop in MANUAL_ENTRIES and "remark" in MANUAL_ENTRIES[prop]
-        else REMARKS[classification]
-    )
+def _classify_remark_property(
+    prop,
+    kbv_presences,
+    epa_presence,
+) -> Tuple[Classification, str]:
+    """
+    Classify and get the remark for the property
 
+    First, the manual entries and manual suffixes are checked. If neither is the case, it classifies the property
+    based on the presence of the property in the KBV and ePA profiles.
+    """
 
-def _classify_property(prop, kbv_presences, epa_presence):
+    classification = None
+    remark = None
+
+    # Split the property in parent and child
+    parent, child = prop.rsplit(".", 1)
+
+    # If there is a manual entry for this property, use it
     if prop in MANUAL_ENTRIES:
-        return MANUAL_ENTRIES[prop].get("classification", Classification.MANUAL)
-    if prop.split(".")[-1] in MANUAL_SUFFIXES:
-        return Classification.MANUAL
-    if any(kbv_presences):
-        return Classification.USE if epa_presence else Classification.EXTENSION
-    return Classification.NOT_USE
+        classification = MANUAL_ENTRIES[prop].get(
+            "classification", Classification.MANUAL
+        )
+
+        # If there is a remark in the manual entry, use it else use the default remark
+        remark = MANUAL_ENTRIES[prop].get("remark", REMARKS[classification])
+
+    # If the last element from the property is in the manual list, use the manual classification
+    elif child in MANUAL_SUFFIXES:
+        classification = Classification.MANUAL
+
+    # If present in any of the KBV profiles
+    elif any(kbv_presences):
+        if epa_presence:
+            classification = Classification.USE
+        else:
+            classification = Classification.EXTENSION
+    else:
+        classification = Classification.NOT_USE
+
+    if not remark:
+        remark = REMARKS[classification]
+
+    return classification, remark
 
 
 def _is_light_color(hex_color: str) -> bool:
@@ -228,31 +256,31 @@ def _gen_structured_results(presence_data: dict) -> dict:
         # Generate the mapping for all fields in those profiles
         mapping[profiles][STRUCT_FIELDS] = {}
         for field, field_presences in presences.items():
+            field_update = {}
+
             field_updated = field
             extension_url = None
 
             # Get the field name while extracting the canonical for extensions
             if "extension" in field and "<br>" in field:
                 field_updated, extension_url = field.split("<br>")
-            mapping[profiles][STRUCT_FIELDS][field_updated] = {}
             if extension_url:
-                mapping[profiles][STRUCT_FIELDS][field_updated][
-                    STRUCT_EXTENSION
-                ] = extension_url
+                field_update[STRUCT_EXTENSION] = extension_url
 
             # Extract the presences for KBV and ePA profiles
             epa_presence, kbv_presences = field_presences[0], field_presences[1:]
-            mapping[profiles][STRUCT_FIELDS][field_updated][epa_profile] = epa_presence
+            field_update[epa_profile] = epa_presence
             for profile, presence in zip(kbv_profiles, kbv_presences):
-                mapping[profiles][STRUCT_FIELDS][field_updated][profile] = presence
+                field_update[profile] = presence
 
             # Fill the classification and remark for this field
-            classification = _classify_property(field, kbv_presences, epa_presence)
-            mapping[profiles][STRUCT_FIELDS][field_updated][
-                STRUCT_CLASSIFICATION
-            ] = classification
-            mapping[profiles][STRUCT_FIELDS][field_updated][STRUCT_REMARK] = _get_remark(
-                field, classification
+            classification, remark = _classify_remark_property(
+                field, kbv_presences, epa_presence
             )
+            field_update[STRUCT_CLASSIFICATION] = classification
+            field_update[STRUCT_REMARK] = remark
+
+            # Set the field update
+            mapping[profiles][STRUCT_FIELDS][field_updated] = field_update
 
     return mapping
