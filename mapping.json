@@ -191,12 +191,7 @@
                 "Practitioner.name:name.family": "Practitioner.name.family",
                 "Practitioner.name:name.given": "Practitioner.name.given",
                 "Practitioner.name:name.prefix": "Practitioner.name.prefix",
-                "Practitioner.name:name.use": "Practitioner.name.use",
-                "Practitioner.qualification": "Practitioner.qualification",
-                "Practitioner.qualification.code": "Practitioner.qualification.code",
-                "Practitioner.qualification.identifier": "Practitioner.qualification.identifier",
-                "Practitioner.qualification.issuer": "Practitioner.qualification.issuer",
-                "Practitioner.qualification.period": "Practitioner.qualification.period"
+                "Practitioner.name:name.use": "Practitioner.name.use"
             },
             "values": {
                 "Practitioner.meta.profile": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
