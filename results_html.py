@@ -47,7 +47,7 @@ def create_results_html(structured_mapping, css_file_path):
                 "<script type='text/javascript' src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>",
                 "</head><body>",
                 f"<h2>Mapping: {', '.join(clean_kbv_group)} in {clean_epa_file}</h2>",
-                generate_html_table(rows, clean_kbv_group),
+                generate_html_table(rows, clean_kbv_group, clean_epa_file),
                 "<script>",
                 "$(document).ready(function() {",
                 "    $('#resultsTable').DataTable({",
@@ -63,12 +63,14 @@ def create_results_html(structured_mapping, css_file_path):
 
 
 def generate_html_table(
-    rows: List[Tuple[List[str], Classification]], clean_kbv_group
+    rows: List[Tuple[List[str], Classification]],
+    clean_kbv_group: List[str],
+    clean_epa_file: str,
 ) -> str:
     header = (
         "<thead><tr><th>Property</th>"
         + "".join(f"<th>{file}</th>" for file in clean_kbv_group)
-        + "<th>ePA</th><th>Remarks</th></tr></thead>"
+        + f"<th>{clean_epa_file}</th><th>Remarks</th></tr></thead>"
     )
     body = "<tbody>\n" + "\n".join(rows) + "</tbody>"
     return (
