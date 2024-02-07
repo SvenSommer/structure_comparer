@@ -7,6 +7,7 @@ STRUCT_FIELDS = "fields"
 STRUCT_EXTENSION = "extension"
 STRUCT_CLASSIFICATION = "classification"
 STRUCT_REMARK = "remark"
+STRUCT_EXTRA = "extra"
 
 REMARKS = {
     Classification.USE: "Eigenschaft und Wert werden übernommen",
@@ -14,4 +15,6 @@ REMARKS = {
     Classification.EXTENSION: "Extension und Values werden übernommen",
     Classification.MANUAL: "",
     Classification.OTHER: "",
+    Classification.COPY_FROM: "Wird aus {} übernommen",
+    Classification.COPY_TO: "Wird in {} übernommen",
 }

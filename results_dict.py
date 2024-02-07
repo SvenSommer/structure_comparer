@@ -6,6 +6,7 @@ from consts import (
     REMARKS,
     STRUCT_CLASSIFICATION,
     STRUCT_EPA_PROFILE,
+    STRUCT_EXTRA,
     STRUCT_FIELDS,
     STRUCT_KBV_PROFILES,
     STRUCT_REMARK,
@@ -14,6 +15,8 @@ from consts import (
 
 DICT_MAPPINGS = "mappings"
 DICT_VALUES = "values"
+
+IGNORE_CLASSIFICATIONS = [Classification.NOT_USE, Classification.COPY_FROM]
 
 
 logger = logging.getLogger(__name__)
@@ -39,6 +42,7 @@ def gen_mapping_dict(structured_mapping: dict):
             for field, presences in mappings[STRUCT_FIELDS].items():
                 classification = presences[STRUCT_CLASSIFICATION]
                 remark = presences[STRUCT_REMARK]
+                extra = presences[STRUCT_EXTRA]
 
                 # If 'manual' and should always be set to a fixed value
                 if classification == Classification.MANUAL and (
@@ -56,14 +60,13 @@ def gen_mapping_dict(structured_mapping: dict):
                         # Put value in the same field
                         profile_handling[DICT_MAPPINGS][field] = field
 
-                    # If the field should be placed in other field
-                    elif classification in [
-                        Classification.USE,
-                        Classification.EXTENSION,
-                        Classification.MANUAL,
-                    ] and (match := move_rexgex.search(remark)):
-                        # Get new field from regex
-                        profile_handling[DICT_MAPPINGS][field] = match.group(1)
+                    # If 'copy_to' get the target field from extra field
+                    elif classification == Classification.COPY_TO:
+                        profile_handling[DICT_MAPPINGS][field] = extra
+
+                    # Do not handle when classification should be ignored
+                    elif classification in IGNORE_CLASSIFICATIONS:
+                        pass
 
                     # Do not handle when 'not use'
                     elif classification == Classification.NOT_USE:

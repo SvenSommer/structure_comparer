@@ -19,6 +19,8 @@ CSS_CLASS = {
     Classification.EXTENSION: "row-extension",
     Classification.MANUAL: "row-manual",
     Classification.OTHER: "row-other",
+    Classification.COPY_FROM: "row-use",
+    Classification.COPY_TO: "row-use",
 }
 
 
