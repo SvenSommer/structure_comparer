@@ -38,7 +38,10 @@ EXTRA_CLASSIFICATIONS = [
 ]
 
 # These classifications can be derived from their parents
-DERIVED_CLASSIFICATIONS = [Classification.NOT_USE] + EXTRA_CLASSIFICATIONS
+DERIVED_CLASSIFICATIONS = [
+    Classification.EMPTY,
+    Classification.NOT_USE,
+] + EXTRA_CLASSIFICATIONS
 
 
 logger = logging.getLogger()
@@ -258,7 +261,7 @@ def _classify_remark_property(
         else:
             classification = Classification.EXTENSION
     else:
-        classification = Classification.NOT_USE
+        classification = Classification.EMPTY
 
     if not remark:
         remark = REMARKS[classification]

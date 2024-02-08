@@ -11,7 +11,8 @@ STRUCT_EXTRA = "extra"
 
 REMARKS = {
     Classification.USE: "Eigenschaft und Wert werden übernommen",
-    Classification.NOT_USE: "Bleibt vorerst leer, da keine Quellinformationen",
+    Classification.NOT_USE: "Wird nicht übernommen",
+    Classification.EMPTY: "Bleibt vorerst leer, da keine Quellinformationen",
     Classification.EXTENSION: "Extension und Values werden übernommen",
     Classification.MANUAL: "",
     Classification.OTHER: "",

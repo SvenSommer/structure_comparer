@@ -16,7 +16,11 @@ from consts import (
 DICT_MAPPINGS = "mappings"
 DICT_FIXED = "fixed"
 
-IGNORE_CLASSIFICATIONS = [Classification.NOT_USE, Classification.COPY_FROM]
+IGNORE_CLASSIFICATIONS = [
+    Classification.NOT_USE,
+    Classification.EMPTY,
+    Classification.COPY_FROM,
+]
 
 
 logger = logging.getLogger(__name__)
@@ -61,7 +65,7 @@ def gen_mapping_dict(structured_mapping: dict):
                         pass
 
                     # Do not handle when 'not use'
-                    elif classification == Classification.NOT_USE:
+                    elif classification == Classification.EMPTY:
                         pass
                     else:
                         # Log fall-through

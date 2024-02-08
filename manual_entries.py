@@ -16,7 +16,7 @@ MANUAL_ENTRIES = {
         "remark": "Wird entfernt, später durch MedicationService selbst gesetzt"
     },
     "MedicationRequest.identifier:rxPrescriptionProcessIdentifier": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
         "remark": "Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben.",
     },
     "MedicationRequest.medication[x]:medicationReference": {
@@ -24,14 +24,14 @@ MANUAL_ENTRIES = {
         "remark": "Die Referenz der KBV-Medikation wird durch eine Referenz auf eine EPA-Medikation ersetzt.",
     },
     "MedicationRequest.medication[x].reference": {
-        "classification": Classification.NOT_USE
+        "classification": Classification.EMPTY
     },
     "MedicationRequest.medication[x]:medicationReference.reference": {
         "classification": Classification.MANUAL,
         "remark": "Die Referenz ergibt sich aus der neu erzeugten EPA-Medikation.",
     },
     "MedicationRequest.substitution.allowed[x]:allowedBoolean": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
         "remark": "Einschränkung wird nicht übernommen",
     },
     "Medication.code.coding:PZN": {
@@ -39,29 +39,29 @@ MANUAL_ENTRIES = {
         "extra": "Medication.code.coding:pznCode",
     },
     "Medication.code.coding:PZN.display": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.code.coding:PZN.userSelected": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.code.coding:PZN.version": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.code.coding:pznCode": {
         "classification": Classification.COPY_TO,
         "extra": "Medication.code.coding:PZN",
     },
     "Medication.code.coding:pznCode.display": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.code.coding:pznCode.userSelected": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.code.coding:pznCode.version": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.extension:RxPrescriptionProcessIdentifier<br>(https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension)": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
         "remark": "Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben.",
     },
     "Medication.form.coding:kbvDarreichungsform": {
@@ -73,13 +73,13 @@ MANUAL_ENTRIES = {
         "extra": "Medication.form.coding:kbvDarreichungsform",
     },
     "Medication.form.coding:KBVDarreichungsform.userSelected": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.form.coding:KBVDarreichungsform.version": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.identifier:ePAMedicationUniqueIdentifier": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
         "remark": "Dieser Identifier wird vom Medication Service vergeben",
     },
     "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode": {
@@ -91,13 +91,13 @@ MANUAL_ENTRIES = {
         "extra": "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode",
     },
     "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.display": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.userSelected": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.version": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode": {
         "classification": Classification.COPY_TO,
@@ -108,18 +108,18 @@ MANUAL_ENTRIES = {
         "extra": "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode",
     },
     "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.display": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.userSelected": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.version": {
-        "classification": Classification.NOT_USE,
+        "classification": Classification.EMPTY,
     },
     "Medication.ingredient.item[x]:itemReference.reference": {
-        "classification": Classification.NOT_USE
+        "classification": Classification.EMPTY
     },
-    "Medication.manufacturer.reference": {"classification": Classification.NOT_USE},
+    "Medication.manufacturer.reference": {"classification": Classification.EMPTY},
     "Medication.meta.profile": {
         "classification": Classification.FIXED,
         "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication",
@@ -225,46 +225,35 @@ MANUAL_ENTRIES = {
     },
     "Practitioner.name:name": {
         "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
     },
     "Practitioner.name:name.family.extension:nachname<br>(http://hl7.org/fhir/StructureDefinition/humanname-own-name)": {
         "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
     },
     "Practitioner.name:name.family.extension:namenszusatz<br>(http://fhir.de/StructureDefinition/humanname-namenszusatz)": {
         "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
     },
     "Practitioner.name:name.family.extension:vorsatzwort<br>(http://hl7.org/fhir/StructureDefinition/humanname-own-prefix)": {
         "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
     },
     "Practitioner.name:name.family.value": {
         "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
     },
     "Practitioner.name:name.prefix.extension:prefix-qualifier<br>(http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier)": {
         "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
     },
     "Practitioner.name:name.prefix.value": {
         "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
     },
     "Practitioner.qualification": {
         "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
     },
     "Practitioner.qualification:ASV-Fachgruppennummer": {
         "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
     },
     "Practitioner.qualification:Berufsbezeichnung": {
         "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
     },
     "Practitioner.qualification:Typ": {
         "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
     },
 }
