@@ -21,6 +21,7 @@ CSS_CLASS = {
     Classification.OTHER: "row-other",
     Classification.COPY_FROM: "row-use",
     Classification.COPY_TO: "row-use",
+    Classification.FIXED: "row-manual",
 }
 
 

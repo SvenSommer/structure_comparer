@@ -6,7 +6,8 @@ MANUAL_ENTRIES = {
         "remark": "Wird beim Mapping ignoriert",
     },
     "MedicationRequest.meta.profile": {
-        "remark": "Wird fix auf 'https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication' gesetzt"
+        "classification": Classification.FIXED,
+        "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication",
     },
     "MedicationRequest.requester.reference": {
         "remark": "Wird entfernt, später durch MedicationService selbst gesetzt"
@@ -120,8 +121,8 @@ MANUAL_ENTRIES = {
     },
     "Medication.manufacturer.reference": {"classification": Classification.NOT_USE},
     "Medication.meta.profile": {
-        "classification": Classification.MANUAL,
-        "remark": "Wird fix auf 'https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication' gesetzt",
+        "classification": Classification.FIXED,
+        "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication",
     },
     "Organization.identifier:Betriebsstaettennummer": {
         "classification": Classification.COPY_TO,
@@ -156,8 +157,8 @@ MANUAL_ENTRIES = {
         "extra": "Organization.identifier:Telematik-ID",
     },
     "Organization.meta.profile": {
-        "classification": Classification.MANUAL,
-        "remark": "Wird fix auf 'http://fhir.de/StructureDefinition/identifier-telematik-id' gesetzt",
+        "classification": Classification.FIXED,
+        "extra": "http://fhir.de/StructureDefinition/identifier-telematik-id",
     },
     "Practitioner.identifier:ANR": {
         "classification": Classification.COPY_TO,
@@ -187,8 +188,8 @@ MANUAL_ENTRIES = {
     "Practitioner.identifier:ZANR.use": {"classification": Classification.USE},
     "Practitioner.identifier:ZANR.value": {"classification": Classification.USE},
     "Practitioner.meta.profile": {
-        "classification": Classification.MANUAL,
-        "remark": "Wird fix auf 'https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory' gesetzt",
+        "classification": Classification.FIXED,
+        "extra": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
     },
     "Practitioner.name.family": {
         "classification": Classification.COPY_FROM,

@@ -14,7 +14,7 @@ from consts import (
 
 
 DICT_MAPPINGS = "mappings"
-DICT_VALUES = "values"
+DICT_FIXED = "fixed"
 
 IGNORE_CLASSIFICATIONS = [Classification.NOT_USE, Classification.COPY_FROM]
 
@@ -25,12 +25,6 @@ logger = logging.getLogger(__name__)
 def gen_mapping_dict(structured_mapping: dict):
     result = {}
 
-    # Regex to extract the field to copy this value to
-    move_rexgex = re.compile(r"[wW]ird in ([\w\.\[\]:]+)")
-
-    # Regex to extract the fixed value to set
-    fix_regex = re.compile(r"Wird fix auf \'([\w:/\.-]+)' gesetzt")
-
     # Iterate over the different mappings
     for mappings in structured_mapping.values():
         epa_profile = mappings[STRUCT_EPA_PROFILE]
@@ -38,17 +32,15 @@ def gen_mapping_dict(structured_mapping: dict):
         # Iterate over the source profiles
         # These will be the roots of the mappings
         for kbv_profile in mappings[STRUCT_KBV_PROFILES]:
-            profile_handling = {DICT_MAPPINGS: {}, DICT_VALUES: {}}
+            profile_handling = {DICT_MAPPINGS: {}, DICT_FIXED: {}}
             for field, presences in mappings[STRUCT_FIELDS].items():
                 classification = presences[STRUCT_CLASSIFICATION]
                 remark = presences[STRUCT_REMARK]
                 extra = presences[STRUCT_EXTRA]
 
                 # If 'manual' and should always be set to a fixed value
-                if classification == Classification.MANUAL and (
-                    match := fix_regex.search(remark)
-                ):
-                    profile_handling[DICT_VALUES][field] = match.group(1)
+                if classification == Classification.FIXED:
+                    profile_handling[DICT_FIXED][field] = extra
 
                 # Otherwise only if value is present
                 elif presences[kbv_profile]:
@@ -81,9 +73,9 @@ def gen_mapping_dict(structured_mapping: dict):
                 key: value
                 for key, value in sorted(profile_handling[DICT_MAPPINGS].items())
             }
-            profile_handling[DICT_VALUES] = {
+            profile_handling[DICT_FIXED] = {
                 key: value
-                for key, value in sorted(profile_handling[DICT_VALUES].items())
+                for key, value in sorted(profile_handling[DICT_FIXED].items())
             }
 
             result[kbv_profile] = {epa_profile: profile_handling}

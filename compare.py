@@ -31,7 +31,11 @@ IGNORE_SLICES = [
 MANUAL_SUFFIXES = ["reference", "profile"]
 
 # These classification generate a remark with extra information
-EXTRA_CLASSIFICATIONS = [Classification.COPY_FROM, Classification.COPY_TO]
+EXTRA_CLASSIFICATIONS = [
+    Classification.COPY_FROM,
+    Classification.COPY_TO,
+    Classification.FIXED,
+]
 
 # These classifications can be derived from their parents
 DERIVED_CLASSIFICATIONS = [Classification.NOT_USE] + EXTRA_CLASSIFICATIONS

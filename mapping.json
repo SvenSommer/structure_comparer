@@ -46,7 +46,7 @@
                 "Medication.ingredient.strength.numerator.value": "Medication.ingredient.strength.numerator.value",
                 "Medication.meta": "Medication.meta"
             },
-            "values": {
+            "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
             }
         }
@@ -69,7 +69,7 @@
                 "Medication.form.text": "Medication.form.text",
                 "Medication.meta": "Medication.meta"
             },
-            "values": {
+            "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
             }
         }
@@ -116,7 +116,7 @@
                 "Medication.ingredient.strength.numerator.value": "Medication.ingredient.strength.numerator.value",
                 "Medication.meta": "Medication.meta"
             },
-            "values": {
+            "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
             }
         }
@@ -153,7 +153,7 @@
                 "Medication.form.coding:kbvDarreichungsform.system": "Medication.form.coding:KBVDarreichungsform.system",
                 "Medication.meta": "Medication.meta"
             },
-            "values": {
+            "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
             }
         }
@@ -193,7 +193,7 @@
                 "Practitioner.name:name.prefix": "Practitioner.name.prefix",
                 "Practitioner.name:name.use": "Practitioner.name.use"
             },
-            "values": {
+            "fixed": {
                 "Practitioner.meta.profile": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
             }
         }
@@ -228,7 +228,7 @@
                 "MedicationRequest.substitution": "MedicationRequest.substitution",
                 "MedicationRequest.substitution.allowed[x]": "MedicationRequest.substitution.allowed[x]"
             },
-            "values": {
+            "fixed": {
                 "MedicationRequest.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
             }
         }
@@ -301,7 +301,7 @@
                 "Organization.telecom:telefon.system": "Organization.telecom:telefon.system",
                 "Organization.telecom:telefon.value": "Organization.telecom:telefon.value"
             },
-            "values": {
+            "fixed": {
                 "Organization.meta.profile": "http://fhir.de/StructureDefinition/identifier-telematik-id"
             }
         }

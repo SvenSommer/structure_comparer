@@ -9,3 +9,4 @@ class Classification(Enum):
     OTHER = 5
     COPY_FROM = "copy_from"
     COPY_TO = "copy_to"
+    FIXED = "fixed"
