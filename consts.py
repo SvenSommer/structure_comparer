@@ -19,4 +19,5 @@ REMARKS = {
     Classification.COPY_FROM: "Wird aus {} übernommen",
     Classification.COPY_TO: "Wird in {} übernommen",
     Classification.FIXED: "Wird fix auf '{}' gesetzt",
+    Classification.MEDICATION_SERVICE: "Wird durch den Medication Service selbst gesetzt",
 }

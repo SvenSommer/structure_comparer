@@ -10,10 +10,10 @@ MANUAL_ENTRIES = {
         "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication",
     },
     "MedicationRequest.requester.reference": {
-        "remark": "Wird entfernt, später durch MedicationService selbst gesetzt"
+        "classification": Classification.MEDICATION_SERVICE,
     },
     "MedicationRequest.subject.reference": {
-        "remark": "Wird entfernt, später durch MedicationService selbst gesetzt"
+        "classification": Classification.MEDICATION_SERVICE,
     },
     "MedicationRequest.identifier:rxPrescriptionProcessIdentifier": {
         "classification": Classification.EMPTY,
@@ -61,8 +61,7 @@ MANUAL_ENTRIES = {
         "classification": Classification.EMPTY,
     },
     "Medication.extension:RxPrescriptionProcessIdentifier<br>(https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension)": {
-        "classification": Classification.EMPTY,
-        "remark": "Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben.",
+        "classification": Classification.MEDICATION_SERVICE,
     },
     "Medication.form.coding:kbvDarreichungsform": {
         "classification": Classification.COPY_TO,
@@ -79,8 +78,7 @@ MANUAL_ENTRIES = {
         "classification": Classification.EMPTY,
     },
     "Medication.identifier:ePAMedicationUniqueIdentifier": {
-        "classification": Classification.EMPTY,
-        "remark": "Dieser Identifier wird vom Medication Service vergeben",
+        "classification": Classification.MEDICATION_SERVICE,
     },
     "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode": {
         "classification": Classification.COPY_TO,

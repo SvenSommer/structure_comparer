@@ -23,6 +23,7 @@ CSS_CLASS = {
     Classification.COPY_FROM: "row-use",
     Classification.COPY_TO: "row-use",
     Classification.FIXED: "row-manual",
+    Classification.MEDICATION_SERVICE: "row-not-use",
 }
 
 

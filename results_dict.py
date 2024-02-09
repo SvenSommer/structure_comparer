@@ -20,6 +20,7 @@ IGNORE_CLASSIFICATIONS = [
     Classification.NOT_USE,
     Classification.EMPTY,
     Classification.COPY_FROM,
+    Classification.MEDICATION_SERVICE,
 ]
 
 

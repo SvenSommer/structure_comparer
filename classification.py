@@ -11,3 +11,4 @@ class Classification(Enum):
     COPY_FROM = "copy_from"
     COPY_TO = "copy_to"
     FIXED = "fixed"
+    MEDICATION_SERVICE = "medication_service"
