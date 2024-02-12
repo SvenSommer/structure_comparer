@@ -1,5 +1,4 @@
 import logging
-import re
 
 from classification import Classification
 from consts import (
@@ -11,6 +10,7 @@ from consts import (
     STRUCT_KBV_PROFILES,
     STRUCT_REMARK,
 )
+from helpers import split_parent_child
 
 
 DICT_MAPPINGS = "mappings"
@@ -36,12 +36,17 @@ def gen_mapping_dict(structured_mapping: dict):
 
         # Iterate over the source profiles
         # These will be the roots of the mappings
-        for kbv_profile in mappings[STRUCT_KBV_PROFILES]:
+        for kbv_profile in sorted(mappings[STRUCT_KBV_PROFILES]):
             profile_handling = {DICT_MAPPINGS: {}, DICT_FIXED: {}}
             for field, presences in mappings[STRUCT_FIELDS].items():
                 classification = presences[STRUCT_CLASSIFICATION]
                 remark = presences[STRUCT_REMARK]
                 extra = presences[STRUCT_EXTRA]
+
+                # If classification is the same as the parent, do not handle this entry
+                parent, _ = split_parent_child(field)
+                if _same_as_parent(presences, mappings[STRUCT_FIELDS].get(parent)):
+                    continue
 
                 # If 'manual' and should always be set to a fixed value
                 if classification == Classification.FIXED:
@@ -74,15 +79,13 @@ def gen_mapping_dict(structured_mapping: dict):
                             f"gen_mapping_dict: did not handle {kbv_profile}:{epa_profile}:{field}:{classification} {remark}"
                         )
 
-            profile_handling[DICT_MAPPINGS] = {
-                key: value
-                for key, value in sorted(profile_handling[DICT_MAPPINGS].items())
-            }
-            profile_handling[DICT_FIXED] = {
-                key: value
-                for key, value in sorted(profile_handling[DICT_FIXED].items())
-            }
-
             result[kbv_profile] = {epa_profile: profile_handling}
 
     return result
+
+
+def _same_as_parent(presences: dict, parent_presences: dict | None):
+    if not parent_presences:
+        return False
+
+    return presences[STRUCT_CLASSIFICATION] == parent_presences[STRUCT_CLASSIFICATION]

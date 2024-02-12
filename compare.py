@@ -13,6 +13,7 @@ from consts import (
     STRUCT_KBV_PROFILES,
     STRUCT_REMARK,
 )
+from helpers import split_parent_child
 from manual_entries import MANUAL_ENTRIES
 
 
@@ -212,13 +213,7 @@ def _classify_remark_property(
     extra = None
 
     # Split the property in parent and child
-    if (
-        len(prop.rsplit(".", 1)[0]) < len(prop.rsplit(":", 1)[0])
-        and len(prop.rsplit(":", 1)) == 2
-    ):
-        parent, child = prop.rsplit(":", 1)
-    else:
-        parent, child = prop.rsplit(".", 1)
+    parent, child = split_parent_child(prop)
 
     # If there is a manual entry for this property, use it
     if prop in MANUAL_ENTRIES:
