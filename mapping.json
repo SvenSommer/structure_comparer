@@ -20,7 +20,8 @@
             },
             "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": []
         }
     },
     "KBV_PR_ERP_Medication_FreeText": {
@@ -35,7 +36,8 @@
             },
             "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": []
         }
     },
     "KBV_PR_ERP_Medication_Ingredient": {
@@ -55,7 +57,8 @@
             },
             "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": []
         }
     },
     "KBV_PR_ERP_Medication_PZN": {
@@ -76,7 +79,8 @@
             },
             "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": []
         }
     },
     "KBV_PR_FOR_Practitioner": {
@@ -85,6 +89,7 @@
                 "Practitioner.identifier": "Practitioner.identifier",
                 "Practitioner.identifier:ANR": "Practitioner.identifier:LANR",
                 "Practitioner.identifier:Telematik-ID": "Practitioner.identifier:TelematikID",
+                "Practitioner.identifier:ZANR": "Practitioner.identifier:ZANR",
                 "Practitioner.meta": "Practitioner.meta",
                 "Practitioner.name": "Practitioner.name",
                 "Practitioner.name:name.family": "Practitioner.name.family",
@@ -94,7 +99,15 @@
             },
             "fixed": {
                 "Practitioner.meta.profile": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
-            }
+            },
+            "remove": [
+                "Practitioner.name:name.family.extension:nachname",
+                "Practitioner.name:name.family.extension:namenszusatz",
+                "Practitioner.name:name.family.extension:vorsatzwort",
+                "Practitioner.name:name.family.value",
+                "Practitioner.name:name.prefix.extension:prefix-qualifier",
+                "Practitioner.name:name.prefix.value"
+            ]
         }
     },
     "KBV_PR_ERP_Prescription": {
@@ -121,7 +134,12 @@
             },
             "fixed": {
                 "MedicationRequest.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": [
+                "MedicationRequest.requester.reference",
+                "MedicationRequest.subject.reference",
+                "MedicationRequest.substitution.allowed[x]:allowedBoolean"
+            ]
         }
     },
     "KBV_PR_FOR_Organization": {
@@ -129,9 +147,6 @@
             "mappings": {
                 "Organization.address": "Organization.address",
                 "Organization.address:Strassenanschrift": "Organization.address:Strassenanschrift",
-                "Organization.address:Strassenanschrift.line.extension:Adresszusatz": "Organization.address:Strassenanschrift.line.extension:Adresszusatz",
-                "Organization.address:Strassenanschrift.line.extension:Hausnummer": "Organization.address:Strassenanschrift.line.extension:Hausnummer",
-                "Organization.address:Strassenanschrift.line.extension:Strasse": "Organization.address:Strassenanschrift.line.extension:Strasse",
                 "Organization.identifier": "Organization.identifier",
                 "Organization.identifier:Betriebsstaettennummer": "Organization.identifier:BSNR",
                 "Organization.identifier:Institutionskennzeichen": "Organization.identifier:IKNR",
@@ -147,7 +162,8 @@
             },
             "fixed": {
                 "Organization.meta.profile": "http://fhir.de/StructureDefinition/identifier-telematik-id"
-            }
+            },
+            "remove": []
         }
     }
 }

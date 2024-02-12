@@ -15,6 +15,7 @@ from helpers import split_parent_child
 
 DICT_MAPPINGS = "mappings"
 DICT_FIXED = "fixed"
+DICT_REMOVE = "remove"
 
 IGNORE_CLASSIFICATIONS = [
     Classification.NOT_USE,
@@ -37,7 +38,7 @@ def gen_mapping_dict(structured_mapping: dict):
         # Iterate over the source profiles
         # These will be the roots of the mappings
         for kbv_profile in sorted(mappings[STRUCT_KBV_PROFILES]):
-            profile_handling = {DICT_MAPPINGS: {}, DICT_FIXED: {}}
+            profile_handling = {DICT_MAPPINGS: {}, DICT_FIXED: {}, DICT_REMOVE: []}
             for field, presences in mappings[STRUCT_FIELDS].items():
                 classification = presences[STRUCT_CLASSIFICATION]
                 remark = presences[STRUCT_REMARK]
@@ -66,13 +67,18 @@ def gen_mapping_dict(structured_mapping: dict):
                     elif classification == Classification.COPY_TO:
                         profile_handling[DICT_MAPPINGS][field] = extra
 
-                    # Do not handle when classification should be ignored
+                    # Do not handle when classification should be ignored,
+                    # or add to ignore if parent was not ignored or fixed
                     elif classification in IGNORE_CLASSIFICATIONS:
-                        pass
+                        if (
+                            parent_field := mappings[STRUCT_FIELDS].get(parent)
+                        ) and parent_field[STRUCT_CLASSIFICATION] in [
+                            Classification.USE,
+                            Classification.EXTENSION,
+                            Classification.COPY_TO,
+                        ]:
+                            profile_handling[DICT_REMOVE].append(field)
 
-                    # Do not handle when 'not use'
-                    elif classification == Classification.EMPTY:
-                        pass
                     else:
                         # Log fall-through
                         logger.warning(
