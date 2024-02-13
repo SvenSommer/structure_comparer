@@ -1,5 +1,5 @@
 import json
-from typing import Dict, List, Tuple
+from typing import Dict, List
 import logging
 
 from classification import Classification
@@ -8,10 +8,12 @@ from consts import (
     STRUCT_CLASSIFICATION,
     STRUCT_EPA_PROFILE,
     STRUCT_EXTENSION,
+    STRUCT_EXTRA,
     STRUCT_FIELDS,
     STRUCT_KBV_PROFILES,
     STRUCT_REMARK,
 )
+from helpers import split_parent_child
 from manual_entries import MANUAL_ENTRIES
 
 
@@ -28,6 +30,19 @@ IGNORE_SLICES = [
 ]
 
 MANUAL_SUFFIXES = ["reference", "profile"]
+
+# These classification generate a remark with extra information
+EXTRA_CLASSIFICATIONS = [
+    Classification.COPY_FROM,
+    Classification.COPY_TO,
+    Classification.FIXED,
+]
+
+# These classifications can be derived from their parents
+DERIVED_CLASSIFICATIONS = [
+    Classification.EMPTY,
+    Classification.NOT_USE,
+] + EXTRA_CLASSIFICATIONS
 
 
 logger = logging.getLogger()
@@ -185,7 +200,7 @@ def _classify_remark_property(
     kbv_presences: List[str],
     epa_presence: str,
     fields_updates: Dict[str, dict],
-) -> Tuple[Classification, str]:
+) -> Dict[str, str]:
     """
     Classify and get the remark for the property
 
@@ -195,34 +210,44 @@ def _classify_remark_property(
 
     classification = None
     remark = None
+    extra = None
 
     # Split the property in parent and child
-    if (
-        len(prop.rsplit(".", 1)[0]) < len(prop.rsplit(":", 1)[0])
-        and len(prop.rsplit(":", 1)) == 2
-    ):
-        parent, child = prop.rsplit(":", 1)
-    else:
-        parent, child = prop.rsplit(".", 1)
+    parent, child = split_parent_child(prop)
 
     # If there is a manual entry for this property, use it
     if prop in MANUAL_ENTRIES:
-        classification = MANUAL_ENTRIES[prop].get(
-            "classification", Classification.MANUAL
-        )
+        manual_entry = MANUAL_ENTRIES[prop]
+        classification = manual_entry.get("classification", Classification.MANUAL)
 
         # If there is a remark in the manual entry, use it else use the default remark
-        remark = MANUAL_ENTRIES[prop].get("remark", REMARKS[classification])
+        remark = manual_entry.get("remark", REMARKS[classification])
+
+        # If the classification needs extra information, generate the remark with the extra information
+        if classification in EXTRA_CLASSIFICATIONS:
+            extra = manual_entry["extra"]
+            remark = REMARKS[classification].format(extra)
 
     # If the last element from the property is in the manual list, use the manual classification
     elif child in MANUAL_SUFFIXES:
         classification = Classification.MANUAL
 
+    # If the parent has a classification that can be derived use the parent's classification
     elif (parent_update := fields_updates.get(parent)) and parent_update[
         STRUCT_CLASSIFICATION
-    ] == Classification.NOT_USE:
-        classification = Classification.NOT_USE
-        remark = parent_update[STRUCT_REMARK]
+    ] in DERIVED_CLASSIFICATIONS:
+        classification = parent_update[STRUCT_CLASSIFICATION]
+
+        # If the classification needs extra information derived that information from the parent
+        if classification in EXTRA_CLASSIFICATIONS:
+
+            # Cut away the common part with the parent and add the remainer to the parents extra
+            extra = parent_update[STRUCT_EXTRA] + prop[len(parent) :]
+            remark = REMARKS[classification].format(extra)
+
+        # Else use the parents remark
+        else:
+            remark = parent_update[STRUCT_REMARK]
 
     # If present in any of the KBV profiles
     elif any(kbv_presences):
@@ -231,12 +256,16 @@ def _classify_remark_property(
         else:
             classification = Classification.EXTENSION
     else:
-        classification = Classification.NOT_USE
+        classification = Classification.EMPTY
 
     if not remark:
         remark = REMARKS[classification]
 
-    return classification, remark
+    return {
+        STRUCT_CLASSIFICATION: classification,
+        STRUCT_REMARK: remark,
+        STRUCT_EXTRA: extra,
+    }
 
 
 def _is_light_color(hex_color: str) -> bool:
@@ -287,11 +316,10 @@ def _gen_structured_results(presence_data: dict) -> dict:
                 field_update[profile] = presence
 
             # Fill the classification and remark for this field
-            classification, remark = _classify_remark_property(
+            classification_dict = _classify_remark_property(
                 field, kbv_presences, epa_presence, mapping[profiles][STRUCT_FIELDS]
             )
-            field_update[STRUCT_CLASSIFICATION] = classification
-            field_update[STRUCT_REMARK] = remark
+            field_update.update(classification_dict)
 
             # Set the field update
             mapping[profiles][STRUCT_FIELDS][field_updated] = field_update

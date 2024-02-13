@@ -16,9 +16,14 @@ from consts import (
 CSS_CLASS = {
     Classification.USE: "row-use",
     Classification.NOT_USE: "row-not-use",
+    Classification.EMPTY: "row-not-use",
     Classification.EXTENSION: "row-extension",
     Classification.MANUAL: "row-manual",
     Classification.OTHER: "row-other",
+    Classification.COPY_FROM: "row-use",
+    Classification.COPY_TO: "row-use",
+    Classification.FIXED: "row-manual",
+    Classification.MEDICATION_SERVICE: "row-not-use",
 }
 
 

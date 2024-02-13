@@ -1,8 +1,14 @@
 from enum import Enum
 
+
 class Classification(Enum):
-    USE = 1
-    NOT_USE = 2
-    EXTENSION = 3
-    MANUAL = 4
-    OTHER = 5
+    USE = "use"
+    NOT_USE = "not_use"
+    EMPTY = "empty"
+    EXTENSION = "extension"
+    MANUAL = "manual"
+    OTHER = "other"
+    COPY_FROM = "copy_from"
+    COPY_TO = "copy_to"
+    FIXED = "fixed"
+    MEDICATION_SERVICE = "medication_service"

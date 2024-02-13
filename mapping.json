@@ -3,159 +3,84 @@
         "epa-medication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
-                "Medication.amount.denominator": "Medication.amount.denominator",
-                "Medication.amount.denominator.value": "Medication.amount.denominator.value",
-                "Medication.amount.numerator": "Medication.amount.numerator",
-                "Medication.amount.numerator.code": "Medication.amount.numerator.code",
                 "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:Gesamtmenge",
-                "Medication.amount.numerator.system": "Medication.amount.numerator.system",
-                "Medication.amount.numerator.unit": "Medication.amount.numerator.unit",
                 "Medication.batch": "Medication.batch",
-                "Medication.batch.expirationDate": "Medication.batch.expirationDate",
-                "Medication.batch.lotNumber": "Medication.batch.lotNumber",
                 "Medication.code": "Medication.code",
-                "Medication.code.coding": "Medication.code.coding",
-                "Medication.code.coding:verordnungskategorieCode": "Medication.code.coding:verordnungskategorieCode",
-                "Medication.code.coding:verordnungskategorieCode.code": "Medication.code.coding:verordnungskategorieCode.code",
-                "Medication.code.coding:verordnungskategorieCode.system": "Medication.code.coding:verordnungskategorieCode.system",
-                "Medication.code.text": "Medication.code.text",
                 "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
                 "Medication.extension:Herstellungsanweisung": "Medication.extension:Herstellungsanweisung",
                 "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
                 "Medication.extension:Kategorie": "Medication.extension:Kategorie",
                 "Medication.extension:Verpackung": "Medication.extension:Verpackung",
                 "Medication.form": "Medication.form",
-                "Medication.form.text": "Medication.form.text",
                 "Medication.ingredient": "Medication.ingredient",
                 "Medication.ingredient.extension:Darreichungsform": "Medication.ingredient.extension:Darreichungsform",
-                "Medication.ingredient.item[x]": "Medication.ingredient.item[x]",
-                "Medication.ingredient.item[x]:itemCodeableConcept": "Medication.ingredient.item[x]:itemCodeableConcept",
-                "Medication.ingredient.item[x]:itemCodeableConcept.coding": "Medication.ingredient.item[x]:itemCodeableConcept.coding",
                 "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN",
-                "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode.code": "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.code",
-                "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode.system": "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.system",
-                "Medication.ingredient.item[x]:itemCodeableConcept.text": "Medication.ingredient.item[x]:itemCodeableConcept.text",
-                "Medication.ingredient.strength": "Medication.ingredient.strength",
-                "Medication.ingredient.strength.denominator": "Medication.ingredient.strength.denominator",
-                "Medication.ingredient.strength.denominator.value": "Medication.ingredient.strength.denominator.value",
                 "Medication.ingredient.strength.extension:MengeFreitext": "Medication.ingredient.strength.extension:MengeFreitext",
-                "Medication.ingredient.strength.numerator": "Medication.ingredient.strength.numerator",
-                "Medication.ingredient.strength.numerator.code": "Medication.ingredient.strength.numerator.code",
-                "Medication.ingredient.strength.numerator.system": "Medication.ingredient.strength.numerator.system",
-                "Medication.ingredient.strength.numerator.unit": "Medication.ingredient.strength.numerator.unit",
-                "Medication.ingredient.strength.numerator.value": "Medication.ingredient.strength.numerator.value",
                 "Medication.meta": "Medication.meta"
             },
-            "values": {
+            "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": []
         }
     },
     "KBV_PR_ERP_Medication_FreeText": {
         "epa-medication": {
             "mappings": {
                 "Medication.batch": "Medication.batch",
-                "Medication.batch.expirationDate": "Medication.batch.expirationDate",
-                "Medication.batch.lotNumber": "Medication.batch.lotNumber",
                 "Medication.code": "Medication.code",
-                "Medication.code.coding": "Medication.code.coding",
-                "Medication.code.coding:verordnungskategorieCode": "Medication.code.coding:verordnungskategorieCode",
-                "Medication.code.coding:verordnungskategorieCode.code": "Medication.code.coding:verordnungskategorieCode.code",
-                "Medication.code.coding:verordnungskategorieCode.system": "Medication.code.coding:verordnungskategorieCode.system",
-                "Medication.code.text": "Medication.code.text",
                 "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
                 "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
                 "Medication.form": "Medication.form",
-                "Medication.form.text": "Medication.form.text",
                 "Medication.meta": "Medication.meta"
             },
-            "values": {
+            "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": []
         }
     },
     "KBV_PR_ERP_Medication_Ingredient": {
         "epa-medication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
-                "Medication.amount.denominator": "Medication.amount.denominator",
-                "Medication.amount.denominator.value": "Medication.amount.denominator.value",
-                "Medication.amount.numerator": "Medication.amount.numerator",
-                "Medication.amount.numerator.code": "Medication.amount.numerator.code",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:Packungsgroesse",
-                "Medication.amount.numerator.system": "Medication.amount.numerator.system",
-                "Medication.amount.numerator.unit": "Medication.amount.numerator.unit",
                 "Medication.batch": "Medication.batch",
-                "Medication.batch.expirationDate": "Medication.batch.expirationDate",
-                "Medication.batch.lotNumber": "Medication.batch.lotNumber",
                 "Medication.code": "Medication.code",
-                "Medication.code.coding": "Medication.code.coding",
-                "Medication.code.coding:verordnungskategorieCode": "Medication.code.coding:verordnungskategorieCode",
-                "Medication.code.coding:verordnungskategorieCode.code": "Medication.code.coding:verordnungskategorieCode.code",
-                "Medication.code.coding:verordnungskategorieCode.system": "Medication.code.coding:verordnungskategorieCode.system",
                 "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
                 "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
                 "Medication.extension:Normgroesse": "Medication.extension:Normgroesse",
                 "Medication.form": "Medication.form",
-                "Medication.form.text": "Medication.form.text",
                 "Medication.ingredient": "Medication.ingredient",
-                "Medication.ingredient.item[x]": "Medication.ingredient.item[x]",
-                "Medication.ingredient.item[x]:itemCodeableConcept": "Medication.ingredient.item[x]:itemCodeableConcept",
-                "Medication.ingredient.item[x]:itemCodeableConcept.coding": "Medication.ingredient.item[x]:itemCodeableConcept.coding",
                 "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK",
-                "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.code": "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.code",
-                "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.system": "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.system",
-                "Medication.ingredient.item[x]:itemCodeableConcept.text": "Medication.ingredient.item[x]:itemCodeableConcept.text",
-                "Medication.ingredient.strength": "Medication.ingredient.strength",
-                "Medication.ingredient.strength.denominator": "Medication.ingredient.strength.denominator",
-                "Medication.ingredient.strength.denominator.value": "Medication.ingredient.strength.denominator.value",
-                "Medication.ingredient.strength.numerator": "Medication.ingredient.strength.numerator",
-                "Medication.ingredient.strength.numerator.code": "Medication.ingredient.strength.numerator.code",
-                "Medication.ingredient.strength.numerator.system": "Medication.ingredient.strength.numerator.system",
-                "Medication.ingredient.strength.numerator.unit": "Medication.ingredient.strength.numerator.unit",
-                "Medication.ingredient.strength.numerator.value": "Medication.ingredient.strength.numerator.value",
                 "Medication.meta": "Medication.meta"
             },
-            "values": {
+            "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": []
         }
     },
     "KBV_PR_ERP_Medication_PZN": {
         "epa-medication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
-                "Medication.amount.denominator": "Medication.amount.denominator",
-                "Medication.amount.denominator.value": "Medication.amount.denominator.value",
-                "Medication.amount.numerator": "Medication.amount.numerator",
-                "Medication.amount.numerator.code": "Medication.amount.numerator.code",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:Packungsgroesse",
-                "Medication.amount.numerator.system": "Medication.amount.numerator.system",
-                "Medication.amount.numerator.unit": "Medication.amount.numerator.unit",
                 "Medication.batch": "Medication.batch",
-                "Medication.batch.expirationDate": "Medication.batch.expirationDate",
-                "Medication.batch.lotNumber": "Medication.batch.lotNumber",
                 "Medication.code": "Medication.code",
-                "Medication.code.coding": "Medication.code.coding",
                 "Medication.code.coding:pznCode": "Medication.code.coding:PZN",
-                "Medication.code.coding:pznCode.code": "Medication.code.coding:PZN.code",
-                "Medication.code.coding:pznCode.system": "Medication.code.coding:PZN.system",
-                "Medication.code.text": "Medication.code.text",
                 "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
                 "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
                 "Medication.extension:Kategorie": "Medication.extension:Kategorie",
                 "Medication.extension:Normgroesse": "Medication.extension:Normgroesse",
                 "Medication.form": "Medication.form",
-                "Medication.form.coding": "Medication.form.coding",
                 "Medication.form.coding:kbvDarreichungsform": "Medication.form.coding:KBVDarreichungsform",
-                "Medication.form.coding:kbvDarreichungsform.code": "Medication.form.coding:KBVDarreichungsform.code",
-                "Medication.form.coding:kbvDarreichungsform.display": "Medication.form.coding:KBVDarreichungsform.display",
-                "Medication.form.coding:kbvDarreichungsform.system": "Medication.form.coding:KBVDarreichungsform.system",
                 "Medication.meta": "Medication.meta"
             },
-            "values": {
+            "fixed": {
                 "Medication.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": []
         }
     },
     "KBV_PR_FOR_Practitioner": {
@@ -163,29 +88,8 @@
             "mappings": {
                 "Practitioner.identifier": "Practitioner.identifier",
                 "Practitioner.identifier:ANR": "Practitioner.identifier:LANR",
-                "Practitioner.identifier:ANR.system": "Practitioner.identifier:LANR.system",
-                "Practitioner.identifier:ANR.type": "Practitioner.identifier:LANR.type",
-                "Practitioner.identifier:ANR.type.coding": "Practitioner.identifier:LANR.type.coding",
-                "Practitioner.identifier:ANR.type.coding.code": "Practitioner.identifier:LANR.type.coding.code",
-                "Practitioner.identifier:ANR.type.coding.system": "Practitioner.identifier:LANR.type.coding.system",
-                "Practitioner.identifier:ANR.use": "Practitioner.identifier:LANR.use",
-                "Practitioner.identifier:ANR.value": "Practitioner.identifier:LANR.value",
                 "Practitioner.identifier:Telematik-ID": "Practitioner.identifier:TelematikID",
-                "Practitioner.identifier:Telematik-ID.system": "Practitioner.identifier:TelematikID.system",
-                "Practitioner.identifier:Telematik-ID.type": "Practitioner.identifier:TelematikID.type",
-                "Practitioner.identifier:Telematik-ID.type.coding": "Practitioner.identifier:TelematikID.type.coding",
-                "Practitioner.identifier:Telematik-ID.type.coding.code": "Practitioner.identifier:TelematikID.type.coding.code",
-                "Practitioner.identifier:Telematik-ID.type.coding.system": "Practitioner.identifier:TelematikID.type.coding.system",
-                "Practitioner.identifier:Telematik-ID.use": "Practitioner.identifier:TelematikID.use",
-                "Practitioner.identifier:Telematik-ID.value": "Practitioner.identifier:TelematikID.value",
                 "Practitioner.identifier:ZANR": "Practitioner.identifier:ZANR",
-                "Practitioner.identifier:ZANR.system": "Practitioner.identifier:ZANR.system",
-                "Practitioner.identifier:ZANR.type": "Practitioner.identifier:ZANR.type",
-                "Practitioner.identifier:ZANR.type.coding": "Practitioner.identifier:ZANR.type.coding",
-                "Practitioner.identifier:ZANR.type.coding.code": "Practitioner.identifier:ZANR.type.coding.code",
-                "Practitioner.identifier:ZANR.type.coding.system": "Practitioner.identifier:ZANR.type.coding.system",
-                "Practitioner.identifier:ZANR.use": "Practitioner.identifier:ZANR.use",
-                "Practitioner.identifier:ZANR.value": "Practitioner.identifier:ZANR.value",
                 "Practitioner.meta": "Practitioner.meta",
                 "Practitioner.name": "Practitioner.name",
                 "Practitioner.name:name.family": "Practitioner.name.family",
@@ -193,9 +97,17 @@
                 "Practitioner.name:name.prefix": "Practitioner.name.prefix",
                 "Practitioner.name:name.use": "Practitioner.name.use"
             },
-            "values": {
+            "fixed": {
                 "Practitioner.meta.profile": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
-            }
+            },
+            "remove": [
+                "Practitioner.name:name.family.extension:nachname",
+                "Practitioner.name:name.family.extension:namenszusatz",
+                "Practitioner.name:name.family.extension:vorsatzwort",
+                "Practitioner.name:name.family.value",
+                "Practitioner.name:name.prefix.extension:prefix-qualifier",
+                "Practitioner.name:name.prefix.value"
+            ]
         }
     },
     "KBV_PR_ERP_Prescription": {
@@ -203,14 +115,8 @@
             "mappings": {
                 "MedicationRequest.authoredOn": "MedicationRequest.authoredOn",
                 "MedicationRequest.dispenseRequest": "MedicationRequest.dispenseRequest",
-                "MedicationRequest.dispenseRequest.quantity": "MedicationRequest.dispenseRequest.quantity",
-                "MedicationRequest.dispenseRequest.quantity.code": "MedicationRequest.dispenseRequest.quantity.code",
-                "MedicationRequest.dispenseRequest.quantity.system": "MedicationRequest.dispenseRequest.quantity.system",
-                "MedicationRequest.dispenseRequest.quantity.value": "MedicationRequest.dispenseRequest.quantity.value",
                 "MedicationRequest.dosageInstruction": "MedicationRequest.dosageInstruction",
                 "MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen": "MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen",
-                "MedicationRequest.dosageInstruction.patientInstruction": "MedicationRequest.dosageInstruction.patientInstruction",
-                "MedicationRequest.dosageInstruction.text": "MedicationRequest.dosageInstruction.text",
                 "MedicationRequest.extension:BVG": "MedicationRequest.extension:BVG",
                 "MedicationRequest.extension:Mehrfachverordnung": "MedicationRequest.extension:Mehrfachverordnung",
                 "MedicationRequest.extension:Notdienstgebuehr": "MedicationRequest.extension:Notdienstgebuehr",
@@ -221,16 +127,19 @@
                 "MedicationRequest.medication[x]": "MedicationRequest.medication[x]",
                 "MedicationRequest.meta": "MedicationRequest.meta",
                 "MedicationRequest.note": "MedicationRequest.note",
-                "MedicationRequest.note.text": "MedicationRequest.note.text",
                 "MedicationRequest.requester": "MedicationRequest.requester",
                 "MedicationRequest.status": "MedicationRequest.status",
                 "MedicationRequest.subject": "MedicationRequest.subject",
-                "MedicationRequest.substitution": "MedicationRequest.substitution",
-                "MedicationRequest.substitution.allowed[x]": "MedicationRequest.substitution.allowed[x]"
+                "MedicationRequest.substitution": "MedicationRequest.substitution"
             },
-            "values": {
+            "fixed": {
                 "MedicationRequest.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
-            }
+            },
+            "remove": [
+                "MedicationRequest.requester.reference",
+                "MedicationRequest.subject.reference",
+                "MedicationRequest.substitution.allowed[x]:allowedBoolean"
+            ]
         }
     },
     "KBV_PR_FOR_Organization": {
@@ -238,72 +147,23 @@
             "mappings": {
                 "Organization.address": "Organization.address",
                 "Organization.address:Strassenanschrift": "Organization.address:Strassenanschrift",
-                "Organization.address:Strassenanschrift.city": "Organization.address:Strassenanschrift.city",
-                "Organization.address:Strassenanschrift.country": "Organization.address:Strassenanschrift.country",
-                "Organization.address:Strassenanschrift.line": "Organization.address:Strassenanschrift.line",
-                "Organization.address:Strassenanschrift.line.extension:Adresszusatz": "Organization.address:Strassenanschrift.line.extension:Adresszusatz",
-                "Organization.address:Strassenanschrift.line.extension:Hausnummer": "Organization.address:Strassenanschrift.line.extension:Hausnummer",
-                "Organization.address:Strassenanschrift.line.extension:Strasse": "Organization.address:Strassenanschrift.line.extension:Strasse",
-                "Organization.address:Strassenanschrift.line.value": "Organization.address:Strassenanschrift.line.value",
-                "Organization.address:Strassenanschrift.postalCode": "Organization.address:Strassenanschrift.postalCode",
-                "Organization.address:Strassenanschrift.type": "Organization.address:Strassenanschrift.type",
                 "Organization.identifier": "Organization.identifier",
                 "Organization.identifier:Betriebsstaettennummer": "Organization.identifier:BSNR",
-                "Organization.identifier:Betriebsstaettennummer.system": "Organization.identifier:BSNR.system",
-                "Organization.identifier:Betriebsstaettennummer.type": "Organization.identifier:BSNR.type",
-                "Organization.identifier:Betriebsstaettennummer.type.coding": "Organization.identifier:BSNR.type.coding",
-                "Organization.identifier:Betriebsstaettennummer.type.coding.code": "Organization.identifier:BSNR.type.coding.code",
-                "Organization.identifier:Betriebsstaettennummer.type.coding.system": "Organization.identifier:BSNR.type.coding.system",
-                "Organization.identifier:Betriebsstaettennummer.use": "Organization.identifier:BSNR.use",
-                "Organization.identifier:Betriebsstaettennummer.value": "Organization.identifier:BSNR.value",
                 "Organization.identifier:Institutionskennzeichen": "Organization.identifier:IKNR",
-                "Organization.identifier:Institutionskennzeichen.system": "Organization.identifier:IKNR.system",
-                "Organization.identifier:Institutionskennzeichen.type": "Organization.identifier:IKNR.type",
-                "Organization.identifier:Institutionskennzeichen.type.coding": "Organization.identifier:IKNR.type.coding",
-                "Organization.identifier:Institutionskennzeichen.type.coding.code": "Organization.identifier:IKNR.type.coding.code",
-                "Organization.identifier:Institutionskennzeichen.type.coding.system": "Organization.identifier:IKNR.type.coding.system",
-                "Organization.identifier:Institutionskennzeichen.use": "Organization.identifier:IKNR.use",
-                "Organization.identifier:Institutionskennzeichen.value": "Organization.identifier:IKNR.value",
                 "Organization.identifier:KZV-Abrechnungsnummer": "Organization.identifier:KZVA",
-                "Organization.identifier:KZV-Abrechnungsnummer.system": "Organization.identifier:KZVA.system",
-                "Organization.identifier:KZV-Abrechnungsnummer.type": "Organization.identifier:KZVA.type",
-                "Organization.identifier:KZV-Abrechnungsnummer.type.coding": "Organization.identifier:KZVA.type.coding",
-                "Organization.identifier:KZV-Abrechnungsnummer.type.coding.code": "Organization.identifier:KZVA.type.coding.code",
-                "Organization.identifier:KZV-Abrechnungsnummer.type.coding.system": "Organization.identifier:KZVA.type.coding.system",
-                "Organization.identifier:KZV-Abrechnungsnummer.use": "Organization.identifier:KZVA.use",
-                "Organization.identifier:KZV-Abrechnungsnummer.value": "Organization.identifier:KZVA.value",
                 "Organization.identifier:Standortnummer": "Organization.identifier:Standortnummer",
-                "Organization.identifier:Standortnummer.system": "Organization.identifier:Standortnummer.system",
-                "Organization.identifier:Standortnummer.type": "Organization.identifier:Standortnummer.type",
-                "Organization.identifier:Standortnummer.type.coding": "Organization.identifier:Standortnummer.type.coding",
-                "Organization.identifier:Standortnummer.type.coding.code": "Organization.identifier:Standortnummer.type.coding.code",
-                "Organization.identifier:Standortnummer.type.coding.system": "Organization.identifier:Standortnummer.type.coding.system",
-                "Organization.identifier:Standortnummer.use": "Organization.identifier:Standortnummer.use",
-                "Organization.identifier:Standortnummer.value": "Organization.identifier:Standortnummer.value",
                 "Organization.identifier:Telematik-ID": "Organization.identifier:TelematikID",
-                "Organization.identifier:Telematik-ID.system": "Organization.identifier:TelematikID.system",
-                "Organization.identifier:Telematik-ID.type": "Organization.identifier:TelematikID.type",
-                "Organization.identifier:Telematik-ID.type.coding": "Organization.identifier:TelematikID.type.coding",
-                "Organization.identifier:Telematik-ID.type.coding.code": "Organization.identifier:TelematikID.type.coding.code",
-                "Organization.identifier:Telematik-ID.type.coding.system": "Organization.identifier:TelematikID.type.coding.system",
-                "Organization.identifier:Telematik-ID.use": "Organization.identifier:TelematikID.use",
-                "Organization.identifier:Telematik-ID.value": "Organization.identifier:TelematikID.value",
                 "Organization.meta": "Organization.meta",
                 "Organization.name": "Organization.name",
                 "Organization.telecom": "Organization.telecom",
                 "Organization.telecom:eMail": "Organization.telecom:eMail",
-                "Organization.telecom:eMail.system": "Organization.telecom:eMail.system",
-                "Organization.telecom:eMail.value": "Organization.telecom:eMail.value",
                 "Organization.telecom:fax": "Organization.telecom:fax",
-                "Organization.telecom:fax.system": "Organization.telecom:fax.system",
-                "Organization.telecom:fax.value": "Organization.telecom:fax.value",
-                "Organization.telecom:telefon": "Organization.telecom:telefon",
-                "Organization.telecom:telefon.system": "Organization.telecom:telefon.system",
-                "Organization.telecom:telefon.value": "Organization.telecom:telefon.value"
+                "Organization.telecom:telefon": "Organization.telecom:telefon"
             },
-            "values": {
+            "fixed": {
                 "Organization.meta.profile": "http://fhir.de/StructureDefinition/identifier-telematik-id"
-            }
+            },
+            "remove": []
         }
     }
 }
