@@ -1,7 +1,6 @@
 import json
-from typing import List
+from typing import Dict, List, Tuple
 import logging
-from pathlib import Path
 
 from classification import Classification
 from consts import (
@@ -13,8 +12,6 @@ from consts import (
     STRUCT_KBV_PROFILES,
     STRUCT_REMARK,
 )
-from results_dict import gen_mapping_dict
-from results_html import create_results_html
 from manual_entries import MANUAL_ENTRIES
 
 
@@ -36,7 +33,26 @@ MANUAL_SUFFIXES = ["reference", "profile"]
 logger = logging.getLogger()
 
 
-def load_fhir_structure(file_path):
+def compare_profiles(profiles_to_compare, datapath):
+    """
+    Compares the presence of properties in KBV and ePA profiles.
+    """
+
+    # Determine which properties are present in each profile
+    all_properties = _determine_property_presence(profiles_to_compare, datapath)
+
+    # Check the presence of each property in each profile
+    presence_data = _check_property_presence(
+        all_properties, profiles_to_compare, datapath
+    )
+
+    # Generate a structured version of the presence data
+    structured_results = _gen_structured_results(presence_data)
+
+    return structured_results
+
+
+def _load_fhir_structure(file_path):
     """
     Loads the FHIR structure definition from a local JSON file.
     """
@@ -44,14 +60,14 @@ def load_fhir_structure(file_path):
         return json.load(file)
 
 
-def should_ignore(path: str, ignore_paths: List[str]) -> bool:
+def _should_ignore(path: str, ignore_paths: List[str]) -> bool:
     for ignored in ignore_paths:
         if path.startswith(ignored):
             return True
     return False
 
 
-def get_extension(element: dict, path: str) -> str:
+def _get_extension(element: dict, path: str) -> str:
     if "extension" in element and "type" in element:
         for type_entry in element["type"]:
             if type_entry.get("code") == "Extension" and "profile" in type_entry:
@@ -64,7 +80,7 @@ def get_extension(element: dict, path: str) -> str:
                         return extension_path
 
 
-def extract_elements(structure):
+def _extract_elements(structure):
     elements = set()
 
     ignore_paths = []
@@ -78,7 +94,7 @@ def extract_elements(structure):
             continue
 
         # Skip elements that are children of ignored nodes
-        if should_ignore(path, ignore_paths):
+        if _should_ignore(path, ignore_paths):
             continue
 
         # Ignore elements with having specific path endings
@@ -92,7 +108,7 @@ def extract_elements(structure):
             continue
 
         # Check for specific extensions
-        if extension := get_extension(element, path):
+        if extension := _get_extension(element, path):
             # Further ignore sub-elements of the extensions
             ignore_paths.append(path)
             elements.add(extension)
@@ -112,51 +128,51 @@ def extract_elements(structure):
     return elements
 
 
-def compare_structures(kbv_structure, epa_structure):
+def _compare_structures(kbv_structure, epa_structure):
     """
     Returns a set of all properties, extensions, and slices from both structures.
     """
 
-    kbv_elements = extract_elements(kbv_structure)
-    epa_elements = extract_elements(epa_structure)
+    kbv_elements = _extract_elements(kbv_structure)
+    epa_elements = _extract_elements(epa_structure)
 
     return kbv_elements | epa_elements
 
 
-def determine_property_presence(profiles_to_compare, datapath):
+def _determine_property_presence(profiles_to_compare, datapath):
     """
     Determines which properties are present in each set of KBV and ePA profiles.
     """
     all_properties = {}
     for kbv_group, epa_file in profiles_to_compare:
-        epa_structure = load_fhir_structure(datapath + epa_file)
+        epa_structure = _load_fhir_structure(datapath + epa_file)
         combined_properties = set()
 
         for kbv_file in kbv_group:
-            kbv_structure = load_fhir_structure(datapath + kbv_file)
-            combined_properties |= compare_structures(kbv_structure, epa_structure)
+            kbv_structure = _load_fhir_structure(datapath + kbv_file)
+            combined_properties |= _compare_structures(kbv_structure, epa_structure)
 
         all_properties[(tuple(kbv_group), epa_file)] = combined_properties
 
     return all_properties
 
 
-def check_property_presence(all_properties, profiles_to_compare, datapath):
+def _check_property_presence(all_properties, profiles_to_compare, datapath):
     """
     Checks the presence of each property in each profile.
     """
     presence_data = {}
     for (kbv_group, epa_file), properties in all_properties.items():
-        epa_structure = load_fhir_structure(datapath + epa_file)
-        epa_elements = extract_elements(epa_structure)
+        epa_structure = _load_fhir_structure(datapath + epa_file)
+        epa_elements = _extract_elements(epa_structure)
 
         presence_data[(tuple(kbv_group), epa_file)] = {}
         for prop in properties:
             presence_data[(tuple(kbv_group), epa_file)][prop] = [prop in epa_elements]
 
             for kbv_file in kbv_group:
-                kbv_structure = load_fhir_structure(datapath + kbv_file)
-                kbv_elements = extract_elements(kbv_structure)
+                kbv_structure = _load_fhir_structure(datapath + kbv_file)
+                kbv_elements = _extract_elements(kbv_structure)
                 presence_data[(tuple(kbv_group), epa_file)][prop].append(
                     prop in kbv_elements
                 )
@@ -164,31 +180,72 @@ def check_property_presence(all_properties, profiles_to_compare, datapath):
     return presence_data
 
 
-def get_remark(prop: str, classification: Classification) -> str:
-    return (
-        MANUAL_ENTRIES[prop]["remark"]
-        if prop in MANUAL_ENTRIES and "remark" in MANUAL_ENTRIES[prop]
-        else REMARKS[classification]
-    )
+def _classify_remark_property(
+    prop: str,
+    kbv_presences: List[str],
+    epa_presence: str,
+    fields_updates: Dict[str, dict],
+) -> Tuple[Classification, str]:
+    """
+    Classify and get the remark for the property
 
+    First, the manual entries and manual suffixes are checked. If neither is the case, it classifies the property
+    based on the presence of the property in the KBV and ePA profiles.
+    """
 
-def classify_property(prop, kbv_presences, epa_presence):
+    classification = None
+    remark = None
+
+    # Split the property in parent and child
+    if (
+        len(prop.rsplit(".", 1)[0]) < len(prop.rsplit(":", 1)[0])
+        and len(prop.rsplit(":", 1)) == 2
+    ):
+        parent, child = prop.rsplit(":", 1)
+    else:
+        parent, child = prop.rsplit(".", 1)
+
+    # If there is a manual entry for this property, use it
     if prop in MANUAL_ENTRIES:
-        return MANUAL_ENTRIES[prop].get("classification", Classification.MANUAL)
-    if prop.split(".")[-1] in MANUAL_SUFFIXES:
-        return Classification.MANUAL
-    if any(kbv_presences):
-        return Classification.USE if epa_presence else Classification.EXTENSION
-    return Classification.NOT_USE
+        classification = MANUAL_ENTRIES[prop].get(
+            "classification", Classification.MANUAL
+        )
+
+        # If there is a remark in the manual entry, use it else use the default remark
+        remark = MANUAL_ENTRIES[prop].get("remark", REMARKS[classification])
+
+    # If the last element from the property is in the manual list, use the manual classification
+    elif child in MANUAL_SUFFIXES:
+        classification = Classification.MANUAL
+
+    elif (parent_update := fields_updates.get(parent)) and parent_update[
+        STRUCT_CLASSIFICATION
+    ] == Classification.NOT_USE:
+        classification = Classification.NOT_USE
+        remark = parent_update[STRUCT_REMARK]
+
+    # If present in any of the KBV profiles
+    elif any(kbv_presences):
+        if epa_presence:
+            classification = Classification.USE
+        else:
+            classification = Classification.EXTENSION
+    else:
+        classification = Classification.NOT_USE
+
+    if not remark:
+        remark = REMARKS[classification]
+
+    return classification, remark
 
 
-def is_light_color(hex_color: str) -> bool:
+def _is_light_color(hex_color: str) -> bool:
     r, g, b = int(hex_color[1:3], 16), int(hex_color[3:5], 16), int(hex_color[5:7], 16)
     luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
     return luminance > 0.5
 
 
-def gen_structured_results(presence_data: dict) -> dict:
+def _gen_structured_results(presence_data: dict) -> dict:
     """
     Generate a structured representation containing the rules for each target profile.
 
@@ -211,68 +268,32 @@ def gen_structured_results(presence_data: dict) -> dict:
 
         # Generate the mapping for all fields in those profiles
         mapping[profiles][STRUCT_FIELDS] = {}
-        for field, field_presences in presences.items():
+        for field, field_presences in sorted(presences.items()):
+            field_update = {}
+
             field_updated = field
             extension_url = None
 
             # Get the field name while extracting the canonical for extensions
             if "extension" in field and "<br>" in field:
                 field_updated, extension_url = field.split("<br>")
-            mapping[profiles][STRUCT_FIELDS][field_updated] = {}
             if extension_url:
-                mapping[profiles][STRUCT_FIELDS][field_updated][
-                    STRUCT_EXTENSION
-                ] = extension_url
+                field_update[STRUCT_EXTENSION] = extension_url
 
             # Extract the presences for KBV and ePA profiles
             epa_presence, kbv_presences = field_presences[0], field_presences[1:]
-            mapping[profiles][STRUCT_FIELDS][field_updated][epa_profile] = epa_presence
+            field_update[epa_profile] = epa_presence
             for profile, presence in zip(kbv_profiles, kbv_presences):
-                mapping[profiles][STRUCT_FIELDS][field_updated][profile] = presence
+                field_update[profile] = presence
 
             # Fill the classification and remark for this field
-            classification = classify_property(field, kbv_presences, epa_presence)
-            mapping[profiles][STRUCT_FIELDS][field_updated][
-                STRUCT_CLASSIFICATION
-            ] = classification
-            mapping[profiles][STRUCT_FIELDS][field_updated][STRUCT_REMARK] = get_remark(
-                field, classification
+            classification, remark = _classify_remark_property(
+                field, kbv_presences, epa_presence, mapping[profiles][STRUCT_FIELDS]
             )
+            field_update[STRUCT_CLASSIFICATION] = classification
+            field_update[STRUCT_REMARK] = remark
+
+            # Set the field update
+            mapping[profiles][STRUCT_FIELDS][field_updated] = field_update
 
     return mapping
-
-
-# Define the datapath
-datapath = "data/StructureDefinition/"
-
-# Define the profiles to compare
-profiles_to_compare = [
-    (
-        [
-            "KBV_PR_ERP_Medication_Compounding.json",
-            "KBV_PR_ERP_Medication_FreeText.json",
-            "KBV_PR_ERP_Medication_Ingredient.json",
-            "KBV_PR_ERP_Medication_PZN.json",
-        ],
-        "epa-medication.json",
-    ),
-    (["KBV_PR_FOR_Practitioner.json"], "PractitionerDirectory.json"),
-    (["KBV_PR_ERP_Prescription.json"], "epa-medication-request.json"),
-    (["KBV_PR_FOR_Organization.json"], "OrganizationDirectory.json"),
-]
-
-# Determine which properties are present in each profile
-all_properties = determine_property_presence(profiles_to_compare, datapath)
-
-# Check the presence of each property in each profile
-presence_data = check_property_presence(all_properties, profiles_to_compare, datapath)
-
-# Generate a structured version of the presence data
-structured_mapping = gen_structured_results(presence_data)
-
-# Create the result html files
-create_results_html(structured_mapping, "./style.css")
-
-# Generate the mapping dict and write to file
-mapping_dict = gen_mapping_dict(structured_mapping)
-Path("mapping.json").write_text(json.dumps(mapping_dict, indent=4))

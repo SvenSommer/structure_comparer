@@ -452,39 +452,7 @@ MANUAL_ENTRIES = {
         "classification": Classification.NOT_USE,
         "remark": "Wert wird nicht übernommen",
     },
-    "Practitioner.qualification.code": {
-        "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
-    },
-    "Practitioner.qualification.identifier": {
-        "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
-    },
-    "Practitioner.qualification.issuer": {
-        "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
-    },
-    "Practitioner.qualification.period": {
-        "classification": Classification.NOT_USE,
-        "remark": "Wert wird nicht übernommen",
-    },
     "Practitioner.qualification:ASV-Fachgruppennummer": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:ASV-Fachgruppennummer.code": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:ASV-Fachgruppennummer.code.coding": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:ASV-Fachgruppennummer.code.coding.code": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:ASV-Fachgruppennummer.code.coding.system": {
         "classification": Classification.NOT_USE,
         "remark": "Extension und Values werden nicht übernommen",
     },
@@ -492,43 +460,7 @@ MANUAL_ENTRIES = {
         "classification": Classification.NOT_USE,
         "remark": "Extension und Values werden nicht übernommen",
     },
-    "Practitioner.qualification:Berufsbezeichnung.code": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:Berufsbezeichnung.code.coding": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:Berufsbezeichnung.code.coding.code": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:Berufsbezeichnung.code.coding.system": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:Berufsbezeichnung.code.text": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
     "Practitioner.qualification:Typ": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:Typ.code": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:Typ.code.coding": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:Typ.code.coding.code": {
-        "classification": Classification.NOT_USE,
-        "remark": "Extension und Values werden nicht übernommen",
-    },
-    "Practitioner.qualification:Typ.code.coding.system": {
         "classification": Classification.NOT_USE,
         "remark": "Extension und Values werden nicht übernommen",
     },
