@@ -2,7 +2,12 @@
 import json
 from pathlib import Path
 
-from structure_comparer import compare_profiles, gen_mapping_dict, create_results_html
+from structure_comparer import (
+    compare_profiles,
+    gen_mapping_dict,
+    create_results_html,
+    MANUAL_ENTRIES,
+)
 
 
 def write_mapping_json(structured_mapping: dict, results_folder: str | Path):
@@ -32,6 +37,8 @@ if __name__ == "__main__":
         (["KBV_PR_ERP_Prescription.json"], "epa-medication-request.json"),
         (["KBV_PR_FOR_Organization.json"], "OrganizationDirectory.json"),
     ]
+
+    MANUAL_ENTRIES.read(project_dir / "manual_entries.json")
 
     structured_mapping = compare_profiles(profiles_to_compare, project_dir / "data")
 

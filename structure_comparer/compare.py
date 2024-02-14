@@ -14,7 +14,12 @@ from .consts import (
     STRUCT_REMARK,
 )
 from .helpers import split_parent_child
-from .manual_entries import MANUAL_ENTRIES
+from .manual_entries import (
+    MANUAL_ENTRIES,
+    MANUAL_ENTRIES_CLASSIFICATION,
+    MANUAL_ENTRIES_REMARK,
+    MANUAL_ENTRIES_EXTRA,
+)
 
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]
@@ -218,14 +223,16 @@ def _classify_remark_property(
     # If there is a manual entry for this property, use it
     if prop in MANUAL_ENTRIES:
         manual_entry = MANUAL_ENTRIES[prop]
-        classification = manual_entry.get("classification", Classification.MANUAL)
+        classification = manual_entry.get(
+            MANUAL_ENTRIES_CLASSIFICATION, Classification.MANUAL
+        )
 
         # If there is a remark in the manual entry, use it else use the default remark
-        remark = manual_entry.get("remark", REMARKS[classification])
+        remark = manual_entry.get(MANUAL_ENTRIES_REMARK, REMARKS[classification])
 
         # If the classification needs extra information, generate the remark with the extra information
         if classification in EXTRA_CLASSIFICATIONS:
-            extra = manual_entry["extra"]
+            extra = manual_entry[MANUAL_ENTRIES_EXTRA]
             remark = REMARKS[classification].format(extra)
 
     # If the last element from the property is in the manual list, use the manual classification

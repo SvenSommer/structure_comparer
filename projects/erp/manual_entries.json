@@ -1,0 +1,267 @@
+{
+    "MedicationRequest.insurance.reference": {
+        "classification": "other",
+        "remark": "Wird beim Mapping ignoriert"
+    },
+    "MedicationRequest.meta.profile": {
+        "classification": "fixed",
+        "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
+    },
+    "MedicationRequest.requester.reference": {
+        "classification": "medication_service"
+    },
+    "MedicationRequest.subject.reference": {
+        "classification": "medication_service"
+    },
+    "MedicationRequest.identifier:rxPrescriptionProcessIdentifier": {
+        "classification": "empty",
+        "remark": "Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben."
+    },
+    "MedicationRequest.medication[x]:medicationReference": {
+        "classification": "manual",
+        "remark": "Die Referenz der KBV-Medikation wird durch eine Referenz auf eine EPA-Medikation ersetzt."
+    },
+    "MedicationRequest.medication[x].reference": {
+        "classification": "empty"
+    },
+    "MedicationRequest.medication[x]:medicationReference.reference": {
+        "classification": "manual",
+        "remark": "Die Referenz ergibt sich aus der neu erzeugten EPA-Medikation."
+    },
+    "MedicationRequest.substitution.allowed[x]:allowedBoolean": {
+        "classification": "empty",
+        "remark": "Einschränkung wird nicht übernommen"
+    },
+    "Medication.code.coding:PZN": {
+        "classification": "copy_from",
+        "extra": "Medication.code.coding:pznCode"
+    },
+    "Medication.code.coding:PZN.display": {
+        "classification": "empty"
+    },
+    "Medication.code.coding:PZN.userSelected": {
+        "classification": "empty"
+    },
+    "Medication.code.coding:PZN.version": {
+        "classification": "empty"
+    },
+    "Medication.code.coding:pznCode": {
+        "classification": "copy_to",
+        "extra": "Medication.code.coding:PZN"
+    },
+    "Medication.code.coding:pznCode.display": {
+        "classification": "empty"
+    },
+    "Medication.code.coding:pznCode.userSelected": {
+        "classification": "empty"
+    },
+    "Medication.code.coding:pznCode.version": {
+        "classification": "empty"
+    },
+    "Medication.extension:RxPrescriptionProcessIdentifier<br>(https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension)": {
+        "classification": "medication_service"
+    },
+    "Medication.form.coding:kbvDarreichungsform": {
+        "classification": "copy_to",
+        "extra": "Medication.form.coding:KBVDarreichungsform"
+    },
+    "Medication.form.coding:KBVDarreichungsform": {
+        "classification": "copy_from",
+        "extra": "Medication.form.coding:kbvDarreichungsform"
+    },
+    "Medication.form.coding:KBVDarreichungsform.userSelected": {
+        "classification": "empty"
+    },
+    "Medication.form.coding:KBVDarreichungsform.version": {
+        "classification": "empty"
+    },
+    "Medication.identifier:ePAMedicationUniqueIdentifier": {
+        "classification": "medication_service"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode": {
+        "classification": "copy_to",
+        "extra": "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK": {
+        "classification": "copy_from",
+        "extra": "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.display": {
+        "classification": "empty"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.userSelected": {
+        "classification": "empty"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK.version": {
+        "classification": "empty"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode": {
+        "classification": "copy_to",
+        "extra": "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN": {
+        "classification": "copy_from",
+        "extra": "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.display": {
+        "classification": "empty"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.userSelected": {
+        "classification": "empty"
+    },
+    "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN.version": {
+        "classification": "empty"
+    },
+    "Medication.ingredient.item[x]:itemReference.reference": {
+        "classification": "empty"
+    },
+    "Medication.manufacturer.reference": {
+        "classification": "empty"
+    },
+    "Medication.meta.profile": {
+        "classification": "fixed",
+        "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
+    },
+    "Organization.identifier:Betriebsstaettennummer": {
+        "classification": "copy_to",
+        "extra": "Organization.identifier:BSNR"
+    },
+    "Organization.identifier:BSNR": {
+        "classification": "copy_from",
+        "extra": "Organization.identifier:Betriebsstaettennummer"
+    },
+    "Organization.identifier:Institutionskennzeichen": {
+        "classification": "copy_to",
+        "extra": "Organization.identifier:IKNR"
+    },
+    "Organization.identifier:IKNR": {
+        "classification": "copy_from",
+        "extra": "Organization.identifier:Institutionskennzeichen"
+    },
+    "Organization.identifier:KZV-Abrechnungsnummer": {
+        "classification": "copy_to",
+        "extra": "Organization.identifier:KZVA"
+    },
+    "Organization.identifier:KZVA": {
+        "classification": "copy_from",
+        "extra": "Organization.identifier:KZV-Abrechnungsnummer"
+    },
+    "Organization.identifier:Telematik-ID": {
+        "classification": "copy_to",
+        "extra": "Organization.identifier:TelematikID"
+    },
+    "Organization.identifier:TelematikID": {
+        "classification": "copy_from",
+        "extra": "Organization.identifier:Telematik-ID"
+    },
+    "Organization.meta.profile": {
+        "classification": "fixed",
+        "extra": "http://fhir.de/StructureDefinition/identifier-telematik-id"
+    },
+    "Practitioner.identifier:ANR": {
+        "classification": "copy_to",
+        "extra": "Practitioner.identifier:LANR"
+    },
+    "Practitioner.identifier:LANR": {
+        "classification": "copy_from",
+        "extra": "Practitioner.identifier:ANR"
+    },
+    "Practitioner.identifier:Telematik-ID": {
+        "classification": "copy_to",
+        "extra": "Practitioner.identifier:TelematikID"
+    },
+    "Practitioner.identifier:TelematikID": {
+        "classification": "copy_from",
+        "extra": "Practitioner.identifier:Telematik-ID"
+    },
+    "Practitioner.identifier:ZANR.system": {
+        "classification": "use"
+    },
+    "Practitioner.identifier:ZANR.type": {
+        "classification": "use"
+    },
+    "Practitioner.identifier:ZANR.type.coding": {
+        "classification": "use"
+    },
+    "Practitioner.identifier:ZANR.type.coding.code": {
+        "classification": "use"
+    },
+    "Practitioner.identifier:ZANR.type.coding.system": {
+        "classification": "use"
+    },
+    "Practitioner.identifier:ZANR.use": {
+        "classification": "use"
+    },
+    "Practitioner.identifier:ZANR.value": {
+        "classification": "use"
+    },
+    "Practitioner.meta.profile": {
+        "classification": "fixed",
+        "extra": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
+    },
+    "Practitioner.name.family": {
+        "classification": "copy_from",
+        "extra": "Practitioner.name:name.family"
+    },
+    "Practitioner.name:name.family": {
+        "classification": "copy_to",
+        "extra": "Practitioner.name.family"
+    },
+    "Practitioner.name.given": {
+        "classification": "copy_from",
+        "extra": "Practitioner.name:name.given"
+    },
+    "Practitioner.name:name.given": {
+        "classification": "copy_to",
+        "extra": "Practitioner.name.given"
+    },
+    "Practitioner.name.prefix": {
+        "classification": "copy_from",
+        "extra": "Practitioner.name:name.prefix"
+    },
+    "Practitioner.name:name.prefix": {
+        "classification": "copy_to",
+        "extra": "Practitioner.name.prefix"
+    },
+    "Practitioner.name.use": {
+        "classification": "copy_from",
+        "extra": "Practitioner.name:name.use"
+    },
+    "Practitioner.name:name.use": {
+        "classification": "copy_to",
+        "extra": "Practitioner.name.use"
+    },
+    "Practitioner.name:name": {
+        "classification": "not_use"
+    },
+    "Practitioner.name:name.family.extension:nachname<br>(http://hl7.org/fhir/StructureDefinition/humanname-own-name)": {
+        "classification": "not_use"
+    },
+    "Practitioner.name:name.family.extension:namenszusatz<br>(http://fhir.de/StructureDefinition/humanname-namenszusatz)": {
+        "classification": "not_use"
+    },
+    "Practitioner.name:name.family.extension:vorsatzwort<br>(http://hl7.org/fhir/StructureDefinition/humanname-own-prefix)": {
+        "classification": "not_use"
+    },
+    "Practitioner.name:name.family.value": {
+        "classification": "not_use"
+    },
+    "Practitioner.name:name.prefix.extension:prefix-qualifier<br>(http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier)": {
+        "classification": "not_use"
+    },
+    "Practitioner.name:name.prefix.value": {
+        "classification": "not_use"
+    },
+    "Practitioner.qualification": {
+        "classification": "not_use"
+    },
+    "Practitioner.qualification:ASV-Fachgruppennummer": {
+        "classification": "not_use"
+    },
+    "Practitioner.qualification:Berufsbezeichnung": {
+        "classification": "not_use"
+    },
+    "Practitioner.qualification:Typ": {
+        "classification": "not_use"
+    }
+}
