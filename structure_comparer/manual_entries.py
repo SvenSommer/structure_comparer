@@ -1,4 +1,4 @@
-from classification import Classification
+from .classification import Classification
 
 MANUAL_ENTRIES = {
     "MedicationRequest.insurance.reference": {

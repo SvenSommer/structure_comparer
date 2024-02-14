@@ -2,8 +2,8 @@ import json
 from typing import Dict, List
 import logging
 
-from classification import Classification
-from consts import (
+from .classification import Classification
+from .consts import (
     REMARKS,
     STRUCT_CLASSIFICATION,
     STRUCT_EPA_PROFILE,
@@ -13,8 +13,8 @@ from consts import (
     STRUCT_KBV_PROFILES,
     STRUCT_REMARK,
 )
-from helpers import split_parent_child
-from manual_entries import MANUAL_ENTRIES
+from .helpers import split_parent_child
+from .manual_entries import MANUAL_ENTRIES
 
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]

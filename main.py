@@ -2,9 +2,7 @@
 import json
 from pathlib import Path
 
-from compare import compare_profiles
-from results_dict import gen_mapping_dict
-from results_html import create_results_html
+from structure_comparer import compare_profiles, gen_mapping_dict, create_results_html
 
 # Define the datapath
 datapath = "data/StructureDefinition/"

@@ -1,7 +1,7 @@
 import logging
 
-from classification import Classification
-from consts import (
+from .classification import Classification
+from .consts import (
     REMARKS,
     STRUCT_CLASSIFICATION,
     STRUCT_EPA_PROFILE,
@@ -10,7 +10,7 @@ from consts import (
     STRUCT_KBV_PROFILES,
     STRUCT_REMARK,
 )
-from helpers import split_parent_child
+from .helpers import split_parent_child
 
 
 DICT_MAPPINGS = "mappings"

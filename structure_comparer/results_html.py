@@ -2,8 +2,8 @@ import os
 import re
 from typing import Any, Dict, List, Tuple
 
-from classification import Classification
-from consts import (
+from .classification import Classification
+from .consts import (
     STRUCT_CLASSIFICATION,
     STRUCT_EPA_PROFILE,
     STRUCT_EXTENSION,
