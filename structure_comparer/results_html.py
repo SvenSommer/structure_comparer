@@ -1,5 +1,6 @@
-import os
+from pathlib import Path
 import re
+import shutil
 from typing import Any, Dict, List, Tuple
 
 from .classification import Classification
@@ -26,17 +27,28 @@ CSS_CLASS = {
     Classification.MEDICATION_SERVICE: "row-not-use",
 }
 
+STYLE_FILE_NAME = "style.css"
+FILES_FOLDER = Path(__file__).parent / "files"
 
-def create_results_html(structured_mapping, css_file_path):
-    results_folder = "docs"
-    if not os.path.exists(results_folder):
-        os.makedirs(results_folder)
+
+def create_results_html(structured_mapping, results_folder: str | Path):
+    # Convert to Path object if necessary
+    if isinstance(results_folder, str):
+        results_folder = Path(results_folder)
+
+    # Create the results folder if it does not exist
+    if not results_folder.exists():
+        results_folder.mkdir(parents=True)
+
+    # Copy the style file to the results folder
+    styles_file = FILES_FOLDER / STYLE_FILE_NAME
+    shutil.copy(styles_file, results_folder / STYLE_FILE_NAME)
 
     for data in structured_mapping.values():
         clean_kbv_group = data[STRUCT_KBV_PROFILES]
         clean_epa_file = data[STRUCT_EPA_PROFILE]
         profile_headers = data[STRUCT_KBV_PROFILES] + [data[STRUCT_EPA_PROFILE]]
-        file_path = os.path.join(results_folder, f"{clean_epa_file}.html")
+        file_path = results_folder / f"{clean_epa_file}.html"
         with open(file_path, "w") as html_file:
             rows = [
                 gen_row(prop, details, profile_headers)
@@ -46,7 +58,7 @@ def create_results_html(structured_mapping, css_file_path):
             html_table = [
                 "<!DOCTYPE html>",
                 f"<html><head><title>Mapping: {clean_epa_file}</title>",
-                f"<link rel='stylesheet' type='text/css' href='{css_file_path}'>",
+                f"<link rel='stylesheet' type='text/css' href='./{STYLE_FILE_NAME}'>",
                 "<link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>",
                 "<script type='text/javascript' src='https://code.jquery.com/jquery-3.6.0.min.js'></script>",
                 "<script type='text/javascript' src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>",

@@ -160,11 +160,11 @@ def _determine_property_presence(profiles_to_compare, datapath):
     """
     all_properties = {}
     for kbv_group, epa_file in profiles_to_compare:
-        epa_structure = _load_fhir_structure(datapath + epa_file)
+        epa_structure = _load_fhir_structure(datapath / epa_file)
         combined_properties = set()
 
         for kbv_file in kbv_group:
-            kbv_structure = _load_fhir_structure(datapath + kbv_file)
+            kbv_structure = _load_fhir_structure(datapath / kbv_file)
             combined_properties |= _compare_structures(kbv_structure, epa_structure)
 
         all_properties[(tuple(kbv_group), epa_file)] = combined_properties
@@ -178,7 +178,7 @@ def _check_property_presence(all_properties, profiles_to_compare, datapath):
     """
     presence_data = {}
     for (kbv_group, epa_file), properties in all_properties.items():
-        epa_structure = _load_fhir_structure(datapath + epa_file)
+        epa_structure = _load_fhir_structure(datapath / epa_file)
         epa_elements = _extract_elements(epa_structure)
 
         presence_data[(tuple(kbv_group), epa_file)] = {}
@@ -186,7 +186,7 @@ def _check_property_presence(all_properties, profiles_to_compare, datapath):
             presence_data[(tuple(kbv_group), epa_file)][prop] = [prop in epa_elements]
 
             for kbv_file in kbv_group:
-                kbv_structure = _load_fhir_structure(datapath + kbv_file)
+                kbv_structure = _load_fhir_structure(datapath / kbv_file)
                 kbv_elements = _extract_elements(kbv_structure)
                 presence_data[(tuple(kbv_group), epa_file)][prop].append(
                     prop in kbv_elements
