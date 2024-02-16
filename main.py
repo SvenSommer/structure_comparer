@@ -11,13 +11,9 @@ from structure_comparer import (
 )
 
 
-def write_mapping_json(structured_mapping: dict, results_folder: str | Path):
-    # Convert to Path object if necessary
-    if isinstance(results_folder, str):
-        results_folder = Path(results_folder)
-
+def write_mapping_json(structured_mapping: dict, output_file: Path):
     mapping_dict = gen_mapping_dict(structured_mapping)
-    (results_folder / "mapping.json").write_text(json.dumps(mapping_dict, indent=4))
+    output_file.write_text(json.dumps(mapping_dict, indent=4))
 
 
 def get_args():
@@ -46,17 +42,21 @@ if __name__ == "__main__":
     config = json.loads((args.project_dir / "config.json").read_text())
 
     # Read the manual entries
-    MANUAL_ENTRIES.read(args.project_dir / "manual_entries.json")
+    manual_entries_file = config.get("manual_entries_file", "manual_entries.json")
+    MANUAL_ENTRIES.read(args.project_dir / manual_entries_file)
 
     profiles_to_compare = config["profiles_to_compare"]
-    structured_mapping = compare_profiles(
-        profiles_to_compare, args.project_dir / "data"
-    )
+    data_dir = args.project_dir / config.get("data_dir", "data")
+    structured_mapping = compare_profiles(profiles_to_compare, data_dir)
 
     if args.html:
         # Create the result html files
-        create_results_html(structured_mapping, args.project_dir / "docs")
+        html_output_dir = args.project_dir / config.get("html_output_dir", "html")
+        create_results_html(structured_mapping, html_output_dir)
 
     if args.json:
         # Generate the mapping dict and write to file
-        write_mapping_json(structured_mapping, args.project_dir)
+        mapping_output_file = args.project_dir / config.get(
+            "mapping_output_file", "mapping.json"
+        )
+        write_mapping_json(structured_mapping, mapping_output_file)
