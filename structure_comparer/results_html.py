@@ -1,7 +1,8 @@
 from pathlib import Path
 import re
 import shutil
-from typing import Any, Dict, List, Tuple
+
+from jinja2 import Environment, FileSystemLoader
 
 from .classification import Classification
 from .consts import (
@@ -44,81 +45,30 @@ def create_results_html(structured_mapping, results_folder: str | Path):
     styles_file = FILES_FOLDER / STYLE_FILE_NAME
     shutil.copy(styles_file, results_folder / STYLE_FILE_NAME)
 
+    env = Environment(loader=FileSystemLoader(FILES_FOLDER))
+    env.filters["format_links"] = format_links
+    template = env.get_template("template.html.j2")
+
     for data in structured_mapping.values():
         clean_kbv_group = data[STRUCT_KBV_PROFILES]
         clean_epa_file = data[STRUCT_EPA_PROFILE]
-        profile_headers = data[STRUCT_KBV_PROFILES] + [data[STRUCT_EPA_PROFILE]]
-        file_path = results_folder / f"{clean_epa_file}.html"
-        with open(file_path, "w") as html_file:
-            rows = [
-                gen_row(prop, details, profile_headers)
-                for prop, details in sorted(data[STRUCT_FIELDS].items())
-            ]
 
-            html_table = [
-                "<!DOCTYPE html>",
-                f"<html><head><title>Mapping: {clean_epa_file}</title>",
-                f"<link rel='stylesheet' type='text/css' href='./{STYLE_FILE_NAME}'>",
-                "<link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>",
-                "<script type='text/javascript' src='https://code.jquery.com/jquery-3.6.0.min.js'></script>",
-                "<script type='text/javascript' src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>",
-                "</head><body>",
-                f"<h2>Mapping: {', '.join(clean_kbv_group)} in {clean_epa_file}</h2>",
-                generate_html_table(rows, clean_kbv_group, clean_epa_file),
-                "<script>",
-                "$(document).ready(function() {",
-                "    $('#resultsTable').DataTable({",
-                "        'pageLength': 25,",
-                "        'lengthMenu': [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 150, 'All']]",
-                "    });",
-                "});",
-                "</script>",
-                "</body></html>",
-            ]
+        entries = {
+            prop: {**entry, "css_class": CSS_CLASS[entry[STRUCT_CLASSIFICATION]]}
+            for prop, entry in data[STRUCT_FIELDS].items()
+        }
 
-            html_file.write("\n".join(html_table))
+        data = {
+            "css_file": STYLE_FILE_NAME,
+            "target_profile": clean_epa_file,
+            "source_profiles": clean_kbv_group,
+            "entries": entries,
+        }
 
+        content = template.render(**data)
 
-def generate_html_table(
-    rows: List[Tuple[List[str], Classification]],
-    clean_kbv_group: List[str],
-    clean_epa_file: str,
-) -> str:
-    header = (
-        "<thead><tr><th>Property</th>"
-        + "".join(f"<th>{file}</th>" for file in clean_kbv_group)
-        + f"<th>{clean_epa_file}</th><th>Remarks</th></tr></thead>"
-    )
-    body = "<tbody>\n" + "\n".join(rows) + "</tbody>"
-    return (
-        "<table id='resultsTable' class='display' style='width:100%'>\n"
-        + header
-        + "\n"
-        + body
-        + "\n</table>"
-    )
-
-
-def gen_row(
-    prop: str, details: Dict[str, Any], profile_headers: List[str]
-) -> Tuple[List[str], Classification]:
-    # Erkenne und formatiere URLs in den Bemerkungen
-    remark = format_links(details[STRUCT_REMARK])
-
-    # Erkenne und formatiere URLs in den Property-Werten
-    if ext := details.get(STRUCT_EXTENSION):
-        prop = format_links(prop + "<br>" + ext)
-
-    formatted_presences = [
-        "X" if details[profile] else "" for profile in profile_headers
-    ]
-    row_data = f"""<tr class="{CSS_CLASS[details[STRUCT_CLASSIFICATION]]}">
-    <td>{prop}</td>
-    {"".join(f"<td>{item}</td>" for item in formatted_presences)}
-    <td>{remark}</td>
-</tr>"""
-
-    return row_data
+        html_file = results_folder / f"{clean_epa_file}.html"
+        html_file.write_text(content)
 
 
 def format_links(text: str) -> str:

@@ -313,6 +313,7 @@ def _gen_structured_results(presence_data: dict) -> dict:
             # Get the field name while extracting the canonical for extensions
             if "extension" in field and "<br>" in field:
                 field_updated, extension_url = field.split("<br>")
+                extension_url = extension_url.strip("()")
             if extension_url:
                 field_update[STRUCT_EXTENSION] = extension_url
 

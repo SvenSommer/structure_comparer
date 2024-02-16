@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><head><title>Mapping: {{ target_profile }}</title>
+<link rel='stylesheet' type='text/css' href='./{{ css_file }}'>
+<link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
+<script type='text/javascript' src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script type='text/javascript' src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>
+</head><body>
+<h2>Mapping: {{ ', '.join(source_profiles) }} in {{ target_profile }}</h2>
+<table id='resultsTable' class='display' style='width:100%'>
+<thead><tr><th>Property</th>{% for profile in source_profiles %}<th>{{ profile }}</th>{% endfor %}<th>{{ target_profile }}</th><th>Remarks</th></tr></thead>
+<tbody>
+{% for prop, entry in entries.items() -%}
+    <tr class="{{ entry.css_class }}">
+    <td>{{ prop }}{% if "extension" in entry %}<br>({{ entry["extension"] | format_links }}){% endif %}</td>
+    {% for profile in source_profiles + [target_profile] %}<td>{{ "X" if entry[profile] else "" }}</td>{% endfor %}
+    <td>{{ entry["remark"] | format_links}}</td>
+</tr>
+{% endfor -%}
+</tbody>
+</table>
+<script>
+$(document).ready(function() {
+    $('#resultsTable').DataTable({
+        'pageLength': 25,
+        'lengthMenu': [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 150, 'All']]
+    });
+});
+</script>
+</body></html>
