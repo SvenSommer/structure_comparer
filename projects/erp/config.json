@@ -1,0 +1,31 @@
+{
+    "profiles_to_compare": [
+        [
+            [
+                "KBV_PR_ERP_Medication_Compounding.json",
+                "KBV_PR_ERP_Medication_FreeText.json",
+                "KBV_PR_ERP_Medication_Ingredient.json",
+                "KBV_PR_ERP_Medication_PZN.json"
+            ],
+            "epa-medication.json"
+        ],
+        [
+            [
+                "KBV_PR_FOR_Practitioner.json"
+            ],
+            "PractitionerDirectory.json"
+        ],
+        [
+            [
+                "KBV_PR_ERP_Prescription.json"
+            ],
+            "epa-medication-request.json"
+        ],
+        [
+            [
+                "KBV_PR_FOR_Organization.json"
+            ],
+            "OrganizationDirectory.json"
+        ]
+    ]
+}

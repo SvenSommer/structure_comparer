@@ -22,24 +22,12 @@ def write_mapping_json(structured_mapping: dict, results_folder: str | Path):
 if __name__ == "__main__":
     project_dir = Path("projects/erp")
 
-    # Define the profiles to compare
-    profiles_to_compare = [
-        (
-            [
-                "KBV_PR_ERP_Medication_Compounding.json",
-                "KBV_PR_ERP_Medication_FreeText.json",
-                "KBV_PR_ERP_Medication_Ingredient.json",
-                "KBV_PR_ERP_Medication_PZN.json",
-            ],
-            "epa-medication.json",
-        ),
-        (["KBV_PR_FOR_Practitioner.json"], "PractitionerDirectory.json"),
-        (["KBV_PR_ERP_Prescription.json"], "epa-medication-request.json"),
-        (["KBV_PR_FOR_Organization.json"], "OrganizationDirectory.json"),
-    ]
+    config = json.loads((project_dir / "config.json").read_text())
 
+    # Read the manual entries
     MANUAL_ENTRIES.read(project_dir / "manual_entries.json")
 
+    profiles_to_compare = config["profiles_to_compare"]
     structured_mapping = compare_profiles(profiles_to_compare, project_dir / "data")
 
     # Create the result html files
