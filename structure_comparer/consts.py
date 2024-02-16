@@ -1,4 +1,4 @@
-from classification import Classification
+from .classification import Classification
 
 
 STRUCT_KBV_PROFILES = "kbv_profiles"

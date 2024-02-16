@@ -1,36 +1,62 @@
 # Generate a structured version of the presence data
+import argparse
 import json
 from pathlib import Path
 
-from compare import compare_profiles
-from results_dict import gen_mapping_dict
-from results_html import create_results_html
-
-# Define the datapath
-datapath = "data/StructureDefinition/"
-
-# Define the profiles to compare
-profiles_to_compare = [
-    (
-        [
-            "KBV_PR_ERP_Medication_Compounding.json",
-            "KBV_PR_ERP_Medication_FreeText.json",
-            "KBV_PR_ERP_Medication_Ingredient.json",
-            "KBV_PR_ERP_Medication_PZN.json",
-        ],
-        "epa-medication.json",
-    ),
-    (["KBV_PR_FOR_Practitioner.json"], "PractitionerDirectory.json"),
-    (["KBV_PR_ERP_Prescription.json"], "epa-medication-request.json"),
-    (["KBV_PR_FOR_Organization.json"], "OrganizationDirectory.json"),
-]
+from structure_comparer import (
+    compare_profiles,
+    gen_mapping_dict,
+    create_results_html,
+    MANUAL_ENTRIES,
+)
 
 
-structured_mapping = compare_profiles(profiles_to_compare, datapath)
+def write_mapping_json(structured_mapping: dict, output_file: Path):
+    mapping_dict = gen_mapping_dict(structured_mapping)
+    output_file.write_text(json.dumps(mapping_dict, indent=4))
 
-# Create the result html files
-create_results_html(structured_mapping, "./style.css")
 
-# Generate the mapping dict and write to file
-mapping_dict = gen_mapping_dict(structured_mapping)
-Path("mapping.json").write_text(json.dumps(mapping_dict, indent=4))
+def get_args():
+    parser = argparse.ArgumentParser(
+        description="Compare profiles and generate mapping"
+    )
+
+    parser.add_argument(
+        "--project-dir",
+        type=Path,
+        help="The project directory containing the profiles and config",
+    )
+    parser.add_argument("--html", action="store_true", help="Generate html files")
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Generate mapping json file",
+    )
+
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = get_args()
+
+    config = json.loads((args.project_dir / "config.json").read_text())
+
+    # Read the manual entries
+    manual_entries_file = config.get("manual_entries_file", "manual_entries.json")
+    MANUAL_ENTRIES.read(args.project_dir / manual_entries_file)
+
+    profiles_to_compare = config["profiles_to_compare"]
+    data_dir = args.project_dir / config.get("data_dir", "data")
+    structured_mapping = compare_profiles(profiles_to_compare, data_dir)
+
+    if args.html:
+        # Create the result html files
+        html_output_dir = args.project_dir / config.get("html_output_dir", "html")
+        create_results_html(structured_mapping, html_output_dir)
+
+    if args.json:
+        # Generate the mapping dict and write to file
+        mapping_output_file = args.project_dir / config.get(
+            "mapping_output_file", "mapping.json"
+        )
+        write_mapping_json(structured_mapping, mapping_output_file)

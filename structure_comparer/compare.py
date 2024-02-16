@@ -2,8 +2,8 @@ import json
 from typing import Dict, List
 import logging
 
-from classification import Classification
-from consts import (
+from .classification import Classification
+from .consts import (
     REMARKS,
     STRUCT_CLASSIFICATION,
     STRUCT_EPA_PROFILE,
@@ -13,8 +13,13 @@ from consts import (
     STRUCT_KBV_PROFILES,
     STRUCT_REMARK,
 )
-from helpers import split_parent_child
-from manual_entries import MANUAL_ENTRIES
+from .helpers import split_parent_child
+from .manual_entries import (
+    MANUAL_ENTRIES,
+    MANUAL_ENTRIES_CLASSIFICATION,
+    MANUAL_ENTRIES_REMARK,
+    MANUAL_ENTRIES_EXTRA,
+)
 
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]
@@ -160,11 +165,11 @@ def _determine_property_presence(profiles_to_compare, datapath):
     """
     all_properties = {}
     for kbv_group, epa_file in profiles_to_compare:
-        epa_structure = _load_fhir_structure(datapath + epa_file)
+        epa_structure = _load_fhir_structure(datapath / epa_file)
         combined_properties = set()
 
         for kbv_file in kbv_group:
-            kbv_structure = _load_fhir_structure(datapath + kbv_file)
+            kbv_structure = _load_fhir_structure(datapath / kbv_file)
             combined_properties |= _compare_structures(kbv_structure, epa_structure)
 
         all_properties[(tuple(kbv_group), epa_file)] = combined_properties
@@ -178,7 +183,7 @@ def _check_property_presence(all_properties, profiles_to_compare, datapath):
     """
     presence_data = {}
     for (kbv_group, epa_file), properties in all_properties.items():
-        epa_structure = _load_fhir_structure(datapath + epa_file)
+        epa_structure = _load_fhir_structure(datapath / epa_file)
         epa_elements = _extract_elements(epa_structure)
 
         presence_data[(tuple(kbv_group), epa_file)] = {}
@@ -186,7 +191,7 @@ def _check_property_presence(all_properties, profiles_to_compare, datapath):
             presence_data[(tuple(kbv_group), epa_file)][prop] = [prop in epa_elements]
 
             for kbv_file in kbv_group:
-                kbv_structure = _load_fhir_structure(datapath + kbv_file)
+                kbv_structure = _load_fhir_structure(datapath / kbv_file)
                 kbv_elements = _extract_elements(kbv_structure)
                 presence_data[(tuple(kbv_group), epa_file)][prop].append(
                     prop in kbv_elements
@@ -218,14 +223,16 @@ def _classify_remark_property(
     # If there is a manual entry for this property, use it
     if prop in MANUAL_ENTRIES:
         manual_entry = MANUAL_ENTRIES[prop]
-        classification = manual_entry.get("classification", Classification.MANUAL)
+        classification = manual_entry.get(
+            MANUAL_ENTRIES_CLASSIFICATION, Classification.MANUAL
+        )
 
         # If there is a remark in the manual entry, use it else use the default remark
-        remark = manual_entry.get("remark", REMARKS[classification])
+        remark = manual_entry.get(MANUAL_ENTRIES_REMARK, REMARKS[classification])
 
         # If the classification needs extra information, generate the remark with the extra information
         if classification in EXTRA_CLASSIFICATIONS:
-            extra = manual_entry["extra"]
+            extra = manual_entry[MANUAL_ENTRIES_EXTRA]
             remark = REMARKS[classification].format(extra)
 
     # If the last element from the property is in the manual list, use the manual classification
@@ -306,6 +313,7 @@ def _gen_structured_results(presence_data: dict) -> dict:
             # Get the field name while extracting the canonical for extensions
             if "extension" in field and "<br>" in field:
                 field_updated, extension_url = field.split("<br>")
+                extension_url = extension_url.strip("()")
             if extension_url:
                 field_update[STRUCT_EXTENSION] = extension_url
 
