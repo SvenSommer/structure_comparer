@@ -3,5 +3,6 @@
 __pycache__
 
 # IDE specific
-.vscode
+.vscode/*
+!.vscode/launch.json
 .history

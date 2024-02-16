@@ -1,4 +1,5 @@
 # Generate a structured version of the presence data
+import argparse
 import json
 from pathlib import Path
 
@@ -19,19 +20,43 @@ def write_mapping_json(structured_mapping: dict, results_folder: str | Path):
     (results_folder / "mapping.json").write_text(json.dumps(mapping_dict, indent=4))
 
 
-if __name__ == "__main__":
-    project_dir = Path("projects/erp")
+def get_args():
+    parser = argparse.ArgumentParser(
+        description="Compare profiles and generate mapping"
+    )
 
-    config = json.loads((project_dir / "config.json").read_text())
+    parser.add_argument(
+        "--project-dir",
+        type=Path,
+        help="The project directory containing the profiles and config",
+    )
+    parser.add_argument("--html", action="store_true", help="Generate html files")
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Generate mapping json file",
+    )
+
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = get_args()
+
+    config = json.loads((args.project_dir / "config.json").read_text())
 
     # Read the manual entries
-    MANUAL_ENTRIES.read(project_dir / "manual_entries.json")
+    MANUAL_ENTRIES.read(args.project_dir / "manual_entries.json")
 
     profiles_to_compare = config["profiles_to_compare"]
-    structured_mapping = compare_profiles(profiles_to_compare, project_dir / "data")
+    structured_mapping = compare_profiles(
+        profiles_to_compare, args.project_dir / "data"
+    )
 
-    # Create the result html files
-    create_results_html(structured_mapping, project_dir / "docs")
+    if args.html:
+        # Create the result html files
+        create_results_html(structured_mapping, args.project_dir / "docs")
 
-    # Generate the mapping dict and write to file
-    write_mapping_json(structured_mapping, project_dir)
+    if args.json:
+        # Generate the mapping dict and write to file
+        write_mapping_json(structured_mapping, args.project_dir)
