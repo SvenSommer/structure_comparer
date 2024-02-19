@@ -1,15 +1,9 @@
 import logging
+from typing import Dict
 
 from .classification import Classification
-from .consts import (
-    REMARKS,
-    STRUCT_CLASSIFICATION,
-    STRUCT_EPA_PROFILE,
-    STRUCT_EXTRA,
-    STRUCT_FIELDS,
-    STRUCT_KBV_PROFILES,
-    STRUCT_REMARK,
-)
+from .data import Comparison
+from .consts import REMARKS
 from .helpers import split_parent_child
 
 
@@ -28,51 +22,51 @@ IGNORE_CLASSIFICATIONS = [
 logger = logging.getLogger(__name__)
 
 
-def gen_mapping_dict(structured_mapping: dict):
+def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
     result = {}
 
     # Iterate over the different mappings
     for mappings in structured_mapping.values():
-        epa_profile = mappings[STRUCT_EPA_PROFILE]
-
         # Iterate over the source profiles
         # These will be the roots of the mappings
-        for kbv_profile in sorted(mappings[STRUCT_KBV_PROFILES]):
+        for source_profile in sorted(mappings.source_profiles):
             profile_handling = {DICT_MAPPINGS: {}, DICT_FIXED: {}, DICT_REMOVE: []}
-            for field, presences in mappings[STRUCT_FIELDS].items():
-                classification = presences[STRUCT_CLASSIFICATION]
-                remark = presences[STRUCT_REMARK]
-                extra = presences[STRUCT_EXTRA]
+            for field, presences in mappings.fields.items():
 
                 # If classification is the same as the parent, do not handle this entry
                 parent, _ = split_parent_child(field)
-                if _same_as_parent(presences, mappings[STRUCT_FIELDS].get(parent)):
+                comparison_parent = mappings.fields.get(parent)
+                if (
+                    not comparison_parent is None
+                    and presences.classification == comparison_parent.classification
+                ):
                     continue
 
                 # If 'manual' and should always be set to a fixed value
-                if classification == Classification.FIXED:
-                    profile_handling[DICT_FIXED][field] = extra
+                if presences.classification == Classification.FIXED:
+                    profile_handling[DICT_FIXED][field] = presences.extra
 
                 # Otherwise only if value is present
-                elif presences[kbv_profile]:
+                elif presences.profiles[source_profile].present:
                     # If field should be used and remark was not changed
                     if (
-                        classification in [Classification.USE, Classification.EXTENSION]
-                        and remark == REMARKS[classification]
+                        presences.classification
+                        in [Classification.USE, Classification.EXTENSION]
+                        and presences.remark == REMARKS[presences.classification]
                     ):
                         # Put value in the same field
                         profile_handling[DICT_MAPPINGS][field] = field
 
                     # If 'copy_to' get the target field from extra field
-                    elif classification == Classification.COPY_TO:
-                        profile_handling[DICT_MAPPINGS][field] = extra
+                    elif presences.classification == Classification.COPY_TO:
+                        profile_handling[DICT_MAPPINGS][field] = presences.extra
 
                     # Do not handle when classification should be ignored,
                     # or add to ignore if parent was not ignored or fixed
-                    elif classification in IGNORE_CLASSIFICATIONS:
+                    elif presences.classification in IGNORE_CLASSIFICATIONS:
                         if (
-                            parent_field := mappings[STRUCT_FIELDS].get(parent)
-                        ) and parent_field[STRUCT_CLASSIFICATION] in [
+                            parent_field := mappings.fields.get(parent)
+                        ) and parent_field.classification in [
                             Classification.USE,
                             Classification.EXTENSION,
                             Classification.COPY_TO,
@@ -82,16 +76,9 @@ def gen_mapping_dict(structured_mapping: dict):
                     else:
                         # Log fall-through
                         logger.warning(
-                            f"gen_mapping_dict: did not handle {kbv_profile}:{epa_profile}:{field}:{classification} {remark}"
+                            f"gen_mapping_dict: did not handle {source_profile}:{mappings.target_profile}:{field}:{presences.classification} {presences.remark}"
                         )
 
-            result[kbv_profile] = {epa_profile: profile_handling}
+            result[source_profile] = {mappings.target_profile: profile_handling}
 
     return result
-
-
-def _same_as_parent(presences: dict, parent_presences: dict | None):
-    if not parent_presences:
-        return False
-
-    return presences[STRUCT_CLASSIFICATION] == parent_presences[STRUCT_CLASSIFICATION]

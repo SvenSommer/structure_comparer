@@ -1,14 +1,5 @@
 from .classification import Classification
 
-
-STRUCT_KBV_PROFILES = "kbv_profiles"
-STRUCT_EPA_PROFILE = "epa_profile"
-STRUCT_FIELDS = "fields"
-STRUCT_EXTENSION = "extension"
-STRUCT_CLASSIFICATION = "classification"
-STRUCT_REMARK = "remark"
-STRUCT_EXTRA = "extra"
-
 REMARKS = {
     Classification.USE: "Eigenschaft und Wert werden übernommen",
     Classification.NOT_USE: "Wird nicht übernommen",

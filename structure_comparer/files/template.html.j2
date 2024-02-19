@@ -27,12 +27,14 @@
         <tbody>
             {% for prop, entry in entries.items() -%}
             <tr class="{{ entry.css_class }}">
-                <td>{{ prop }}{% if "extension" in entry %}<br>({{ entry["extension"] | format_links }}){% endif %}</td>
+                <td>{{ prop }}
+                    {%- if entry.extension is not none %}<br>({{ entry.extension | format_links }}){% endif -%}
+                </td>
                 {%- for profile in source_profiles + [target_profile] %}
-                <td>{% if entry[profile] %}X{% endif %}</td>
+                <td>{% if entry.profiles[profile].present %}X{% endif %}</td>
                 {%- endfor %}
                 {%- if show_remarks %}
-                <td>{{ entry["remark"] | format_links}}</td>
+                <td>{{ entry.remark | format_links}}</td>
                 {%- endif %}
             </tr>
             {% endfor -%}

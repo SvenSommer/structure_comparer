@@ -3,16 +3,8 @@ from typing import Dict, List
 import logging
 
 from .classification import Classification
-from .consts import (
-    REMARKS,
-    STRUCT_CLASSIFICATION,
-    STRUCT_EPA_PROFILE,
-    STRUCT_EXTENSION,
-    STRUCT_EXTRA,
-    STRUCT_FIELDS,
-    STRUCT_KBV_PROFILES,
-    STRUCT_REMARK,
-)
+from .data.comparison import Comparison, ComparisonField, ProfileField
+from .consts import REMARKS
 from .helpers import split_parent_child
 from .manual_entries import (
     MANUAL_ENTRIES,
@@ -201,10 +193,11 @@ def _check_property_presence(all_properties, profiles_to_compare, datapath):
 
 
 def _classify_remark_property(
+    comparison_field: ComparisonField,
     prop: str,
     kbv_presences: List[str],
     epa_presence: str,
-    fields_updates: Dict[str, dict],
+    fields_updates: Dict[str, ComparisonField],
 ) -> Dict[str, str]:
     """
     Classify and get the remark for the property
@@ -240,21 +233,21 @@ def _classify_remark_property(
         classification = Classification.MANUAL
 
     # If the parent has a classification that can be derived use the parent's classification
-    elif (parent_update := fields_updates.get(parent)) and parent_update[
-        STRUCT_CLASSIFICATION
-    ] in DERIVED_CLASSIFICATIONS:
-        classification = parent_update[STRUCT_CLASSIFICATION]
+    elif (
+        parent_update := fields_updates.get(parent)
+    ) and parent_update.classification in DERIVED_CLASSIFICATIONS:
+        classification = parent_update.classification
 
         # If the classification needs extra information derived that information from the parent
         if classification in EXTRA_CLASSIFICATIONS:
 
             # Cut away the common part with the parent and add the remainer to the parents extra
-            extra = parent_update[STRUCT_EXTRA] + prop[len(parent) :]
+            extra = parent_update.extra + prop[len(parent) :]
             remark = REMARKS[classification].format(extra)
 
         # Else use the parents remark
         else:
-            remark = parent_update[STRUCT_REMARK]
+            remark = parent_update.remark
 
     # If present in any of the KBV profiles
     elif any(kbv_presences):
@@ -268,11 +261,9 @@ def _classify_remark_property(
     if not remark:
         remark = REMARKS[classification]
 
-    return {
-        STRUCT_CLASSIFICATION: classification,
-        STRUCT_REMARK: remark,
-        STRUCT_EXTRA: extra,
-    }
+    comparison_field.classification = classification
+    comparison_field.remark = remark
+    comparison_field.extra = extra
 
 
 def _is_light_color(hex_color: str) -> bool:
@@ -281,7 +272,7 @@ def _is_light_color(hex_color: str) -> bool:
     return luminance > 0.5
 
 
-def _gen_structured_results(presence_data: dict) -> dict:
+def _gen_structured_results(presence_data: dict) -> Comparison:
     """
     Generate a structured representation containing the rules for each target profile.
 
@@ -292,20 +283,19 @@ def _gen_structured_results(presence_data: dict) -> dict:
     mapping = {}
     # Iterate over all mappings (each entry are mapping to the same profile)
     for profiles, presences in presence_data.items():
-        mapping[profiles] = {}
+        comparison = Comparison()
 
         # Generate the profile names
-        kbv_profiles = [profile.replace(".json", "") for profile in profiles[0]]
-        epa_profile = profiles[1].replace(".json", "")
+        source_profiles = [profile.replace(".json", "") for profile in profiles[0]]
+        target_profile = profiles[1].replace(".json", "")
 
         # Extract which profiles are KBV and which is the ePA one
-        mapping[profiles][STRUCT_KBV_PROFILES] = kbv_profiles
-        mapping[profiles][STRUCT_EPA_PROFILE] = epa_profile
+        comparison.source_profiles = source_profiles
+        comparison.target_profile = target_profile
 
         # Generate the mapping for all fields in those profiles
-        mapping[profiles][STRUCT_FIELDS] = {}
         for field, field_presences in sorted(presences.items()):
-            field_update = {}
+            field_update = ComparisonField()
 
             field_updated = field
             extension_url = None
@@ -315,21 +305,28 @@ def _gen_structured_results(presence_data: dict) -> dict:
                 field_updated, extension_url = field.split("<br>")
                 extension_url = extension_url.strip("()")
             if extension_url:
-                field_update[STRUCT_EXTENSION] = extension_url
+                field_update.extension = extension_url
 
             # Extract the presences for KBV and ePA profiles
-            epa_presence, kbv_presences = field_presences[0], field_presences[1:]
-            field_update[epa_profile] = epa_presence
-            for profile, presence in zip(kbv_profiles, kbv_presences):
-                field_update[profile] = presence
+            target_presence, source_presences = field_presences[0], field_presences[1:]
+            field_update.profiles[target_profile] = ProfileField(
+                present=target_presence
+            )
+            for profile, presence in zip(source_profiles, source_presences):
+                field_update.profiles[profile] = ProfileField(present=presence)
 
             # Fill the classification and remark for this field
-            classification_dict = _classify_remark_property(
-                field, kbv_presences, epa_presence, mapping[profiles][STRUCT_FIELDS]
+            _classify_remark_property(
+                field_update,
+                field,
+                source_presences,
+                target_presence,
+                comparison.fields,
             )
-            field_update.update(classification_dict)
 
             # Set the field update
-            mapping[profiles][STRUCT_FIELDS][field_updated] = field_update
+            comparison.fields[field_updated] = field_update
+
+        mapping[profiles] = comparison
 
     return mapping

@@ -1,16 +1,13 @@
 from pathlib import Path
 import re
 import shutil
+from typing import Dict
 
 from jinja2 import Environment, FileSystemLoader
 
+
 from .classification import Classification
-from .consts import (
-    STRUCT_CLASSIFICATION,
-    STRUCT_EPA_PROFILE,
-    STRUCT_FIELDS,
-    STRUCT_KBV_PROFILES,
-)
+from .data import Comparison
 
 
 CSS_CLASS = {
@@ -31,7 +28,9 @@ FILES_FOLDER = Path(__file__).parent / "files"
 
 
 def create_results_html(
-    structured_mapping, results_folder: str | Path, show_remarks: bool
+    structured_mapping: Dict[str, Comparison],
+    results_folder: str | Path,
+    show_remarks: bool,
 ):
     # Convert to Path object if necessary
     if isinstance(results_folder, str):
@@ -49,30 +48,38 @@ def create_results_html(
     env.filters["format_links"] = format_links
     template = env.get_template("template.html.j2")
 
-    for data in structured_mapping.values():
-        clean_kbv_group = data[STRUCT_KBV_PROFILES]
-        clean_epa_file = data[STRUCT_EPA_PROFILE]
+    for comp in structured_mapping.values():
 
         entries = {
-            prop: {**entry, "css_class": CSS_CLASS[entry[STRUCT_CLASSIFICATION]]}
-            for prop, entry in data[STRUCT_FIELDS].items()
+            prop: {
+                "classificaion": entry.classification,
+                "css_class": CSS_CLASS[entry.classification],
+                "extension": entry.extension,
+                "extra": entry.extra,
+                "profiles": entry.profiles,
+                "remark": entry.remark,
+            }
+            for prop, entry in comp.fields.items()
         }
 
         data = {
             "css_file": STYLE_FILE_NAME,
-            "target_profile": clean_epa_file,
-            "source_profiles": clean_kbv_group,
+            "target_profile": comp.target_profile,
+            "source_profiles": comp.source_profiles,
             "entries": entries,
             "show_remarks": show_remarks,
         }
 
         content = template.render(**data)
 
-        html_file = results_folder / f"{clean_epa_file}.html"
+        html_file = results_folder / f"{comp.target_profile}.html"
         html_file.write_text(content)
 
 
 def format_links(text: str) -> str:
+    if not text:
+        return text
+
     # Regex zum Erkennen von URLs
     url_pattern = r"(https?://[\w\.\/\-\|]+)"
     # Ersetze URLs mit einem anklickbaren Link
