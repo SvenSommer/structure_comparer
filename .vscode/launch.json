@@ -17,6 +17,20 @@
                 "--html",
                 "--json"
             ]
+        },
+        {
+            "name": "Generate ApoVZD",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--project-dir",
+                "projects/apovzd",
+                "--html",
+                "--json"
+            ]
         }
     ]
 }

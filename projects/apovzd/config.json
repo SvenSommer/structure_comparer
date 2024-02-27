@@ -1,0 +1,21 @@
+{
+    "manual_entries_file": "manual_entries.json",
+    "data_dir": "data",
+    "html_output_dir": "docs",
+    "mapping_output_file": "mapping.json",
+    "profiles_to_compare": [
+        [
+            [
+                "HealthcareServiceApoVzd.json"
+            ],
+            "HealthcareServiceDirectory.json"
+        ],
+        [
+            [
+                "LocationApoVzd.json"
+            ],
+            "LocationDirectory.json"
+        ]
+    ],
+    "show_remarks": false
+}
