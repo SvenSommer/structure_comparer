@@ -13,19 +13,6 @@ from .manual_entries import (
     MANUAL_ENTRIES_EXTRA,
 )
 
-
-IGNORE_ENDS = ["id", "extension", "modifierExtension"]
-
-IGNORE_SLICES = [
-    "slice(url)",
-    "slice($this)",
-    "slice(system)",
-    "slice(type)",
-    "slice(use)",
-    # workaround for 'slice(code.coding.system)'
-    "system)",
-]
-
 MANUAL_SUFFIXES = ["reference", "profile"]
 
 # These classification generate a remark with extra information
@@ -45,149 +32,23 @@ DERIVED_CLASSIFICATIONS = [
 logger = logging.getLogger()
 
 
-def compare_profiles(profiles_to_compare, datapath):
+def compare_profiles(profiles_to_compare: List, datapath: Path):
     """
     Compares the presence of properties in KBV and ePA profiles.
     """
 
-    # Determine which properties are present in each profile
-    all_properties = _determine_property_presence(profiles_to_compare, datapath)
-
-    # Check the presence of each property in each profile
-    presence_data = _check_property_presence(
-        all_properties, profiles_to_compare, datapath
-    )
-
-    # Generate a structured version of the presence data
-    structured_results = _gen_structured_results(presence_data)
-
-    return structured_results
+    profile_maps = _load_profiles(profiles_to_compare, datapath)
 
 
-def _load_fhir_structure(file_path):
+def _load_profiles(profiles_to_compare: List, datapath: Path) -> Dict[str, ProfileMap]:
     """
-    Loads the FHIR structure definition from a local JSON file.
+    Loads the FHIR structure definitions from the local JSON files.
     """
-    with open(file_path, "r") as file:
-        return json.load(file)
-
-
-def _should_ignore(path: str, ignore_paths: List[str]) -> bool:
-    for ignored in ignore_paths:
-        if path.startswith(ignored):
-            return True
-    return False
-
-
-def _get_extension(element: dict, path: str) -> str:
-    if "extension" in element and "type" in element:
-        for type_entry in element["type"]:
-            if type_entry.get("code") == "Extension" and "profile" in type_entry:
-                for profile in type_entry["profile"]:
-                    extension_path = f"{path}<br>({profile})"
-                    # Ignore extensions ending with 'slice(url)'
-                    if not extension_path.endswith(
-                        "slice(url)"
-                    ) and not extension_path.endswith("slice($this)"):
-                        return extension_path
-
-
-def _extract_elements(structure):
-    elements = set()
-
-    ignore_paths = []
-
-    for element in structure["snapshot"]["element"]:
-        path: str = element["id"]
-        path_split = path.split(".")
-
-        # Skip base element
-        if len(path_split) == 1:
-            continue
-
-        # Skip elements that are children of ignored nodes
-        if _should_ignore(path, ignore_paths):
-            continue
-
-        # Ignore elements with having specific path endings
-        if path_split[-1] in IGNORE_ENDS:
-            continue
-
-        # Ignore elements where the cardinality is set to zero
-        if element["max"] == "0" or element["max"] == 0:
-            # Extend list of nodes that are remove due cardinality
-            ignore_paths.append(path)
-            continue
-
-        # Check for specific extensions
-        if extension := _get_extension(element, path):
-            # Further ignore sub-elements of the extensions
-            ignore_paths.append(path)
-            elements.add(extension)
-        else:
-            # Add the base path of the element
-            elements.add(path)
-
-        # Check for and add slices, ignoring 'slice(url)' endings
-        if "slicing" in element and "discriminator" in element["slicing"]:
-            for discriminator in element["slicing"]["discriminator"]:
-                if isinstance(discriminator, dict) and "path" in discriminator:
-                    slice_path = f"{path}.slice({discriminator['path']})"
-                    slice_path_split = slice_path.split(".")
-                    if not slice_path_split[-1] in IGNORE_SLICES:
-                        elements.add(slice_path)
-
-    return elements
-
-
-def _compare_structures(kbv_structure, epa_structure):
-    """
-    Returns a set of all properties, extensions, and slices from both structures.
-    """
-
-    kbv_elements = _extract_elements(kbv_structure)
-    epa_elements = _extract_elements(epa_structure)
-
-    return kbv_elements | epa_elements
-
-
-def _determine_property_presence(profiles_to_compare, datapath):
-    """
-    Determines which properties are present in each set of KBV and ePA profiles.
-    """
-    all_properties = {}
-    for kbv_group, epa_file in profiles_to_compare:
-        epa_structure = _load_fhir_structure(datapath / epa_file)
-        combined_properties = set()
-
-        for kbv_file in kbv_group:
-            kbv_structure = _load_fhir_structure(datapath / kbv_file)
-            combined_properties |= _compare_structures(kbv_structure, epa_structure)
-
-        all_properties[(tuple(kbv_group), epa_file)] = combined_properties
-
-    return all_properties
-
-
-def _check_property_presence(all_properties, profiles_to_compare, datapath):
-    """
-    Checks the presence of each property in each profile.
-    """
-    presence_data = {}
-    for (kbv_group, epa_file), properties in all_properties.items():
-        epa_structure = _load_fhir_structure(datapath / epa_file)
-        epa_elements = _extract_elements(epa_structure)
-
-        presence_data[(tuple(kbv_group), epa_file)] = {}
-        for prop in properties:
-            presence_data[(tuple(kbv_group), epa_file)][prop] = [prop in epa_elements]
-
-            for kbv_file in kbv_group:
-                kbv_structure = _load_fhir_structure(datapath / kbv_file)
-                kbv_elements = _extract_elements(kbv_structure)
-                presence_data[(tuple(kbv_group), epa_file)][prop].append(
-                    prop in kbv_elements
-                )
+    profiles_maps = {
+        str(profiles): ProfileMap.from_json(profiles, datapath)
+        for profiles in profiles_to_compare
+    }
+    return profiles_maps
 
     return presence_data
 
