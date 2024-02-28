@@ -17,7 +17,8 @@ class ComparisonField:
     profiles: Dict[str, ProfileField]
     remark: str
 
-    def __init__(self) -> None:
+    def __init__(self, name: str) -> None:
+        self.name: str = name
         self.classification = None
         self.extension = None
         self.extra = None

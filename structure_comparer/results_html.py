@@ -7,7 +7,7 @@ from jinja2 import Environment, FileSystemLoader
 
 
 from .classification import Classification
-from .data import Comparison
+from .data.comparison import Comparison
 
 
 CSS_CLASS = {
