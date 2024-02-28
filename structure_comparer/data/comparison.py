@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from dataclasses import dataclass
 from typing import Dict, List
 
@@ -30,9 +31,9 @@ class ComparisonField:
 class Comparison:
     source_profiles: List[str]
     target_profile: str
-    fields: Dict[str, ComparisonField]
+    fields: OrderedDict[str, ComparisonField]
 
     def __init__(self) -> None:
         self.source_profiles = []
         self.target_profile = None
-        self.fields = {}
+        self.fields = OrderedDict()
