@@ -116,12 +116,7 @@
                 "MedicationRequest.authoredOn": "MedicationRequest.authoredOn",
                 "MedicationRequest.dispenseRequest": "MedicationRequest.dispenseRequest",
                 "MedicationRequest.dosageInstruction": "MedicationRequest.dosageInstruction",
-                "MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen": "MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen",
-                "MedicationRequest.extension:BVG": "MedicationRequest.extension:BVG",
                 "MedicationRequest.extension:Mehrfachverordnung": "MedicationRequest.extension:Mehrfachverordnung",
-                "MedicationRequest.extension:Notdienstgebuehr": "MedicationRequest.extension:Notdienstgebuehr",
-                "MedicationRequest.extension:Unfallinformationen": "MedicationRequest.extension:Unfallinformationen",
-                "MedicationRequest.extension:Zuzahlungsstatus": "MedicationRequest.extension:Zuzahlungsstatus",
                 "MedicationRequest.insurance": "MedicationRequest.insurance",
                 "MedicationRequest.intent": "MedicationRequest.intent",
                 "MedicationRequest.medication[x]": "MedicationRequest.medication[x]",
@@ -136,6 +131,7 @@
                 "MedicationRequest.meta.profile": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
             },
             "remove": [
+                "MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen",
                 "MedicationRequest.requester.reference",
                 "MedicationRequest.subject.reference",
                 "MedicationRequest.substitution.allowed[x]:allowedBoolean"

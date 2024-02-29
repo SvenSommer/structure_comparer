@@ -1,4 +1,19 @@
 {
+    "MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen": {
+        "classification": "not_use"
+    },
+    "MedicationRequest.extension:BVG": {
+        "classification": "not_use"
+    },
+    "MedicationRequest.extension:Notdienstgebuehr": {
+        "classification": "not_use"
+    },
+    "MedicationRequest.extension:Unfallinformationen": {
+        "classification": "not_use"
+    },
+    "MedicationRequest.extension:Zuzahlungsstatus": {
+        "classification": "not_use"
+    },
     "MedicationRequest.insurance.reference": {
         "classification": "other",
         "remark": "Wird beim Mapping ignoriert"
