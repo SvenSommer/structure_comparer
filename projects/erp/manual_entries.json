@@ -19,8 +19,7 @@
         "remark": "Wird beim Mapping ignoriert"
     },
     "MedicationRequest.meta.profile": {
-        "classification": "fixed",
-        "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
+        "classification": "not_use"
     },
     "MedicationRequest.requester.reference": {
         "classification": "medication_service"
@@ -134,8 +133,7 @@
         "classification": "empty"
     },
     "Medication.meta.profile": {
-        "classification": "fixed",
-        "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
+        "classification": "not_use"
     },
     "Organization.identifier:Betriebsstaettennummer": {
         "classification": "copy_to",
@@ -170,8 +168,7 @@
         "extra": "Organization.identifier:Telematik-ID"
     },
     "Organization.meta.profile": {
-        "classification": "fixed",
-        "extra": "http://fhir.de/StructureDefinition/identifier-telematik-id"
+        "classification": "not_use"
     },
     "Practitioner.identifier:ANR": {
         "classification": "copy_to",
@@ -211,8 +208,7 @@
         "classification": "use"
     },
     "Practitioner.meta.profile": {
-        "classification": "fixed",
-        "extra": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
+        "classification": "not_use"
     },
     "Practitioner.name.family": {
         "classification": "copy_from",
