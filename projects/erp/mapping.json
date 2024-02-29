@@ -117,7 +117,6 @@
                 "MedicationRequest.dosageInstruction": "MedicationRequest.dosageInstruction",
                 "MedicationRequest.extension:Mehrfachverordnung": "MedicationRequest.extension:Mehrfachverordnung",
                 "MedicationRequest.insurance": "MedicationRequest.insurance",
-                "MedicationRequest.intent": "MedicationRequest.intent",
                 "MedicationRequest.medication[x]": "MedicationRequest.medication[x]",
                 "MedicationRequest.meta": "MedicationRequest.meta",
                 "MedicationRequest.note": "MedicationRequest.note",
@@ -126,7 +125,9 @@
                 "MedicationRequest.subject": "MedicationRequest.subject",
                 "MedicationRequest.substitution": "MedicationRequest.substitution"
             },
-            "fixed": {},
+            "fixed": {
+                "MedicationRequest.intent": "filler-order"
+            },
             "remove": [
                 "MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen",
                 "MedicationRequest.meta.profile",

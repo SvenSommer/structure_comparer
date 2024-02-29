@@ -18,6 +18,10 @@
         "classification": "other",
         "remark": "Wird beim Mapping ignoriert"
     },
+    "MedicationRequest.intent": {
+        "classification": "fixed",
+        "extra": "filler-order"
+    },
     "MedicationRequest.meta.profile": {
         "classification": "not_use"
     },
