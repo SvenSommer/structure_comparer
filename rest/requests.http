@@ -1,0 +1,9 @@
+###
+
+# @name testpage
+GET http://{{host}}
+
+###
+
+# @name spec
+GET http://{{host}}/spec
