@@ -1,6 +1,6 @@
 {
     "KBV_PR_ERP_Medication_Compounding": {
-        "epa-medication": {
+        "EPAMedication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:Gesamtmenge",
@@ -25,7 +25,7 @@
         }
     },
     "KBV_PR_ERP_Medication_FreeText": {
-        "epa-medication": {
+        "EPAMedication": {
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
@@ -41,7 +41,7 @@
         }
     },
     "KBV_PR_ERP_Medication_Ingredient": {
-        "epa-medication": {
+        "EPAMedication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:Packungsgroesse",
@@ -62,7 +62,7 @@
         }
     },
     "KBV_PR_ERP_Medication_PZN": {
-        "epa-medication": {
+        "EPAMedication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:Packungsgroesse",
@@ -111,7 +111,7 @@
         }
     },
     "KBV_PR_ERP_Prescription": {
-        "epa-medication-request": {
+        "EPAMedicationRequest": {
             "mappings": {
                 "MedicationRequest.authoredOn": "MedicationRequest.authoredOn",
                 "MedicationRequest.dispenseRequest": "MedicationRequest.dispenseRequest",

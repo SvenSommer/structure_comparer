@@ -58,7 +58,7 @@
     "Medication.code.coding:pznCode.version": {
         "classification": "empty"
     },
-    "Medication.extension:RxPrescriptionProcessIdentifier<br>(https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension)": {
+    "Medication.extension:RxPrescriptionProcessIdentifier": {
         "classification": "medication_service"
     },
     "Medication.form.coding:kbvDarreichungsform": {
@@ -234,19 +234,19 @@
     "Practitioner.name:name": {
         "classification": "not_use"
     },
-    "Practitioner.name:name.family.extension:nachname<br>(http://hl7.org/fhir/StructureDefinition/humanname-own-name)": {
+    "Practitioner.name:name.family.extension:nachname": {
         "classification": "not_use"
     },
-    "Practitioner.name:name.family.extension:namenszusatz<br>(http://fhir.de/StructureDefinition/humanname-namenszusatz)": {
+    "Practitioner.name:name.family.extension:namenszusatz": {
         "classification": "not_use"
     },
-    "Practitioner.name:name.family.extension:vorsatzwort<br>(http://hl7.org/fhir/StructureDefinition/humanname-own-prefix)": {
+    "Practitioner.name:name.family.extension:vorsatzwort": {
         "classification": "not_use"
     },
     "Practitioner.name:name.family.value": {
         "classification": "not_use"
     },
-    "Practitioner.name:name.prefix.extension:prefix-qualifier<br>(http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier)": {
+    "Practitioner.name:name.prefix.extension:prefix-qualifier": {
         "classification": "not_use"
     },
     "Practitioner.name:name.prefix.value": {

@@ -2,7 +2,7 @@ import logging
 from typing import Dict
 
 from .classification import Classification
-from .data import Comparison
+from .data.comparison import Comparison
 from .consts import REMARKS
 from .helpers import split_parent_child
 
