@@ -7,3 +7,57 @@ GET http://{{host}}
 
 # @name spec
 GET http://{{host}}/spec
+
+###
+
+# @name getmappings
+GET http://{{host}}/mappings
+
+###
+
+@mapping_id = 123
+
+# @name getmapping
+GET http://{{host}}/mapping/{{mapping_id}}
+
+###
+
+# @name getmappingfields
+GET http://{{host}}/mapping/{{mapping_id}}/fields
+
+###
+
+@field_id = 3
+@target = <target field>
+
+# @name postmap
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
+Content-Type: application/json
+
+{
+    "target": "{{target}}"
+}
+
+###
+
+# @name postignore
+
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
+Content-Type: application/json
+
+{
+    "target": null
+}
+
+###
+
+@fixed = <fixed value>
+
+# @name postfixed
+
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
+Content-Type: application/json
+
+{
+    "fixed": "{{fixed}}"
+}
