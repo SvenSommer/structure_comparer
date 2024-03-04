@@ -31,6 +31,18 @@
                 "--html",
                 "--json"
             ]
-        }
+        },
+        {
+            "name": "Flask App eRP",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "server.py",
+            "args": [
+                "--project-dir",
+                "projects/erp"
+            ],
+            "jinja": true,
+            "justMyCode": true
+        },
     ]
 }
