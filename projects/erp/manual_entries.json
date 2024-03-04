@@ -1,11 +1,29 @@
 {
+    "MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen": {
+        "classification": "not_use"
+    },
+    "MedicationRequest.extension:BVG": {
+        "classification": "not_use"
+    },
+    "MedicationRequest.extension:Notdienstgebuehr": {
+        "classification": "not_use"
+    },
+    "MedicationRequest.extension:Unfallinformationen": {
+        "classification": "not_use"
+    },
+    "MedicationRequest.extension:Zuzahlungsstatus": {
+        "classification": "not_use"
+    },
     "MedicationRequest.insurance.reference": {
         "classification": "other",
         "remark": "Wird beim Mapping ignoriert"
     },
-    "MedicationRequest.meta.profile": {
+    "MedicationRequest.intent": {
         "classification": "fixed",
-        "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
+        "extra": "filler-order"
+    },
+    "MedicationRequest.meta.profile": {
+        "classification": "not_use"
     },
     "MedicationRequest.requester.reference": {
         "classification": "medication_service"
@@ -119,8 +137,7 @@
         "classification": "empty"
     },
     "Medication.meta.profile": {
-        "classification": "fixed",
-        "extra": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
+        "classification": "not_use"
     },
     "Organization.identifier:Betriebsstaettennummer": {
         "classification": "copy_to",
@@ -155,8 +172,7 @@
         "extra": "Organization.identifier:Telematik-ID"
     },
     "Organization.meta.profile": {
-        "classification": "fixed",
-        "extra": "http://fhir.de/StructureDefinition/identifier-telematik-id"
+        "classification": "not_use"
     },
     "Practitioner.identifier:ANR": {
         "classification": "copy_to",
@@ -196,8 +212,7 @@
         "classification": "use"
     },
     "Practitioner.meta.profile": {
-        "classification": "fixed",
-        "extra": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
+        "classification": "not_use"
     },
     "Practitioner.name.family": {
         "classification": "copy_from",
