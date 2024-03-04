@@ -4,6 +4,7 @@ from flask import Flask, jsonify, request
 from flask_swagger import swagger
 
 from structure_comparer.serve import (
+    get_mapping_int,
     get_mappings_int,
     init_project,
 )
@@ -57,6 +58,63 @@ def create_app(project_dir: Path):
         ---
         produces:
           - application/json
+        definitions:
+          - schema:
+              id: MappingFieldProfile
+              type: object
+              properties:
+                present:
+                    type: boolean
+          - schema:
+              id: MappingFieldProfiles
+              type: object
+              additionalProperties:
+                $ref: "#/definitions/MappingFieldProfile"
+          - schema:
+              id: MappingField
+              required:
+                - classification
+                - profiles
+                - remark
+              type: object
+              properties:
+                classification:
+                  type: string
+                extension:
+                  type: string
+                extra:
+                  type: string
+                profiles:
+                  $ref: "#/definitions/MappingFieldProfiles"
+                remark:
+                  type: string
+          - schema:
+              id: MappingFields
+              type: object
+              additionalProperties:
+                $ref: "#/definitions/MappingField"
+          - schema:
+              id: Mapping
+              type: object
+              required:
+                - id
+                - name
+                - source_profiles
+                - target_profile
+                - fields
+              properties:
+                fields:
+                  $ref: "#/definitions/MappingFields"
+                id:
+                  type: string
+                name:
+                  type: string
+                source_profiles:
+                  type: array
+                  items:
+                    type: string
+                target_profile:
+                  type: string
         parameters:
           - in: path
             name: id
@@ -66,14 +124,17 @@ def create_app(project_dir: Path):
         responses:
           200:
             description: The mapping with the given id
+            schema:
+              $ref: "#/definitions/Mapping"
           404:
             description: Mapping not found
         """
-        return {
-            "id": id,
-            "name": "example-mapping",
-            "fields": {"name": {"classification": "use"}},
-        }, 501
+
+        mapping = get_mapping_int(app.project, id)
+        if mapping:
+            return mapping
+        else:
+            return "", 404
 
     @app.route("/mapping/<id>/fields", methods=["GET"])
     def get_mapping_fields(id: str):

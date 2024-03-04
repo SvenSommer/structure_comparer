@@ -26,6 +26,23 @@ class ComparisonField:
         self.profiles = {}
         self.remark = None
 
+    def dict(self) -> dict:
+        result = {
+            "classification": self.classification.value,
+            "profiles": {
+                profile: field.__dict__ for profile, field in self.profiles.items()
+            },
+            "remark": self.remark,
+        }
+
+        if self.extension:
+            result["extension"] = self.extension
+
+        if self.extra:
+            result["extra"] = self.extra
+
+        return result
+
 
 @dataclass(init=False)
 class Comparison:
@@ -37,3 +54,17 @@ class Comparison:
         self.source_profiles = []
         self.target_profile = None
         self.fields = OrderedDict()
+
+    @property
+    def name(self) -> str:
+        return f"{', '.join(profile for profile in self.source_profiles)} -> {self.target_profile}"
+
+    def dict(self) -> dict:
+        return {
+            "name": self.name,
+            "source_profiles": self.source_profiles,
+            "target_profile": self.target_profile,
+            "fields": OrderedDict(
+                {name: field.dict() for name, field in self.fields.items()}
+            ),
+        }

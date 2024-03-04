@@ -57,6 +57,14 @@ def load_profiles(profiles_to_compare: List, datapath: Path) -> Dict[str, Profil
 
 
 def _compare_profiles(profile_maps: Dict[str, ProfileMap]) -> Dict[str, Comparison]:
+    mapping = {}
+    for map in profile_maps.values():
+        key = str((tuple([entry.name for entry in map.sources]), map.target.name))
+        mapping[key] = compare_profile(map)
+    return mapping
+
+
+def compare_profile(profile_map: ProfileMap) -> Comparison:
     """
     Generate a structured representation containing the rules for each target profile.
 
@@ -64,53 +72,49 @@ def _compare_profiles(profile_maps: Dict[str, ProfileMap]) -> Dict[str, Comparis
     contains the names of KBV and ePA profiles, presence information for each of their fields and their
     classifications and remarks.
     """
-    mapping = {}
+
     # Iterate over all mappings (each entry are mapping to the same profile)
-    for profiles, map in profile_maps.items():
-        comparison = Comparison()
+    comparison = Comparison()
 
-        key = str((tuple([entry.name for entry in map.sources]), map.target.name))
-        mapping[key] = comparison
+    # Generate the profile names
+    source_profiles = [profile.name for profile in profile_map.sources]
+    target_profile = profile_map.target.name
 
-        # Generate the profile names
-        source_profiles = [profile.name for profile in map.sources]
-        target_profile = map.target.name
+    # Extract which profiles are KBV and which is the ePA one
+    comparison.source_profiles = source_profiles
+    comparison.target_profile = target_profile
 
-        # Extract which profiles are KBV and which is the ePA one
-        comparison.source_profiles = source_profiles
-        comparison.target_profile = target_profile
+    for source_profile in [profile_map.target] + profile_map.sources:
+        for _, field in source_profile.fields.items():
+            # Check if field already exists or needs to be created
+            if (
+                not (field_entry := comparison.fields.get(field.name))
+                or field_entry.extension != field.extension
+            ):
+                comparison.fields[field.name] = ComparisonField(field.name)
+                comparison.fields[field.name].extension = field.extension
 
-        for source_profile in [map.target] + map.sources:
-            for _, field in source_profile.fields.items():
-                # Check if field already exists or needs to be created
-                if (
-                    not (field_entry := comparison.fields.get(field.name))
-                    or field_entry.extension != field.extension
-                ):
-                    comparison.fields[field.name] = ComparisonField(field.name)
-                    comparison.fields[field.name].extension = field.extension
+            comparison.fields[field.name].profiles[source_profile.name] = ProfileField(
+                present=True
+            )
 
-                comparison.fields[field.name].profiles[source_profile.name] = (
-                    ProfileField(present=True)
-                )
+    # Sort the fields by name
+    comparison.fields = OrderedDict(
+        sorted(comparison.fields.items(), key=lambda x: x[0])
+    )
 
-        # Sort the fields by name
-        comparison.fields = OrderedDict(
-            sorted(comparison.fields.items(), key=lambda x: x[0])
-        )
+    # Fill the absent profiles
+    all_profiles = source_profiles + [target_profile]
+    for field in comparison.fields.values():
+        for profile in all_profiles:
+            if profile not in field.profiles:
+                field.profiles[profile] = ProfileField(present=False)
 
-        # Fill the absent profiles
-        all_profiles = source_profiles + [target_profile]
-        for field in comparison.fields.values():
-            for profile in all_profiles:
-                if profile not in field.profiles:
-                    field.profiles[profile] = ProfileField(present=False)
+    # Add remarks and classifications for each field
+    for field in comparison.fields.values():
+        _classify_remark_field(field, source_profiles, target_profile, comparison)
 
-        # Add remarks and classifications for each field
-        for field in comparison.fields.values():
-            _classify_remark_field(field, source_profiles, target_profile, comparison)
-
-    return mapping
+    return comparison
 
 
 def _classify_remark_field(

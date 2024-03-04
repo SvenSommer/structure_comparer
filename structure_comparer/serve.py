@@ -3,7 +3,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from .manual_entries import MANUAL_ENTRIES
-from .compare import load_profiles as _load_profiles
+from .compare import compare_profile, load_profiles as _load_profiles
 
 
 def init_project(project_dir: Path):
@@ -43,3 +43,17 @@ def get_mappings_int(project):
         id: {"name": profile_map.name, "url": f"/mapping/{id}"}
         for id, profile_map in project.profiles_to_compare.items()
     }
+
+
+def get_mapping_int(project, id: str):
+    profile_map = project.profiles_to_compare.get(id)
+
+    if not profile_map:
+        return None
+
+    comparison = compare_profile(profile_map)
+
+    result = comparison.dict()
+    result["id"] = id
+
+    return result
