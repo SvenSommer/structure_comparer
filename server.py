@@ -4,6 +4,7 @@ from flask import Flask, jsonify, request
 from flask_swagger import swagger
 
 from structure_comparer.serve import (
+    get_mapping_fields_int,
     get_mapping_int,
     get_mappings_int,
     init_project,
@@ -144,6 +145,23 @@ def create_app(project_dir: Path):
         ---
         produces:
           - application/json
+        definitions:
+          - schema:
+              id: FieldInfoFields
+              type: object
+              additionalProperties:
+                type: object
+          - schema:
+              id: FieldInfo
+              type: object
+              required:
+                - id
+                - fields
+              properties:
+                fields:
+                  $ref: "#/definitions/FieldInfoFields"
+                id:
+                  type: string
         parameters:
           - in: path
             name: id
@@ -153,10 +171,16 @@ def create_app(project_dir: Path):
         responses:
           200:
             description: The fields of the mapping
+            schema:
+              $ref: "#/definitions/FieldInfo"
           404:
             description: Mapping not found
         """
-        return {"id": id, "fields": {"name": {}}}, 501
+        fields = get_mapping_fields_int(app.project, id)
+        if fields:
+            return fields
+        else:
+            return "", 404
 
     @app.route("/mapping/<mapping_id>/field/<field_id>", methods=["POST"])
     def post_mapping_field(mapping_id: str, field_id: str):

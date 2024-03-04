@@ -1,3 +1,4 @@
+from collections import OrderedDict
 import json
 from pathlib import Path
 from uuid import uuid4
@@ -55,5 +56,19 @@ def get_mapping_int(project, id: str):
 
     result = comparison.dict()
     result["id"] = id
+
+    return result
+
+
+def get_mapping_fields_int(project, id: str):
+    profile_map = project.profiles_to_compare.get(id)
+
+    if not profile_map:
+        return None
+
+    comparison = compare_profile(profile_map)
+
+    result = {"id": id}
+    result["fields"] = OrderedDict({name: {} for name in comparison.fields.keys()})
 
     return result
