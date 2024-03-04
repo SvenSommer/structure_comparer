@@ -36,3 +36,10 @@ def load_profiles(project):
     project.profiles_to_compare = {
         str(uuid4()): entry for entry in profile_maps.values()
     }
+
+
+def get_mappings_int(project):
+    return {
+        id: {"name": profile_map.name, "url": f"/mapping/{id}"}
+        for id, profile_map in project.profiles_to_compare.items()
+    }

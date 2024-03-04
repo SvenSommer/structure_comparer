@@ -3,7 +3,10 @@ from pathlib import Path
 from flask import Flask, jsonify, request
 from flask_swagger import swagger
 
-from structure_comparer.serve import init_project
+from structure_comparer.serve import (
+    get_mappings_int,
+    init_project,
+)
 
 
 def create_app(project_dir: Path):
@@ -29,8 +32,22 @@ def create_app(project_dir: Path):
         responses:
           200:
             description: Available mappings
+            schema:
+              required:
+                - id
+              properties:
+                id:
+                  type: object
+                  required:
+                    - name
+                    - url
+                  properties:
+                    name:
+                      type: string
+                    url:
+                      type: string
         """
-        return {"123": {"name": "example-mapping", "url": "/mapping/123"}}, 501
+        return get_mappings_int(app.project)
 
     @app.route("/mapping/<id>", methods=["GET"])
     def get_mapping(id: str):
