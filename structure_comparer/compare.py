@@ -39,13 +39,13 @@ def compare_profiles(profiles_to_compare: List, datapath: Path):
     Compares the presence of properties in KBV and ePA profiles.
     """
 
-    profile_maps = _load_profiles(profiles_to_compare, datapath)
+    profile_maps = load_profiles(profiles_to_compare, datapath)
     structured_results = _compare_profiles(profile_maps)
 
     return structured_results
 
 
-def _load_profiles(profiles_to_compare: List, datapath: Path) -> Dict[str, ProfileMap]:
+def load_profiles(profiles_to_compare: List, datapath: Path) -> Dict[str, ProfileMap]:
     """
     Loads the FHIR structure definitions from the local JSON files.
     """

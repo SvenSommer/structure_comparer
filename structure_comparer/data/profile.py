@@ -34,6 +34,10 @@ class ProfileMap:
 
         return profiles_map
 
+    @property
+    def name(self) -> str:
+        return f"{', '.join(profile.name for profile in self.sources)} -> {self.target.name}"
+
 
 class Profile:
     def __init__(self, name: str) -> None:

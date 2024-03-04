@@ -3,10 +3,16 @@ from pathlib import Path
 from flask import Flask, jsonify, request
 from flask_swagger import swagger
 
+from structure_comparer.serve import init_project
+
 
 def create_app(project_dir: Path):
     # create the app
     app = Flask(__name__)
+
+    # project config
+    project = init_project(project_dir)
+    setattr(app, "project", project)
 
     @app.route("/", methods=["GET"])
     def hello_world():
