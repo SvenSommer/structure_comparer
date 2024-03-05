@@ -15,7 +15,7 @@ GET http://{{host}}/mappings
 
 ###
 
-@mapping_id = 123
+@mapping_id = {{getmappings.response.body.mappings[0].id}}
 
 # @name getmapping
 GET http://{{host}}/mapping/{{mapping_id}}

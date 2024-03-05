@@ -41,8 +41,10 @@ def load_profiles(project):
 
 def get_mappings_int(project):
     return {
-        id: {"name": profile_map.name, "url": f"/mapping/{id}"}
-        for id, profile_map in project.profiles_to_compare.items()
+        "mappings": [
+            {"id": id, "name": profile_map.name, "url": f"/mapping/{id}"}
+            for id, profile_map in project.profiles_to_compare.items()
+        ]
     }
 
 

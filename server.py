@@ -31,23 +31,32 @@ def create_app(project_dir: Path):
         ---
         produces:
           - application/json
+        definitions:
+          - schema:
+              id: OverviewMapping
+              type: object
+              required:
+                - id
+                - name
+                - url
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                url:
+                    type: string
         responses:
           200:
             description: Available mappings
             schema:
               required:
-                - id
+                - mappings
               properties:
-                id:
-                  type: object
-                  required:
-                    - name
-                    - url
-                  properties:
-                    name:
-                      type: string
-                    url:
-                      type: string
+                mappings:
+                  type: array
+                  items:
+                    $ref: "#/definitions/OverviewMapping"
         """
         return get_mappings_int(app.project)
 
