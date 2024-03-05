@@ -91,11 +91,11 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
                 not (field_entry := comparison.fields.get(field.name))
                 or field_entry.extension != field.extension
             ):
-                comparison.fields[field.name] = ComparisonField(field.name)
+                comparison.fields[field.name] = ComparisonField(field.name, field.id)
                 comparison.fields[field.name].extension = field.extension
 
             comparison.fields[field.name].profiles[source_profile.name] = ProfileField(
-                present=True
+                name=source_profile.name, present=True
             )
 
     # Sort the fields by name
@@ -108,7 +108,7 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
     for field in comparison.fields.values():
         for profile in all_profiles:
             if profile not in field.profiles:
-                field.profiles[profile] = ProfileField(present=False)
+                field.profiles[profile] = ProfileField(name=profile, present=False)
 
     # Add remarks and classifications for each field
     for field in comparison.fields.values():

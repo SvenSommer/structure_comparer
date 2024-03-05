@@ -72,22 +72,28 @@ def create_app(project_dir: Path):
           - schema:
               id: MappingFieldProfile
               type: object
+              required:
+                - name
+                - present
               properties:
+                name:
+                  type: string
                 present:
                     type: boolean
           - schema:
-              id: MappingFieldProfiles
-              type: object
-              additionalProperties:
-                $ref: "#/definitions/MappingFieldProfile"
-          - schema:
               id: MappingField
               required:
+                - id
+                - name
                 - classification
                 - profiles
                 - remark
               type: object
               properties:
+                id:
+                  type: string
+                name:
+                  type: string
                 classification:
                   type: string
                 extension:
@@ -95,14 +101,11 @@ def create_app(project_dir: Path):
                 extra:
                   type: string
                 profiles:
-                  $ref: "#/definitions/MappingFieldProfiles"
+                  type: array
+                  items:
+                    $ref: "#/definitions/MappingFieldProfile"
                 remark:
                   type: string
-          - schema:
-              id: MappingFields
-              type: object
-              additionalProperties:
-                $ref: "#/definitions/MappingField"
           - schema:
               id: Mapping
               type: object
@@ -114,7 +117,9 @@ def create_app(project_dir: Path):
                 - fields
               properties:
                 fields:
-                  $ref: "#/definitions/MappingFields"
+                  type: array
+                  items:
+                    $ref: "#/definitions/MappingField"
                 id:
                   type: string
                 name:
@@ -156,19 +161,27 @@ def create_app(project_dir: Path):
           - application/json
         definitions:
           - schema:
-              id: FieldInfoFields
+              id: MappingFieldShort
               type: object
-              additionalProperties:
-                type: object
+              reuqired:
+                - id
+                - name
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
           - schema:
-              id: FieldInfo
+              id: MappingShort
               type: object
               required:
                 - id
                 - fields
               properties:
                 fields:
-                  $ref: "#/definitions/FieldInfoFields"
+                  type: array
+                  items:
+                    $ref: "#/definitions/MappingFieldShort"
                 id:
                   type: string
         parameters:
@@ -181,7 +194,7 @@ def create_app(project_dir: Path):
           200:
             description: The fields of the mapping
             schema:
-              $ref: "#/definitions/FieldInfo"
+              $ref: "#/definitions/MappingShort"
           404:
             description: Mapping not found
         """

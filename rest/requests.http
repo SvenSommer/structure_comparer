@@ -27,7 +27,7 @@ GET http://{{host}}/mapping/{{mapping_id}}/fields
 
 ###
 
-@field_id = 3
+@field_id = {{getmapping.response.body.fields[0].id}}
 @target = <target field>
 
 # @name postmap

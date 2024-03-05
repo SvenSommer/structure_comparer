@@ -55,8 +55,8 @@ def get_mapping_int(project, id: str):
         return None
 
     comparison = compare_profile(profile_map)
-
     result = comparison.dict()
+
     result["id"] = id
 
     return result
@@ -71,6 +71,8 @@ def get_mapping_fields_int(project, id: str):
     comparison = compare_profile(profile_map)
 
     result = {"id": id}
-    result["fields"] = OrderedDict({name: {} for name in comparison.fields.keys()})
+    result["fields"] = [
+        {"name": field.name, "id": field.id} for field in comparison.fields.values()
+    ]
 
     return result

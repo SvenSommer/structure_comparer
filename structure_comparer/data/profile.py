@@ -2,6 +2,7 @@ from collections import OrderedDict
 import json
 from pathlib import Path
 from typing import Dict, List
+from uuid import uuid4
 
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]
@@ -72,9 +73,10 @@ class ProfileField:
     def __init__(self, name: str, extension: str = None) -> None:
         self.name: str = name
         self.extension: str = extension
+        self.id = str(uuid4())
 
     def __str__(self) -> str:
-        return f"(name={self.name}{f', extension={self.extension}' if self.extension else ''})"
+        return f"(name={self.name}, id={self.id}{f', extension={self.extension}' if self.extension else ''})"
 
     def __repr__(self) -> str:
         return str(self)

@@ -7,6 +7,7 @@ from structure_comparer.classification import Classification
 
 @dataclass
 class ProfileField:
+    name: str
     present: bool
 
 
@@ -18,21 +19,22 @@ class ComparisonField:
     profiles: Dict[str, ProfileField]
     remark: str
 
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, id: str) -> None:
         self.name: str = name
         self.classification = None
         self.extension = None
         self.extra = None
         self.profiles = {}
         self.remark = None
+        self.id = id
 
     def dict(self) -> dict:
         result = {
             "classification": self.classification.value,
-            "profiles": {
-                profile: field.__dict__ for profile, field in self.profiles.items()
-            },
+            "profiles": [field.__dict__ for field in self.profiles.values()],
             "remark": self.remark,
+            "id": self.id,
+            "name": self.name,
         }
 
         if self.extension:
@@ -64,7 +66,5 @@ class Comparison:
             "name": self.name,
             "source_profiles": self.source_profiles,
             "target_profile": self.target_profile,
-            "fields": OrderedDict(
-                {name: field.dict() for name, field in self.fields.items()}
-            ),
+            "fields": [field.dict() for field in self.fields.values()],
         }
