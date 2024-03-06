@@ -2,6 +2,8 @@ import argparse
 from pathlib import Path
 from flask import Flask, jsonify, request
 from flask_swagger import swagger
+from flask_cors import CORS
+
 
 from structure_comparer.serve import (
     get_mapping_fields_int,
@@ -15,6 +17,8 @@ from structure_comparer.serve import (
 def create_app(project_dir: Path):
     # create the app
     app = Flask(__name__)
+    CORS(app, origins="http://localhost:4200")
+
 
     # project config
     project = init_project(project_dir)

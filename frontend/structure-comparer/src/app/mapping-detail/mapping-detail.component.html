@@ -1,0 +1,35 @@
+<div *ngIf="mappingDetail">
+    <h2>{{ mappingDetail.name }}</h2>
+    <table id='resultsTable' class='display' style='width:100%'>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <ng-container *ngFor="let profile of mappingDetail.source_profiles">
+            <th>{{ profile }}</th>
+          </ng-container>
+          <th>{{ mappingDetail.target_profile }}</th>
+          <ng-container *ngIf="showRemarks">
+            <th>Remarks</th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let field of mappingDetail.fields" [ngClass]="field.classification">
+          <td>{{ field.name }}
+            <ng-container *ngIf="field.extension">
+              <br>({{ field.extension }})
+            </ng-container>
+          </td>
+          <ng-container *ngFor="let profile of mappingDetail.source_profiles.concat(mappingDetail.target_profile)">
+            <td>
+              <ng-container *ngIf="isProfilePresent(field.profiles, profile)">X</ng-container>
+            </td>
+          </ng-container>          
+          <ng-container *ngIf="showRemarks">
+            <td>{{ field.remark }}</td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
