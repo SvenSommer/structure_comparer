@@ -1,3 +1,4 @@
+import copy
 import json
 from pathlib import Path
 
@@ -10,13 +11,15 @@ MANUAL_ENTRIES_EXTRA = "extra"
 
 class ManualEntries:
     _data = {}
+    _file: Path = None
 
     @property
     def entries(self):
         return self._data.get("entries")
 
     def read(self, file: str | Path):
-        data = json.loads(Path(file).read_text())
+        self._file = Path(file)
+        data = json.loads(self._file.read_text(encoding="utf-8"))
 
         # Interpret the classification as an enum
         for value in data.values():
@@ -25,6 +28,15 @@ class ManualEntries:
             )
 
         self._data["entries"] = data
+
+    def write(self):
+        data = copy.deepcopy(self.entries)
+        for value in data.values():
+            value[MANUAL_ENTRIES_CLASSIFICATION] = value[
+                MANUAL_ENTRIES_CLASSIFICATION
+            ].value
+
+        self._file.write_text(json.dumps(data, indent=4), encoding="utf-8")
 
     def __iter__(self):
         return iter(self._data["entries"])
