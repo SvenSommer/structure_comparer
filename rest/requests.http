@@ -1,0 +1,75 @@
+###
+
+# @name testpage
+GET http://{{host}}
+
+###
+
+# @name spec
+GET http://{{host}}/spec
+
+###
+
+# @name getmappings
+GET http://{{host}}/mappings
+
+###
+
+@mapping_id = {{getmappings.response.body.mappings[0].id}}
+
+# @name getmapping
+GET http://{{host}}/mapping/{{mapping_id}}
+
+###
+
+# @name getmappingfields
+GET http://{{host}}/mapping/{{mapping_id}}/fields
+
+###
+
+@field_id = {{getmapping.response.body.fields[0].id}}
+@targetsame = {{getmapping.response.body.fields[0].name}}
+
+# @name postmapsame
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
+Content-Type: application/json
+
+{
+    "target": "{{targetsame}}"
+}
+
+###
+
+@targetdiff = Medication.subject
+
+# @name postmapdiff
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
+Content-Type: application/json
+
+{
+    "target": "{{targetdiff}}"
+}
+
+###
+
+# @name postignore
+
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
+Content-Type: application/json
+
+{
+    "target": null
+}
+
+###
+
+@fixed = <fixed value>
+
+# @name postfixed
+
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
+Content-Type: application/json
+
+{
+    "fixed": "{{fixed}}"
+}
