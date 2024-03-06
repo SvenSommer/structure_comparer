@@ -1,5 +1,5 @@
 {
-    "manual_entries_file": "manual_entries.json",
+    "manual_entries_file": "manual_entries.yaml",
     "data_dir": "data",
     "html_output_dir": "docs",
     "mapping_output_file": "mapping.json",
