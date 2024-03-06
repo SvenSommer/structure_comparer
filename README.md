@@ -27,9 +27,9 @@ The started service is available at `localhost:5000`. The OpenAPI specification 
 
 #### REST Client
 
-The service can be tested using a request collection in `rest/requests.http`. This file uses the extension _Rest Client_ (`humao.rest-client`).
+The service can be evaluated through a predefined collection of requests located in `rest/requests.http`. This collection utilizes the [Rest Client](`https://marketplace.visualstudio.com/items?itemName=humao.rest-client`) extension for easy execution.
 
-Specify the `host` for the requests in setting like
+The target `host` for these requests is specified in the devcontainer.json file under the rest-client.environmentVariables setting, as shown below:
 
 ```json
 "rest-client.environmentVariables": {
@@ -39,7 +39,7 @@ Specify the `host` for the requests in setting like
 }
 ```
 
-A request can be performed by clicking _Send Request_ above the corresponding request.
+To execute a request, simply click on the Send Request link located above the respective request definition in the requests.http file. This action triggers the request to the configured host, facilitating the testing process directly within your development environment.
 
 ### Frontend
 
