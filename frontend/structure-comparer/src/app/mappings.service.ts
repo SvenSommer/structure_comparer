@@ -17,4 +17,8 @@ export class MappingsService {
   getMappingDetail(mappingId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/mapping/${mappingId}`);
   }
+
+  updateMappingField(mappingId: string, fieldId: string, updateData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/mapping/${mappingId}/field/${fieldId}`, updateData);
+  }
 }
