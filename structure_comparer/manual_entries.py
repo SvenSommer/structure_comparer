@@ -53,5 +53,8 @@ class ManualEntries:
     def __getitem__(self, key):
         return self._data["entries"].get(key)
 
+    def __setitem__(self, key, value):
+        self._data["entries"][key] = value
+
 
 MANUAL_ENTRIES = ManualEntries()

@@ -28,14 +28,26 @@ GET http://{{host}}/mapping/{{mapping_id}}/fields
 ###
 
 @field_id = {{getmapping.response.body.fields[0].id}}
-@target = <target field>
+@targetsame = {{getmapping.response.body.fields[0].name}}
 
-# @name postmap
+# @name postmapsame
 POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
 Content-Type: application/json
 
 {
-    "target": "{{target}}"
+    "target": "{{targetsame}}"
+}
+
+###
+
+@targetdiff = Medication.subject
+
+# @name postmapdiff
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
+Content-Type: application/json
+
+{
+    "target": "{{targetdiff}}"
 }
 
 ###

@@ -8,6 +8,7 @@ from structure_comparer.serve import (
     get_mapping_int,
     get_mappings_int,
     init_project,
+    post_mapping_field_int,
 )
 
 
@@ -239,8 +240,13 @@ def create_app(project_dir: Path):
           404:
             description: Mapping or field not found
         """
-        print(request.get_json())
-        return "", 501
+        result = post_mapping_field_int(
+            app.project, mapping_id, field_id, request.get_json()
+        )
+        if result is None:
+            return "", 404
+
+        return "", 200
 
     @app.route("/spec", methods=["GET"])
     def spec():
