@@ -4,6 +4,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from .classification import Classification
+from .data.comparison import Comparison
 from .manual_entries import (
     MANUAL_ENTRIES,
     MANUAL_ENTRIES_CLASSIFICATION,
@@ -92,16 +93,22 @@ def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dic
     # Easiest way to get the fields
     comparison = compare_profile(profile_map)
 
-    name: str = None
-    for field in comparison.fields.values():
-        if field.id == field_id:
-            name = field.name
-            break
+    name = _get_field_by_id(field_id, comparison)
 
     if name is None:
         return None
 
-    if (target := content.get("target")) and name != target:
+    # Clean up possible manual entry this was copied from before
+    if name in MANUAL_ENTRIES.entries and MANUAL_ENTRIES_EXTRA in MANUAL_ENTRIES[name]:
+        del MANUAL_ENTRIES.entries[MANUAL_ENTRIES[name][MANUAL_ENTRIES_EXTRA]]
+
+    if (target := content.get("target")) and field_id != target:
+        # Get target field name
+        target = _get_field_by_id(target, comparison)
+
+        if target is None:
+            return None
+
         # Create the entries to copy from and to
         MANUAL_ENTRIES[name] = {
             MANUAL_ENTRIES_CLASSIFICATION: Classification.COPY_TO,
@@ -112,15 +119,8 @@ def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dic
             MANUAL_ENTRIES_EXTRA: name,
         }
     else:
-        # Clean up possible manual entry this was copied from before
-        if (
-            name in MANUAL_ENTRIES.entries
-            and MANUAL_ENTRIES_EXTRA in MANUAL_ENTRIES[name]
-        ):
-            del MANUAL_ENTRIES.entries[MANUAL_ENTRIES[name][MANUAL_ENTRIES_EXTRA]]
-
         # If entry is mapped to itself, simply mark it as "use"
-        if target := content.get("target") and target == name:
+        if target := content.get("target") and target == field_id:
             MANUAL_ENTRIES[name] = {MANUAL_ENTRIES_CLASSIFICATION: Classification.USE}
 
         # If mapped to nothing, mark it as "ignore"
@@ -143,3 +143,10 @@ def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dic
     MANUAL_ENTRIES.write()
 
     return True
+
+
+def _get_field_by_id(field_id: str, comparison: Comparison) -> str | None:
+    for field in comparison.fields.values():
+        if field.id == field_id:
+            return field.name
+    return None
