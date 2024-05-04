@@ -1,3 +1,7 @@
+Medication.amount.numerator.extension:Gesamtmenge:
+  classification: not_use
+Medication.amount.numerator.extension:Packungsgroesse:
+  classification: not_use
 Medication.code.coding:PZN:
   classification: copy_from
   extra: Medication.code.coding:pznCode
@@ -16,8 +20,20 @@ Medication.code.coding:pznCode.userSelected:
   classification: empty
 Medication.code.coding:pznCode.version:
   classification: empty
+Medication.extension:Arzneimittelkategorie:
+  classification: not_use
+Medication.extension:Herstellungsanweisung:
+  classification: not_use
+Medication.extension:Impfstoff:
+  classification: not_use
+Medication.extension:Kategorie:
+  classification: not_use
+Medication.extension:Normgroesse:
+  classification: not_use
 Medication.extension:RxPrescriptionProcessIdentifier:
   classification: medication_service
+Medication.extension:Verpackung:
+  classification: not_use
 Medication.form.coding:KBVDarreichungsform:
   classification: copy_from
   extra: Medication.form.coding:kbvDarreichungsform
@@ -124,9 +140,20 @@ Organization.identifier:TelematikID:
   extra: Organization.identifier:Telematik-ID
 Organization.meta.profile:
   classification: not_use
+Practitioner.active:
+  classification: fixed
+  extra: test
+Practitioner.communication:
+  classification: copy_to
+  extra: Practitioner.identifier
+Practitioner.identifier:
+  classification: copy_from
+  extra: Practitioner.communication
 Practitioner.identifier:ANR:
   classification: copy_to
   extra: Practitioner.identifier:LANR
+Practitioner.identifier:ANR.type:
+  classification: not_use
 Practitioner.identifier:LANR:
   classification: copy_from
   extra: Practitioner.identifier:ANR

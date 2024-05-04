@@ -69,6 +69,22 @@ export class MappingDetailComponent implements OnInit {
   stopHover(): void {
     this.hoverIndex = null;
   }
+
+  getClassificationCssClass(classification: string): string {
+    const CSS_CLASS: {[key: string]: string} = {
+      'use': "row-use",
+      'not_use': "row-not-use",
+      'empty': "row-empty",
+      'extension': "row-extension",
+      'manuel': "row-manual",
+      'other': "row-other",
+      'copy_from': "row-copy-from",
+      'copy_to': "row-copy-to",
+      'fixed': "row-fixed",
+      'medication_service': "row-medication-service",
+    };
+    return CSS_CLASS[classification] || '';
+  }
   
 
   confirmChanges(field: any) {
