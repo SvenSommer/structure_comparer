@@ -28,7 +28,7 @@ GET http://{{host}}/mapping/{{mapping_id}}/fields
 ###
 
 @field_id = {{getmapping.response.body.fields[0].id}}
-@targetsame = {{getmapping.response.body.fields[0].name}}
+@targetsame = {{getmapping.response.body.fields[0].id}}
 
 # @name postmapsame
 POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
@@ -40,7 +40,7 @@ Content-Type: application/json
 
 ###
 
-@targetdiff = Medication.subject
+@targetdiff = {{getmapping.response.body.fields[1].id}}
 
 # @name postmapdiff
 POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
