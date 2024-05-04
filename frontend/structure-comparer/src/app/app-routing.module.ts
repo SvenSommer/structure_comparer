@@ -4,7 +4,8 @@ import { MappingsListComponent } from './mappings-list/mappings-list.component';
 import { MappingDetailComponent } from './mapping-detail/mapping-detail.component';
 
 const routes: Routes = [
-  { path: 'mapping', component: MappingsListComponent }, // Root-Pfad auf MappingsListComponent setzen
+  { path: '', redirectTo: '/mapping', pathMatch: 'full' },
+  { path: 'mapping', component: MappingsListComponent }, 
   { path: 'mapping/:id', component: MappingDetailComponent },
 ];
 
