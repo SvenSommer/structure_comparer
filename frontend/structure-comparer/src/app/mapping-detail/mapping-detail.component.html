@@ -3,18 +3,24 @@
     <table id='resultsTable' class='display' style='width:100%'>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Property</th>
           <ng-container *ngFor="let profile of mappingDetail.source_profiles">
             <th>{{ profile }}</th>
           </ng-container>
           <th>{{ mappingDetail.target_profile }}</th>
-          <ng-container *ngIf="showRemarks">
+          <ng-container>
+            <th>Classification</th>
+          </ng-container>
+          <ng-container>
             <th>Remarks</th>
           </ng-container>
+
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let field of mappingDetail.fields" [ngClass]="field.classification">
+        <tr *ngFor="let field of mappingDetail.fields; let i = index">
+          <td>{{ field.id }}</td>
           <td>{{ field.name }}
             <ng-container *ngIf="field.extension">
               <br>({{ field.extension }})
@@ -24,12 +30,40 @@
             <td>
               <ng-container *ngIf="isProfilePresent(field.profiles, profile)">X</ng-container>
             </td>
-          </ng-container>          
-          <ng-container *ngIf="showRemarks">
-            <td>{{ field.remark }}</td>
           </ng-container>
+          <ng-container>
+            <td>{{ field.classification }}</td>
+          </ng-container>
+          <td (mouseenter)="startHover(i)" (mouseleave)="stopHover()">
+            <span *ngIf="editingIndex !== i">{{ field.remark }}</span>
+            <button *ngIf="hoverIndex === i && editingIndex !== i" (click)="startEditing(i)">Ändern</button>
+            <div *ngIf="editingIndex === i">
+              <div>Aktueller Stand: {{ field.remark }}</div>
+              <select [(ngModel)]="field.userClassification">
+                <option value="use">Eigenschaft und Wert werden übernommen</option>
+                <option value="not_use">Wird nicht übernommen</option>
+                <option value="empty">Bleibt vorerst leer, da keine Quellinformationen</option>
+                <option value="extension">Extension und Values werden übernommen</option>
+                <option value="copy_from">Wird aus folgender Eigenschaft übernommen: </option>
+                <option value="copy_to">Wird in folgende Eigenschaft übernommen: </option>
+                <option value="fixed">Wird fix auf folgenden Wert gesetzt:</option>
+              </select>
+              <div *ngIf="field.userClassification === 'copy_to' || field.userClassification === 'copy_from'">
+                <select [(ngModel)]="field.targetField">
+                  <option *ngFor="let availableField of availableFields" [value]="availableField.id">{{ availableField.name }}</option>
+                </select>
+              </div>
+              <div *ngIf="field.userClassification === 'fixed'">
+                <input type="text" [(ngModel)]="field.fixedValue">
+              </div>
+              <button (click)="confirmChanges(field)">Übernehmen</button>
+              <button (click)="cancelEditing()">Abbrechen</button>
+            </div>
+          </td>
         </tr>
       </tbody>
+      
+      
     </table>
   </div>
   
