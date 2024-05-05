@@ -1,75 +1,72 @@
 <div *ngIf="mappingDetail">
     <h2>{{ mappingDetail.name }}</h2>
-    <table mat-table [dataSource]="dataSource" matSort class='display' style='width:100%'>
-
-      <!-- Property Column -->
-      <ng-container matColumnDef="property">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="name">Property</th>
-        <td mat-cell *matCellDef="let field">
-          {{ field.name }}
-          <ng-container *ngIf="field.extension">
-            <br>({{ field.extension }})
+    <table id='resultsTable' class='display' style='width:100%'>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <ng-container *ngFor="let profile of mappingDetail.source_profiles">
+            <th>{{ profile }}</th>
           </ng-container>
-        </td>
-      </ng-container>
+          <th>{{ mappingDetail.target_profile }}</th>
+          <ng-container>
+            <th>Classification (extra)</th>
+          </ng-container>
+          <ng-container>
+            <th>Erläuterung</th>
+          </ng-container>
 
-      <!-- Dynamic Profile Columns -->
-      <ng-container *ngFor="let profile of mappingDetail.source_profiles; let i = index" [matColumnDef]="profile.name">
-        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="profile.name"> {{ profile.name }} </th>
-        <td mat-cell *matCellDef="let field">
-          <ng-container *ngIf="isProfilePresent(field.profiles, profile.name)">X</ng-container>
-        </td>
-      </ng-container>
-
-      <!-- Target Profile Column -->
-      <ng-container matColumnDef="targetProfile">
-        <th mat-header-cell *matHeaderCellDef [mat-sort-header]="mappingDetail.target_profile"> {{ mappingDetail.target_profile }} </th>
-        <td mat-cell *matCellDef="let field">
-          <ng-container *ngIf="isProfilePresent(field.profiles, mappingDetail.target_profile)">X</ng-container>
-        </td>
-      </ng-container>
-
-      <!-- Classification Column -->
-      <ng-container matColumnDef="classification">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Classification (extra) </th>
-        <td mat-cell *matCellDef="let field"> {{ field.classification }} </td>
-      </ng-container>
-
-      <!-- Erläuterung Column -->
-      <ng-container matColumnDef="erlauterung">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Erläuterung </th>
-        <td mat-cell *matCellDef="let field; let i = index" 
-            (mouseenter)="startHover(i)" 
-            (mouseleave)="stopHover()">
-          <span *ngIf="editingIndex !== i">{{ field.remark }}</span>
-          <button *ngIf="hoverIndex === i && editingIndex !== i" (click)="startEditing(i)">Ändern</button>
-          <div *ngIf="editingIndex === i">
-            <div>Aktueller Stand: {{ field.remark }}</div>
-            <select [(ngModel)]="field.userClassification">
-              <option value="use">Eigenschaft und Wert werden übernommen</option>
-              <option value="not_use">Wird nicht übernommen</option>
-              <option value="empty">Bleibt vorerst leer, da keine Quellinformationen</option>
-              <option value="extension">Extension und Values werden übernommen</option>
-              <option value="copy_from">Wird aus folgender Eigenschaft übernommen:</option>
-              <option value="copy_to">Wird in folgende Eigenschaft übernommen:</option>
-              <option value="fixed">Wird fix auf folgenden Wert gesetzt:</option>
-            </select>
-            <div *ngIf="field.userClassification === 'copy_to' || field.userClassification === 'copy_from'">
-              <select [(ngModel)]="field.targetField">
-                <option *ngFor="let availableField of availableFields" [value]="availableField.id">{{ availableField.name }}</option>
-              </select>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let field of mappingDetail.fields; let i = index" [ngClass]="getClassificationCssClass(field.classification)">
+          <td>{{ field.name }}
+            <ng-container *ngIf="field.extension">
+              <br>({{ field.extension }})
+            </ng-container>
+          </td>
+          <ng-container *ngFor="let profile of mappingDetail.source_profiles.concat(mappingDetail.target_profile)">
+            <td>
+              <ng-container *ngIf="isProfilePresent(field.profiles, profile)">X</ng-container>
+            </td>
+          </ng-container>
+          <td>
+            {{ field.classification }}
+            <ng-container *ngIf="field.extra && field.extra !== ''">
+              ({{ field.extra }})
+            </ng-container>
+          </td>
+          
+          <td (mouseenter)="startHover(i)" (mouseleave)="stopHover()">
+            <span *ngIf="editingIndex !== i">{{ field.remark }}</span>
+            <button *ngIf="hoverIndex === i && editingIndex !== i" (click)="startEditing(i)">Ändern</button>
+            <div *ngIf="editingIndex === i">
+                <div>Aktueller Stand: {{ field.remark }}</div>
+                <select [(ngModel)]="field.userClassification">
+                    <option value="use">Eigenschaft und Wert werden übernommen</option>
+                    <option value="not_use">Wird nicht übernommen</option>
+                    <option value="empty">Bleibt vorerst leer, da keine Quellinformationen</option>
+                    <option value="extension">Extension und Values werden übernommen</option>
+                    <option value="copy_from">Wird aus folgender Eigenschaft übernommen:</option>
+                    <option value="copy_to">Wird in folgende Eigenschaft übernommen:</option>
+                    <option value="fixed">Wird fix auf folgenden Wert gesetzt:</option>
+                </select>
+                <div *ngIf="field.userClassification === 'copy_to' || field.userClassification === 'copy_from'">
+                    <select [(ngModel)]="field.targetField">
+                        <option *ngFor="let availableField of availableFields" [value]="availableField.id">{{ availableField.name }}</option>
+                    </select>
+                </div>
+                <div *ngIf="field.userClassification === 'fixed'">
+                    <input type="text" [(ngModel)]="field.fixedValue">
+                </div>
+                <button class="confirm" (click)="confirmChanges(field)"><i class="fas fa-check"></i></button>
+                <button class="cancel" (click)="cancelEditing()"><i class="fas fa-times"></i></button>
             </div>
-            <div *ngIf="field.userClassification === 'fixed'">
-              <input type="text" [(ngModel)]="field.fixedValue">
-            </div>
-            <button class="confirm" (click)="confirmChanges(field)"><i class="fas fa-check"></i></button>
-            <button class="cancel" (click)="cancelEditing()"><i class="fas fa-times"></i></button>
-          </div>
         </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+        </tr>
+      </tbody>
+      
+      
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
+  

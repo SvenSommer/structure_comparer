@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MappingsService } from '../mappings.service';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-mapping-detail',
@@ -16,20 +15,11 @@ export class MappingDetailComponent implements OnInit {
   availableFields: any[] = [];
   editingIndex: number | null = null;
   hoverIndex: number | null = null;
-  displayedColumns: string[] = ['property', 'targetProfile', 'classification', 'erlauterung']; // Adjust as needed
-  dataSource = new MatTableDataSource<any>([]);
-
-  @ViewChild(MatSort, { static: true }) sort!: MatSort;
-
 
   constructor(
     private route: ActivatedRoute,
     private mappingsService: MappingsService
-  ) {}
-
- ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
+  ) { }
 
   ngOnInit(): void {
     const mappingId = this.route.snapshot.paramMap.get('id');
@@ -45,16 +35,8 @@ export class MappingDetailComponent implements OnInit {
         console.error('Error loading mapping detail', err);
         return of({});
       }))
-      .subscribe(mappingDetail => {
-        this.mappingDetail = mappingDetail;
-        this.dataSource = new MatTableDataSource(this.mappingDetail.fields);
-        this.dataSource.sort = this.sort;
-        console.log('Mapping Detail:', this.mappingDetail.fields);
-      });
+      .subscribe(mappingDetail => this.mappingDetail = mappingDetail);
   }
-
-
-
 
   loadFields(mappingId: string) {
     this.mappingsService.getMappingFields(mappingId)
