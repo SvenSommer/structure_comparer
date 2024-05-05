@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +23,10 @@ import { MappingDetailComponent } from './mapping-detail/mapping-detail.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule 
+    FormsModule,
+    MatTableModule, 
+    MatSortModule, 
+    MatPaginatorModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
