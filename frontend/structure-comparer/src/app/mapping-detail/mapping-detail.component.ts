@@ -3,23 +3,29 @@ import { ActivatedRoute } from '@angular/router';
 import { MappingsService } from '../mappings.service';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-mapping-detail',
   templateUrl: './mapping-detail.component.html',
-  styleUrls: ['./mapping-detail.component.css']
+  styleUrls: ['./mapping-detail.component.css'],
 })
 export class MappingDetailComponent implements OnInit {
   mappingDetail: any;
   availableFields: any[] = [];
   editingIndex: number | null = null;
   hoverIndex: number | null = null;
+  filteredDetail: any;
+  // Paginator
+  totalLength: number = 0;
+  pageSize: number = 10;
+  pageIndex: number = 0;
+  pageSizeOptions: number[] = [10, 20, 50];
 
   constructor(
     private route: ActivatedRoute,
     private mappingsService: MappingsService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const mappingId = this.route.snapshot.paramMap.get('id');
@@ -30,26 +36,51 @@ export class MappingDetailComponent implements OnInit {
   }
 
   loadMappingDetail(mappingId: string) {
-    this.mappingsService.getMappingDetail(mappingId)
-      .pipe(catchError(err => {
-        console.error('Error loading mapping detail', err);
-        return of({});
-      }))
-      .subscribe(mappingDetail => this.mappingDetail = mappingDetail);
+    this.mappingsService
+      .getMappingDetail(mappingId)
+      .pipe(
+        catchError((err) => {
+          console.error('Error loading mapping detail', err);
+          return of({});
+        })
+      )
+      .subscribe((mappingDetail) => {
+        this.totalLength = mappingDetail.fields.length;
+        this.mappingDetail = mappingDetail;
+        this.filteredDetail = {
+          ...mappingDetail,
+          fields: mappingDetail.fields.slice(0, this.pageSize),
+        };
+      });
   }
 
   loadFields(mappingId: string) {
-    this.mappingsService.getMappingFields(mappingId)
-      .pipe(catchError(err => {
-        console.error('Error loading fields', err);
-        return of([]);
-      }))
-      .subscribe(fields => this.availableFields = fields.fields);
+    this.mappingsService
+      .getMappingFields(mappingId)
+      .pipe(
+        catchError((err) => {
+          console.error('Error loading fields', err);
+          return of([]);
+        })
+      )
+      .subscribe((fields) => (this.availableFields = fields.fields));
   }
 
   isProfilePresent(fieldProfiles: any[], profileName: string): boolean {
-    const profile = fieldProfiles.find(p => p.name === profileName);
+    const profile = fieldProfiles.find((p) => p.name === profileName);
     return !!profile?.present;
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    this.filteredDetail = {
+      ...this.mappingDetail,
+      fields: this.mappingDetail.fields.slice(
+        this.pageSize * this.pageIndex,
+        this.pageSize * (this.pageIndex + 1)
+      ),
+    };
   }
 
   startEditing(index: number): void {
@@ -71,25 +102,24 @@ export class MappingDetailComponent implements OnInit {
   }
 
   getClassificationCssClass(classification: string): string {
-    const CSS_CLASS: {[key: string]: string} = {
-      'use': "row-use",
-      'not_use': "row-not-use",
-      'empty': "row-empty",
-      'extension': "row-extension",
-      'manuel': "row-manual",
-      'other': "row-other",
-      'copy_from': "row-copy-from",
-      'copy_to': "row-copy-to",
-      'fixed': "row-fixed",
-      'medication_service': "row-medication-service",
+    const CSS_CLASS: { [key: string]: string } = {
+      use: 'row-use',
+      not_use: 'row-not-use',
+      empty: 'row-empty',
+      extension: 'row-extension',
+      manual: 'row-manual',
+      other: 'row-other',
+      copy_from: 'row-copy-from',
+      copy_to: 'row-copy-to',
+      fixed: 'row-fixed',
+      medication_service: 'row-medication-service',
     };
     return CSS_CLASS[classification] || '';
   }
-  
 
   confirmChanges(field: any) {
     const updateData: any = {};
-  
+
     switch (field.userClassification) {
       case 'copy_from':
         //It would be nice to also define it this way!
@@ -98,7 +128,7 @@ export class MappingDetailComponent implements OnInit {
         updateData.target = field.targetField;
         break;
       case 'fixed':
-        // Seems like there is an ug in the backend, if you want to send two times a different fixed value 
+        // Seems like there is an ug in the backend, if you want to send two times a different fixed value
         updateData.fixed = field.fixedValue;
         break;
       case 'not_use':
@@ -115,17 +145,19 @@ export class MappingDetailComponent implements OnInit {
         console.error('Unknown userClassification:', field.userClassification);
         break;
     }
-  
-    console.log('Update Data:', updateData);  // Debug-Ausgabe der zu sendenden Daten
-  
+
+    console.log('Update Data:', updateData); // Debug-Ausgabe der zu sendenden Daten
+
     // Senden der Daten ans Backend
-    this.mappingsService.updateMappingField(this.mappingDetail.id, field.id, updateData).subscribe({
-      next: () => {
-        this.loadMappingDetail(this.mappingDetail.id);
-      },
-      error: err => console.error('Failed to update field', err)
-    });
-  
+    this.mappingsService
+      .updateMappingField(this.mappingDetail.id, field.id, updateData)
+      .subscribe({
+        next: () => {
+          this.loadMappingDetail(this.mappingDetail.id);
+        },
+        error: (err) => console.error('Failed to update field', err),
+      });
+
     // Beenden des Bearbeitungsmodus
     this.cancelEditing();
   }
