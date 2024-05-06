@@ -3,23 +3,18 @@
         "EPAMedication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
-                "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:Gesamtmenge",
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
-                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
-                "Medication.extension:Herstellungsanweisung": "Medication.extension:Herstellungsanweisung",
-                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
-                "Medication.extension:Kategorie": "Medication.extension:Kategorie",
-                "Medication.extension:Verpackung": "Medication.extension:Verpackung",
                 "Medication.form": "Medication.form",
                 "Medication.ingredient": "Medication.ingredient",
-                "Medication.ingredient.extension:Darreichungsform": "Medication.ingredient.extension:Darreichungsform",
                 "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN",
-                "Medication.ingredient.strength.extension:MengeFreitext": "Medication.ingredient.strength.extension:MengeFreitext",
                 "Medication.meta": "Medication.meta"
             },
             "fixed": {},
             "remove": [
+                "Medication.amount.numerator.extension:Gesamtmenge",
+                "Medication.ingredient.extension:Darreichungsform",
+                "Medication.ingredient.strength.extension:MengeFreitext",
                 "Medication.meta.profile"
             ]
         }
@@ -29,8 +24,6 @@
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
-                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
-                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
                 "Medication.form": "Medication.form",
                 "Medication.meta": "Medication.meta"
             },
@@ -44,12 +37,8 @@
         "EPAMedication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
-                "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:Packungsgroesse",
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
-                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
-                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
-                "Medication.extension:Normgroesse": "Medication.extension:Normgroesse",
                 "Medication.form": "Medication.form",
                 "Medication.ingredient": "Medication.ingredient",
                 "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK",
@@ -57,6 +46,7 @@
             },
             "fixed": {},
             "remove": [
+                "Medication.amount.numerator.extension:Packungsgroesse",
                 "Medication.meta.profile"
             ]
         }
@@ -65,20 +55,16 @@
         "EPAMedication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
-                "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:Packungsgroesse",
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
                 "Medication.code.coding:pznCode": "Medication.code.coding:PZN",
-                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
-                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
-                "Medication.extension:Kategorie": "Medication.extension:Kategorie",
-                "Medication.extension:Normgroesse": "Medication.extension:Normgroesse",
                 "Medication.form": "Medication.form",
                 "Medication.form.coding:kbvDarreichungsform": "Medication.form.coding:KBVDarreichungsform",
                 "Medication.meta": "Medication.meta"
             },
             "fixed": {},
             "remove": [
+                "Medication.amount.numerator.extension:Packungsgroesse",
                 "Medication.meta.profile"
             ]
         }
