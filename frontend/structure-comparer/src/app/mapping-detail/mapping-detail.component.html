@@ -1,5 +1,15 @@
 <div *ngIf="filteredDetail">
   <h2>{{ filteredDetail.name }}</h2>
+  <div fxLayout fxLayoutAlign="center center">
+    <mat-form-field fxFlex="40%">
+      <input
+        matInput
+        type="text"
+        (keyup)="handleFilter($event)"
+        placeholder="Filter"
+      />
+    </mat-form-field>
+  </div>
   <table
     id="resultsTable"
     class="display"

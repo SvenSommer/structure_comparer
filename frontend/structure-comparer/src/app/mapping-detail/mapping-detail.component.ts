@@ -19,6 +19,7 @@ export interface IProfile {
   styleUrls: ['./mapping-detail.component.css'],
 })
 export class MappingDetailComponent implements OnInit {
+  originalDetail: any;
   mappingDetail: any;
   availableFields: any[] = [];
   editingIndex: number | null = null;
@@ -54,7 +55,8 @@ export class MappingDetailComponent implements OnInit {
       )
       .subscribe((mappingDetail) => {
         this.totalLength = mappingDetail.fields.length;
-        this.mappingDetail = mappingDetail;
+        this.originalDetail = mappingDetail;
+        this.mappingDetail = this.originalDetail;
         this.filteredDetail = {
           ...mappingDetail,
           fields: mappingDetail.fields.slice(0, this.pageSize),
@@ -122,6 +124,32 @@ export class MappingDetailComponent implements OnInit {
     });
 
     this.filteredDetail = { ...this.filteredDetail, fields: sortedData };
+  }
+
+  handleFilter(e: KeyboardEvent) {
+    const val = (e.target as HTMLInputElement).value.trim();
+    const filterCond = (record: IProfile) => {
+      return (
+        !val.length ||
+        record.name.indexOf(val) >= 0 ||
+        record.remark.indexOf(val) >= 0 ||
+        record.classification.indexOf(val) >= 0 ||
+        record.extra?.indexOf(val) >= 0
+      );
+    };
+    this.mappingDetail = {
+      ...this.mappingDetail,
+      fields: this.originalDetail.fields.filter(filterCond),
+    };
+    this.totalLength = this.mappingDetail.fields.length;
+    this.pageIndex = 0;
+    this.filteredDetail = {
+      ...this.mappingDetail,
+      fields: this.mappingDetail.fields.slice(
+        this.pageSize * this.pageIndex,
+        this.pageSize * (this.pageIndex + 1)
+      ),
+    };
   }
 
   startEditing(index: number): void {
