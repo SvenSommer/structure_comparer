@@ -143,6 +143,8 @@ Organization.meta.profile:
 Practitioner.active:
   classification: fixed
   extra: test
+Practitioner.birthDate:
+  classification: not_use
 Practitioner.communication:
   classification: copy_to
   extra: Practitioner.identifier
@@ -168,7 +170,7 @@ Practitioner.identifier:ZANR.system:
 Practitioner.identifier:ZANR.type:
   classification: use
 Practitioner.identifier:ZANR.type.coding:
-  classification: use
+  classification: not_use
 Practitioner.identifier:ZANR.type.coding.code:
   classification: use
 Practitioner.identifier:ZANR.type.coding.system:

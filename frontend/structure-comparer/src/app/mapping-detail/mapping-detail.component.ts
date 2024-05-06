@@ -127,14 +127,14 @@ export class MappingDetailComponent implements OnInit {
   }
 
   handleFilter(e: KeyboardEvent) {
-    const val = (e.target as HTMLInputElement).value.trim();
+    const val = (e.target as HTMLInputElement).value.trim().toLowerCase();
     const filterCond = (record: IProfile) => {
       return (
         !val.length ||
-        record.name.indexOf(val) >= 0 ||
-        record.remark.indexOf(val) >= 0 ||
-        record.classification.indexOf(val) >= 0 ||
-        record.extra?.indexOf(val) >= 0
+        record.name.toLowerCase().indexOf(val) >= 0 ||
+        record.remark.toLowerCase().indexOf(val) >= 0 ||
+        record.classification.toLowerCase().indexOf(val) >= 0 ||
+        record.extra?.toLowerCase().indexOf(val) >= 0
       );
     };
     this.mappingDetail = {
