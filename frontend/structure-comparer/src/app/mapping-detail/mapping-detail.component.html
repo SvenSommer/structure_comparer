@@ -9,16 +9,18 @@
   >
     <thead>
       <tr>
-        <th mat-sort-header="Property">Property</th>
+        <th mat-sort-header="name">Property</th>
         <ng-container *ngFor="let profile of filteredDetail.source_profiles">
-          <th>{{ profile }}</th>
+          <th mat-sort-header="{{ profile }}">{{ profile }}</th>
         </ng-container>
-        <th>{{ filteredDetail.target_profile }}</th>
+        <th mat-sort-header="{{ filteredDetail.target_profile }}">
+          {{ filteredDetail.target_profile }}
+        </th>
         <ng-container>
-          <th mat-sort-header="Classification_extra">Classification (extra)</th>
+          <th mat-sort-header="extra">Classification (extra)</th>
         </ng-container>
         <ng-container>
-          <th mat-sort-header="Erläuterung">Erläuterung</th>
+          <th mat-sort-header="remark">Erläuterung</th>
         </ng-container>
       </tr>
     </thead>

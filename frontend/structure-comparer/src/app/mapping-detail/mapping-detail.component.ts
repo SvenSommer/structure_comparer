@@ -7,10 +7,11 @@ import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 
 export interface IProfile {
-  Property: string;
-  Classification_extra: string;
-  Erläuterung: string;
-  [key: string]: number | string | boolean;
+  name: string;
+  extra: string;
+  classification: string;
+  remark: string;
+  [key: string]: any;
 }
 @Component({
   selector: 'app-mapping-detail',
@@ -91,27 +92,32 @@ export class MappingDetailComponent implements OnInit {
   }
 
   handleSort(event: Sort) {
-    const data = this.filteredDetail.fields?.slice();
+    const data = this.filteredDetail.fields;
     if (!event.active || event.direction === '') {
-      this.filteredDetail = data;
+      this.filteredDetail = { ...this.filteredDetail, fields: data };
       return;
     }
 
     const sortedData = data.sort((a: IProfile, b: IProfile) => {
       const isAsc = event.direction === 'asc';
+      const otherCondition = (t: any) =>
+        t['profiles'].find((profile: any) => profile.name === event.active)
+          .present;
+
       switch (event.active) {
-        case 'Property':
-          return compare(a.Property, b.Property, isAsc);
-        case 'Classification_extra':
+        case 'name':
+          return compare(a.name, b.name, isAsc);
+        case 'extra':
           return compare(
-            a['Classification_extra'],
-            b['Classification_extra'],
+            a['classification'] + a['extra'],
+            b['classification'] + b['extra'],
             isAsc
           );
-        case 'Erläuterung':
-          return compare(a.Erläuterung, b.Erläuterung, isAsc);
+        case 'remark':
+          return compare(a.remark, b.remark, isAsc);
+
         default:
-          return 0;
+          return compare(otherCondition(a), otherCondition(b), isAsc);
       }
     });
 
