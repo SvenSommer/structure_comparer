@@ -1,3 +1,23 @@
+Medication.amount.numerator.extension:Gesamtmenge:
+  classification: not_use
+Medication.amount.numerator.extension:Packungsgroesse:
+  classification: not_use
+Medication.extension:Arzneimittelkategorie:
+  classification: not_use
+Medication.extension:Herstellungsanweisung:
+  classification: not_use
+Medication.extension:Impfstoff:
+  classification: not_use
+Medication.extension:Kategorie:
+  classification: not_use
+Medication.extension:Normgroesse:
+  classification: not_use
+Medication.extension:Verpackung:
+  classification: not_use
+Medication.ingredient.extension:Darreichungsform:
+  classification: not_use
+Medication.ingredient.strength.extension:MengeFreitext:
+  classification: not_use
 Medication.code.coding:PZN:
   classification: copy_from
   extra: Medication.code.coding:pznCode
