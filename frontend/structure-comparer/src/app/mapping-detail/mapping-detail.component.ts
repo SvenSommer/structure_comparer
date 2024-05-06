@@ -4,7 +4,14 @@ import { MappingsService } from '../mappings.service';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 
+export interface IProfile {
+  Property: string;
+  Classification_extra: string;
+  Erläuterung: string;
+  [key: string]: number | string | boolean;
+}
 @Component({
   selector: 'app-mapping-detail',
   templateUrl: './mapping-detail.component.html',
@@ -81,6 +88,34 @@ export class MappingDetailComponent implements OnInit {
         this.pageSize * (this.pageIndex + 1)
       ),
     };
+  }
+
+  handleSort(event: Sort) {
+    const data = this.filteredDetail.fields?.slice();
+    if (!event.active || event.direction === '') {
+      this.filteredDetail = data;
+      return;
+    }
+
+    const sortedData = data.sort((a: IProfile, b: IProfile) => {
+      const isAsc = event.direction === 'asc';
+      switch (event.active) {
+        case 'Property':
+          return compare(a.Property, b.Property, isAsc);
+        case 'Classification_extra':
+          return compare(
+            a['Classification_extra'],
+            b['Classification_extra'],
+            isAsc
+          );
+        case 'Erläuterung':
+          return compare(a.Erläuterung, b.Erläuterung, isAsc);
+        default:
+          return 0;
+      }
+    });
+
+    this.filteredDetail = { ...this.filteredDetail, fields: sortedData };
   }
 
   startEditing(index: number): void {
@@ -161,4 +196,8 @@ export class MappingDetailComponent implements OnInit {
     // Beenden des Bearbeitungsmodus
     this.cancelEditing();
   }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

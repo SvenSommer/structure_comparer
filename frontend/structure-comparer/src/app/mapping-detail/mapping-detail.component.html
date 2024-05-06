@@ -1,18 +1,24 @@
 <div *ngIf="filteredDetail">
   <h2>{{ filteredDetail.name }}</h2>
-  <table id="resultsTable" class="display" style="width: 100%">
+  <table
+    id="resultsTable"
+    class="display"
+    style="width: 100%"
+    matSort
+    (matSortChange)="handleSort($event)"
+  >
     <thead>
       <tr>
-        <th>Property</th>
+        <th mat-sort-header="Property">Property</th>
         <ng-container *ngFor="let profile of filteredDetail.source_profiles">
           <th>{{ profile }}</th>
         </ng-container>
         <th>{{ filteredDetail.target_profile }}</th>
         <ng-container>
-          <th>Classification (extra)</th>
+          <th mat-sort-header="Classification_extra">Classification (extra)</th>
         </ng-container>
         <ng-container>
-          <th>Erläuterung</th>
+          <th mat-sort-header="Erläuterung">Erläuterung</th>
         </ng-container>
       </tr>
     </thead>
