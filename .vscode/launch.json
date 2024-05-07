@@ -33,13 +33,13 @@
             ]
         },
         {
-            "name": "Flask App eRP",
+            "name": "Flask App",
             "type": "debugpy",
             "request": "launch",
             "program": "server.py",
             "args": [
-                "--project-dir",
-                "projects/erp"
+                "--projects-dir",
+                "./projects"
             ],
             "jinja": true,
             "justMyCode": true

@@ -5,10 +5,29 @@ GET http://{{host}}
 
 ###
 
+# @name getprojects
+GET http://{{host}}/projects
+
+###
+
+@project_name = erp
+
+# @name loadproject
+POST http://{{host}}/project/{{project_name}}/load
+Content-Type: application/json
+
+{
+    "project_dir": "{{project_name}}"
+}
+
+###
+
 # @name spec
 GET http://{{host}}/spec
 
 ###
+
+@project_name = erp
 
 # @name getmappings
 GET http://{{host}}/mappings

@@ -12,9 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MappingsListComponent } from './mappings-list/mappings-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MappingDetailComponent } from './mapping-detail/mapping-detail.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 @NgModule({
-  declarations: [AppComponent, MappingsListComponent, MappingDetailComponent],
+  declarations: [AppComponent, MappingsListComponent, MappingDetailComponent, ProjectListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

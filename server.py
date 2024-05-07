@@ -14,19 +14,52 @@ from structure_comparer.serve import (
 )
 
 
-def create_app(project_dir: Path):
+def create_app(projects_dir: Path):
     # create the app
     app = Flask(__name__)
     CORS(app, origins="http://localhost:4200")
+    setattr(app, "projects_dir", projects_dir)
 
-
-    # project config
-    project = init_project(project_dir)
-    setattr(app, "project", project)
 
     @app.route("/", methods=["GET"])
     def hello_world():
-        return "<p>Hello, World!</p>"
+        if hasattr(app, "project") and hasattr(app.project, "dir"):
+            project_name = app.project.dir
+            return f"<p>Hello, World! Actual Project: {project_name}</p>"
+        else:
+            return "<p>Hello, World! No project loaded.</p>"
+        
+
+    @app.route("/projects", methods=["GET"])
+    def list_projects():
+        # Specify the base directory where project folders are located
+        base_dir = Path(projects_dir)
+        # List directories in the base directory
+        projects = [d.name for d in base_dir.iterdir() if d.is_dir()]
+        return jsonify(projects)
+
+    @app.route("/project/<project>/load", methods=["POST"])
+    def load_project(project: str):
+        print("Loading project")
+        # Get the project directory from the request
+        data = request.get_json()
+        print(data)
+        project_dir_name = data.get('project')
+        if project_dir_name:
+            project_dir = projects_dir / project_dir_name
+            # Check if the provided project directory exists
+            if project_dir.exists() and project_dir.is_dir():
+                # Initialize the project based on the concatenated directory
+                project = init_project(project_dir)
+                setattr(app, "project", project)
+                return jsonify({"message": f"Project '{project_dir.name}' loaded successfully"})
+            else:
+                return jsonify({"error": f"Project directory '{project_dir_name}' does not exist"}), 404
+        else:
+            return jsonify({"error": "Project directory not specified"}), 400
+
+
+
 
     @app.route("/mappings", methods=["GET"])
     def get_mappings():
@@ -63,7 +96,11 @@ def create_app(project_dir: Path):
                   items:
                     $ref: "#/definitions/OverviewMapping"
         """
+        if not hasattr(app, "project") or not hasattr(app.project, "dir"):
+            return jsonify({"error": "No project loaded"}), 404
+
         return get_mappings_int(app.project)
+
 
     @app.route("/mapping/<id>", methods=["GET"])
     def get_mapping(id: str):
@@ -150,7 +187,11 @@ def create_app(project_dir: Path):
             description: Mapping not found
         """
 
+        if not hasattr(app, "project") or not hasattr(app.project, "dir"):
+            return jsonify({"error": "No project loaded"}), 404
+
         mapping = get_mapping_int(app.project, id)
+          
         if mapping:
             return mapping
         else:
@@ -202,7 +243,10 @@ def create_app(project_dir: Path):
               $ref: "#/definitions/MappingShort"
           404:
             description: Mapping not found
-        """
+       """
+        if not hasattr(app, "project") or not hasattr(app.project, "dir"):
+          return jsonify({"error": "No project loaded"}), 404
+
         fields = get_mapping_fields_int(app.project, id)
         if fields:
             return fields
@@ -244,6 +288,10 @@ def create_app(project_dir: Path):
           404:
             description: Mapping or field not found
         """
+
+        if not hasattr(app, "project") or not hasattr(app.project, "dir"):
+          return jsonify({"error": "No project loaded"}), 404
+        
         result = post_mapping_field_int(
             app.project, mapping_id, field_id, request.get_json()
         )
@@ -267,10 +315,13 @@ def get_args():
         description="Compare profiles and generate mapping"
     )
 
+    default_projects_dir = Path("./projects")
+
     parser.add_argument(
-        "--project-dir",
+        "--projects-dir",
         type=Path,
-        help="The project directory containing the profiles and config",
+        default=default_projects_dir,
+        help="The directory the different projects. A project contains the profiles and config",
     )
 
     return parser.parse_args()
@@ -279,5 +330,5 @@ def get_args():
 if __name__ == "__main__":
     args = get_args()
 
-    app = create_app(project_dir=args.project_dir)
+    app = create_app(projects_dir=args.projects_dir)
     app.run()
