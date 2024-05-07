@@ -140,20 +140,9 @@ Organization.identifier:TelematikID:
   extra: Organization.identifier:Telematik-ID
 Organization.meta.profile:
   classification: not_use
-Practitioner.active:
-  classification: fixed
-  extra: test
-Practitioner.communication:
-  classification: copy_to
-  extra: Practitioner.identifier
-Practitioner.identifier:
-  classification: copy_from
-  extra: Practitioner.communication
 Practitioner.identifier:ANR:
   classification: copy_to
   extra: Practitioner.identifier:LANR
-Practitioner.identifier:ANR.type:
-  classification: not_use
 Practitioner.identifier:LANR:
   classification: copy_from
   extra: Practitioner.identifier:ANR

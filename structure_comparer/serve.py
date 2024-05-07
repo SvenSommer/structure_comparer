@@ -94,7 +94,6 @@ def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dic
     comparison = compare_profile(profile_map)
 
     name = _get_field_by_id(field_id, comparison)
-    print("name: ",name)
 
     if name is None:
         return None
@@ -106,7 +105,6 @@ def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dic
     if (target := content.get("target")) and field_id != target:
         # Get target field name
         target = _get_field_by_id(target, comparison)
-        print("target: ", target)
 
         if target is None:
             return None
@@ -125,17 +123,13 @@ def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dic
         if target := content.get("target") and target == field_id:
             MANUAL_ENTRIES[name] = {MANUAL_ENTRIES_CLASSIFICATION: Classification.USE}
 
-            print("content: ", content)
         # If mapped to nothing, mark it as "ignore"
         elif "target" in content and content["target"] is None:
             MANUAL_ENTRIES[name] = {
                 MANUAL_ENTRIES_CLASSIFICATION: Classification.NOT_USE
             }
-        
-            print("content: ", content)
         # if fixed, mark it as "fixed" and add the fixed value
         elif "fixed" in content:
-            print(content["fixed"])
             MANUAL_ENTRIES[name] = {
                 MANUAL_ENTRIES_CLASSIFICATION: Classification.FIXED,
                 MANUAL_ENTRIES_EXTRA: content["fixed"],
