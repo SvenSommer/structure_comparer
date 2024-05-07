@@ -36,8 +36,20 @@ Medication.code.coding:pznCode.userSelected:
   classification: empty
 Medication.code.coding:pznCode.version:
   classification: empty
+Medication.extension:Arzneimittelkategorie:
+  classification: not_use
+Medication.extension:Herstellungsanweisung:
+  classification: not_use
+Medication.extension:Impfstoff:
+  classification: not_use
+Medication.extension:Kategorie:
+  classification: not_use
+Medication.extension:Normgroesse:
+  classification: not_use
 Medication.extension:RxPrescriptionProcessIdentifier:
   classification: medication_service
+Medication.extension:Verpackung:
+  classification: not_use
 Medication.form.coding:KBVDarreichungsform:
   classification: copy_from
   extra: Medication.form.coding:kbvDarreichungsform

@@ -1,11 +1,11 @@
 <div *ngIf="mappings.length; else noMappings">
-    <ul>
-      <li *ngFor="let mapping of mappings">
-        <a [routerLink]="['/mapping', mapping.id]">{{ mapping.name }}</a>
-      </li>
-    </ul>
-  </div>
-  <ng-template #noMappings>
-    <p>Keine Mappings gefunden.</p>
-  </ng-template>
-  
+  <h2>Verfügbare Mapping Übersichten</h2>
+  <ul class="mapping-list">
+    <li *ngFor="let mapping of mappings" class="mapping-item">
+      <a [routerLink]="['/mapping', mapping.id]" class="mapping-link">{{ mapping.name }}</a>
+    </li>
+  </ul>
+</div>
+<ng-template #noMappings>
+  <p>Keine Mappings gefunden.</p>
+</ng-template>

@@ -128,7 +128,6 @@ def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dic
             MANUAL_ENTRIES[name] = {
                 MANUAL_ENTRIES_CLASSIFICATION: Classification.NOT_USE
             }
-
         # if fixed, mark it as "fixed" and add the fixed value
         elif "fixed" in content:
             MANUAL_ENTRIES[name] = {
