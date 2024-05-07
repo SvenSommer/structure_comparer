@@ -30,6 +30,12 @@
                 "KBV_PR_FOR_Organization.json"
             ],
             "OrganizationDirectory.json"
+        ],
+        [
+            [
+                "GEM-ERP-PR-MedicationDispense.json"
+            ],
+            "epa-medication-dispense.json"
         ]
     ]
 }
