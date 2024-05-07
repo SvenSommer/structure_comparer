@@ -26,7 +26,7 @@ export class MappingDetailComponent implements OnInit {
   totalLength: number = 0;
   pageSize: number = 10;
   pageIndex: number = 0;
-  pageSizeOptions: number[] = [10, 20, 50];
+  pageSizeOptions: number[] = [10, 50, 100, 200, 500];
 
   constructor(
     private route: ActivatedRoute,
