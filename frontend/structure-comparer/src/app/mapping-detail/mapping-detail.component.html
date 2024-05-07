@@ -5,7 +5,7 @@
       <input
         matInput
         type="text"
-        (keyup)="handleFilter($event)"
+        (keyup)="handleTable($event).filter()"
         placeholder="Filter"
       />
     </mat-form-field>
@@ -15,7 +15,7 @@
     class="display"
     style="width: 100%"
     matSort
-    (matSortChange)="handleSort($event)"
+    (matSortChange)="handleTable($event).sorter()"
   >
     <thead>
       <tr>
@@ -65,11 +65,14 @@
           </ng-container>
         </td>
 
-        <td (mouseenter)="startHover(i)" (mouseleave)="stopHover()">
+        <td
+          (mouseenter)="handleEdit(i).startHover()"
+          (mouseleave)="handleEdit().stopHover()"
+        >
           <span *ngIf="editingIndex !== i">{{ field.remark }}</span>
           <button
             *ngIf="hoverIndex === i && editingIndex !== i"
-            (click)="startEditing(i)"
+            (click)="handleEdit(i).startEdit()"
           >
             Ändern
           </button>
@@ -117,7 +120,7 @@
             <button class="confirm" (click)="confirmChanges(field)">
               <i class="fas fa-check"></i>
             </button>
-            <button class="cancel" (click)="cancelEditing()">
+            <button class="cancel" (click)="handleEdit().cancelEdit()">
               <i class="fas fa-times"></i>
             </button>
           </div>
@@ -126,7 +129,7 @@
     </tbody>
   </table>
   <mat-paginator
-    (page)="handlePageEvent($event)"
+    (page)="handleTable($event).paginator()"
     [length]="totalLength"
     [pageSize]="pageSize"
     [showFirstLastButtons]="false"

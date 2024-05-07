@@ -3,9 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { MappingsService } from '../mappings.service';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { PageEvent } from '@angular/material/paginator';
-import { Sort } from '@angular/material/sort';
-
 export interface IProfile {
   name: string;
   extra: string;
@@ -22,8 +19,8 @@ export class MappingDetailComponent implements OnInit {
   originalDetail: any;
   mappingDetail: any;
   availableFields: any[] = [];
-  editingIndex: number | null = null;
-  hoverIndex: number | null = null;
+  editingIndex: number | null | undefined = null;
+  hoverIndex: number | null | undefined = null;
   filteredDetail: any;
   // Paginator
   totalLength: number = 0;
@@ -81,94 +78,112 @@ export class MappingDetailComponent implements OnInit {
     return !!profile?.present;
   }
 
-  handlePageEvent(event: PageEvent) {
-    this.pageSize = event.pageSize;
-    this.pageIndex = event.pageIndex;
-    this.filteredDetail = {
-      ...this.mappingDetail,
-      fields: this.mappingDetail.fields.slice(
-        this.pageSize * this.pageIndex,
-        this.pageSize * (this.pageIndex + 1)
-      ),
+  /**
+   * pagination, sort, filtering
+   * @param e : Sort | KeyboardEvent | PageEvent
+   * @returns new page
+   */
+  handleTable = (e: any) => {
+    const paginator = () => {
+      this.pageSize = e.pageSize;
+      this.pageIndex = e.pageIndex;
+      this.filteredDetail = {
+        ...this.mappingDetail,
+        fields: this.mappingDetail.fields.slice(
+          this.pageSize * this.pageIndex,
+          this.pageSize * (this.pageIndex + 1)
+        ),
+      };
     };
-  }
 
-  handleSort(event: Sort) {
-    const data = this.filteredDetail.fields;
-    if (!event.active || event.direction === '') {
-      this.filteredDetail = { ...this.filteredDetail, fields: data };
-      return;
-    }
-
-    const sortedData = data.sort((a: IProfile, b: IProfile) => {
-      const isAsc = event.direction === 'asc';
-      const otherCondition = (t: any) =>
-        t['profiles'].find((profile: any) => profile.name === event.active)
-          .present;
-
-      switch (event.active) {
-        case 'name':
-          return compare(a.name, b.name, isAsc);
-        case 'extra':
-          return compare(
-            a['classification'] + a['extra'],
-            b['classification'] + b['extra'],
-            isAsc
-          );
-        case 'remark':
-          return compare(a.remark, b.remark, isAsc);
-
-        default:
-          return compare(otherCondition(a), otherCondition(b), isAsc);
+    const sorter = () => {
+      const data = this.filteredDetail.fields;
+      if (!e.active || e.direction === '') {
+        this.filteredDetail = { ...this.filteredDetail, fields: data };
+        return;
       }
-    });
+      const sortedData = data.sort((a: IProfile, b: IProfile) => {
+        const isAsc = e.direction === 'asc';
+        const otherCondition = (t: any) =>
+          t['profiles'].find((profile: any) => profile.name === e.active)
+            .present;
 
-    this.filteredDetail = { ...this.filteredDetail, fields: sortedData };
-  }
+        switch (e.active) {
+          case 'name':
+          case 'remark':
+            return compare(a[e.active], b[e.active], isAsc);
+          case 'extra':
+            return compare(
+              a['classification'] + a['extra'],
+              b['classification'] + b['extra'],
+              isAsc
+            );
+          default:
+            return compare(otherCondition(a), otherCondition(b), isAsc);
+        }
+      });
 
-  handleFilter(e: KeyboardEvent) {
-    const val = (e.target as HTMLInputElement).value.trim().toLowerCase();
-    const filterCond = (record: IProfile) => {
-      return (
-        !val.length ||
-        record.name.toLowerCase().indexOf(val) >= 0 ||
-        record.remark.toLowerCase().indexOf(val) >= 0 ||
-        record.classification.toLowerCase().indexOf(val) >= 0 ||
-        record.extra?.toLowerCase().indexOf(val) >= 0
-      );
+      this.filteredDetail = {
+        ...this.filteredDetail,
+        fields: sortedData,
+      };
     };
-    this.mappingDetail = {
-      ...this.mappingDetail,
-      fields: this.originalDetail.fields.filter(filterCond),
+
+    const filter = () => {
+      const val = (e.target as HTMLInputElement).value.trim().toLowerCase();
+      const filterCond = (record: IProfile) => {
+        return (
+          !val.length ||
+          record.name.toLowerCase().indexOf(val) >= 0 ||
+          record.remark.toLowerCase().indexOf(val) >= 0 ||
+          record.classification.toLowerCase().indexOf(val) >= 0 ||
+          record.extra?.toLowerCase().indexOf(val) >= 0
+        );
+      };
+      this.mappingDetail = {
+        ...this.mappingDetail,
+        fields: this.originalDetail.fields.filter(filterCond),
+      };
+      this.totalLength = this.mappingDetail.fields.length;
+      this.pageIndex = 0;
+      this.filteredDetail = {
+        ...this.mappingDetail,
+        fields: this.mappingDetail.fields.slice(
+          this.pageSize * this.pageIndex,
+          this.pageSize * (this.pageIndex + 1)
+        ),
+      };
     };
-    this.totalLength = this.mappingDetail.fields.length;
-    this.pageIndex = 0;
-    this.filteredDetail = {
-      ...this.mappingDetail,
-      fields: this.mappingDetail.fields.slice(
-        this.pageSize * this.pageIndex,
-        this.pageSize * (this.pageIndex + 1)
-      ),
+
+    return { paginator, sorter, filter };
+  };
+
+  /**
+   * start, stop of hovering, editing
+   * @param idx : number
+   * @returns
+   */
+  handleEdit = (idx?: number) => {
+    const startHover = () => {
+      if (this.editingIndex === null) {
+        this.hoverIndex = idx;
+      }
     };
-  }
 
-  startEditing(index: number): void {
-    this.editingIndex = index;
-  }
+    const stopHover = () => {
+      this.hoverIndex = null;
+    };
 
-  cancelEditing() {
-    this.editingIndex = null;
-  }
+    const startEdit = () => {
+      this.editingIndex = idx;
+    };
 
-  startHover(index: number): void {
-    if (this.editingIndex === null) {
-      this.hoverIndex = index;
-    }
-  }
+    const cancelEdit = () => {
+      this.editingIndex = null;
+    };
 
-  stopHover(): void {
-    this.hoverIndex = null;
-  }
+    return { startHover, stopHover, startEdit, cancelEdit };
+  };
 
   getClassificationCssClass(classification: string): string {
     const CSS_CLASS: { [key: string]: string } = {
@@ -228,10 +243,10 @@ export class MappingDetailComponent implements OnInit {
       });
 
     // Beenden des Bearbeitungsmodus
-    this.cancelEditing();
+    this.handleEdit().cancelEdit();
   }
 }
 
-function compare(a: number | string, b: number | string, isAsc: boolean) {
+const compare = (a: number | string, b: number | string, isAsc: boolean) => {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
+};
