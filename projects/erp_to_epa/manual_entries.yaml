@@ -2,22 +2,6 @@ Medication.amount.numerator.extension:Gesamtmenge:
   classification: not_use
 Medication.amount.numerator.extension:Packungsgroesse:
   classification: not_use
-Medication.extension:Arzneimittelkategorie:
-  classification: not_use
-Medication.extension:Herstellungsanweisung:
-  classification: not_use
-Medication.extension:Impfstoff:
-  classification: not_use
-Medication.extension:Kategorie:
-  classification: not_use
-Medication.extension:Normgroesse:
-  classification: not_use
-Medication.extension:Verpackung:
-  classification: not_use
-Medication.ingredient.extension:Darreichungsform:
-  classification: not_use
-Medication.ingredient.strength.extension:MengeFreitext:
-  classification: not_use
 Medication.code.coding:PZN:
   classification: copy_from
   extra: Medication.code.coding:pznCode
@@ -62,6 +46,8 @@ Medication.form.coding:kbvDarreichungsform:
   extra: Medication.form.coding:KBVDarreichungsform
 Medication.identifier:ePAMedicationUniqueIdentifier:
   classification: medication_service
+Medication.ingredient.extension:Darreichungsform:
+  classification: not_use
 Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK:
   classification: copy_from
   extra: Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode
@@ -88,10 +74,40 @@ Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode:
   extra: Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN
 Medication.ingredient.item[x]:itemReference.reference:
   classification: empty
+Medication.ingredient.strength.extension:MengeFreitext:
+  classification: not_use
 Medication.manufacturer.reference:
   classification: empty
 Medication.meta.profile:
   classification: not_use
+MedicationDispense.authorizingPrescription:
+  classification: copy_to
+  extra: MedicationDispense.authorizingPrescription.reference
+MedicationDispense.authorizingPrescription.reference:
+  classification: copy_from
+  extra: MedicationDispense.authorizingPrescription
+MedicationDispense.identifier:RxOriginatorProcessIdentifier:
+  classification: empty
+  remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
+    zusammen. Er wird durch den Medication Service vergeben.
+MedicationDispense.identifier:prescriptionID:
+  classification: not_use
+MedicationDispense.medication[x].reference:
+  classification: use
+MedicationDispense.meta:
+  classification: not_use
+MedicationDispense.meta.profile:
+  classification: not_use
+MedicationDispense.performer:
+  classification: use
+MedicationDispense.performer.actor:
+  classification: empty
+  remark: Eine neue 'Organization in gematik Directory' wird durch den E-Rezept-Fachdienst erzeugt. Der Name und die Telematik-ID wird aus dem ACCESS_TOKEN ermittelt.
+MedicationDispense.performer.actor.reference:
+  classification: empty
+  remark: Die Referenz wird auf die vom E-Rezept-Fachdienst erzeugte 'Organization in gematik Directory' gesetzt.
+MedicationDispense.subject.reference:
+  classification: use
 MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen:
   classification: not_use
 MedicationRequest.extension:BVG:

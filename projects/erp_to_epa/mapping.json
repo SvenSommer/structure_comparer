@@ -150,7 +150,7 @@
     "GEM_ERP_PR_MedicationDispense": {
         "EPAMedicationDispense": {
             "mappings": {
-                "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
+                "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription.reference",
                 "MedicationDispense.category": "MedicationDispense.category",
                 "MedicationDispense.contained": "MedicationDispense.contained",
                 "MedicationDispense.context": "MedicationDispense.context",
@@ -159,23 +159,15 @@
                 "MedicationDispense.detectedIssue": "MedicationDispense.detectedIssue",
                 "MedicationDispense.dosageInstruction": "MedicationDispense.dosageInstruction",
                 "MedicationDispense.eventHistory": "MedicationDispense.eventHistory",
+                "MedicationDispense.extension:rxPrescriptionProcessIdentifier": "MedicationDispense.extension:rxPrescriptionProcessIdentifier",
                 "MedicationDispense.identifier": "MedicationDispense.identifier",
                 "MedicationDispense.implicitRules": "MedicationDispense.implicitRules",
                 "MedicationDispense.language": "MedicationDispense.language",
                 "MedicationDispense.location": "MedicationDispense.location",
                 "MedicationDispense.medication[x]": "MedicationDispense.medication[x]",
-                "MedicationDispense.meta": "MedicationDispense.meta",
-                "MedicationDispense.meta.lastUpdated": "MedicationDispense.meta.lastUpdated",
-                "MedicationDispense.meta.security": "MedicationDispense.meta.security",
-                "MedicationDispense.meta.source": "MedicationDispense.meta.source",
-                "MedicationDispense.meta.tag": "MedicationDispense.meta.tag",
-                "MedicationDispense.meta.versionId": "MedicationDispense.meta.versionId",
                 "MedicationDispense.note": "MedicationDispense.note",
                 "MedicationDispense.partOf": "MedicationDispense.partOf",
                 "MedicationDispense.performer": "MedicationDispense.performer",
-                "MedicationDispense.performer.actor.display": "MedicationDispense.performer.actor.display",
-                "MedicationDispense.performer.actor.identifier": "MedicationDispense.performer.actor.identifier",
-                "MedicationDispense.performer.actor.type": "MedicationDispense.performer.actor.type",
                 "MedicationDispense.quantity": "MedicationDispense.quantity",
                 "MedicationDispense.receiver": "MedicationDispense.receiver",
                 "MedicationDispense.status": "MedicationDispense.status",
@@ -189,7 +181,10 @@
                 "MedicationDispense.whenPrepared": "MedicationDispense.whenPrepared"
             },
             "fixed": {},
-            "remove": []
+            "remove": [
+                "MedicationDispense.authorizingPrescription.reference",
+                "MedicationDispense.performer.actor"
+            ]
         }
     }
 }

@@ -10,6 +10,7 @@
                 "KBV_PR_ERP_Medication_FreeText.json",
                 "KBV_PR_ERP_Medication_Ingredient.json",
                 "KBV_PR_ERP_Medication_PZN.json"
+
             ],
             "epa-medication.json"
         ],
@@ -33,7 +34,7 @@
         ],
         [
             [
-                "GEM-ERP-PR-MedicationDispense.json"
+                "GEM-ERP-PR-MedicationDispense|1.4.json"
             ],
             "epa-medication-dispense.json"
         ]

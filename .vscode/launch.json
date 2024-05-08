@@ -13,7 +13,7 @@
             "justMyCode": true,
             "args": [
                 "--project-dir",
-                "projects/erp",
+                "projects/erp_to_epa",
                 "--html",
                 "--json"
             ]
@@ -27,7 +27,7 @@
             "justMyCode": true,
             "args": [
                 "--project-dir",
-                "projects/apovzd",
+                "projects/apovzd_tp_fhirvzd",
                 "--html",
                 "--json"
             ]

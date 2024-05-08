@@ -10,14 +10,16 @@
 </head>
 
 <body>
-    <h2>Mapping: GEM_ERP_PR_MedicationDispense in EPAMedicationDispense</h2>
+    <h2>Mapping: GEM_ERP_PR_MedicationDispense|1.2 in EPAMedicationDispense</h2>
+    <p>Version: 0.9</p>
+    <p>Stand: 08.05.2024</p>
     <table id='resultsTable' class='display' style='width:100%'>
         <thead>
             <tr>
                 <th>Property</th>
-                <th>GEM_ERP_PR_MedicationDispense</th>
+                <th>GEM_ERP_PR_MedicationDispense|1.2</th>
                 <th>EPAMedicationDispense</th>
-                <th>Remarks</th>
+                <th>Operation/Bemerkung</th>
             </tr>
         </thead>
         <tbody>
@@ -25,31 +27,31 @@
                 <td>MedicationDispense.authorizingPrescription</td>
                 <td>X</td>
                 <td>X</td>
-                <td>Eigenschaft und Wert werden übernommen</td>
+                <td>Wird in MedicationDispense.authorizingPrescription.reference übernommen</td>
             </tr>
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>MedicationDispense.authorizingPrescription.display</td>
-                <td></td>
                 <td>X</td>
-                <td>Bleibt vorerst leer, da keine Quellinformationen</td>
+                <td>X</td>
+                <td>Wird in MedicationDispense.authorizingPrescription.reference.display übernommen</td>
             </tr>
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>MedicationDispense.authorizingPrescription.identifier</td>
-                <td></td>
                 <td>X</td>
-                <td>Bleibt vorerst leer, da keine Quellinformationen</td>
+                <td>X</td>
+                <td>Wird in MedicationDispense.authorizingPrescription.reference.identifier übernommen</td>
             </tr>
-            <tr class="row-manual">
+            <tr class="row-use">
                 <td>MedicationDispense.authorizingPrescription.reference</td>
-                <td></td>
                 <td>X</td>
-                <td></td>
+                <td>X</td>
+                <td>Wird aus MedicationDispense.authorizingPrescription übernommen</td>
             </tr>
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>MedicationDispense.authorizingPrescription.type</td>
-                <td></td>
                 <td>X</td>
-                <td>Bleibt vorerst leer, da keine Quellinformationen</td>
+                <td>X</td>
+                <td>Wird in MedicationDispense.authorizingPrescription.reference.type übernommen</td>
             </tr>
             <tr class="row-use">
                 <td>MedicationDispense.category</td>
@@ -99,11 +101,11 @@
                 <td>X</td>
                 <td>Eigenschaft und Wert werden übernommen</td>
             </tr>
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>MedicationDispense.extension:rxPrescriptionProcessIdentifier<br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension</a>)</td>
-                <td></td>
                 <td>X</td>
-                <td>Bleibt vorerst leer, da keine Quellinformationen</td>
+                <td>X</td>
+                <td>Eigenschaft und Wert werden übernommen</td>
             </tr>
             <tr class="row-use">
                 <td>MedicationDispense.identifier</td>
@@ -113,9 +115,15 @@
             </tr>
             <tr class="row-not-use">
                 <td>MedicationDispense.identifier:RxOriginatorProcessIdentifier</td>
-                <td></td>
                 <td>X</td>
-                <td>Bleibt vorerst leer, da keine Quellinformationen</td>
+                <td>X</td>
+                <td>Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben.</td>
+            </tr>
+            <tr class="row-not-use">
+                <td>MedicationDispense.identifier:prescriptionID</td>
+                <td>X</td>
+                <td></td>
+                <td>Wird nicht übernommen</td>
             </tr>
             <tr class="row-use">
                 <td>MedicationDispense.implicitRules</td>
@@ -141,77 +149,77 @@
                 <td>X</td>
                 <td>Eigenschaft und Wert werden übernommen</td>
             </tr>
-            <tr class="row-not-use">
-                <td>MedicationDispense.medication[x].display</td>
-                <td></td>
-                <td>X</td>
-                <td>Bleibt vorerst leer, da keine Quellinformationen</td>
-            </tr>
-            <tr class="row-not-use">
-                <td>MedicationDispense.medication[x].extension:dataAbsentReason<br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)</td>
-                <td></td>
-                <td>X</td>
-                <td>Bleibt vorerst leer, da keine Quellinformationen</td>
-            </tr>
-            <tr class="row-not-use">
-                <td>MedicationDispense.medication[x].identifier</td>
-                <td></td>
-                <td>X</td>
-                <td>Bleibt vorerst leer, da keine Quellinformationen</td>
-            </tr>
-            <tr class="row-manual">
-                <td>MedicationDispense.medication[x].reference</td>
-                <td></td>
-                <td>X</td>
-                <td></td>
-            </tr>
-            <tr class="row-not-use">
-                <td>MedicationDispense.medication[x].type</td>
-                <td></td>
-                <td>X</td>
-                <td>Bleibt vorerst leer, da keine Quellinformationen</td>
-            </tr>
             <tr class="row-use">
-                <td>MedicationDispense.meta</td>
+                <td>MedicationDispense.medication[x].display</td>
                 <td>X</td>
                 <td>X</td>
                 <td>Eigenschaft und Wert werden übernommen</td>
             </tr>
-            <tr class="row-extension">
+            <tr class="row-use">
+                <td>MedicationDispense.medication[x].extension:dataAbsentReason<br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)</td>
+                <td>X</td>
+                <td>X</td>
+                <td>Eigenschaft und Wert werden übernommen</td>
+            </tr>
+            <tr class="row-use">
+                <td>MedicationDispense.medication[x].identifier</td>
+                <td>X</td>
+                <td>X</td>
+                <td>Eigenschaft und Wert werden übernommen</td>
+            </tr>
+            <tr class="row-use">
+                <td>MedicationDispense.medication[x].reference</td>
+                <td>X</td>
+                <td>X</td>
+                <td>Eigenschaft und Wert werden übernommen</td>
+            </tr>
+            <tr class="row-use">
+                <td>MedicationDispense.medication[x].type</td>
+                <td>X</td>
+                <td>X</td>
+                <td>Eigenschaft und Wert werden übernommen</td>
+            </tr>
+            <tr class="row-not-use">
+                <td>MedicationDispense.meta</td>
+                <td>X</td>
+                <td>X</td>
+                <td>Wird nicht übernommen</td>
+            </tr>
+            <tr class="row-not-use">
                 <td>MedicationDispense.meta.lastUpdated</td>
                 <td>X</td>
                 <td></td>
-                <td>Extension und Values werden übernommen</td>
+                <td>Wird nicht übernommen</td>
             </tr>
-            <tr class="row-manual">
+            <tr class="row-not-use">
                 <td>MedicationDispense.meta.profile</td>
                 <td>X</td>
                 <td></td>
-                <td></td>
+                <td>Wird nicht übernommen</td>
             </tr>
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>MedicationDispense.meta.security</td>
                 <td>X</td>
                 <td></td>
-                <td>Extension und Values werden übernommen</td>
+                <td>Wird nicht übernommen</td>
             </tr>
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>MedicationDispense.meta.source</td>
                 <td>X</td>
                 <td></td>
-                <td>Extension und Values werden übernommen</td>
+                <td>Wird nicht übernommen</td>
             </tr>
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>MedicationDispense.meta.tag</td>
                 <td>X</td>
                 <td></td>
-                <td>Extension und Values werden übernommen</td>
+                <td>Wird nicht übernommen</td>
             </tr>
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>MedicationDispense.meta.versionId</td>
                 <td>X</td>
                 <td></td>
-                <td>Extension und Values werden übernommen</td>
+                <td>Wird nicht übernommen</td>
             </tr>
             <tr class="row-use">
                 <td>MedicationDispense.note</td>
@@ -231,35 +239,35 @@
                 <td>X</td>
                 <td>Eigenschaft und Wert werden übernommen</td>
             </tr>
-            <tr class="row-use">
+            <tr class="row-not-use">
                 <td>MedicationDispense.performer.actor</td>
                 <td>X</td>
                 <td>X</td>
-                <td>Eigenschaft und Wert werden übernommen</td>
+                <td>Eine neue 'Organization in gematik Directory' wird durch den E-Rezept-Fachdienst erzeugt. Der Name und die Telematik-ID wird aus dem ACCESS_TOKEN ermittelt.</td>
             </tr>
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>MedicationDispense.performer.actor.display</td>
                 <td>X</td>
                 <td></td>
-                <td>Extension und Values werden übernommen</td>
+                <td>Eine neue 'Organization in gematik Directory' wird durch den E-Rezept-Fachdienst erzeugt. Der Name und die Telematik-ID wird aus dem ACCESS_TOKEN ermittelt.</td>
             </tr>
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>MedicationDispense.performer.actor.identifier</td>
                 <td>X</td>
                 <td></td>
-                <td>Extension und Values werden übernommen</td>
+                <td>Eine neue 'Organization in gematik Directory' wird durch den E-Rezept-Fachdienst erzeugt. Der Name und die Telematik-ID wird aus dem ACCESS_TOKEN ermittelt.</td>
             </tr>
-            <tr class="row-manual">
+            <tr class="row-not-use">
                 <td>MedicationDispense.performer.actor.reference</td>
                 <td>X</td>
                 <td></td>
-                <td></td>
+                <td>Die Referenz wird auf die vom E-Rezept-Fachdienst erzeugte 'Organization in gematik Directory' gesetzt.</td>
             </tr>
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>MedicationDispense.performer.actor.type</td>
                 <td>X</td>
                 <td></td>
-                <td>Extension und Values werden übernommen</td>
+                <td>Eine neue 'Organization in gematik Directory' wird durch den E-Rezept-Fachdienst erzeugt. Der Name und die Telematik-ID wird aus dem ACCESS_TOKEN ermittelt.</td>
             </tr>
             <tr class="row-use">
                 <td>MedicationDispense.performer.function</td>
@@ -309,11 +317,11 @@
                 <td>X</td>
                 <td>Eigenschaft und Wert werden übernommen</td>
             </tr>
-            <tr class="row-manual">
+            <tr class="row-use">
                 <td>MedicationDispense.subject.reference</td>
                 <td>X</td>
                 <td>X</td>
-                <td></td>
+                <td>Eigenschaft und Wert werden übernommen</td>
             </tr>
             <tr class="row-use">
                 <td>MedicationDispense.subject.type</td>
