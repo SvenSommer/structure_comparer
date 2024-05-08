@@ -18,6 +18,7 @@ class ComparisonField:
     extra: str
     profiles: Dict[str, ProfileField]
     remark: str
+    classifications_allowed: List[Classification]
 
     def __init__(self, name: str, id: str) -> None:
         self.name: str = name
@@ -27,6 +28,7 @@ class ComparisonField:
         self.profiles = {}
         self.remark = None
         self.id = id
+        self.classifications_allowed = []
 
     def dict(self) -> dict:
         result = {
@@ -35,6 +37,7 @@ class ComparisonField:
             "remark": self.remark,
             "id": self.id,
             "name": self.name,
+            "classifications_allowed": [c.value for c in self.classifications_allowed],
         }
 
         if self.extension:

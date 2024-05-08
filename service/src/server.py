@@ -121,6 +121,10 @@ def create_app(project_dir: Path):
                   type: string
                 classification:
                   type: string
+                classifications_allowed
+                  type: array
+                  items:
+                    string
                 extension:
                   type: string
                 extra:

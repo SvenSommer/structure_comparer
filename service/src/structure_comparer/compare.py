@@ -113,6 +113,7 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
     # Add remarks and classifications for each field
     for field in comparison.fields.values():
         _classify_remark_field(field, source_profiles, target_profile, comparison)
+        _fill_allowed_classifications(field, source_profiles, target_profile)
 
     return comparison
 
@@ -120,7 +121,7 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
 def _fill_allowed_classifications(
     field: ComparisonField, source_profiles: List[str], target_profile: str
 ):
-    banned = set()
+    allowed = set([c for c in Classification])
 
     any_source_present = any(
         [field.profiles[profile].present for profile in source_profiles]
@@ -128,19 +129,17 @@ def _fill_allowed_classifications(
     target_present = field.profiles[target_profile].present
 
     if not any_source_present:
-        banned.union(
-            [Classification.USE, Classification.NOT_USE, Classification.COPY_FROM]
+        allowed -= set(
+            [Classification.USE, Classification.NOT_USE, Classification.COPY_TO]
         )
-    if not target_present:
-        banned.union([Classification.USE, Classification.EMPTY, Classification.COPY_TO])
-
-    if any([field.profiles[profile].present for profile in source_profiles]):
-        if field.profiles[target_profile].present:
-            classification = Classification.USE
-        else:
-            classification = Classification.EXTENSION
     else:
-        classification = Classification.EMPTY
+        allowed -= set([Classification.EMPTY])
+    if not target_present:
+        allowed -= set(
+            [Classification.USE, Classification.EMPTY, Classification.COPY_FROM]
+        )
+
+    field.classifications_allowed = list(allowed)
 
 
 def _classify_remark_field(
