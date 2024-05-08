@@ -117,6 +117,32 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
     return comparison
 
 
+def _fill_allowed_classifications(
+    field: ComparisonField, source_profiles: List[str], target_profile: str
+):
+    banned = set()
+
+    any_source_present = any(
+        [field.profiles[profile].present for profile in source_profiles]
+    )
+    target_present = field.profiles[target_profile].present
+
+    if not any_source_present:
+        banned.union(
+            [Classification.USE, Classification.NOT_USE, Classification.COPY_FROM]
+        )
+    if not target_present:
+        banned.union([Classification.USE, Classification.EMPTY, Classification.COPY_TO])
+
+    if any([field.profiles[profile].present for profile in source_profiles]):
+        if field.profiles[target_profile].present:
+            classification = Classification.USE
+        else:
+            classification = Classification.EXTENSION
+    else:
+        classification = Classification.EMPTY
+
+
 def _classify_remark_field(
     field: ComparisonField,
     source_profiles: List[str],

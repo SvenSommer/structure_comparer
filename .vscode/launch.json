@@ -8,29 +8,31 @@
             "name": "Generate eRP",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/main.py",
+            "program": "main.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
                 "--project-dir",
-                "projects/erp",
+                "../../projects/erp",
                 "--html",
                 "--json"
-            ]
+            ],
+            "cwd": "${workspaceFolder}/service/src",
         },
         {
             "name": "Generate ApoVZD",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/main.py",
+            "program": "main.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
                 "--project-dir",
-                "projects/apovzd",
+                "../../projects/apovzd",
                 "--html",
                 "--json"
-            ]
+            ],
+            "cwd": "${workspaceFolder}/service/src",
         },
         {
             "name": "Flask App eRP",
@@ -39,8 +41,9 @@
             "program": "server.py",
             "args": [
                 "--project-dir",
-                "projects/erp"
+                "../../projects/erp"
             ],
+            "cwd": "${workspaceFolder}/service/src",
             "jinja": true,
             "justMyCode": true
         },
