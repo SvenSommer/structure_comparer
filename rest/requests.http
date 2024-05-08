@@ -10,7 +10,7 @@ GET http://{{host}}/projects
 
 ###
 
-@project_name = erp
+@project_name = erp_to_epa
 
 # @name loadproject
 POST http://{{host}}/project/{{project_name}}/load
@@ -27,7 +27,7 @@ GET http://{{host}}/spec
 
 ###
 
-@project_name = erp
+@project_name = erp_to_epa
 
 # @name getmappings
 GET http://{{host}}/mappings
