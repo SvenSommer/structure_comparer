@@ -74,6 +74,14 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
     """
 
     # Iterate over all mappings (each entry are mapping to the same profile)
+    comparison = generate_comparison(profile_map)
+    fill_classification_remark(comparison)
+
+    return comparison
+
+
+def generate_comparison(profile_map: ProfileMap) -> Comparison:
+    # Iterate over all mappings (each entry are mapping to the same profile)
     comparison = Comparison()
 
     # Generate the profile names
@@ -112,10 +120,16 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
 
     # Add remarks and classifications for each field
     for field in comparison.fields.values():
-        _classify_remark_field(field, source_profiles, target_profile, comparison)
         _fill_allowed_classifications(field, source_profiles, target_profile)
 
     return comparison
+
+
+def fill_classification_remark(comparison: Comparison):
+    for field in comparison.fields.values():
+        _classify_remark_field(
+            field, comparison.source_profiles, comparison.target_profile, comparison
+        )
 
 
 def _fill_allowed_classifications(

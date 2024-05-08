@@ -1,4 +1,3 @@
-from collections import OrderedDict
 import json
 from pathlib import Path
 from uuid import uuid4
@@ -10,7 +9,11 @@ from .manual_entries import (
     MANUAL_ENTRIES_CLASSIFICATION,
     MANUAL_ENTRIES_EXTRA,
 )
-from .compare import compare_profile, load_profiles as _load_profiles
+from .compare import (
+    load_profiles as _load_profiles,
+    generate_comparison,
+    fill_classification_remark,
+)
 
 
 def init_project(project_dir: Path):
@@ -40,8 +43,8 @@ def read_manual_entries(project):
 
 def load_profiles(project):
     profile_maps = _load_profiles(project.profiles_to_compare_list, project.data_dir)
-    project.profiles_to_compare = {
-        str(uuid4()): entry for entry in profile_maps.values()
+    project.comparisons = {
+        str(uuid4()): generate_comparison(entry) for entry in profile_maps.values()
     }
 
 
@@ -53,18 +56,18 @@ def get_mappings_int(project):
     return {
         "mappings": [
             {"id": id, "name": profile_map.name, "url": f"/mapping/{id}"}
-            for id, profile_map in project.profiles_to_compare.items()
+            for id, profile_map in project.comparisons.items()
         ]
     }
 
 
 def get_mapping_int(project, id: str):
-    profile_map = project.profiles_to_compare.get(id)
+    comparison = project.comparisons.get(id)
 
-    if not profile_map:
+    if not comparison:
         return None
 
-    comparison = compare_profile(profile_map)
+    fill_classification_remark(comparison)
     result = comparison.dict()
 
     result["id"] = id
@@ -73,12 +76,12 @@ def get_mapping_int(project, id: str):
 
 
 def get_mapping_fields_int(project, id: str):
-    profile_map = project.profiles_to_compare.get(id)
+    comparison = project.comparisons.get(id)
 
-    if not profile_map:
+    if not comparison:
         return None
 
-    comparison = compare_profile(profile_map)
+    fill_classification_remark(comparison)
 
     result = {"id": id}
     result["fields"] = [
@@ -89,13 +92,13 @@ def get_mapping_fields_int(project, id: str):
 
 
 def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dict):
-    profile_map = project.profiles_to_compare.get(mapping_id)
+    comparison = project.comparisons.get(mapping_id)
 
-    if not profile_map:
+    if not comparison:
         return None
 
     # Easiest way to get the fields
-    comparison = compare_profile(profile_map)
+    fill_classification_remark(comparison)
 
     name = _get_field_by_id(field_id, comparison)
 
@@ -124,7 +127,7 @@ def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dic
         }
     else:
         # If entry is mapped to itself, simply mark it as "use"
-        if target := content.get("target") and target == field_id:
+        if (target := content.get("target")) and target == field_id:
             MANUAL_ENTRIES[name] = {MANUAL_ENTRIES_CLASSIFICATION: Classification.USE}
 
         # If mapped to nothing, mark it as "ignore"
