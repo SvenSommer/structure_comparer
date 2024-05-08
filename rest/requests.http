@@ -10,6 +10,11 @@ GET http://{{host}}/spec
 
 ###
 
+# @name getclassifications
+GET http://{{host}}/classification
+
+###
+
 # @name getmappings
 GET http://{{host}}/mappings
 

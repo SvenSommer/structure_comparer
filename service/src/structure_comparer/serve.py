@@ -45,6 +45,10 @@ def load_profiles(project):
     }
 
 
+def get_classifications_int():
+    return {"classifications": [c.value for c in Classification]}
+
+
 def get_mappings_int(project):
     return {
         "mappings": [

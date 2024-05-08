@@ -6,6 +6,7 @@ from flask_cors import CORS
 
 
 from structure_comparer.serve import (
+    get_classifications_int,
     get_mapping_fields_int,
     get_mapping_int,
     get_mappings_int,
@@ -19,7 +20,6 @@ def create_app(project_dir: Path):
     app = Flask(__name__)
     CORS(app, origins="http://localhost:4200")
 
-
     # project config
     project = init_project(project_dir)
     setattr(app, "project", project)
@@ -27,6 +27,26 @@ def create_app(project_dir: Path):
     @app.route("/", methods=["GET"])
     def hello_world():
         return "<p>Hello, World!</p>"
+
+    @app.route("/classification", methods=["GET"])
+    def get_classifications():
+        """
+        Get all classifications
+        ---
+        produces:
+          - application/json
+        responses:
+          200:
+            description: Classifications
+            schema:
+              required:
+                - classifications
+              properties:
+                classifications:
+                  type: array
+                  items: string
+        """
+        return get_classifications_int()
 
     @app.route("/mappings", methods=["GET"])
     def get_mappings():
