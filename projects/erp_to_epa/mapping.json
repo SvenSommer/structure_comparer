@@ -1,10 +1,15 @@
 {
     "KBV_PR_ERP_Medication_Compounding": {
-        "EPAMedication": {
+        "GEM_ERP_PR_Medication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
+                "Medication.extension:Herstellungsanweisung": "Medication.extension:Herstellungsanweisung",
+                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
+                "Medication.extension:Kategorie": "Medication.extension:Kategorie",
+                "Medication.extension:Verpackung": "Medication.extension:Verpackung",
                 "Medication.form": "Medication.form",
                 "Medication.ingredient": "Medication.ingredient",
                 "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN",
@@ -12,18 +17,17 @@
             },
             "fixed": {},
             "remove": [
-                "Medication.amount.numerator.extension:Gesamtmenge",
-                "Medication.ingredient.extension:Darreichungsform",
-                "Medication.ingredient.strength.extension:MengeFreitext",
                 "Medication.meta.profile"
             ]
         }
     },
     "KBV_PR_ERP_Medication_FreeText": {
-        "EPAMedication": {
+        "GEM_ERP_PR_Medication": {
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
+                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
                 "Medication.form": "Medication.form",
                 "Medication.meta": "Medication.meta"
             },
@@ -34,11 +38,14 @@
         }
     },
     "KBV_PR_ERP_Medication_Ingredient": {
-        "EPAMedication": {
+        "GEM_ERP_PR_Medication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
+                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
+                "Medication.extension:Normgroesse": "Medication.extension:Normgroesse",
                 "Medication.form": "Medication.form",
                 "Medication.ingredient": "Medication.ingredient",
                 "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK",
@@ -46,25 +53,27 @@
             },
             "fixed": {},
             "remove": [
-                "Medication.amount.numerator.extension:Packungsgroesse",
                 "Medication.meta.profile"
             ]
         }
     },
     "KBV_PR_ERP_Medication_PZN": {
-        "EPAMedication": {
+        "GEM_ERP_PR_Medication": {
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
                 "Medication.code.coding:pznCode": "Medication.code.coding:PZN",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
+                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
+                "Medication.extension:Kategorie": "Medication.extension:Kategorie",
+                "Medication.extension:Normgroesse": "Medication.extension:Normgroesse",
                 "Medication.form": "Medication.form",
                 "Medication.form.coding:kbvDarreichungsform": "Medication.form.coding:KBVDarreichungsform",
                 "Medication.meta": "Medication.meta"
             },
             "fixed": {},
             "remove": [
-                "Medication.amount.numerator.extension:Packungsgroesse",
                 "Medication.meta.profile"
             ]
         }
@@ -161,6 +170,7 @@
                 "MedicationDispense.eventHistory": "MedicationDispense.eventHistory",
                 "MedicationDispense.extension:rxPrescriptionProcessIdentifier": "MedicationDispense.extension:rxPrescriptionProcessIdentifier",
                 "MedicationDispense.identifier": "MedicationDispense.identifier",
+                "MedicationDispense.identifier:prescriptionID": "MedicationDispense.identifier:prescriptionID",
                 "MedicationDispense.implicitRules": "MedicationDispense.implicitRules",
                 "MedicationDispense.language": "MedicationDispense.language",
                 "MedicationDispense.location": "MedicationDispense.location",

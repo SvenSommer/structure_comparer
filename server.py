@@ -288,13 +288,18 @@ def create_app(projects_dir: Path):
           404:
             description: Mapping or field not found
         """
-
+        print("hallo")
+        
+        
         if not hasattr(app, "project") or not hasattr(app.project, "dir"):
           return jsonify({"error": "No project loaded"}), 404
         
         result = post_mapping_field_int(
             app.project, mapping_id, field_id, request.get_json()
         )
+        
+        print("Result: ", result)
+        
         if result is None:
             return "", 404
 
