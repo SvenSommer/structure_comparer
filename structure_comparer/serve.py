@@ -85,7 +85,6 @@ def get_mapping_fields_int(project, id: str):
 
 
 def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dict):
-   
     profile_map = project.profiles_to_compare.get(mapping_id)
 
     if not profile_map:
