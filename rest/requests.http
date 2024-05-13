@@ -78,3 +78,71 @@ Content-Type: application/json
 {
     "fixed": "{{fixed}}"
 }
+
+###
+
+# @name post_copy_from
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+Content-Type: application/json
+
+{
+    "action": "copy_from",
+    "target": "{{targetdiff}}"
+}
+
+###
+
+
+# @name post_copy_to
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+Content-Type: application/json
+
+{
+    "action": "copy_to",
+    "target": "{{targetdiff}}"
+}
+
+###
+
+# @name post_fixed
+
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+Content-Type: application/json
+
+{
+    "action": "fixed",
+    "value": "fixed-value"
+}
+
+###
+
+# @name post_use
+
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+Content-Type: application/json
+
+{
+    "action": "use"
+}
+
+###
+
+# @name post_not_use
+
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+Content-Type: application/json
+
+{
+    "action": "not_use"
+}
+
+###
+
+# @name post_empty
+
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+Content-Type: application/json
+
+{
+    "action": "empty"
+}

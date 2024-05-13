@@ -3,7 +3,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from .classification import Classification
-from .data.comparison import Comparison
+from .data.comparison import Comparison, get_field_by_id
 from .manual_entries import (
     MANUAL_ENTRIES,
     MANUAL_ENTRIES_CLASSIFICATION,
@@ -151,7 +151,77 @@ def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dic
     return True
 
 
-def _get_field_by_id(field_id: str, comparison: Comparison) -> str | None:
+def post_mapping_classification_int(
+    project, mapping_id: str, field_id: str, content: dict
+):
+    comparison = project.comparisons.get(mapping_id)
+
+    if not comparison:
+        return None
+
+    # Easiest way to get the fields
+    fill_classification_remark(comparison)
+
+    field = get_field_by_id(comparison, field_id)
+
+    if field is None:
+        return None
+
+    action = Classification(content.get("action"))
+
+    # Check if action is allowed for this field
+    if action not in field.classifications_allowed:
+        raise ValueError(
+            f"action '{action.value}' not allowed for this field, allowed: {', '.join([field.value for field in field.classifications_allowed])}"
+        )
+
+    # Build the entry that should be created/updated
+    manual_entry = {MANUAL_ENTRIES_CLASSIFICATION: action}
+    if action == Classification.COPY_FROM or action == Classification.COPY_TO:
+        if target_id := content.get("target"):
+            target = get_field_by_id(comparison, target_id)
+
+            if target is None:
+                raise ValueError("'target' does not exists")
+
+            manual_entry[MANUAL_ENTRIES_EXTRA] = target.name
+        else:
+            raise ValueError("field 'target' missing")
+    elif action == Classification.FIXED:
+        if fixed := content.get("fixed"):
+            manual_entry[MANUAL_ENTRIES_EXTRA] = fixed
+        else:
+            raise ValueError("field 'fixed' missing")
+
+    # Clean up possible manual entry this was copied from before
+    if (
+        field.name in MANUAL_ENTRIES.entries
+        and MANUAL_ENTRIES_EXTRA in MANUAL_ENTRIES[field.name]
+    ):
+        del MANUAL_ENTRIES.entries[MANUAL_ENTRIES[field.name][MANUAL_ENTRIES_EXTRA]]
+
+    # Apply the manual entry
+    MANUAL_ENTRIES[field.name] = manual_entry
+
+    # Handle the partner entry for copy actions
+    if action == Classification.COPY_FROM:
+        MANUAL_ENTRIES[target.name] = {
+            MANUAL_ENTRIES_CLASSIFICATION: Classification.COPY_TO,
+            MANUAL_ENTRIES_EXTRA: field.name,
+        }
+    elif action == Classification.COPY_TO:
+        MANUAL_ENTRIES[target.name] = {
+            MANUAL_ENTRIES_CLASSIFICATION: Classification.COPY_FROM,
+            MANUAL_ENTRIES_EXTRA: field.name,
+        }
+
+    # Save the changes
+    MANUAL_ENTRIES.write()
+
+    return True
+
+
+def _get_field_by_id(field_id: str, comparison: Comparison) -> Comparison | None:
     for field in comparison.fields.values():
         if field.id == field_id:
             return field.name

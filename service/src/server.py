@@ -12,6 +12,7 @@ from structure_comparer.serve import (
     get_mappings_int,
     init_project,
     post_mapping_field_int,
+    post_mapping_classification_int,
 )
 
 
@@ -275,6 +276,75 @@ def create_app(project_dir: Path):
             return "", 404
 
         return "", 200
+
+    @app.route(
+        "/mapping/<mapping_id>/field/<field_id>/classification", methods=["POST"]
+    )
+    def post_mapping_classification(mapping_id: str, field_id: str):
+        """
+        Post a manual classification for a field
+        Overrides the default action of a field. `action` that should set for the field, `target` is the target of copy action and `value` may be a fixed value.
+        ---
+        consumes:
+          - application/json
+        parameters:
+          - in: path
+            name: mapping_id
+            type: string
+            required: true
+            description: The id of the mapping
+          - in: path
+            name: field_id
+            type: string
+            required: true
+            description: The id of the field
+          - in: body
+            name: body
+            schema:
+              required:
+                - action
+              properties:
+                action:
+                  type: string
+                  enum:
+                    - copy_from
+                    - copy_to
+                    - fixed
+                    - use
+                    - not_use
+                    - empty
+                  description: Which action should be performed
+                target:
+                  type: string
+                  description: Field that is targetted (for copy actions)
+                value:
+                  type: string
+                  description: The fixed value
+        responses:
+          200:
+            description: The field was updated
+          400:
+            description: There was something wrong with the request
+            schema:
+              properties:
+                error:
+                  type: string
+                  description: An error message
+          404:
+            description: Mapping or field not found
+        """
+        try:
+            result = post_mapping_classification_int(
+                app.project, mapping_id, field_id, request.get_json()
+            )
+        except ValueError as e:
+            error = {"error": str(e)}
+            return jsonify(error), 400
+        else:
+            if result is None:
+                return "", 404
+
+            return "", 200
 
     @app.route("/spec", methods=["GET"])
     def spec():

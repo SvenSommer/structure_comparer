@@ -71,3 +71,10 @@ class Comparison:
             "target_profile": self.target_profile,
             "fields": [field.dict() for field in self.fields.values()],
         }
+
+
+def get_field_by_id(comparison: Comparison, field_id: str) -> ComparisonField | None:
+    for field in comparison.fields.values():
+        if field.id == field_id:
+            return field
+    return None
