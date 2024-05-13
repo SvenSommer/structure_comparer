@@ -43,7 +43,6 @@ def create_app(projects_dir: Path):
         print("Loading project")
         # Get the project directory from the request
         data = request.get_json()
-        print(data)
         project_dir_name = data.get('project')
         if project_dir_name:
             project_dir = projects_dir / project_dir_name
