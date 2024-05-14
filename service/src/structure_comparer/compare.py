@@ -74,6 +74,14 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
     """
 
     # Iterate over all mappings (each entry are mapping to the same profile)
+    comparison = generate_comparison(profile_map)
+    fill_classification_remark(comparison)
+
+    return comparison
+
+
+def generate_comparison(profile_map: ProfileMap) -> Comparison:
+    # Iterate over all mappings (each entry are mapping to the same profile)
     comparison = Comparison()
 
     # Generate the profile names
@@ -112,9 +120,40 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
 
     # Add remarks and classifications for each field
     for field in comparison.fields.values():
-        _classify_remark_field(field, source_profiles, target_profile, comparison)
+        _fill_allowed_classifications(field, source_profiles, target_profile)
 
     return comparison
+
+
+def fill_classification_remark(comparison: Comparison):
+    for field in comparison.fields.values():
+        _classify_remark_field(
+            field, comparison.source_profiles, comparison.target_profile, comparison
+        )
+
+
+def _fill_allowed_classifications(
+    field: ComparisonField, source_profiles: List[str], target_profile: str
+):
+    allowed = set([c for c in Classification])
+
+    any_source_present = any(
+        [field.profiles[profile].present for profile in source_profiles]
+    )
+    target_present = field.profiles[target_profile].present
+
+    if not any_source_present:
+        allowed -= set(
+            [Classification.USE, Classification.NOT_USE, Classification.COPY_TO]
+        )
+    else:
+        allowed -= set([Classification.EMPTY])
+    if not target_present:
+        allowed -= set(
+            [Classification.USE, Classification.EMPTY, Classification.COPY_FROM]
+        )
+
+    field.classifications_allowed = list(allowed)
 
 
 def _classify_remark_field(

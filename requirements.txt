@@ -1,6 +1,0 @@
-black
-Jinja2
-Flask~=3.0
-flask-swagger~=0.2.14
-flask-cors
-PyYAML
