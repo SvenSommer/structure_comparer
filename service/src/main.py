@@ -11,8 +11,8 @@ from structure_comparer import (
 )
 
 
-def write_mapping_json(structured_mapping: dict, output_file: Path):
-    mapping_dict = gen_mapping_dict(structured_mapping)
+def write_mapping_json(mapping_version: str, mapping_modified: str, mapping_status: str, structured_mapping: dict, output_file: Path):
+    mapping_dict = gen_mapping_dict(mapping_version, mapping_modified, mapping_status, structured_mapping)
     output_file.write_text(json.dumps(mapping_dict, indent=4))
 
 
@@ -63,4 +63,4 @@ if __name__ == "__main__":
         mapping_output_file = args.project_dir / config.get(
             "mapping_output_file", "mapping.json"
         )
-        write_mapping_json(structured_mapping, mapping_output_file)
+        write_mapping_json(mapping_version, mapping_modified, mapping_status, structured_mapping, mapping_output_file)

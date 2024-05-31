@@ -1,6 +1,9 @@
 {
     "KBV_PR_ERP_Medication_Compounding|1.1.0": {
         "EPAMedication|1.0.0": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.batch": "Medication.batch",
@@ -21,6 +24,9 @@
     },
     "KBV_PR_ERP_Medication_FreeText|1.1.0": {
         "EPAMedication|1.0.0": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
@@ -35,6 +41,9 @@
     },
     "KBV_PR_ERP_Medication_Ingredient|1.1.0": {
         "EPAMedication|1.0.0": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.batch": "Medication.batch",
@@ -53,6 +62,9 @@
     },
     "KBV_PR_ERP_Medication_PZN|1.1.0": {
         "EPAMedication|1.0.0": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.batch": "Medication.batch",
@@ -71,6 +83,9 @@
     },
     "KBV_PR_FOR_Practitioner|1.1.0": {
         "PractitionerDirectory|0.11.6": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
             "mappings": {
                 "Practitioner.identifier": "Practitioner.identifier",
                 "Practitioner.identifier:ANR": "Practitioner.identifier:LANR",
@@ -97,6 +112,9 @@
     },
     "KBV_PR_ERP_Prescription|1.1.0": {
         "EPAMedicationRequest|1.0.0": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
             "mappings": {
                 "MedicationRequest.authoredOn": "MedicationRequest.authoredOn",
                 "MedicationRequest.dispenseRequest": "MedicationRequest.dispenseRequest",
@@ -125,6 +143,9 @@
     },
     "KBV_PR_FOR_Organization|1.1.0": {
         "OrganizationDirectory|0.11.6": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
             "mappings": {
                 "Organization.address": "Organization.address",
                 "Organization.address:Strassenanschrift": "Organization.address:Strassenanschrift",
@@ -148,7 +169,48 @@
         }
     },
     "GEM_ERP_PR_MedicationDispense|1.3": {
+        "GEM_ERP_PR_MedicationDispense|1.4": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
+            "mappings": {
+                "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
+                "MedicationDispense.category": "MedicationDispense.category",
+                "MedicationDispense.contained": "MedicationDispense.contained",
+                "MedicationDispense.context": "MedicationDispense.context",
+                "MedicationDispense.daysSupply": "MedicationDispense.daysSupply",
+                "MedicationDispense.destination": "MedicationDispense.destination",
+                "MedicationDispense.detectedIssue": "MedicationDispense.detectedIssue",
+                "MedicationDispense.dosageInstruction": "MedicationDispense.dosageInstruction",
+                "MedicationDispense.eventHistory": "MedicationDispense.eventHistory",
+                "MedicationDispense.identifier": "MedicationDispense.identifier",
+                "MedicationDispense.implicitRules": "MedicationDispense.implicitRules",
+                "MedicationDispense.language": "MedicationDispense.language",
+                "MedicationDispense.location": "MedicationDispense.location",
+                "MedicationDispense.medication[x]": "MedicationDispense.medication[x]",
+                "MedicationDispense.meta": "MedicationDispense.meta",
+                "MedicationDispense.note": "MedicationDispense.note",
+                "MedicationDispense.partOf": "MedicationDispense.partOf",
+                "MedicationDispense.performer": "MedicationDispense.performer",
+                "MedicationDispense.quantity": "MedicationDispense.quantity",
+                "MedicationDispense.receiver": "MedicationDispense.receiver",
+                "MedicationDispense.status": "MedicationDispense.status",
+                "MedicationDispense.statusReason[x]": "MedicationDispense.statusReason[x]",
+                "MedicationDispense.subject": "MedicationDispense.subject",
+                "MedicationDispense.substitution": "MedicationDispense.substitution",
+                "MedicationDispense.supportingInformation": "MedicationDispense.supportingInformation",
+                "MedicationDispense.text": "MedicationDispense.text",
+                "MedicationDispense.type": "MedicationDispense.type",
+                "MedicationDispense.whenHandedOver": "MedicationDispense.whenHandedOver",
+                "MedicationDispense.whenPrepared": "MedicationDispense.whenPrepared"
+            },
+            "fixed": {},
+            "remove": []
+        },
         "EPAMedicationDispense|1.0.0": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -194,6 +256,9 @@
     },
     "GEM_ERP_PR_MedicationDispense|1.4": {
         "EPAMedicationDispense|1.0.0": {
+            "version": "0.9",
+            "status": "draft",
+            "last_updated": "2024-05-31 12:24:01",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",

@@ -22,7 +22,7 @@ IGNORE_CLASSIFICATIONS = [
 logger = logging.getLogger(__name__)
 
 
-def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
+def gen_mapping_dict(mapping_version: str, mapping_modified: str, mapping_status: str, structured_mapping: Dict[str, Comparison]):
     result = {}
 
     # Iterate over the different mappings
@@ -79,6 +79,15 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
                             f"gen_mapping_dict: did not handle {source_profile}:{mappings.target_profile}:{field}:{presences.classification} {presences.remark}"
                         )
 
-            result[source_profile] = {mappings.target_profile: profile_handling}
+            if source_profile not in result:
+                result[source_profile] = {}
+            result[source_profile][mappings.target_profile] = {
+                "version": mapping_version,
+                "status": mapping_status,
+                "last_updated": mapping_modified,
+                "mappings": profile_handling[DICT_MAPPINGS],
+                "fixed": profile_handling[DICT_FIXED],
+                "remove": profile_handling[DICT_REMOVE],
+            }
 
     return result
