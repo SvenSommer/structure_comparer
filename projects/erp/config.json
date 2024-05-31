@@ -4,38 +4,163 @@
     "html_output_dir": "docs",
     "mapping_output_file": "mapping.json",
     "profiles_to_compare": [
-        [
-            [
-                "KBV_PR_ERP_Medication_Compounding.json",
-                "KBV_PR_ERP_Medication_FreeText.json",
-                "KBV_PR_ERP_Medication_Ingredient.json",
-                "KBV_PR_ERP_Medication_PZN.json"
-            ],
-            "epa-medication.json"
-        ],
-        [
-            [
-                "KBV_PR_FOR_Practitioner.json"
-            ],
-            "PractitionerDirectory.json"
-        ],
-        [
-            [
-                "KBV_PR_ERP_Prescription.json"
-            ],
-            "epa-medication-request.json"
-        ],
-        [
-            [
-                "KBV_PR_FOR_Organization.json"
-            ],
-            "OrganizationDirectory.json"
-        ],
-        [
-            [
-                "GEM-ERP-PR-MedicationDispense.json"
-            ],
-            "epa-medication-dispense.json"
-        ]
+        {
+            "version": "0.9",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "KBV_PR_ERP_Medication_Compounding.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212814",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2212814&format=json"
+                    },
+                    {
+                        "file": "KBV_PR_ERP_Medication_FreeText.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212815",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2212815&format=json"
+                    },
+                    {
+                        "file": "KBV_PR_ERP_Medication_Ingredient.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212816",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2212816&format=json"
+                    },
+                    {
+                        "file": "KBV_PR_ERP_Medication_PZN.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212817",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2212817&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "epa-medication.json",
+                    "version": "1.0.0",
+                    "simplifier_url": "https://simplifier.net/packages/de.gematik.epa.medication/1.0.0/files/2378699",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2378699&format=json"
+                }
+            }
+        },
+        {
+            "version": "0.9",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "KBV_PR_FOR_Practitioner.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.for/1.1.0/files/720095",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=720095&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "PractitionerDirectory.json",
+                    "version": "0.11.6",
+                    "simplifier_url": "https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6/files/2433321",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2433321&format=json"
+                }
+            }
+        },
+        {
+            "version": "0.9",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "KBV_PR_ERP_Prescription.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212819",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2212819&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "epa-medication-request.json",
+                    "version": "1.0.0",
+                    "simplifier_url": "https://simplifier.net/packages/de.gematik.epa.medication/1.0.0/files/2378701",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2378701&format=json"
+                }
+            }
+        },
+        {
+            "version": "0.9",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "KBV_PR_FOR_Organization.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.for/1.1.0/files/720093",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=720093&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "OrganizationDirectory.json",
+                    "version": "0.11.6",
+                    "simplifier_url": "https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6/files/2433306",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2433306&format=json"
+                }
+            }
+        },
+        {
+            "version": "0.9",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "GEM_ERP_PR_MedicationDispense|1.3.json",
+                        "version": "1.3",
+                        "simplifier_url": "https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.3.1/files/2437867",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2437867&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "GEM_ERP_PR_MedicationDispense|1.4.json",
+                    "version": "1.4",
+                    "simplifier_url": "https://simplifier.net/erezept-workflow/gem_erp_pr_medicationdispense",
+                    "file_download_url": "https://simplifier.net/erezept-workflow/gem_erp_pr_medicationdispense/$downloadsnapshot?format=json"
+                }
+            }
+        },
+        {
+            "version": "0.9",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "GEM_ERP_PR_MedicationDispense|1.3.json",
+                        "version": "1.3",
+                        "simplifier_url": "https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.3.1/files/2437867",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2437867&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "epa-medication-dispense.json",
+                    "version": "1.0.0",
+                    "simplifier_url": "https://simplifier.net/packages/de.gematik.epa.medication/1.0.0/files/2378700",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2378700&format=json"
+                }
+            }
+        },
+        {
+            "version": "0.9",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "GEM_ERP_PR_MedicationDispense|1.4.json",
+                        "version": "1.4",
+                        "simplifier_url": "https://simplifier.net/erezept-workflow/gem_erp_pr_medicationdispense",
+                        "file_download_url": "https://simplifier.net/erezept-workflow/gem_erp_pr_medicationdispense/$downloadsnapshot?format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "epa-medication-dispense.json",
+                    "version": "1.0.0",
+                    "simplifier_url": "https://simplifier.net/packages/de.gematik.epa.medication/1.0.0/files/2378700",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2378700&format=json"
+                }
+            }
+        }
     ]
 }

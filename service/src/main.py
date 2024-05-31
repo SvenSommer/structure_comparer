@@ -2,6 +2,8 @@
 import argparse
 import json
 from pathlib import Path
+import datetime
+
 
 from structure_comparer import (
     compare_profiles,
@@ -42,8 +44,9 @@ if __name__ == "__main__":
     config = json.loads((args.project_dir / "config.json").read_text())
 
     # Read the manual entries
-    manual_entries_file = config.get("manual_entries_file", "manual_entries.json")
+    manual_entries_file = config.get("manual_entries_file", "manual_entries.yaml")
     MANUAL_ENTRIES.read(args.project_dir / manual_entries_file)
+
 
     profiles_to_compare = config["profiles_to_compare"]
     data_dir = args.project_dir / config.get("data_dir", "data")

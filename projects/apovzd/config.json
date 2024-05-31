@@ -4,18 +4,46 @@
     "html_output_dir": "docs",
     "mapping_output_file": "mapping.json",
     "profiles_to_compare": [
-        [
-            [
-                "HealthcareServiceApoVzd.json"
-            ],
-            "HealthcareServiceDirectory.json"
-        ],
-        [
-            [
-                "LocationApoVzd.json"
-            ],
-            "LocationDirectory.json"
-        ]
+        {
+            "version": "0.9",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "HealthcareServiceApoVzd.json",
+                        "version": "1.0",
+                        "simplifier_url": "unknown",
+                        "file_download_url": "unknown"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "HealthcareServiceDirectory.json",
+                    "version": "0.11.6",
+                    "simplifier_url": "https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6/files/2433299",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2433299&format=json"
+                }
+            }
+        },
+        {
+            "version": "0.9",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "LocationApoVzd.json",
+                        "version": "1.0",
+                        "simplifier_url": "unknown",
+                        "file_download_url": "unknown"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "LocationDirectory.json",
+                    "version": "0.11.6",
+                    "simplifier_url": "https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6/files/2433304",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2433304&format=json"
+                }
+            }
+        }
     ],
-    "show_remarks": false
+    "show_remarks": true
 }
