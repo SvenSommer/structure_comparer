@@ -38,7 +38,7 @@ class ProfileMap:
         profiles_map.version = profile_mapping.get("version")
         if not profiles_map.version:
             raise ValueError("The 'version' key is not set in the configuration of the mapping. Please set the version and try again.")
-        profiles_map.last_updated = profile_mapping.get("last_updated") or datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        profiles_map.last_updated = profile_mapping.get("last_updated") or (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
         profiles_map.status = profile_mapping.get("status", "draft")
 
         return profiles_map
