@@ -29,44 +29,63 @@ class ProfileMap:
 
         profiles_map = ProfileMap()
         profiles_map.sources = [
-            Profile.from_json(datapath / source) for source in sources
+            Profile.from_dict(source, datapath) for source in sources
         ]
-        profiles_map.target = Profile.from_json(datapath / target)
+        profiles_map.target = Profile.from_dict(target, datapath)
 
         return profiles_map
-
+    
     @property
     def name(self) -> str:
         return f"{', '.join(profile.name for profile in self.sources)} -> {self.target.name}"
 
 
 class Profile:
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, version: str = None, canonical: str = None, simplifier_url: str = None, file_download_url: str = None) -> None:
         self.name: str = name
+        self.version: str = version
+        self.canonical: str = canonical
+        self.simplifier_url: str = simplifier_url
+        self.file_download_url: str = file_download_url
         self.fields: OrderedDict[str, ProfileField] = OrderedDict()
 
     def __str__(self) -> str:
-        return f"(name={self.name}, fields={self.fields})"
+        return f"(name={self.name}, version={self.version}, canonical={self.canonical}, simplifier_url={self.simplifier_url}, file_download_url={self.file_download_url}, fields={self.fields})"
+
 
     def __repr__(self) -> str:
         return str(self)
 
     @staticmethod
-    def from_json(file: str | Path) -> "Profile":
-        if isinstance(file, str):
-            file = Path(file)
+    def from_dict(data: Dict, datapath: Path) -> "Profile":
+        file_path = datapath / data["file"]
+        
+        if not file_path.exists():
+            raise FileNotFoundError(f"The file {file_path} does not exist. Please check the file path and try again.")
 
-        content = json.loads(file.read_text())
+        content = json.loads(file_path.read_text())
 
-        result = Profile(content["name"])
+        profile = Profile(
+            name=content["name"],
+            version=data.get("version"),
+            canonical=data.get("canonical"),
+            simplifier_url=data.get("simplifier_url"),
+            file_download_url=data.get("file_download_url")
+        )
 
         extracted_elements = _extract_elements(content["snapshot"]["element"])
-        result.fields = OrderedDict(
+        profile.fields = OrderedDict(
             (field.name, field)
             for field in sorted(extracted_elements, key=lambda x: x.name)
         )
 
-        return result
+        return profile
+
+
+
+
+
+
 
 
 class ProfileField:

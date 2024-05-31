@@ -42,9 +42,11 @@ if __name__ == "__main__":
     config = json.loads((args.project_dir / "config.json").read_text())
 
     # Read the manual entries
-    manual_entries_file = config.get("manual_entries_file", "manual_entries.json")
+    manual_entries_file = config.get("manual_entries_file", "manual_entries.yaml")
     MANUAL_ENTRIES.read(args.project_dir / manual_entries_file)
 
+    mapping_version = config.get("version", "unknown")
+    mapping_modified = config.get("modified", "unknown")
     profiles_to_compare = config["profiles_to_compare"]
     data_dir = args.project_dir / config.get("data_dir", "data")
     structured_mapping = compare_profiles(profiles_to_compare, data_dir)
@@ -53,7 +55,7 @@ if __name__ == "__main__":
         # Create the result html files
         show_remarks = config.get("show_remarks", True)
         html_output_dir = args.project_dir / config.get("html_output_dir", "html")
-        create_results_html(structured_mapping, html_output_dir, show_remarks)
+        create_results_html(mapping_version, mapping_modified, structured_mapping, html_output_dir, show_remarks)
 
     if args.json:
         # Generate the mapping dict and write to file

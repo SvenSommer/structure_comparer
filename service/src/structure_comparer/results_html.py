@@ -28,6 +28,8 @@ FILES_FOLDER = Path(__file__).parent / "files"
 
 
 def create_results_html(
+    mapping_version: str, 
+    mapping_modified: str,
     structured_mapping: Dict[str, Comparison],
     results_folder: str | Path,
     show_remarks: bool,
@@ -68,6 +70,8 @@ def create_results_html(
             "source_profiles": comp.source_profiles,
             "entries": entries,
             "show_remarks": show_remarks,
+            "mapping_version": mapping_version,
+            "mapping_modified": mapping_modified,
         }
 
         content = template.render(**data)
