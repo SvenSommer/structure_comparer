@@ -2,6 +2,8 @@
 import argparse
 import json
 from pathlib import Path
+import datetime
+
 
 from structure_comparer import (
     compare_profiles,
@@ -11,8 +13,8 @@ from structure_comparer import (
 )
 
 
-def write_mapping_json(mapping_version: str, mapping_modified: str, mapping_status: str, structured_mapping: dict, output_file: Path):
-    mapping_dict = gen_mapping_dict(mapping_version, mapping_modified, mapping_status, structured_mapping)
+def write_mapping_json(structured_mapping: dict, output_file: Path):
+    mapping_dict = gen_mapping_dict(structured_mapping)
     output_file.write_text(json.dumps(mapping_dict, indent=4))
 
 
@@ -45,9 +47,7 @@ if __name__ == "__main__":
     manual_entries_file = config.get("manual_entries_file", "manual_entries.yaml")
     MANUAL_ENTRIES.read(args.project_dir / manual_entries_file)
 
-    mapping_version = config.get("version", "unknown")
-    mapping_modified = config.get("modified", "unknown")
-    mapping_status = config.get("status", "unknown")
+
     profiles_to_compare = config["profiles_to_compare"]
     data_dir = args.project_dir / config.get("data_dir", "data")
     structured_mapping = compare_profiles(profiles_to_compare, data_dir)
@@ -56,11 +56,11 @@ if __name__ == "__main__":
         # Create the result html files
         show_remarks = config.get("show_remarks", True)
         html_output_dir = args.project_dir / config.get("html_output_dir", "html")
-        create_results_html(mapping_version, mapping_modified, mapping_status, structured_mapping, html_output_dir, show_remarks)
+        create_results_html(structured_mapping, html_output_dir, show_remarks)
 
     if args.json:
         # Generate the mapping dict and write to file
         mapping_output_file = args.project_dir / config.get(
             "mapping_output_file", "mapping.json"
         )
-        write_mapping_json(mapping_version, mapping_modified, mapping_status, structured_mapping, mapping_output_file)
+        write_mapping_json(structured_mapping, mapping_output_file)
