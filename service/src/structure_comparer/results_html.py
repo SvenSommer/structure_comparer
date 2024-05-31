@@ -1,7 +1,7 @@
 from pathlib import Path
 import re
 import shutil
-from typing import Dict
+from typing import Dict, List
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -27,9 +27,13 @@ STYLE_FILE_NAME = "style.css"
 FILES_FOLDER = Path(__file__).parent / "files"
 
 
+def flatten_profiles(profiles: List[str]) -> str:
+    return "_".join(profiles)
+
 def create_results_html(
     mapping_version: str, 
     mapping_modified: str,
+    mapping_status: str,
     structured_mapping: Dict[str, Comparison],
     results_folder: str | Path,
     show_remarks: bool,
@@ -54,7 +58,7 @@ def create_results_html(
 
         entries = {
             prop: {
-                "classificaion": entry.classification,
+                "classification": entry.classification,
                 "css_class": CSS_CLASS[entry.classification],
                 "extension": entry.extension,
                 "extra": entry.extra,
@@ -72,11 +76,13 @@ def create_results_html(
             "show_remarks": show_remarks,
             "mapping_version": mapping_version,
             "mapping_modified": mapping_modified,
+            "mapping_status": mapping_status
         }
 
         content = template.render(**data)
 
-        html_file = results_folder / f"{comp.target_profile}.html"
+        source_profiles_flat = flatten_profiles(comp.source_profiles)
+        html_file = results_folder / f"{source_profiles_flat}_to_{comp.target_profile}.html"
         html_file.write_text(content)
 
 

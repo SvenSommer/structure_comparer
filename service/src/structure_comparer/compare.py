@@ -59,7 +59,9 @@ def load_profiles(profiles_to_compare: List, datapath: Path) -> Dict[str, Profil
 def _compare_profiles(profile_maps: Dict[str, ProfileMap]) -> Dict[str, Comparison]:
     mapping = {}
     for map in profile_maps.values():
-        key = str((tuple([entry.name for entry in map.sources]), map.target.name))
+        sources_key = tuple((entry.name, entry.version) for entry in map.sources)
+        target_key = (map.target.name, map.target.version)
+        key = str((sources_key, target_key))
         mapping[key] = compare_profile(map)
     return mapping
 
@@ -84,11 +86,11 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
     # Iterate over all mappings (each entry are mapping to the same profile)
     comparison = Comparison()
 
-    # Generate the profile names
-    source_profiles = [profile.name for profile in profile_map.sources]
-    target_profile = profile_map.target.name
+    # Generate the profile names and versions
+    source_profiles = [f"{profile.name}|{profile.version}" for profile in profile_map.sources]
+    target_profile = f"{profile_map.target.name}|{profile_map.target.version}"
 
-    # Extract which profiles are KBV and which is the ePA one
+    # Extract which profiles are Source Profiles and which is the target one
     comparison.source_profiles = source_profiles
     comparison.target_profile = target_profile
 
@@ -102,8 +104,9 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
                 comparison.fields[field.name] = ComparisonField(field.name, field.id)
                 comparison.fields[field.name].extension = field.extension
 
-            comparison.fields[field.name].profiles[source_profile.name] = ProfileField(
-                name=source_profile.name, present=True
+            profile_key = f"{source_profile.name}|{source_profile.version}"
+            comparison.fields[field.name].profiles[profile_key] = ProfileField(
+                name=profile_key, present=True
             )
 
     # Sort the fields by name

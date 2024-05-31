@@ -52,7 +52,6 @@ class Profile:
     def __str__(self) -> str:
         return f"(name={self.name}, version={self.version}, canonical={self.canonical}, simplifier_url={self.simplifier_url}, file_download_url={self.file_download_url}, fields={self.fields})"
 
-
     def __repr__(self) -> str:
         return str(self)
 
