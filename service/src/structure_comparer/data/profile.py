@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from typing import Dict, List
 from uuid import uuid4
-
+import datetime
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]
 IGNORE_SLICES = [
@@ -21,36 +21,48 @@ class ProfileMap:
     def __init__(self) -> None:
         self.sources: List[Profile] = []
         self.target: Profile = None
+        self.version: str = None
+        self.last_updated: str = None
+        self.status: str = None
 
     @staticmethod
-    def from_json(profiles_to_compare: List, datapath: Path) -> "ProfileMap":
-        sources = profiles_to_compare[0]
-        target = profiles_to_compare[1]
+    def from_json(profile_mapping: Dict, datapath: Path) -> "ProfileMap":
+        sources = profile_mapping["mappings"]["sourceprofiles"]
+        target = profile_mapping["mappings"]["targetprofile"]
 
         profiles_map = ProfileMap()
         profiles_map.sources = [
             Profile.from_dict(source, datapath) for source in sources
         ]
         profiles_map.target = Profile.from_dict(target, datapath)
+        profiles_map.version = profile_mapping.get("version")
+        if not profiles_map.version:
+            raise ValueError("The 'version' key is not set in the configuration of the mapping. Please set the version and try again.")
+        profiles_map.last_updated = profile_mapping.get("last_updated") or datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        profiles_map.status = profile_mapping.get("status", "draft")
 
         return profiles_map
-    
     @property
     def name(self) -> str:
         return f"{', '.join(profile.name for profile in self.sources)} -> {self.target.name}"
 
 
 class Profile:
-    def __init__(self, name: str, version: str = None, canonical: str = None, simplifier_url: str = None, file_download_url: str = None) -> None:
+    def __init__(
+        self,
+        name: str,
+        version: str = None,
+        simplifier_url: str = None,
+        file_download_url: str = None,
+    ) -> None:
         self.name: str = name
         self.version: str = version
-        self.canonical: str = canonical
         self.simplifier_url: str = simplifier_url
         self.file_download_url: str = file_download_url
         self.fields: OrderedDict[str, ProfileField] = OrderedDict()
 
     def __str__(self) -> str:
-        return f"(name={self.name}, version={self.version}, canonical={self.canonical}, simplifier_url={self.simplifier_url}, file_download_url={self.file_download_url}, fields={self.fields})"
+        return f"(name={self.name}, version={self.version}, simplifier_url={self.simplifier_url}, file_download_url={self.file_download_url}, fields={self.fields})"
 
     def __repr__(self) -> str:
         return str(self)
@@ -58,16 +70,16 @@ class Profile:
     @staticmethod
     def from_dict(data: Dict, datapath: Path) -> "Profile":
         file_path = datapath / data["file"]
-        
         if not file_path.exists():
-            raise FileNotFoundError(f"The file {file_path} does not exist. Please check the file path and try again.")
+            raise FileNotFoundError(
+                f"The file {file_path} does not exist. Please check the file path and try again."
+            )
 
         content = json.loads(file_path.read_text())
 
         profile = Profile(
             name=content["name"],
             version=data.get("version"),
-            canonical=data.get("canonical"),
             simplifier_url=data.get("simplifier_url"),
             file_download_url=data.get("file_download_url")
         )
@@ -79,12 +91,6 @@ class Profile:
         )
 
         return profile
-
-
-
-
-
-
 
 
 class ProfileField:
@@ -122,7 +128,7 @@ def _extract_elements(elements: List[Dict]) -> List[ProfileField]:
 
         # Ignore elements where the cardinality is set to zero
         if element["max"] == "0" or element["max"] == 0:
-            # Extend list of nodes that are remove due cardinality
+            # Extend list of nodes that are removed due to cardinality
             ignore_paths.append(path)
             continue
 
@@ -160,3 +166,4 @@ def _get_extension(element: dict, path: str) -> str:
             if type_entry.get("code") == "Extension" and "profile" in type_entry:
                 for profile in type_entry["profile"]:
                     return ProfileField(name=path, extension=profile)
+    return None
