@@ -1,4 +1,7 @@
 {
+    "version": "0.9",
+    "modified": "2024-05-31 12:24:01",
+    "status": "draft",
     "manual_entries_file": "manual_entries.json",
     "data_dir": "data",
     "html_output_dir": "docs",
@@ -6,16 +9,42 @@
     "profiles_to_compare": [
         [
             [
-                "HealthcareServiceApoVzd.json"
+                {
+                    "file": "HealthcareServiceApoVzd.json",
+                    "version": "1.0",
+                    "canonical": "https://gematik.de/fhir/apovzd/StructureDefinition/HealthcareServiceApoVzd",
+                    "simplifier_url": "unknown",
+                    "file_download_url": "unknown"
+                }
             ],
-            "HealthcareServiceDirectory.json"
+
+            {
+                "file": "HealthcareServiceDirectory.json",
+                "version": "0.11.6",
+                "canonical": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
+                "simplifier_url": "https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6/files/2433299",
+                "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2433299&format=json"
+            }
+            
         ],
         [
             [
-                "LocationApoVzd.json"
+                {
+                    "file": "LocationApoVzd.json",
+                    "version": "1.0",
+                    "canonical": "https://gematik.de/fhir/apovzd/StructureDefinition/LocationApoVzd",
+                    "simplifier_url": "unknown",
+                    "file_download_url": "unknown"
+                }
             ],
-            "LocationDirectory.json"
+            {
+                "file": "LocationDirectory.json",
+                "version": "0.11.6",
+                "canonical": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
+                "simplifier_url": "https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6/files/2433304",
+                "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2433304&format=json"
+            }
         ]
     ],
-    "show_remarks": false
+    "show_remarks": true
 }

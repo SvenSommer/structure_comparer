@@ -1,36 +1,14 @@
 {
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceDirectory",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
-    }
-  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "0.10.2",
+  "version": "0.11.6",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "active",
   "publisher": "gematik GmbH",
   "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
   "fhirVersion": "4.0.1",
-  "mapping": [
-    {
-      "identity": "rim",
-      "uri": "http://hl7.org/v3",
-      "name": "RIM Mapping"
-    },
-    {
-      "identity": "w5",
-      "uri": "http://hl7.org/fhir/fivews",
-      "name": "FiveWs Pattern Mapping"
-    }
-  ],
   "kind": "resource",
   "abstract": false,
   "type": "HealthcareService",
@@ -1421,6 +1399,15 @@
           }
         ],
         "path": "HealthcareService.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
         "short": "External identifiers for this item",
         "definition": "External identifiers for this item.",
         "min": 0,
@@ -1448,6 +1435,80 @@
             "source": "http://hl7.org/fhir/StructureDefinition/Element"
           }
         ],
+        "mustSupport": true,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          },
+          {
+            "identity": "v2",
+            "map": "CX / EI (occasionally, more often EI maps to a resource id or a URL)"
+          },
+          {
+            "identity": "rim",
+            "map": "II - The Identifier class is a little looser than the v3 type II because it allows URIs as well as registered OIDs or GUIDs.  Also maps to Role[classCode=IDENT]"
+          },
+          {
+            "identity": "servd",
+            "map": "Identifier"
+          },
+          {
+            "identity": "w5",
+            "map": "FiveWs.identifier"
+          },
+          {
+            "identity": "rim",
+            "map": ".id"
+          }
+        ]
+      },
+      {
+        "id": "HealthcareService.identifier:TelematikID",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+            "valueCode": "normative"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+            "valueCode": "4.0.0"
+          }
+        ],
+        "path": "HealthcareService.identifier",
+        "sliceName": "TelematikID",
+        "short": "An identifier intended for computation",
+        "definition": "An identifier - identifies some entity uniquely and unambiguously. Typically this is used for business identifiers.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "HealthcareService.identifier",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
+            ]
+          }
+        ],
+        "condition": [
+          "ele-1"
+        ],
+        "constraint": [
+          {
+            "key": "ele-1",
+            "severity": "error",
+            "human": "All FHIR elements must have a @value or children",
+            "expression": "hasValue() or (children().count() > id.count())",
+            "xpath": "@value|f:*|h:div",
+            "source": "http://hl7.org/fhir/StructureDefinition/Element"
+          }
+        ],
+        "mustSupport": true,
         "isSummary": true,
         "mapping": [
           {
@@ -1639,6 +1700,7 @@
             "source": "http://hl7.org/fhir/StructureDefinition/Element"
           }
         ],
+        "mustSupport": true,
         "isSummary": true,
         "binding": {
           "extension": [
@@ -1647,9 +1709,9 @@
               "valueString": "service-category"
             }
           ],
-          "strength": "example",
+          "strength": "required",
           "description": "A category of the service(s) that could be provided.",
-          "valueSet": "http://hl7.org/fhir/ValueSet/service-category"
+          "valueSet": "http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare"
         },
         "mapping": [
           {
@@ -1722,6 +1784,7 @@
             "source": "http://hl7.org/fhir/StructureDefinition/Element"
           }
         ],
+        "mustSupport": true,
         "isSummary": true,
         "binding": {
           "extension": [
@@ -1730,9 +1793,9 @@
               "valueString": "service-type"
             }
           ],
-          "strength": "example",
+          "strength": "extensible",
           "description": "Additional details about where the content was created (e.g. clinical specialty).",
-          "valueSet": "http://hl7.org/fhir/ValueSet/service-type"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceTypeVS"
         },
         "mapping": [
           {
@@ -1807,9 +1870,9 @@
               "valueString": "service-specialty"
             }
           ],
-          "strength": "extensible",
+          "strength": "required",
           "description": "A specialty that a healthcare service may provide.",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceSpecialtyVS"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareSpecialtyTypeVS"
         },
         "mapping": [
           {
@@ -3186,6 +3249,7 @@
             "source": "http://hl7.org/fhir/StructureDefinition/Element"
           }
         ],
+        "mustSupport": true,
         "binding": {
           "extension": [
             {
@@ -3193,8 +3257,9 @@
               "valueString": "ServiceCharacteristic"
             }
           ],
-          "strength": "example",
-          "description": "A custom attribute that could be provided at a service (e.g. Wheelchair accessibiliy)."
+          "strength": "required",
+          "description": "A custom attribute that could be provided at a service (e.g. Wheelchair accessibiliy).",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/healthcareservice-characteristic-vs"
         },
         "mapping": [
           {
@@ -4306,18 +4371,66 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "HealthcareService.identifier",
+        "path": "HealthcareService.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.identifier:TelematikID",
+        "path": "HealthcareService.identifier",
+        "sliceName": "TelematikID",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "HealthcareService.providedBy",
         "path": "HealthcareService.providedBy",
         "min": 1,
         "mustSupport": true
       },
       {
+        "id": "HealthcareService.category",
+        "path": "HealthcareService.category",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare"
+        }
+      },
+      {
+        "id": "HealthcareService.type",
+        "path": "HealthcareService.type",
+        "mustSupport": true,
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceTypeVS"
+        }
+      },
+      {
         "id": "HealthcareService.specialty",
         "path": "HealthcareService.specialty",
         "mustSupport": true,
         "binding": {
-          "strength": "extensible",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceSpecialtyVS"
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareSpecialtyTypeVS"
         }
       },
       {
@@ -4354,6 +4467,15 @@
         "id": "HealthcareService.serviceProvisionCode",
         "path": "HealthcareService.serviceProvisionCode",
         "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.characteristic",
+        "path": "HealthcareService.characteristic",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/healthcareservice-characteristic-vs"
+        }
       },
       {
         "id": "HealthcareService.communication",

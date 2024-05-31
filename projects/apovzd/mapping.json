@@ -1,6 +1,6 @@
 {
-    "HealthcareServiceApoVzd": {
-        "HealthcareServiceDirectory": {
+    "HealthcareServiceApoVzd|1.0": {
+        "HealthcareServiceDirectory|0.11.6": {
             "mappings": {
                 "HealthcareService.active": "HealthcareService.active",
                 "HealthcareService.appointmentRequired": "HealthcareService.appointmentRequired",
@@ -37,8 +37,8 @@
             "remove": []
         }
     },
-    "LocationApoVzd": {
-        "LocationDirectory": {
+    "LocationApoVzd|1.0": {
+        "LocationDirectory|0.11.6": {
             "mappings": {
                 "Location.address": "Location.address",
                 "Location.alias": "Location.alias",
