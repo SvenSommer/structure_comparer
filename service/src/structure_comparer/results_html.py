@@ -31,9 +31,6 @@ def flatten_profiles(profiles: List[str]) -> str:
     return "_".join(profiles)
 
 def create_results_html(
-    mapping_version: str, 
-    mapping_modified: str,
-    mapping_status: str,
     structured_mapping: Dict[str, Comparison],
     results_folder: str | Path,
     show_remarks: bool,
@@ -74,9 +71,9 @@ def create_results_html(
             "source_profiles": comp.source_profiles,
             "entries": entries,
             "show_remarks": show_remarks,
-            "mapping_version": mapping_version,
-            "mapping_modified": mapping_modified,
-            "mapping_status": mapping_status
+            "mapping_version": "TODO",
+            "mapping_modified": "TODO",
+            "mapping_status": "TODO"
         }
 
         content = template.render(**data)
