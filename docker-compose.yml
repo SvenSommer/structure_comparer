@@ -1,0 +1,8 @@
+services:
+  service:
+    image: structure-comparer-service
+    build: service
+    volumes:
+      - "${PWD}/projects/erp:/app/projects"
+    ports:
+      - "${SERVICE_PORT}:5000"

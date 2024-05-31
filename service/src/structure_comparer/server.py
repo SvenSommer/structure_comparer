@@ -3,9 +3,9 @@ from pathlib import Path
 from flask import Flask, jsonify, request
 from flask_swagger import swagger
 from flask_cors import CORS
+import logging
 
-
-from structure_comparer.serve import (
+from .serve import (
     get_classifications_int,
     get_mapping_fields_int,
     get_mapping_int,
@@ -14,6 +14,8 @@ from structure_comparer.serve import (
     post_mapping_field_int,
     post_mapping_classification_int,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def create_app(project_dir: Path):
@@ -370,8 +372,15 @@ def get_args():
     return parser.parse_args()
 
 
-if __name__ == "__main__":
+def start():
     args = get_args()
+    logger.info(f"Using project dir: {args.project_dir}")
 
     app = create_app(project_dir=args.project_dir)
+
+    logger.info("Starting serer, listing on :5000")
     app.run()
+
+
+if __name__ == "__main__":
+    start()
