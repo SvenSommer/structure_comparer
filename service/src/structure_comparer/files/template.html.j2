@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mapping: {{ target_profile }}</title>
+    <title>Mapping: {{ ', '.join(source_profiles) }} in {{ target_profile }}</title>
     <link rel='stylesheet' type='text/css' href='./{{ css_file }}'>
     <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
     <script type='text/javascript' src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
@@ -11,8 +11,8 @@
 
 <body>
     <h2>Mapping: {{ ', '.join(source_profiles) }} in {{ target_profile }}</h2>
-    <p>Version: {{mapping_version}}, Status: {{mapping_status}}</p>
-    <p>Last updated on: {{mapping_modified}}</p>
+    <p>Version: {{version}}, Status: {{status}}</p>
+    <p>Last updated on: {{last_updated}}</p>
     <table id='resultsTable' class='display' style='width:100%'>
         <thead>
             <tr>

@@ -93,6 +93,9 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
     # Extract which profiles are Source Profiles and which is the target one
     comparison.source_profiles = source_profiles
     comparison.target_profile = target_profile
+    comparison.version = profile_map.version
+    comparison.last_updated = profile_map.last_updated
+    comparison.status = profile_map.status
 
     for source_profile in [profile_map.target] + profile_map.sources:
         for _, field in source_profile.fields.items():

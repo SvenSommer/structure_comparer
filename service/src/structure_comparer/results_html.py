@@ -71,9 +71,9 @@ def create_results_html(
             "source_profiles": comp.source_profiles,
             "entries": entries,
             "show_remarks": show_remarks,
-            "mapping_version": "TODO",
-            "mapping_modified": "TODO",
-            "mapping_status": "TODO"
+            "version": comp.version,
+            "last_updated": comp.last_updated,
+            "status": comp.status
         }
 
         content = template.render(**data)

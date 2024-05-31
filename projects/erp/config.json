@@ -6,7 +6,6 @@
     "profiles_to_compare": [
         {
             "version": "0.9",
-            "last_updated": "2021-09-15 12:00:00",
             "status": "draft",
             "mappings": {
                 "sourceprofiles": [

@@ -54,11 +54,17 @@ class Comparison:
     source_profiles: List[str]
     target_profile: str
     fields: OrderedDict[str, ComparisonField]
+    version: str
+    last_updated: str
+    status: str
 
     def __init__(self) -> None:
         self.source_profiles = []
         self.target_profile = None
         self.fields = OrderedDict()
+        self.version = None
+        self.last_updated = None
+        self.status = None
 
     @property
     def name(self) -> str:
@@ -70,6 +76,9 @@ class Comparison:
             "source_profiles": self.source_profiles,
             "target_profile": self.target_profile,
             "fields": [field.dict() for field in self.fields.values()],
+            "version": self.version,
+            "last_updated": self.last_updated,
+            "status": self.status,
         }
 
 
