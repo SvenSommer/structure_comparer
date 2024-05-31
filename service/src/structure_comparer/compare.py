@@ -82,13 +82,16 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
     return comparison
 
 
+def generate_profile_key(profile) -> str:
+    return f"{profile.name}|{profile.version}"
+
 def generate_comparison(profile_map: ProfileMap) -> Comparison:
     # Iterate over all mappings (each entry are mapping to the same profile)
     comparison = Comparison()
 
     # Generate the profile names and versions
-    source_profiles = [f"{profile.name}|{profile.version}" for profile in profile_map.sources]
-    target_profile = f"{profile_map.target.name}|{profile_map.target.version}"
+    source_profiles = [generate_profile_key(profile) for profile in profile_map.sources]
+    target_profile = generate_profile_key(profile_map.target)
 
     # Extract which profiles are Source Profiles and which is the target one
     comparison.source_profiles = source_profiles
@@ -107,7 +110,7 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
                 comparison.fields[field.name] = ComparisonField(field.name, field.id)
                 comparison.fields[field.name].extension = field.extension
 
-            profile_key = f"{source_profile.name}|{source_profile.version}"
+            profile_key = generate_profile_key(source_profile)
             comparison.fields[field.name].profiles[profile_key] = ProfileField(
                 name=profile_key, present=True
             )
