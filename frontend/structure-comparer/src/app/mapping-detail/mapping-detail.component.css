@@ -94,10 +94,6 @@ table tbody tr.row-manual {
     color: #000000;
 }
 
-table tbody tr.row-other {
-    background-color: #FFBDAD; /* Hellerer Ton für alle 'row-other' Zeilen */
-    color: #000000;
-}
 
 table tbody tr.row-empty {
     background-color: #F0F0F0; /* Hellerer Ton für alle 'row-empty' Zeilen */

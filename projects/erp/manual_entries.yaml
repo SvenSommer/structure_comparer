@@ -107,8 +107,8 @@ MedicationRequest.identifier:rxPrescriptionProcessIdentifier:
   remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
     zusammen. Er wird durch den Medication Service vergeben.
 MedicationRequest.insurance.reference:
-  classification: other
-  remark: Wird beim Mapping ignoriert
+  classification: not_use
+  remark: Eigenschaft und Wert(e) werden NICHT übernommen
 MedicationRequest.intent:
   classification: fixed
   extra: filler-order
