@@ -65,10 +65,18 @@ def get_classifications_int():
 def get_mappings_int(project):
     return {
         "mappings": [
-            {"id": id, "name": profile_map.name, "url": f"/mapping/{id}"}
+            {
+                "id": id,
+                "name": profile_map.name,
+                "url": f"/mapping/{id}",
+                "version": profile_map.version,
+                "last_updated": profile_map.last_updated,
+                "status": profile_map.status,
+            }
             for id, profile_map in project.comparisons.items()
         ]
     }
+
 
 
 def get_mapping_int(project, id: str):
