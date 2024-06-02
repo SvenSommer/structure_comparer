@@ -7,7 +7,6 @@ class Classification(Enum):
     EMPTY = "empty"
     EXTENSION = "extension"
     MANUAL = "manual"
-    OTHER = "other"
     COPY_FROM = "copy_from"
     COPY_TO = "copy_to"
     FIXED = "fixed"

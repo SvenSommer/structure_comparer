@@ -192,7 +192,6 @@ export class MappingDetailComponent implements OnInit {
       empty: 'row-empty',
       extension: 'row-extension',
       manual: 'row-manual',
-      other: 'row-other',
       copy_from: 'row-copy-from',
       copy_to: 'row-copy-to',
       fixed: 'row-fixed',

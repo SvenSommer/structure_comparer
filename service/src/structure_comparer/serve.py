@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 from uuid import uuid4
+from flask import jsonify
+from structure_comparer.consts import INSTRUCTIONS, REMARKS
 
 from .classification import Classification
 from .data.comparison import Comparison, get_field_by_id
@@ -49,7 +51,15 @@ def load_profiles(project):
 
 
 def get_classifications_int():
-    return {"classifications": [c.value for c in Classification]}
+    classifications = [
+        {
+            "value": c.value,
+            "remark": REMARKS[c],
+            "instruction": INSTRUCTIONS[c]
+        }
+        for c in Classification
+    ]
+    return jsonify({"classifications": classifications})
 
 
 def get_mappings_int(project):

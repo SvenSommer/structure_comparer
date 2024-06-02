@@ -45,7 +45,15 @@ def create_app(project_dir: Path):
               properties:
                 classifications:
                   type: array
-                  items: string
+                  items:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                      remark:
+                        type: string
+                      instruction:
+                        type: string
         """
         return get_classifications_int()
 
