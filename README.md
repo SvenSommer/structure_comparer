@@ -6,11 +6,13 @@ This document provides a summary of the differences between the KBV E-Rezept pro
 
 ## Hosted Results
 The results of the comparison can be viewed directly through these hosted links:
-- [KBV_PR_FOR_Organization in OrganizationDirectory](https://svensommer.github.io/structure_comparer/projects/erp/docs/OrganizationDirectory.html)
-- [KBV_PR_FOR_Practitioner in PractitionerDirectory](https://svensommer.github.io/structure_comparer/projects/erp/docs/PractitionerDirectory.html)
-- [KBV_PR_ERP_Prescription in EPAMedicationRequest](https://svensommer.github.io/structure_comparer/projects/erp/docs/EPAMedicationRequest.html)
-- [KBV_PR_ERP_Medication_Compounding, KBV_PR_ERP_Medication_FreeText, KBV_PR_ERP_Medication_Ingredient, KBV_PR_ERP_Medication_PZN in EPAMedication](https://svensommer.github.io/structure_comparer/projects/erp/docs/EPAMedication.html)
-- [GEM_ERP_PR_MedicationDispense in EPAMedicationDispense](https://svensommer.github.io/structure_comparer/projects/erp/docs/EPAMedicationDispense.html)
+- [GEM_ERP_PR_MedicationDispense|1.3.1 -> EPAMedicationDispense|1.0.2-rc1](https://svensommer.github.io/structure_comparer/projects/erp/docs/GEM_ERP_PR_MedicationDispense|1.3.1_to_EPAMedicationDispense|1.0.2-rc1.html)
+- [GEM_ERP_PR_MedicationDispense|1.3.1 -> GEM_ERP_PR_MedicationDispense|1.4.0-rc1](https://svensommer.github.io/structure_comparer/projects/erp/docs/GEM_ERP_PR_MedicationDispense|1.3.1_to_GEM_ERP_PR_MedicationDispense|1.4.0-rc1.html)
+- [GEM_ERP_PR_MedicationDispense|1.4.0-rc1 -> EPAMedicationDispense|1.0.2-rc1](https://svensommer.github.io/structure_comparer/projects/erp/docs/GEM_ERP_PR_MedicationDispense|1.4.0-rc1_to_EPAMedicationDispense|1.0.2-rc1.html)
+- [KBV_PR_ERP_Medication_Compounding|1.1.0, KBV_PR_ERP_Medication_FreeText|1.1.0, KBV_PR_ERP_Medication_Ingredient|1.1.0, KBV_PR_ERP_Medication_PZN|1.1.0 -> EPAMedication|1.0.2-rc1](https://svensommer.github.io/structure_comparer/projects/erp/docs/KBV_PR_ERP_Medication_Compounding|1.1.0_KBV_PR_ERP_Medication_FreeText|1.1.0_KBV_PR_ERP_Medication_Ingredient|1.1.0_KBV_PR_ERP_Medication_PZN|1.1.0_to_EPAMedication|1.0.2-rc1.html)
+- [KBV_PR_ERP_Prescription|1.1.0 -> EPAMedicationRequest|1.0.2-rc1](https://svensommer.github.io/structure_comparer/projects/erp/docs/KBV_PR_ERP_Prescription|1.1.0_to_EPAMedicationRequest|1.0.2-rc1.html)
+- [KBV_PR_FOR_Organization|1.1.0 -> OrganizationDirectory|0.11.7](https://svensommer.github.io/structure_comparer/projects/erp/docs/KBV_PR_FOR_Organization|1.1.0_to_OrganizationDirectory|0.11.7.html)
+- [KBV_PR_FOR_Practitioner|1.1.0 -> PractitionerDirectory|0.11.7](https://svensommer.github.io/structure_comparer/projects/erp/docs/KBV_PR_FOR_Practitioner|1.1.0_to_PractitionerDirectory|0.11.7.html)
 
 ## Web-App
 
