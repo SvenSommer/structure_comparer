@@ -47,7 +47,7 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
                     profile_handling[DICT_FIXED][field] = presences.extra
 
                 # Otherwise only if value is present
-                elif presences.profiles[source_profile].present:
+                elif presences.profiles[source_profile.generate_profile_key()].present:
                     # If field should be used and remark was not changed
                     if (
                         presences.classification
@@ -76,15 +76,15 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
                     else:
                         # Log fall-through
                         logger.warning(
-                            f"gen_mapping_dict: did not handle {source_profile}:{mappings.target_profile}:{field}:{presences.classification} {presences.remark}"
+                            f"gen_mapping_dict: did not handle {source_profile.generate_profile_key()}:{mappings.target_profile.generate_profile_key()}:{field}:{presences.classification} {presences.remark}"
                         )
 
-            if source_profile not in result:
-                result[source_profile] = {}
-            result[source_profile][mappings.target_profile] = {
+            if source_profile.generate_profile_key() not in result:
+                result[source_profile.generate_profile_key()] = {}
+            result[source_profile.generate_profile_key()][mappings.target_profile.generate_profile_key()] = {
                 "version": mappings.version,
                 "status": mappings.status,
-                "last_updated":mappings.last_updated,
+                "last_updated": mappings.last_updated,
                 "mappings": profile_handling[DICT_MAPPINGS],
                 "fixed": profile_handling[DICT_FIXED],
                 "remove": profile_handling[DICT_REMOVE],

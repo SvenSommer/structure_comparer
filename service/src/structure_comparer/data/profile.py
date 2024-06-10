@@ -91,7 +91,12 @@ class Profile:
         )
 
         return profile
-
+    
+    def generate_profile_key(self) -> str:
+        return f"{self.name}|{self.version}"
+    
+    def __lt__(self, other: 'Profile') -> bool:
+        return self.generate_profile_key() < other.generate_profile_key()
 
 class ProfileField:
     def __init__(self, name: str, extension: str = None) -> None:

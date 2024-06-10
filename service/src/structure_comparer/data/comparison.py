@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from dataclasses import dataclass
+from profile import Profile
 from typing import Dict, List
 
 from structure_comparer.classification import Classification
@@ -51,8 +52,8 @@ class ComparisonField:
 
 @dataclass(init=False)
 class Comparison:
-    source_profiles: List[str]
-    target_profile: str
+    source_profiles: List[Profile]
+    target_profile: Profile
     fields: OrderedDict[str, ComparisonField]
     version: str
     last_updated: str
@@ -68,13 +69,21 @@ class Comparison:
 
     @property
     def name(self) -> str:
-        return f"{', '.join(profile for profile in self.source_profiles)} -> {self.target_profile}"
+        return f"{', '.join(profile.name for profile in self.source_profiles)} -> {self.target_profile.name}"
 
     def dict(self) -> dict:
         return {
             "name": self.name,
-            "source_profiles": self.source_profiles,
-            "target_profile": self.target_profile,
+            "source_profiles": [{
+                "name": profile.name,
+                "version": profile.version,
+                "simplifier_url": profile.simplifier_url
+            } for profile in self.source_profiles],
+            "target_profile": {
+                "name": self.target_profile.name,
+                "version": self.target_profile.version,
+                "simplifier_url": self.target_profile.simplifier_url
+            },
             "fields": [field.dict() for field in self.fields.values()],
             "version": self.version,
             "last_updated": self.last_updated,

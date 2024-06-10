@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mapping: {{ ', '.join(source_profiles) }} in {{ target_profile }}</title>
+    <title>Mapping: {% for profile in source_profiles %}{{ profile['key'] }}{% if not loop.last %}, {% endif %}{% endfor %} in {{ target_profile['key'] }}</title>
     <link rel='stylesheet' type='text/css' href='./{{ css_file }}'>
     <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
     <script type='text/javascript' src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
@@ -10,36 +10,74 @@
 </head>
 
 <body>
-    <h2>Mapping: {{ ', '.join(source_profiles) }} in {{ target_profile }}</h2>
-    <p>Version: {{version}}, Status: {{status}}</p>
-    <p>Last updated on: {{last_updated}}</p>
+    <h2>Mapping: {% for profile in source_profiles %}{{ profile['key'] }}{% if not loop.last %}, {% endif %}{% endfor %} in {{ target_profile['key'] }}</h2>
+    
+    <div style="display: flex; justify-content: space-between;">
+        <div style="flex: 1;">
+            {% if source_profiles|length > 1 %}
+            <p>Source Profiles:</p>
+            <ul>
+                {% for profile in source_profiles %}
+                <li><a href="{{ profile['url'] }}" target="_blank">{{ profile['key'] }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Source Profile: 
+            <a href="{{ source_profiles[0]['url'] }}" target="_blank">{{ source_profiles[0]['key'] }}</a></p>
+            {% endif %}
+            
+            <p>Target Profile: <a href="{{ target_profile['url'] }}" target="_blank">{{ target_profile['key'] }}</a></p>
+            <p>Version: {{version}}, Status: {{status}}</p>
+            <p>Last updated on: {{last_updated}}</p>
+        </div>
+        <div style="flex: 1; display: flex; justify-content: flex-end;">
+            <div>
+                <h3>Color Legend:</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><span style="background-color: #DCF6E9;">&nbsp;&nbsp;&nbsp;&nbsp;</span> No action needed for this mapping</li>
+                    <li><span style="background-color: #FFEBE6;">&nbsp;&nbsp;&nbsp;&nbsp;</span> Information will be removed or left empty in this mapping</li>
+                    <li><span style="background-color: #FFFAE6;">&nbsp;&nbsp;&nbsp;&nbsp;</span> Special action required for this mapping</li>
+                    <li><span style="background-color: #ACF0F9;">&nbsp;&nbsp;&nbsp;&nbsp;</span> Caution reference!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
     <table id='resultsTable' class='display' style='width:100%'>
         <thead>
             <tr>
-                <th>Property</th>
-                {% for profile in source_profiles -%}
-                <th>{{ profile }}</th>
-                {% endfor -%}
-                <th>{{target_profile }}</th>
-                {%- if show_remarks %}
-                <th>Remarks</th>
-                {%- endif %}
+                <th rowspan="2">Property</th>
+                {% if source_profiles|length > 1 %}
+                <th colspan="{{ source_profiles|length }}" style="text-align: center;">Source Profiles</th>
+                {% else %}
+                <th style="text-align: center;">Source Profile</th>
+                {% endif %}
+                <th style="text-align: center;">Target Profile</th>
+                {% if show_remarks %}
+                <th rowspan="2">Remarks</th>
+                {% endif %}
+            </tr>
+            <tr>
+                {% for profile in source_profiles %}
+                <th style="text-align: center;">{{ profile['key'] }}</th>
+                {% endfor %}
+                <th style="text-align: center;">{{ target_profile['key'] }}</th>
             </tr>
         </thead>
         <tbody>
-            {% for prop, entry in entries.items() -%}
+            {% for prop, entry in entries.items() %}
             <tr class="{{ entry.css_class }}">
                 <td>{{ prop }}
-                    {%- if entry.extension is not none %}<br>({{ entry.extension | format_links }}){% endif -%}
+                    {% if entry.extension is not none %}<br>({{ entry.extension | format_links }}){% endif %}
                 </td>
-                {%- for profile in source_profiles + [target_profile] %}
-                <td>{% if entry.profiles[profile].present %}X{% endif %}</td>
-                {%- endfor %}
-                {%- if show_remarks %}
-                <td>{{ entry.remark | format_links}}</td>
-                {%- endif %}
+                {% for profile in source_profiles + [target_profile] %}
+                <td style="text-align: center;">{% if entry.profiles[profile['key']].present %}X{% endif %}</td>
+                {% endfor %}
+                {% if show_remarks %}
+                <td>{{ entry.remark | format_links }}</td>
+                {% endif %}
             </tr>
-            {% endfor -%}
+            {% endfor %}
         </tbody>
     </table>
     <script>

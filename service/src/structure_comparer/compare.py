@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from pathlib import Path
+from profile import Profile
 from typing import Dict, List
 import logging
 
@@ -82,25 +83,19 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
     return comparison
 
 
-def generate_profile_key(profile) -> str:
-    return f"{profile.name}|{profile.version}"
-
 def generate_comparison(profile_map: ProfileMap) -> Comparison:
-    # Iterate over all mappings (each entry are mapping to the same profile)
     comparison = Comparison()
 
-    # Generate the profile names and versions
-    source_profiles = [generate_profile_key(profile) for profile in profile_map.sources]
-    target_profile = generate_profile_key(profile_map.target)
 
-    # Extract which profiles are Source Profiles and which is the target one
-    comparison.source_profiles = source_profiles
-    comparison.target_profile = target_profile
+    comparison.source_profiles = profile_map.sources
+    comparison.target_profile = profile_map.target
     comparison.version = profile_map.version
     comparison.last_updated = profile_map.last_updated
     comparison.status = profile_map.status
 
-    for source_profile in [profile_map.target] + profile_map.sources:
+    all_profiles = [profile_map.target] + profile_map.sources
+
+    for source_profile in all_profiles:
         for _, field in source_profile.fields.items():
             # Check if field already exists or needs to be created
             if (
@@ -110,7 +105,7 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
                 comparison.fields[field.name] = ComparisonField(field.name, field.id)
                 comparison.fields[field.name].extension = field.extension
 
-            profile_key = generate_profile_key(source_profile)
+            profile_key = source_profile.generate_profile_key()
             comparison.fields[field.name].profiles[profile_key] = ProfileField(
                 name=profile_key, present=True
             )
@@ -121,15 +116,15 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
     )
 
     # Fill the absent profiles
-    all_profiles = source_profiles + [target_profile]
+    all_profiles_keys = [profile.generate_profile_key() for profile in all_profiles]
     for field in comparison.fields.values():
-        for profile in all_profiles:
-            if profile not in field.profiles:
-                field.profiles[profile] = ProfileField(name=profile, present=False)
+        for profile_key in all_profiles_keys:
+            if profile_key not in field.profiles:
+                field.profiles[profile_key] = ProfileField(name=profile_key, present=False)
 
     # Add remarks and classifications for each field
     for field in comparison.fields.values():
-        _fill_allowed_classifications(field, source_profiles, target_profile)
+        _fill_allowed_classifications(field, all_profiles_keys[:-1], all_profiles_keys[-1])
 
     return comparison
 
@@ -167,8 +162,8 @@ def _fill_allowed_classifications(
 
 def _classify_remark_field(
     field: ComparisonField,
-    source_profiles: List[str],
-    target_profile: str,
+    source_profiles: List[Profile],
+    target_profile: Profile,
     comparison: Comparison,
 ) -> None:
     """
@@ -213,17 +208,17 @@ def _classify_remark_field(
         # If the classification needs extra information derived that information from the parent
         if classification in EXTRA_CLASSIFICATIONS:
 
-            # Cut away the common part with the parent and add the remainer to the parents extra
+            # Cut away the common part with the parent and add the remainder to the parent's extra
             extra = parent_update.extra + field.name[len(parent) :]
             remark = REMARKS[classification].format(extra)
 
-        # Else use the parents remark
+        # Else use the parent's remark
         else:
             remark = parent_update.remark
 
     # If present in any of the source profiles
-    elif any([field.profiles[profile].present for profile in source_profiles]):
-        if field.profiles[target_profile].present:
+    elif any([field.profiles[profile.generate_profile_key()].present for profile in source_profiles]):
+        if field.profiles[target_profile.generate_profile_key()].present:
             classification = Classification.USE
         else:
             classification = Classification.EXTENSION
