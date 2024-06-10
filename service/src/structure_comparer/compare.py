@@ -83,9 +83,6 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
     return comparison
 
 
-def generate_profile_key(profile) -> str:
-    return f"{profile.name}|{profile.version}"
-
 def generate_comparison(profile_map: ProfileMap) -> Comparison:
     comparison = Comparison()
 
