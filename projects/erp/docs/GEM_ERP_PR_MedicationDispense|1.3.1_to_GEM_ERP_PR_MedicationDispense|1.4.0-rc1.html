@@ -20,8 +20,8 @@
             
             
             <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.4.0-rc1/files/2447785" target="_blank">GEM_ERP_PR_MedicationDispense|1.4.0-rc1</a></p>
-            <p>Version: 0.9, Status: draft</p>
-            <p>Last updated on: 2024-06-10 14:33:17</p>
+            <p>Version: 0.91, Status: draft</p>
+            <p>Last updated on: 2024-06-10 21:50:08</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -239,7 +239,7 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-manual">
                 <td>MedicationDispense.extension:rxPrescriptionProcessIdentifier
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension</a>)
                 </td>
@@ -249,11 +249,11 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben.</td>
                 
             </tr>
             
-            <tr class="row-use">
+            <tr class="row-manual">
                 <td>MedicationDispense.identifier
                     
                 </td>
@@ -263,11 +263,11 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden übernommen</td>
+                <td>Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-manual">
                 <td>MedicationDispense.identifier:RxOriginatorProcessIdentifier
                     
                 </td>
@@ -277,11 +277,11 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Der Identifier wird vom Medication Service erstellt und verknüpft jede Prescription-ID mit der ursprünglichen Resource-ID zur genauen Nachverfolgung der Medikationsdaten im Format resourceID + ‘_’ + prescriptionID.</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>MedicationDispense.identifier:prescriptionID
                     
                 </td>
@@ -291,7 +291,7 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Wird aus MedicationDispense.extension:rxPrescriptionProcessIdentifier übernommen</td>
                 
             </tr>
             
@@ -389,7 +389,7 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td></td>
+                <td>Wird auf die meta.profile Angabe des Zielprofils umgeschrieben</td>
                 
             </tr>
             

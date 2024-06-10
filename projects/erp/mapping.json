@@ -3,54 +3,63 @@
         "EPAMedication|1.0.2-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "Medication.amount": "Medication.amount",
+                "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:totalQuantity",
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
-                "Medication.code.coding:verordnungskategorieCode": "Medication.code.coding:verordnungskategorieCode",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:drugCategory",
+                "Medication.extension:Herstellungsanweisung": "Medication.extension:manufacturingInstructions",
+                "Medication.extension:Impfstoff": "Medication.extension:isVaccine",
+                "Medication.extension:Verpackung": "Medication.extension:packaging",
                 "Medication.form": "Medication.form",
                 "Medication.ingredient": "Medication.ingredient",
+                "Medication.ingredient.extension:Darreichungsform": "Medication.ingredient.extension:darreichungsform",
                 "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN",
+                "Medication.ingredient.strength.extension:MengeFreitext": "Medication.ingredient.strength.extension:amountText",
                 "Medication.meta": "Medication.meta"
             },
             "fixed": {},
             "remove": [
-                "Medication.amount.numerator.extension:Gesamtmenge",
-                "Medication.ingredient.extension:Darreichungsform",
-                "Medication.ingredient.strength.extension:MengeFreitext",
+                "Medication.code.coding:verordnungskategorieCode",
                 "Medication.meta.profile"
             ]
         }
     },
     "KBV_PR_ERP_Medication_FreeText|1.1.0": {
         "EPAMedication|1.0.2-rc1": {
-            "version": "1.0",
+            "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
-                "Medication.code.coding:verordnungskategorieCode": "Medication.code.coding:verordnungskategorieCode",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:drugCategory",
+                "Medication.extension:Impfstoff": "Medication.extension:isVaccine",
                 "Medication.form": "Medication.form",
                 "Medication.meta": "Medication.meta"
             },
             "fixed": {},
             "remove": [
+                "Medication.code.coding:verordnungskategorieCode",
                 "Medication.meta.profile"
             ]
         }
     },
     "KBV_PR_ERP_Medication_Ingredient|1.1.0": {
         "EPAMedication|1.0.2-rc1": {
-            "version": "1.0",
+            "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "Medication.amount": "Medication.amount",
+                "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
-                "Medication.code.coding:verordnungskategorieCode": "Medication.code.coding:verordnungskategorieCode",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:drugCategory",
+                "Medication.extension:Impfstoff": "Medication.extension:isVaccine",
+                "Medication.extension:Normgroesse": "Medication.extension:normSizeCode",
                 "Medication.form": "Medication.form",
                 "Medication.ingredient": "Medication.ingredient",
                 "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK",
@@ -58,37 +67,40 @@
             },
             "fixed": {},
             "remove": [
-                "Medication.amount.numerator.extension:Packungsgroesse",
+                "Medication.code.coding:verordnungskategorieCode",
                 "Medication.meta.profile"
             ]
         }
     },
     "KBV_PR_ERP_Medication_PZN|1.1.0": {
         "EPAMedication|1.0.2-rc1": {
-            "version": "1.0",
+            "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "Medication.amount": "Medication.amount",
+                "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
                 "Medication.code.coding:pznCode": "Medication.code.coding:PZN",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:drugCategory",
+                "Medication.extension:Impfstoff": "Medication.extension:isVaccine",
+                "Medication.extension:Normgroesse": "Medication.extension:normSizeCode",
                 "Medication.form": "Medication.form",
                 "Medication.form.coding:kbvDarreichungsform": "Medication.form.coding:KBVDarreichungsform",
                 "Medication.meta": "Medication.meta"
             },
             "fixed": {},
             "remove": [
-                "Medication.amount.numerator.extension:Packungsgroesse",
                 "Medication.meta.profile"
             ]
         }
     },
     "KBV_PR_FOR_Practitioner|1.1.0": {
         "PractitionerDirectory|0.11.7": {
-            "version": "0.9",
+            "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "Practitioner.identifier": "Practitioner.identifier",
                 "Practitioner.identifier:ANR": "Practitioner.identifier:LANR",
@@ -115,9 +127,9 @@
     },
     "KBV_PR_ERP_Prescription|1.1.0": {
         "EPAMedicationRequest|1.0.2-rc1": {
-            "version": "0.9",
+            "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "MedicationRequest.authoredOn": "MedicationRequest.authoredOn",
                 "MedicationRequest.dispenseRequest": "MedicationRequest.dispenseRequest",
@@ -147,9 +159,9 @@
     },
     "KBV_PR_FOR_Organization|1.1.0": {
         "OrganizationDirectory|0.11.7": {
-            "version": "0.9",
+            "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "Organization.address": "Organization.address",
                 "Organization.address:Strassenanschrift": "Organization.address:Strassenanschrift",
@@ -174,9 +186,9 @@
     },
     "GEM_ERP_PR_MedicationDispense|1.3.1": {
         "GEM_ERP_PR_MedicationDispense|1.4.0-rc1": {
-            "version": "0.9",
+            "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -187,7 +199,6 @@
                 "MedicationDispense.detectedIssue": "MedicationDispense.detectedIssue",
                 "MedicationDispense.dosageInstruction": "MedicationDispense.dosageInstruction",
                 "MedicationDispense.eventHistory": "MedicationDispense.eventHistory",
-                "MedicationDispense.identifier": "MedicationDispense.identifier",
                 "MedicationDispense.implicitRules": "MedicationDispense.implicitRules",
                 "MedicationDispense.language": "MedicationDispense.language",
                 "MedicationDispense.location": "MedicationDispense.location",
@@ -212,9 +223,9 @@
             "remove": []
         },
         "EPAMedicationDispense|1.0.2-rc1": {
-            "version": "0.9",
+            "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -225,7 +236,6 @@
                 "MedicationDispense.detectedIssue": "MedicationDispense.detectedIssue",
                 "MedicationDispense.dosageInstruction": "MedicationDispense.dosageInstruction",
                 "MedicationDispense.eventHistory": "MedicationDispense.eventHistory",
-                "MedicationDispense.identifier": "MedicationDispense.identifier",
                 "MedicationDispense.implicitRules": "MedicationDispense.implicitRules",
                 "MedicationDispense.language": "MedicationDispense.language",
                 "MedicationDispense.location": "MedicationDispense.location",
@@ -255,9 +265,9 @@
     },
     "GEM_ERP_PR_MedicationDispense|1.4.0-rc1": {
         "EPAMedicationDispense|1.0.2-rc1": {
-            "version": "0.9",
+            "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-10 14:33:17",
+            "last_updated": "2024-06-10 21:50:08",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -268,10 +278,6 @@
                 "MedicationDispense.detectedIssue": "MedicationDispense.detectedIssue",
                 "MedicationDispense.dosageInstruction": "MedicationDispense.dosageInstruction",
                 "MedicationDispense.eventHistory": "MedicationDispense.eventHistory",
-                "MedicationDispense.extension:rxPrescriptionProcessIdentifier": "MedicationDispense.extension:rxPrescriptionProcessIdentifier",
-                "MedicationDispense.identifier": "MedicationDispense.identifier",
-                "MedicationDispense.identifier:RxOriginatorProcessIdentifier": "MedicationDispense.identifier:RxOriginatorProcessIdentifier",
-                "MedicationDispense.identifier:prescriptionID": "MedicationDispense.identifier:prescriptionID",
                 "MedicationDispense.implicitRules": "MedicationDispense.implicitRules",
                 "MedicationDispense.language": "MedicationDispense.language",
                 "MedicationDispense.location": "MedicationDispense.location",

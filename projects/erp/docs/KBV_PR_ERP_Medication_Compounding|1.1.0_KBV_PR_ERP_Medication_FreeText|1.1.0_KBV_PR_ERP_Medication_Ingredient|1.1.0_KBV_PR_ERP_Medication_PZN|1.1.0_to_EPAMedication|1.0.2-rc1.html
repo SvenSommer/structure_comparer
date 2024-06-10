@@ -30,8 +30,8 @@
             
             
             <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.0.2-rc1/files/2447596" target="_blank">EPAMedication|1.0.2-rc1</a></p>
-            <p>Version: 1.0, Status: draft</p>
-            <p>Last updated on: 2024-06-10 14:33:17</p>
+            <p>Version: 0.91, Status: draft</p>
+            <p>Last updated on: 2024-06-10 21:50:08</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -273,7 +273,7 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.amount.numerator.extension:Gesamtmenge
                     <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize</a>)
                 </td>
@@ -289,11 +289,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                <td>Wird in Medication.amount.numerator.extension:totalQuantity übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.amount.numerator.extension:Packungsgroesse
                     <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize</a>)
                 </td>
@@ -309,11 +309,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                <td>Wird in Medication.amount.numerator.extension:packagingSize übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.amount.numerator.extension:packagingSize
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension</a>)
                 </td>
@@ -329,11 +329,11 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Wird aus Medication.amount.numerator.extension:Packungsgroesse übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.amount.numerator.extension:totalQuantity
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension</a>)
                 </td>
@@ -349,7 +349,7 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Wird aus Medication.amount.numerator.extension:Gesamtmenge übernommen</td>
                 
             </tr>
             
@@ -1053,7 +1053,7 @@
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>Medication.code.coding:verordnungskategorieCode
                     
                 </td>
@@ -1069,11 +1069,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Extension und Wert(e) werden übernommen</td>
+                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>Medication.code.coding:verordnungskategorieCode.code
                     
                 </td>
@@ -1089,11 +1089,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Extension und Wert(e) werden übernommen</td>
+                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-not-use">
                 <td>Medication.code.coding:verordnungskategorieCode.system
                     
                 </td>
@@ -1109,7 +1109,7 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Extension und Wert(e) werden übernommen</td>
+                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
                 
             </tr>
             
@@ -1273,7 +1273,7 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.extension:Arzneimittelkategorie
                     <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category</a>)
                 </td>
@@ -1289,11 +1289,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                <td>Wird in Medication.extension:drugCategory übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.extension:Herstellungsanweisung
                     <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_CompoundingInstruction" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_CompoundingInstruction</a>)
                 </td>
@@ -1309,11 +1309,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                <td>Wird in Medication.extension:manufacturingInstructions übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.extension:Impfstoff
                     <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine</a>)
                 </td>
@@ -1329,7 +1329,7 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                <td>Wird in Medication.extension:isVaccine übernommen</td>
                 
             </tr>
             
@@ -1353,7 +1353,7 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.extension:Normgroesse
                     <br>(<a href="http://fhir.de/StructureDefinition/normgroesse" target="_blank">http://fhir.de/StructureDefinition/normgroesse</a>)
                 </td>
@@ -1369,11 +1369,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                <td>Wird in Medication.extension:normSizeCode übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.extension:Verpackung
                     <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Packaging" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Packaging</a>)
                 </td>
@@ -1389,11 +1389,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                <td>Wird in Medication.extension:packaging übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.extension:drugCategory
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension</a>)
                 </td>
@@ -1409,11 +1409,11 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Wird aus Medication.extension:Arzneimittelkategorie übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.extension:isVaccine
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension</a>)
                 </td>
@@ -1429,11 +1429,11 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Wird aus Medication.extension:Impfstoff übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.extension:manufacturingInstructions
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-manufacturing-instructions-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-manufacturing-instructions-extension</a>)
                 </td>
@@ -1449,11 +1449,11 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Wird aus Medication.extension:Herstellungsanweisung übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.extension:normSizeCode
                     <br>(<a href="http://fhir.de/StructureDefinition/normgroesse" target="_blank">http://fhir.de/StructureDefinition/normgroesse</a>)
                 </td>
@@ -1469,7 +1469,7 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Wird aus Medication.extension:Normgroesse übernommen</td>
                 
             </tr>
             
@@ -2033,7 +2033,7 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.ingredient.extension:Darreichungsform
                     <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Form" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Form</a>)
                 </td>
@@ -2049,11 +2049,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                <td>Wird in Medication.ingredient.extension:darreichungsform übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.ingredient.extension:darreichungsform
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension</a>)
                 </td>
@@ -2069,7 +2069,7 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Wird aus Medication.ingredient.extension:Darreichungsform übernommen</td>
                 
             </tr>
             
@@ -3053,7 +3053,7 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.extension:MengeFreitext
                     <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount</a>)
                 </td>
@@ -3069,11 +3069,11 @@
                 <td style="text-align: center;"></td>
                 
                 
-                <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                <td>Wird in Medication.ingredient.strength.extension:amountText übernommen</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.extension:amountText
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension</a>)
                 </td>
@@ -3089,7 +3089,7 @@
                 <td style="text-align: center;">X</td>
                 
                 
-                <td>Bleibt vorerst leer, da keine Quellinformationen vorhanden sind</td>
+                <td>Wird aus Medication.ingredient.strength.extension:MengeFreitext übernommen</td>
                 
             </tr>
             
