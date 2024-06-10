@@ -72,6 +72,21 @@ def get_mappings_int(project):
                 "version": profile_map.version,
                 "last_updated": profile_map.last_updated,
                 "status": profile_map.status,
+                "sources": [
+                    {
+                        "profile_key": profile.profile_key,
+                        "name": profile.name,
+                        "version": profile.version,
+                        "simplifier_url": profile.simplifier_url
+                    }
+                    for profile in profile_map.sources
+                ],
+                "target": {
+                    "profile_key": profile_map.target.profile_key,
+                    "name": profile_map.target.name,
+                    "version": profile_map.target.version,
+                    "simplifier_url": profile_map.target.simplifier_url
+                }
             }
             for id, profile_map in project.comparisons.items()
         ]

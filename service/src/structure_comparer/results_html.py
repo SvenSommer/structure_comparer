@@ -67,15 +67,15 @@ def create_results_html(
         data = {
             "css_file": STYLE_FILE_NAME,
             "target_profile": {
-                "key": comp.target_profile.generate_profile_key(),
-                "url": comp.target_profile.simplifier_url,
+                "key": comp.target.profile_key,
+                "url": comp.target.simplifier_url,
             },
             "source_profiles": [
                 {
-                    "key": profile.generate_profile_key(),
+                    "key": profile.profile_key,
                     "url": profile.simplifier_url,
                 }
-                for profile in comp.source_profiles
+                for profile in comp.sources
             ],
             "entries": entries,
             "show_remarks": show_remarks,

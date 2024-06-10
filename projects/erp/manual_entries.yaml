@@ -1,23 +1,15 @@
 Medication.amount.numerator.extension:Gesamtmenge:
-  classification: not_use
+  classification: copy_to
+  extra: Medication.amount.numerator.extension:totalQuantity
 Medication.amount.numerator.extension:Packungsgroesse:
-  classification: not_use
-Medication.extension:Arzneimittelkategorie:
-  classification: not_use
-Medication.extension:Herstellungsanweisung:
-  classification: not_use
-Medication.extension:Impfstoff:
-  classification: not_use
-Medication.extension:Kategorie:
-  classification: not_use
-Medication.extension:Normgroesse:
-  classification: not_use
-Medication.extension:Verpackung:
-  classification: not_use
-Medication.ingredient.extension:Darreichungsform:
-  classification: not_use
-Medication.ingredient.strength.extension:MengeFreitext:
-  classification: not_use
+  classification: copy_to
+  extra: Medication.amount.numerator.extension:packagingSize
+Medication.amount.numerator.extension:packagingSize:
+  classification: copy_from
+  extra: Medication.amount.numerator.extension:Packungsgroesse
+Medication.amount.numerator.extension:totalQuantity:
+  classification: copy_from
+  extra: Medication.amount.numerator.extension:Gesamtmenge
 Medication.code.coding:PZN:
   classification: copy_from
   extra: Medication.code.coding:pznCode
@@ -36,20 +28,39 @@ Medication.code.coding:pznCode.userSelected:
   classification: empty
 Medication.code.coding:pznCode.version:
   classification: empty
+Medication.code.coding:verordnungskategorieCode:
+  classification: not_use
 Medication.extension:Arzneimittelkategorie:
-  classification: not_use
+  classification: copy_to
+  extra: Medication.extension:drugCategory
 Medication.extension:Herstellungsanweisung:
-  classification: not_use
+  classification: copy_to
+  extra: Medication.extension:manufacturingInstructions
 Medication.extension:Impfstoff:
-  classification: not_use
+  classification: copy_to
+  extra: Medication.extension:isVaccine
 Medication.extension:Kategorie:
   classification: not_use
 Medication.extension:Normgroesse:
-  classification: not_use
+  classification: copy_to
+  extra: Medication.extension:normSizeCode
 Medication.extension:RxPrescriptionProcessIdentifier:
   classification: medication_service
 Medication.extension:Verpackung:
-  classification: not_use
+  classification: copy_to
+  extra: Medication.extension:packaging
+Medication.extension:drugCategory:
+  classification: copy_from
+  extra: Medication.extension:Arzneimittelkategorie
+Medication.extension:isVaccine:
+  classification: copy_from
+  extra: Medication.extension:Impfstoff
+Medication.extension:manufacturingInstructions:
+  classification: copy_from
+  extra: Medication.extension:Herstellungsanweisung
+Medication.extension:normSizeCode:
+  classification: copy_from
+  extra: Medication.extension:Normgroesse
 Medication.form.coding:KBVDarreichungsform:
   classification: copy_from
   extra: Medication.form.coding:kbvDarreichungsform
@@ -62,6 +73,12 @@ Medication.form.coding:kbvDarreichungsform:
   extra: Medication.form.coding:KBVDarreichungsform
 Medication.identifier:ePAMedicationUniqueIdentifier:
   classification: medication_service
+Medication.ingredient.extension:Darreichungsform:
+  classification: copy_to
+  extra: Medication.ingredient.extension:darreichungsform
+Medication.ingredient.extension:darreichungsform:
+  classification: copy_from
+  extra: Medication.ingredient.extension:Darreichungsform
 Medication.ingredient.item[x]:itemCodeableConcept.coding:ASK:
   classification: copy_from
   extra: Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode
@@ -88,10 +105,33 @@ Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode:
   extra: Medication.ingredient.item[x]:itemCodeableConcept.coding:PZN
 Medication.ingredient.item[x]:itemReference.reference:
   classification: empty
+Medication.ingredient.strength.extension:MengeFreitext:
+  classification: copy_to
+  extra: Medication.ingredient.strength.extension:amountText
+Medication.ingredient.strength.extension:amountText:
+  classification: copy_from
+  extra: Medication.ingredient.strength.extension:MengeFreitext
 Medication.manufacturer.reference:
   classification: empty
 Medication.meta.profile:
   classification: not_use
+MedicationDispense.meta.profile:
+  classification: manual
+  remark: Wird auf die meta.profile Angabe des Zielprofils umgeschrieben  
+MedicationDispense.extension:rxPrescriptionProcessIdentifier:
+  classification: manual
+  extra: MedicationDispense.identifier:prescriptionID
+  remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
+    zusammen. Er wird durch den Medication Service vergeben.
+MedicationDispense.identifier:prescriptionID:
+  classification: copy_from
+  extra: MedicationDispense.extension:rxPrescriptionProcessIdentifier
+MedicationDispense.identifier:
+  classification: manual
+  remark: Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID übernommen
+MedicationDispense.identifier:RxOriginatorProcessIdentifier:
+  classification: manual
+  remark: Der Identifier wird vom Medication Service erstellt und verknüpft jede Prescription-ID mit der ursprünglichen Resource-ID zur genauen Nachverfolgung der Medikationsdaten im Format resourceID + ‘_’ + prescriptionID.
 MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen:
   classification: not_use
 MedicationRequest.extension:BVG:
@@ -108,7 +148,7 @@ MedicationRequest.identifier:rxPrescriptionProcessIdentifier:
     zusammen. Er wird durch den Medication Service vergeben.
 MedicationRequest.insurance.reference:
   classification: not_use
-  remark: Eigenschaft und Wert(e) werden NICHT übernommen
+  remark: "Eigenschaft und Wert(e) werden NICHT \xFCbernommen"
 MedicationRequest.intent:
   classification: fixed
   extra: filler-order
