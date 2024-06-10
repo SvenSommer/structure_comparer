@@ -29,7 +29,7 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
     for mappings in structured_mapping.values():
         # Iterate over the source profiles
         # These will be the roots of the mappings
-        for source_profile in sorted(mappings.source_profiles):
+        for source_profile in sorted(mappings.sources):
             profile_handling = {DICT_MAPPINGS: {}, DICT_FIXED: {}, DICT_REMOVE: []}
             for field, presences in mappings.fields.items():
 
@@ -47,7 +47,7 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
                     profile_handling[DICT_FIXED][field] = presences.extra
 
                 # Otherwise only if value is present
-                elif presences.profiles[source_profile.generate_profile_key()].present:
+                elif presences.profiles[source_profile.profile_key].present:
                     # If field should be used and remark was not changed
                     if (
                         presences.classification
@@ -76,12 +76,12 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
                     else:
                         # Log fall-through
                         logger.warning(
-                            f"gen_mapping_dict: did not handle {source_profile.generate_profile_key()}:{mappings.target_profile.generate_profile_key()}:{field}:{presences.classification} {presences.remark}"
+                            f"gen_mapping_dict: did not handle {source_profile.profile_key}:{mappings.target.profile_key}:{field}:{presences.classification} {presences.remark}"
                         )
 
-            if source_profile.generate_profile_key() not in result:
-                result[source_profile.generate_profile_key()] = {}
-            result[source_profile.generate_profile_key()][mappings.target_profile.generate_profile_key()] = {
+            if source_profile.profile_key not in result:
+                result[source_profile.profile_key] = {}
+            result[source_profile.profile_key][mappings.target.profile_key] = {
                 "version": mappings.version,
                 "status": mappings.status,
                 "last_updated": mappings.last_updated,

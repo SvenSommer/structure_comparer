@@ -73,13 +73,48 @@ def create_app(project_dir: Path):
                 - id
                 - name
                 - url
+                - version
+                - last_updated
+                - status
+                - sources
+                - target
               properties:
                 id:
                   type: string
                 name:
                   type: string
                 url:
-                    type: string
+                  type: string
+                version:
+                  type: string
+                last_updated:
+                  type: string
+                status:
+                  type: string
+                sources:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      profile_key:
+                        type: string
+                      simplifier_url:
+                        type: string
+                      version:
+                        type: string
+                target:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    profile_key:
+                      type: string
+                    simplifier_url:
+                      type: string
+                    version:
+                      type: string
         responses:
           200:
             description: Available mappings
@@ -92,7 +127,7 @@ def create_app(project_dir: Path):
                   items:
                     $ref: "#/definitions/OverviewMapping"
         """
-        return get_mappings_int(app.project)
+        return jsonify(get_mappings_int(app.project))
 
     @app.route("/mapping/<id>", methods=["GET"])
     def get_mapping(id: str):

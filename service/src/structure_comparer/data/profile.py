@@ -42,10 +42,12 @@ class ProfileMap:
         profiles_map.status = profile_mapping.get("status", "draft")
 
         return profiles_map
+    
     @property
     def name(self) -> str:
-        return f"{', '.join(profile.name for profile in self.sources)} -> {self.target.name}"
-
+        source_profiles = ', '.join(f"{profile.name}|{profile.version}" for profile in self.sources)
+        target_profile = f"{self.target.name}|{self.target.version}"
+        return f"{source_profiles} -> {target_profile}"
 
 class Profile:
     def __init__(
@@ -92,11 +94,12 @@ class Profile:
 
         return profile
     
-    def generate_profile_key(self) -> str:
+    @property
+    def profile_key(self) -> str:
         return f"{self.name}|{self.version}"
     
     def __lt__(self, other: 'Profile') -> bool:
-        return self.generate_profile_key() < other.generate_profile_key()
+        return self.profile_key < other.profile_key
 
 class ProfileField:
     def __init__(self, name: str, extension: str = None) -> None:

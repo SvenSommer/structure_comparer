@@ -52,16 +52,16 @@ class ComparisonField:
 
 @dataclass(init=False)
 class Comparison:
-    source_profiles: List[Profile]
-    target_profile: Profile
+    sources: List[Profile]
+    target: Profile
     fields: OrderedDict[str, ComparisonField]
     version: str
     last_updated: str
     status: str
 
     def __init__(self) -> None:
-        self.source_profiles = []
-        self.target_profile = None
+        self.sources = []
+        self.target = None
         self.fields = OrderedDict()
         self.version = None
         self.last_updated = None
@@ -69,20 +69,23 @@ class Comparison:
 
     @property
     def name(self) -> str:
-        return f"{', '.join(profile.name for profile in self.source_profiles)} -> {self.target_profile.name}"
-
+        source_profiles = ', '.join(f"{profile.name}|{profile.version}" for profile in self.sources)
+        target_profile = f"{self.target.name}|{self.target.version}"
+        return f"{source_profiles} -> {target_profile}"
     def dict(self) -> dict:
         return {
             "name": self.name,
-            "source_profiles": [{
+            "sources": [{
                 "name": profile.name,
+                "profile_key": profile.profile_key,
                 "version": profile.version,
                 "simplifier_url": profile.simplifier_url
-            } for profile in self.source_profiles],
-            "target_profile": {
-                "name": self.target_profile.name,
-                "version": self.target_profile.version,
-                "simplifier_url": self.target_profile.simplifier_url
+            } for profile in self.sources],
+            "target": {
+                "name": self.target.name,
+                "profile_key": self.target.profile_key,
+                "version": self.target.version,
+                "simplifier_url": self.target.simplifier_url
             },
             "fields": [field.dict() for field in self.fields.values()],
             "version": self.version,
