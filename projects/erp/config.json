@@ -48,6 +48,44 @@
             "mappings": {
                 "sourceprofiles": [
                     {
+                        "file": "KBV_PR_ERP_Medication_Compounding|1.1.0.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212814",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2212814&format=json"
+                    },
+                    {
+                        "file": "KBV_PR_ERP_Medication_FreeText|1.1.0.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212815",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2212815&format=json"
+                    },
+                    {
+                        "file": "KBV_PR_ERP_Medication_Ingredient|1.1.0.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212816",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2212816&format=json"
+                    },
+                    {
+                        "file": "KBV_PR_ERP_Medication_PZN|1.1.0.json",
+                        "version": "1.1.0",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212817",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2212817&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "GEM_ERP_PR_Medication|1.4.0-rc1.json",
+                    "version": "1.4.0-rc1",
+                    "simplifier_url": "https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.4.0-rc1/files/2447784",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2447784&format=json"
+                }
+            }
+        },
+        {
+            "version": "0.91",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
                         "file": "KBV_PR_FOR_Practitioner|1.1.0.json",
                         "version": "1.1.0",
                         "simplifier_url": "https://simplifier.net/packages/kbv.ita.for/1.1.0/files/720095",
