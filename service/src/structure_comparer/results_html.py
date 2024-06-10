@@ -66,8 +66,17 @@ def create_results_html(
 
         data = {
             "css_file": STYLE_FILE_NAME,
-            "target_profile": comp.target_profile,
-            "source_profiles": comp.source_profiles,
+            "target_profile": {
+                "key": comp.target_profile.generate_profile_key(),
+                "url": comp.target_profile.simplifier_url,
+            },
+            "source_profiles": [
+                {
+                    "key": profile.generate_profile_key(),
+                    "url": profile.simplifier_url,
+                }
+                for profile in comp.source_profiles
+            ],
             "entries": entries,
             "show_remarks": show_remarks,
             "version": comp.version,
@@ -77,9 +86,11 @@ def create_results_html(
 
         content = template.render(**data)
 
-        source_profiles_flat = flatten_profiles(comp.source_profiles)
-        html_file = results_folder / f"{source_profiles_flat}_to_{comp.target_profile}.html"
+        source_profiles_flat = flatten_profiles([profile['key'] for profile in data['source_profiles']])
+        html_file = results_folder / f"{source_profiles_flat}_to_{data['target_profile']['key']}.html"
         html_file.write_text(content)
+
+
 
 
 def format_links(text: str) -> str:
