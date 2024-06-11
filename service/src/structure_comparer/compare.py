@@ -1,19 +1,19 @@
+import logging
 from collections import OrderedDict
 from pathlib import Path
 from profile import Profile
 from typing import Dict, List
-import logging
 
 from .classification import Classification
+from .consts import REMARKS
 from .data.comparison import Comparison, ComparisonField, ProfileField
 from .data.profile import ProfileMap
-from .consts import REMARKS
 from .helpers import split_parent_child
 from .manual_entries import (
     MANUAL_ENTRIES,
     MANUAL_ENTRIES_CLASSIFICATION,
-    MANUAL_ENTRIES_REMARK,
     MANUAL_ENTRIES_EXTRA,
+    MANUAL_ENTRIES_REMARK,
 )
 
 MANUAL_SUFFIXES = ["reference", "profile"]
@@ -78,20 +78,15 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
 
     # Iterate over all mappings (each entry are mapping to the same profile)
     comparison = generate_comparison(profile_map)
-    fill_classification_remark(comparison)
+
+    manual_entries = MANUAL_ENTRIES.entries.get(comparison.id)
+    fill_classification_remark(comparison, manual_entries)
 
     return comparison
 
 
 def generate_comparison(profile_map: ProfileMap) -> Comparison:
-    comparison = Comparison()
-
-
-    comparison.sources = profile_map.sources
-    comparison.target = profile_map.target
-    comparison.version = profile_map.version
-    comparison.last_updated = profile_map.last_updated
-    comparison.status = profile_map.status
+    comparison = Comparison(profile_map)
 
     all_profiles = [profile_map.target] + profile_map.sources
 
@@ -120,20 +115,22 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
     for field in comparison.fields.values():
         for profile_key in all_profiles_keys:
             if profile_key not in field.profiles:
-                field.profiles[profile_key] = ProfileField(name=profile_key, present=False)
+                field.profiles[profile_key] = ProfileField(
+                    name=profile_key, present=False
+                )
 
     # Add remarks and classifications for each field
     for field in comparison.fields.values():
-        _fill_allowed_classifications(field, all_profiles_keys[:-1], all_profiles_keys[-1])
+        _fill_allowed_classifications(
+            field, all_profiles_keys[:-1], all_profiles_keys[-1]
+        )
 
     return comparison
 
 
-def fill_classification_remark(comparison: Comparison):
+def fill_classification_remark(comparison: Comparison, manual_entries: Dict):
     for field in comparison.fields.values():
-        _classify_remark_field(
-            field, comparison.sources, comparison.target, comparison
-        )
+        _classify_remark_field(field, comparison, manual_entries)
 
 
 def _fill_allowed_classifications(
@@ -161,10 +158,7 @@ def _fill_allowed_classifications(
 
 
 def _classify_remark_field(
-    field: ComparisonField,
-    source_profiles: List[Profile],
-    target_profile: Profile,
-    comparison: Comparison,
+    field: ComparisonField, comparison: Comparison, manual_entries: Dict
 ) -> None:
     """
     Classify and get the remark for the property
@@ -181,8 +175,8 @@ def _classify_remark_field(
     parent, child = split_parent_child(field.name)
 
     # If there is a manual entry for this property, use it
-    if field.name in MANUAL_ENTRIES:
-        manual_entry = MANUAL_ENTRIES[field.name]
+    if field.name in manual_entries:
+        manual_entry = manual_entries[field.name]
         classification = manual_entry.get(
             MANUAL_ENTRIES_CLASSIFICATION, Classification.MANUAL
         )
@@ -217,8 +211,10 @@ def _classify_remark_field(
             remark = parent_update.remark
 
     # If present in any of the source profiles
-    elif any([field.profiles[profile.profile_key].present for profile in source_profiles]):
-        if field.profiles[target_profile.profile_key].present:
+    elif any(
+        [field.profiles[profile.profile_key].present for profile in comparison.sources]
+    ):
+        if field.profiles[comparison.target.profile_key].present:
             classification = Classification.USE
         else:
             classification = Classification.EXTENSION

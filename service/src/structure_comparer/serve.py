@@ -1,20 +1,18 @@
 import json
 from pathlib import Path
 from uuid import uuid4
+
 from flask import jsonify
 from structure_comparer.consts import INSTRUCTIONS, REMARKS
 
 from .classification import Classification
+from .compare import fill_classification_remark, generate_comparison
+from .compare import load_profiles as _load_profiles
 from .data.comparison import Comparison, get_field_by_id
 from .manual_entries import (
     MANUAL_ENTRIES,
     MANUAL_ENTRIES_CLASSIFICATION,
     MANUAL_ENTRIES_EXTRA,
-)
-from .compare import (
-    load_profiles as _load_profiles,
-    generate_comparison,
-    fill_classification_remark,
 )
 
 
@@ -52,11 +50,7 @@ def load_profiles(project):
 
 def get_classifications_int():
     classifications = [
-        {
-            "value": c.value,
-            "remark": REMARKS[c],
-            "instruction": INSTRUCTIONS[c]
-        }
+        {"value": c.value, "remark": REMARKS[c], "instruction": INSTRUCTIONS[c]}
         for c in Classification
     ]
     return jsonify({"classifications": classifications})
@@ -77,7 +71,7 @@ def get_mappings_int(project):
                         "profile_key": profile.profile_key,
                         "name": profile.name,
                         "version": profile.version,
-                        "simplifier_url": profile.simplifier_url
+                        "simplifier_url": profile.simplifier_url,
                     }
                     for profile in profile_map.sources
                 ],
@@ -85,13 +79,12 @@ def get_mappings_int(project):
                     "profile_key": profile_map.target.profile_key,
                     "name": profile_map.target.name,
                     "version": profile_map.target.version,
-                    "simplifier_url": profile_map.target.simplifier_url
-                }
+                    "simplifier_url": profile_map.target.simplifier_url,
+                },
             }
             for id, profile_map in project.comparisons.items()
         ]
     }
-
 
 
 def get_mapping_int(project, id: str):
