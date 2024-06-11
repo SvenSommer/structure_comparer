@@ -1,9 +1,9 @@
-from collections import OrderedDict
+import datetime
 import json
+from collections import OrderedDict
 from pathlib import Path
 from typing import Dict, List
 from uuid import uuid4
-import datetime
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]
 IGNORE_SLICES = [
@@ -19,6 +19,7 @@ IGNORE_SLICES = [
 
 class ProfileMap:
     def __init__(self) -> None:
+        self.id: str = None
         self.sources: List[Profile] = []
         self.target: Profile = None
         self.version: str = None
@@ -31,23 +32,31 @@ class ProfileMap:
         target = profile_mapping["mappings"]["targetprofile"]
 
         profiles_map = ProfileMap()
+        profiles_map.id = profile_mapping["id"]
         profiles_map.sources = [
             Profile.from_dict(source, datapath) for source in sources
         ]
         profiles_map.target = Profile.from_dict(target, datapath)
         profiles_map.version = profile_mapping.get("version")
         if not profiles_map.version:
-            raise ValueError("The 'version' key is not set in the configuration of the mapping. Please set the version and try again.")
-        profiles_map.last_updated = profile_mapping.get("last_updated") or (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
+            raise ValueError(
+                "The 'version' key is not set in the configuration of the mapping. Please set the version and try again."
+            )
+        profiles_map.last_updated = profile_mapping.get("last_updated") or (
+            datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=2)
+        ).strftime("%Y-%m-%d %H:%M:%S")
         profiles_map.status = profile_mapping.get("status", "draft")
 
         return profiles_map
-    
+
     @property
     def name(self) -> str:
-        source_profiles = ', '.join(f"{profile.name}|{profile.version}" for profile in self.sources)
+        source_profiles = ", ".join(
+            f"{profile.name}|{profile.version}" for profile in self.sources
+        )
         target_profile = f"{self.target.name}|{self.target.version}"
         return f"{source_profiles} -> {target_profile}"
+
 
 class Profile:
     def __init__(
@@ -83,7 +92,7 @@ class Profile:
             name=content["name"],
             version=data.get("version"),
             simplifier_url=data.get("simplifier_url"),
-            file_download_url=data.get("file_download_url")
+            file_download_url=data.get("file_download_url"),
         )
 
         extracted_elements = _extract_elements(content["snapshot"]["element"])
@@ -93,13 +102,14 @@ class Profile:
         )
 
         return profile
-    
+
     @property
     def profile_key(self) -> str:
         return f"{self.name}|{self.version}"
-    
-    def __lt__(self, other: 'Profile') -> bool:
+
+    def __lt__(self, other: "Profile") -> bool:
         return self.profile_key < other.profile_key
+
 
 class ProfileField:
     def __init__(self, name: str, extension: str = None) -> None:

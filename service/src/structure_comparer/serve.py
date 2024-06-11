@@ -46,7 +46,7 @@ def read_manual_entries(project):
 def load_profiles(project):
     profile_maps = _load_profiles(project.profiles_to_compare_list, project.data_dir)
     project.comparisons = {
-        str(uuid4()): generate_comparison(entry) for entry in profile_maps.values()
+        entry.id: generate_comparison(entry) for entry in profile_maps.values()
     }
 
 
