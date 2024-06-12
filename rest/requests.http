@@ -82,7 +82,7 @@ Content-Type: application/json
 ###
 
 # @name post_copy_from
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
@@ -94,7 +94,7 @@ Content-Type: application/json
 
 
 # @name post_copy_to
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
@@ -106,7 +106,7 @@ Content-Type: application/json
 
 # @name post_fixed
 
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
@@ -118,7 +118,7 @@ Content-Type: application/json
 
 # @name post_use
 
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
@@ -129,7 +129,7 @@ Content-Type: application/json
 
 # @name post_not_use
 
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
@@ -140,7 +140,7 @@ Content-Type: application/json
 
 # @name post_empty
 
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
