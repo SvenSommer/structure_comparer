@@ -146,3 +146,14 @@ Content-Type: application/json
 {
     "action": "empty"
 }
+###
+
+# @name post_fixed_example
+
+POST http://{{host}}/mapping/aeeb2f06-297e-4ed9-b189-d0030fd883fe/field/bf249962-ae81-4fc5-a151-84abf1a3b152/classification
+Content-Type: application/json
+
+{
+    "action": "fixed",
+    "value": "fixed-value"
+}
