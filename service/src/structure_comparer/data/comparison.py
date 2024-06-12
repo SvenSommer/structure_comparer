@@ -50,15 +50,7 @@ class ComparisonField:
         return result
 
 
-# @dataclass(init=False)
 class Comparison:
-    # sources: List[Profile]
-    # target: Profile
-    # fields: OrderedDict[str, ComparisonField]
-    # version: str
-    # last_updated: str
-    # status: str
-
     def __init__(self, profile_map: ProfileMap = None) -> None:
         self.id: str = None
         self.sources: List[Profile] = []
