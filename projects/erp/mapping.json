@@ -3,7 +3,7 @@
         "EPAMedication|1.0.2-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:totalQuantity",
@@ -29,7 +29,7 @@
         "GEM_ERP_PR_Medication|1.4.0-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:totalQuantity",
@@ -57,7 +57,7 @@
         "EPAMedication|1.0.2-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
@@ -75,7 +75,7 @@
         "GEM_ERP_PR_Medication|1.4.0-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
@@ -95,7 +95,7 @@
         "EPAMedication|1.0.2-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -118,7 +118,7 @@
         "GEM_ERP_PR_Medication|1.4.0-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -143,7 +143,7 @@
         "EPAMedication|1.0.2-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -165,7 +165,7 @@
         "GEM_ERP_PR_Medication|1.4.0-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -189,7 +189,7 @@
         "PractitionerDirectory|0.11.7": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Practitioner.identifier": "Practitioner.identifier",
                 "Practitioner.identifier:ANR": "Practitioner.identifier:LANR",
@@ -218,7 +218,7 @@
         "EPAMedicationRequest|1.0.2-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "MedicationRequest.authoredOn": "MedicationRequest.authoredOn",
                 "MedicationRequest.dispenseRequest": "MedicationRequest.dispenseRequest",
@@ -250,7 +250,7 @@
         "OrganizationDirectory|0.11.7": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "Organization.address": "Organization.address",
                 "Organization.address:Strassenanschrift": "Organization.address:Strassenanschrift",
@@ -277,7 +277,7 @@
         "GEM_ERP_PR_MedicationDispense|1.4.0-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -314,7 +314,7 @@
         "EPAMedicationDispense|1.0.2-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -356,7 +356,7 @@
         "EPAMedicationDispense|1.0.2-rc1": {
             "version": "0.91",
             "status": "draft",
-            "last_updated": "2024-06-12 08:03:02",
+            "last_updated": "2024-06-12 10:55:29",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
