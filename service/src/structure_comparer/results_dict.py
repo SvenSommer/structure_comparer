@@ -82,6 +82,7 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
             if source_profile.profile_key not in result:
                 result[source_profile.profile_key] = {}
             result[source_profile.profile_key][mappings.target.profile_key] = {
+                "id": mappings.id,
                 "version": mappings.version,
                 "status": mappings.status,
                 "last_updated": mappings.last_updated,
