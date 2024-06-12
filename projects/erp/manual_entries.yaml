@@ -272,6 +272,25 @@ aeeb2f06-297e-4ed9-b189-d0030fd883fe:
   MedicationDispense.identifier:RxOriginatorProcessIdentifier:
     classification: manual
     remark: Der Identifier wird vom Medication Service erstellt und verknüpft jede Prescription-ID mit der ursprünglichen Resource-ID zur genauen Nachverfolgung der Medikationsdaten im Format resourceID + ‘_’ + prescriptionID.
+db59e5db-b93d-4a34-82b3-948bb1656392:
+  MedicationDispense.meta.profile:
+    classification: manual
+    remark: Wird auf die meta.profile Angabe des Zielprofils umgeschrieben
+  MedicationDispense.extension:rxPrescriptionProcessIdentifier:
+    classification: manual
+    extra: MedicationDispense.identifier:prescriptionID
+    remark:
+      Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
+      zusammen. Er wird durch den Medication Service vergeben.
+  MedicationDispense.identifier:prescriptionID:
+    classification: copy_from
+    extra: MedicationDispense.extension:rxPrescriptionProcessIdentifier
+  MedicationDispense.identifier:
+    classification: manual
+    remark: Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID übernommen
+  MedicationDispense.identifier:RxOriginatorProcessIdentifier:
+    classification: manual
+    remark: Der Identifier wird vom Medication Service erstellt und verknüpft jede Prescription-ID mit der ursprünglichen Resource-ID zur genauen Nachverfolgung der Medikationsdaten im Format resourceID + ‘_’ + prescriptionID.
 0760ae49-8551-459b-bc65-39bfb47697f8:
   MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen:
     classification: not_use
