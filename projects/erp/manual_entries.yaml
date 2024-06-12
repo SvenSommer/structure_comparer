@@ -1,3 +1,42 @@
+0760ae49-8551-459b-bc65-39bfb47697f8:
+  MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen:
+    classification: not_use
+  MedicationRequest.extension:BVG:
+    classification: not_use
+  MedicationRequest.extension:Notdienstgebuehr:
+    classification: not_use
+  MedicationRequest.extension:Unfallinformationen:
+    classification: not_use
+  MedicationRequest.extension:Zuzahlungsstatus:
+    classification: not_use
+  MedicationRequest.identifier:rxPrescriptionProcessIdentifier:
+    classification: empty
+    remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
+      zusammen. Er wird durch den Medication Service vergeben.
+  MedicationRequest.insurance.reference:
+    classification: not_use
+    remark: "Eigenschaft und Wert(e) werden NICHT \xFCbernommen"
+  MedicationRequest.intent:
+    classification: fixed
+    extra: filler-order
+  MedicationRequest.medication[x].reference:
+    classification: empty
+  MedicationRequest.medication[x]:medicationReference:
+    classification: manual
+    remark: Die Referenz der KBV-Medikation wird durch eine Referenz auf eine EPA-Medikation
+      ersetzt.
+  MedicationRequest.medication[x]:medicationReference.reference:
+    classification: manual
+    remark: Die Referenz ergibt sich aus der neu erzeugten EPA-Medikation.
+  MedicationRequest.meta.profile:
+    classification: not_use
+  MedicationRequest.requester.reference:
+    classification: medication_service
+  MedicationRequest.subject.reference:
+    classification: medication_service
+  MedicationRequest.substitution.allowed[x]:allowedBoolean:
+    classification: empty
+    remark: "Einschr\xE4nkung wird nicht \xFCbernommen"
 10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a:
   Medication.amount.numerator.extension:Gesamtmenge:
     classification: copy_to
@@ -234,131 +273,6 @@
     classification: empty
   Medication.meta.profile:
     classification: not_use
-aeeb2f06-297e-4ed9-b189-d0030fd883fe:
-  MedicationDispense.meta.profile:
-    classification: manual
-    remark: Wird auf die meta.profile Angabe des Zielprofils umgeschrieben
-  MedicationDispense.extension:rxPrescriptionProcessIdentifier:
-    classification: manual
-    extra: MedicationDispense.identifier:prescriptionID
-    remark:
-      Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
-      zusammen. Er wird durch den Medication Service vergeben.
-  MedicationDispense.identifier:prescriptionID:
-    classification: copy_from
-    extra: MedicationDispense.extension:rxPrescriptionProcessIdentifier
-  MedicationDispense.identifier:
-    classification: manual
-    remark: Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID übernommen
-  MedicationDispense.identifier:RxOriginatorProcessIdentifier:
-    classification: manual
-    remark: Der Identifier wird vom Medication Service erstellt und verknüpft jede Prescription-ID mit der ursprünglichen Resource-ID zur genauen Nachverfolgung der Medikationsdaten im Format resourceID + ‘_’ + prescriptionID.
-86750842-3975-4344-9656-48d74c5d8a00:
-  MedicationDispense.meta.profile:
-    classification: manual
-    remark: Wird auf die meta.profile Angabe des Zielprofils umgeschrieben
-  MedicationDispense.extension:rxPrescriptionProcessIdentifier:
-    classification: manual
-    extra: MedicationDispense.identifier:prescriptionID
-    remark:
-      Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
-      zusammen. Er wird durch den Medication Service vergeben.
-  MedicationDispense.identifier:prescriptionID:
-    classification: copy_from
-    extra: MedicationDispense.extension:rxPrescriptionProcessIdentifier
-  MedicationDispense.identifier:
-    classification: manual
-    remark: Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID übernommen
-  MedicationDispense.identifier:RxOriginatorProcessIdentifier:
-    classification: manual
-    remark: Der Identifier wird vom Medication Service erstellt und verknüpft jede Prescription-ID mit der ursprünglichen Resource-ID zur genauen Nachverfolgung der Medikationsdaten im Format resourceID + ‘_’ + prescriptionID.
-db59e5db-b93d-4a34-82b3-948bb1656392:
-  MedicationDispense.meta.profile:
-    classification: manual
-    remark: Wird auf die meta.profile Angabe des Zielprofils umgeschrieben
-  MedicationDispense.extension:rxPrescriptionProcessIdentifier:
-    classification: manual
-    extra: MedicationDispense.identifier:prescriptionID
-    remark:
-      Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
-      zusammen. Er wird durch den Medication Service vergeben.
-  MedicationDispense.identifier:prescriptionID:
-    classification: copy_from
-    extra: MedicationDispense.extension:rxPrescriptionProcessIdentifier
-  MedicationDispense.identifier:
-    classification: manual
-    remark: Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID übernommen
-  MedicationDispense.identifier:RxOriginatorProcessIdentifier:
-    classification: manual
-    remark: Der Identifier wird vom Medication Service erstellt und verknüpft jede Prescription-ID mit der ursprünglichen Resource-ID zur genauen Nachverfolgung der Medikationsdaten im Format resourceID + ‘_’ + prescriptionID.
-0760ae49-8551-459b-bc65-39bfb47697f8:
-  MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen:
-    classification: not_use
-  MedicationRequest.extension:BVG:
-    classification: not_use
-  MedicationRequest.extension:Notdienstgebuehr:
-    classification: not_use
-  MedicationRequest.extension:Unfallinformationen:
-    classification: not_use
-  MedicationRequest.extension:Zuzahlungsstatus:
-    classification: not_use
-  MedicationRequest.identifier:rxPrescriptionProcessIdentifier:
-    classification: empty
-    remark:
-      Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
-      zusammen. Er wird durch den Medication Service vergeben.
-  MedicationRequest.insurance.reference:
-    classification: not_use
-    remark: "Eigenschaft und Wert(e) werden NICHT \xFCbernommen"
-  MedicationRequest.intent:
-    classification: fixed
-    extra: filler-order
-  MedicationRequest.medication[x].reference:
-    classification: empty
-  MedicationRequest.medication[x]:medicationReference:
-    classification: manual
-    remark:
-      Die Referenz der KBV-Medikation wird durch eine Referenz auf eine EPA-Medikation
-      ersetzt.
-  MedicationRequest.medication[x]:medicationReference.reference:
-    classification: manual
-    remark: Die Referenz ergibt sich aus der neu erzeugten EPA-Medikation.
-  MedicationRequest.meta.profile:
-    classification: not_use
-  MedicationRequest.requester.reference:
-    classification: medication_service
-  MedicationRequest.subject.reference:
-    classification: medication_service
-  MedicationRequest.substitution.allowed[x]:allowedBoolean:
-    classification: empty
-    remark: "Einschr\xE4nkung wird nicht \xFCbernommen"
-79595f0e-d292-4c12-9413-cb8836d7de34:
-  Organization.identifier:BSNR:
-    classification: copy_from
-    extra: Organization.identifier:Betriebsstaettennummer
-  Organization.identifier:Betriebsstaettennummer:
-    classification: copy_to
-    extra: Organization.identifier:BSNR
-  Organization.identifier:IKNR:
-    classification: copy_from
-    extra: Organization.identifier:Institutionskennzeichen
-  Organization.identifier:Institutionskennzeichen:
-    classification: copy_to
-    extra: Organization.identifier:IKNR
-  Organization.identifier:KZV-Abrechnungsnummer:
-    classification: copy_to
-    extra: Organization.identifier:KZVA
-  Organization.identifier:KZVA:
-    classification: copy_from
-    extra: Organization.identifier:KZV-Abrechnungsnummer
-  Organization.identifier:Telematik-ID:
-    classification: copy_to
-    extra: Organization.identifier:TelematikID
-  Organization.identifier:TelematikID:
-    classification: copy_from
-    extra: Organization.identifier:Telematik-ID
-  Organization.meta.profile:
-    classification: not_use
 615205d2-7288-47ce-a65a-009c37ed8447:
   Practitioner.identifier:ANR:
     classification: copy_to
@@ -434,3 +348,93 @@ db59e5db-b93d-4a34-82b3-948bb1656392:
     classification: not_use
   Practitioner.qualification:Typ:
     classification: not_use
+79595f0e-d292-4c12-9413-cb8836d7de34:
+  Organization.identifier:BSNR:
+    classification: copy_from
+    extra: Organization.identifier:Betriebsstaettennummer
+  Organization.identifier:Betriebsstaettennummer:
+    classification: copy_to
+    extra: Organization.identifier:BSNR
+  Organization.identifier:IKNR:
+    classification: copy_from
+    extra: Organization.identifier:Institutionskennzeichen
+  Organization.identifier:Institutionskennzeichen:
+    classification: copy_to
+    extra: Organization.identifier:IKNR
+  Organization.identifier:KZV-Abrechnungsnummer:
+    classification: copy_to
+    extra: Organization.identifier:KZVA
+  Organization.identifier:KZVA:
+    classification: copy_from
+    extra: Organization.identifier:KZV-Abrechnungsnummer
+  Organization.identifier:Telematik-ID:
+    classification: copy_to
+    extra: Organization.identifier:TelematikID
+  Organization.identifier:TelematikID:
+    classification: copy_from
+    extra: Organization.identifier:Telematik-ID
+  Organization.meta.profile:
+    classification: not_use
+86750842-3975-4344-9656-48d74c5d8a00:
+  MedicationDispense.extension:rxPrescriptionProcessIdentifier:
+    classification: manual
+    extra: MedicationDispense.identifier:prescriptionID
+    remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
+      zusammen. Er wird durch den Medication Service vergeben.
+  MedicationDispense.identifier:
+    classification: manual
+    remark: "Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID\
+      \ \xFCbernommen"
+  MedicationDispense.identifier:RxOriginatorProcessIdentifier:
+    classification: manual
+    remark: "Der Identifier wird vom Medication Service erstellt und verkn\xFCpft\
+      \ jede Prescription-ID mit der urspr\xFCnglichen Resource-ID zur genauen Nachverfolgung\
+      \ der Medikationsdaten im Format resourceID + \u2018_\u2019 + prescriptionID."
+  MedicationDispense.identifier:prescriptionID:
+    classification: copy_from
+    extra: MedicationDispense.extension:rxPrescriptionProcessIdentifier
+  MedicationDispense.meta.profile:
+    classification: manual
+    remark: Wird auf die meta.profile Angabe des Zielprofils umgeschrieben
+aeeb2f06-297e-4ed9-b189-d0030fd883fe:
+  MedicationDispense.extension:rxPrescriptionProcessIdentifier:
+    classification: manual
+    extra: MedicationDispense.identifier:prescriptionID
+    remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
+      zusammen. Er wird durch den Medication Service vergeben.
+  MedicationDispense.identifier:
+    classification: manual
+    remark: "Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID\
+      \ \xFCbernommen"
+  MedicationDispense.identifier:RxOriginatorProcessIdentifier:
+    classification: manual
+    remark: "Der Identifier wird vom Medication Service erstellt und verkn\xFCpft\
+      \ jede Prescription-ID mit der urspr\xFCnglichen Resource-ID zur genauen Nachverfolgung\
+      \ der Medikationsdaten im Format resourceID + \u2018_\u2019 + prescriptionID."
+  MedicationDispense.identifier:prescriptionID:
+    classification: copy_from
+    extra: MedicationDispense.extension:rxPrescriptionProcessIdentifier
+  MedicationDispense.meta.profile:
+    classification: manual
+    remark: Wird auf die meta.profile Angabe des Zielprofils umgeschrieben
+db59e5db-b93d-4a34-82b3-948bb1656392:
+  MedicationDispense.extension:rxPrescriptionProcessIdentifier:
+    classification: manual
+    extra: MedicationDispense.identifier:prescriptionID
+    remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
+      zusammen. Er wird durch den Medication Service vergeben.
+  MedicationDispense.identifier:
+    classification: manual
+    remark: "Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID\
+      \ \xFCbernommen"
+  MedicationDispense.identifier:RxOriginatorProcessIdentifier:
+    classification: manual
+    remark: "Der Identifier wird vom Medication Service erstellt und verkn\xFCpft\
+      \ jede Prescription-ID mit der urspr\xFCnglichen Resource-ID zur genauen Nachverfolgung\
+      \ der Medikationsdaten im Format resourceID + \u2018_\u2019 + prescriptionID."
+  MedicationDispense.identifier:prescriptionID:
+    classification: copy_from
+    extra: MedicationDispense.extension:rxPrescriptionProcessIdentifier
+  MedicationDispense.meta.profile:
+    classification: manual
+    remark: Wird auf die meta.profile Angabe des Zielprofils umgeschrieben

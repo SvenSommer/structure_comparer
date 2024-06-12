@@ -78,9 +78,7 @@ def compare_profile(profile_map: ProfileMap) -> Comparison:
 
     # Iterate over all mappings (each entry are mapping to the same profile)
     comparison = generate_comparison(profile_map)
-
-    manual_entries = MANUAL_ENTRIES.entries.get(comparison.id)
-    fill_classification_remark(comparison, manual_entries)
+    fill_classification_remark(comparison)
 
     return comparison
 
@@ -128,7 +126,8 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
     return comparison
 
 
-def fill_classification_remark(comparison: Comparison, manual_entries: Dict):
+def fill_classification_remark(comparison: Comparison):
+    manual_entries = MANUAL_ENTRIES.entries.get(comparison.id)
     for field in comparison.fields.values():
         _classify_remark_field(field, comparison, manual_entries)
 

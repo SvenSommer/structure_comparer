@@ -220,23 +220,24 @@ def post_mapping_classification_int(
             raise ValueError("field 'fixed' missing")
 
     # Clean up possible manual entry this was copied from before
+    manual_entries = MANUAL_ENTRIES[mapping_id]
     if (
-        field.name in MANUAL_ENTRIES.entries
-        and MANUAL_ENTRIES_EXTRA in MANUAL_ENTRIES[field.name]
+        field.name in manual_entries
+        and MANUAL_ENTRIES_EXTRA in manual_entries[field.name]
     ):
-        del MANUAL_ENTRIES.entries[MANUAL_ENTRIES[field.name][MANUAL_ENTRIES_EXTRA]]
+        del manual_entries[manual_entries[field.name][MANUAL_ENTRIES_EXTRA]]
 
     # Apply the manual entry
-    MANUAL_ENTRIES[field.name] = manual_entry
+    manual_entries[field.name] = manual_entry
 
     # Handle the partner entry for copy actions
     if action == Classification.COPY_FROM:
-        MANUAL_ENTRIES[target.name] = {
+        manual_entries[target.name] = {
             MANUAL_ENTRIES_CLASSIFICATION: Classification.COPY_TO,
             MANUAL_ENTRIES_EXTRA: field.name,
         }
     elif action == Classification.COPY_TO:
-        MANUAL_ENTRIES[target.name] = {
+        manual_entries[target.name] = {
             MANUAL_ENTRIES_CLASSIFICATION: Classification.COPY_FROM,
             MANUAL_ENTRIES_EXTRA: field.name,
         }

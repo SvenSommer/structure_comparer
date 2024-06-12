@@ -12,12 +12,40 @@ MANUAL_ENTRIES_REMARK = "remark"
 MANUAL_ENTRIES_EXTRA = "extra"
 
 
+class ManualMappings:
+    def __init__(self, data: Dict) -> None:
+        self.data = data
+
+        for value in self.data.values():
+            # Interpret the classification as an enum
+            value[MANUAL_ENTRIES_CLASSIFICATION] = Classification(
+                value[MANUAL_ENTRIES_CLASSIFICATION]
+            )
+
+    def __iter__(self):
+        return iter(self.data)
+
+    def __getitem__(self, key):
+        return self.data.get(key)
+
+    def __setitem__(self, key, value):
+        self.data[key] = value
+
+    def to_dict(self) -> Dict:
+        data = copy.deepcopy(self.data)
+        for value in data.values():
+            value[MANUAL_ENTRIES_CLASSIFICATION] = value[
+                MANUAL_ENTRIES_CLASSIFICATION
+            ].value
+        return data
+
+
 class ManualEntries:
     _data = {}
     _file: Path = None
 
     @property
-    def entries(self):
+    def entries(self) -> Dict[str, ManualMappings] | None:
         return self._data.get("entries")
 
     def read(self, file: str | Path):
@@ -30,21 +58,10 @@ class ManualEntries:
 
         self._data["entries"] = {}
         for id, mappings in data.items():
-            for value in mappings.values():
-                # Interpret the classification as an enum
-                value[MANUAL_ENTRIES_CLASSIFICATION] = Classification(
-                    value[MANUAL_ENTRIES_CLASSIFICATION]
-                )
-            self._data["entries"][id] = mappings
+            self._data["entries"][id] = ManualMappings(mappings)
 
     def write(self):
-        data = copy.deepcopy(self.entries)
-        for mapping in data.values():
-            for value in mapping.values():
-                value[MANUAL_ENTRIES_CLASSIFICATION] = value[
-                    MANUAL_ENTRIES_CLASSIFICATION
-                ].value
-
+        data = {id: mappings.to_dict() for id, mappings in self.entries.items()}
         if self._file.suffix == ".json":
             self._file.write_text(json.dumps(data, indent=4), encoding="utf-8")
         elif self._file.suffix == ".yaml":
@@ -58,20 +75,6 @@ class ManualEntries:
 
     def __setitem__(self, key, value):
         self._data["entries"][key] = value
-
-
-class ManualMappings:
-    def __init__(self, data: Dict) -> None:
-        self.data = data
-
-    def __iter__(self):
-        return iter(self.data)
-
-    def __getitem__(self, key):
-        return self.data.get(key)
-
-    def __setitem__(self, key, value):
-        self.data[key] = value
 
 
 MANUAL_ENTRIES = ManualEntries()
