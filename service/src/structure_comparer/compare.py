@@ -174,8 +174,7 @@ def _classify_remark_field(
     parent, child = split_parent_child(field.name)
 
     # If there is a manual entry for this property, use it
-    if manual_entries is not None and field.name in manual_entries:
-        manual_entry = manual_entries[field.name]
+    if manual_entries is not None and (manual_entry := manual_entries[field.name]):
         classification = manual_entry.get(
             MANUAL_ENTRIES_CLASSIFICATION, Classification.MANUAL
         )

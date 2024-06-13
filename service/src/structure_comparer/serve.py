@@ -141,7 +141,7 @@ def post_mapping_classification_int(
         )
 
     # Build the entry that should be created/updated
-    manual_entry = {MANUAL_ENTRIES_CLASSIFICATION: action}
+    new_entry = {MANUAL_ENTRIES_CLASSIFICATION: action}
     if action == Classification.COPY_FROM or action == Classification.COPY_TO:
         if target_id := content.get("target"):
             target = get_field_by_id(comparison, target_id)
@@ -149,25 +149,25 @@ def post_mapping_classification_int(
             if target is None:
                 raise ValueError("'target' does not exists")
 
-            manual_entry[MANUAL_ENTRIES_EXTRA] = target.name
+            new_entry[MANUAL_ENTRIES_EXTRA] = target.name
         else:
             raise ValueError("field 'target' missing")
     elif action == Classification.FIXED:
         if fixed := content.get("fixed"):
-            manual_entry[MANUAL_ENTRIES_EXTRA] = fixed
+            new_entry[MANUAL_ENTRIES_EXTRA] = fixed
         else:
             raise ValueError("field 'fixed' missing")
 
     # Clean up possible manual entry this was copied from before
     manual_entries = MANUAL_ENTRIES[mapping_id]
-    if (
-        field.name in manual_entries
-        and MANUAL_ENTRIES_EXTRA in manual_entries[field.name]
+    if (manual_entry := manual_entries[field.name]) and (
+        manual_entry[MANUAL_ENTRIES_CLASSIFICATION] == Classification.COPY_FROM
+        or manual_entry[MANUAL_ENTRIES_CLASSIFICATION] == Classification.COPY_TO
     ):
-        del manual_entries[manual_entries[field.name][MANUAL_ENTRIES_EXTRA]]
+        del manual_entries[manual_entry[MANUAL_ENTRIES_EXTRA]]
 
     # Apply the manual entry
-    manual_entries[field.name] = manual_entry
+    manual_entries[field.name] = new_entry
 
     # Handle the partner entry for copy actions
     if action == Classification.COPY_FROM:
