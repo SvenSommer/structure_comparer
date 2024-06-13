@@ -34,50 +34,7 @@ GET http://{{host}}/mapping/{{mapping_id}}/fields
 
 @field_id = {{getmapping.response.body.fields[0].id}}
 @targetsame = {{getmapping.response.body.fields[0].id}}
-
-# @name postmapsame
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
-Content-Type: application/json
-
-{
-    "target": "{{targetsame}}"
-}
-
-###
-
 @targetdiff = {{getmapping.response.body.fields[1].id}}
-
-# @name postmapdiff
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
-Content-Type: application/json
-
-{
-    "target": "{{targetdiff}}"
-}
-
-###
-
-# @name postignore
-
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
-Content-Type: application/json
-
-{
-    "target": null
-}
-
-###
-
-@fixed = <fixed value>
-
-# @name postfixed
-
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
-Content-Type: application/json
-
-{
-    "fixed": "{{fixed}}"
-}
 
 ###
 
@@ -146,14 +103,4 @@ Content-Type: application/json
 {
     "action": "empty"
 }
-###
 
-# @name post_fixed_example
-
-POST http://{{host}}/mapping/aeeb2f06-297e-4ed9-b189-d0030fd883fe/field/bf249962-ae81-4fc5-a151-84abf1a3b152/classification
-Content-Type: application/json
-
-{
-    "action": "fixed",
-    "value": "fixed-value"
-}

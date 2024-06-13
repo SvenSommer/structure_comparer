@@ -1,6 +1,5 @@
 import json
 from pathlib import Path
-from uuid import uuid4
 
 from flask import jsonify
 from structure_comparer.consts import INSTRUCTIONS, REMARKS
@@ -115,66 +114,6 @@ def get_mapping_fields_int(project, id: str):
     ]
 
     return result
-
-
-def post_mapping_field_int(project, mapping_id: str, field_id: str, content: dict):
-    comparison = project.comparisons.get(mapping_id)
-
-    if not comparison:
-        return None
-
-    # Easiest way to get the fields
-    fill_classification_remark(comparison)
-
-    name = _get_field_by_id(field_id, comparison)
-
-    if name is None:
-        return None
-
-    # Clean up possible manual entry this was copied from before
-    if name in MANUAL_ENTRIES.entries and MANUAL_ENTRIES_EXTRA in MANUAL_ENTRIES[name]:
-        del MANUAL_ENTRIES.entries[MANUAL_ENTRIES[name][MANUAL_ENTRIES_EXTRA]]
-
-    if (target := content.get("target")) and field_id != target:
-        # Get target field name
-        target = _get_field_by_id(target, comparison)
-
-        if target is None:
-            return None
-
-        # Create the entries to copy from and to
-        MANUAL_ENTRIES[name] = {
-            MANUAL_ENTRIES_CLASSIFICATION: Classification.COPY_TO,
-            MANUAL_ENTRIES_EXTRA: target,
-        }
-        MANUAL_ENTRIES[target] = {
-            MANUAL_ENTRIES_CLASSIFICATION: Classification.COPY_FROM,
-            MANUAL_ENTRIES_EXTRA: name,
-        }
-    else:
-        # If entry is mapped to itself, simply mark it as "use"
-        if (target := content.get("target")) and target == field_id:
-            MANUAL_ENTRIES[name] = {MANUAL_ENTRIES_CLASSIFICATION: Classification.USE}
-
-        # If mapped to nothing, mark it as "ignore"
-        elif "target" in content and content["target"] is None:
-            MANUAL_ENTRIES[name] = {
-                MANUAL_ENTRIES_CLASSIFICATION: Classification.NOT_USE
-            }
-        # if fixed, mark it as "fixed" and add the fixed value
-        elif "fixed" in content:
-            MANUAL_ENTRIES[name] = {
-                MANUAL_ENTRIES_CLASSIFICATION: Classification.FIXED,
-                MANUAL_ENTRIES_EXTRA: content["fixed"],
-            }
-
-        else:
-            return False
-
-    # Save the changes
-    MANUAL_ENTRIES.write()
-
-    return True
 
 
 def post_mapping_classification_int(
