@@ -1,17 +1,15 @@
 import argparse
 from pathlib import Path
+
 from flask import Flask, jsonify, request
-from flask_swagger import swagger
 from flask_cors import CORS
-
-
+from flask_swagger import swagger
 from structure_comparer.serve import (
     get_classifications_int,
     get_mapping_fields_int,
     get_mapping_int,
     get_mappings_int,
     init_project,
-    post_mapping_field_int,
     post_mapping_classification_int,
 )
 
@@ -276,49 +274,6 @@ def create_app(project_dir: Path):
             return fields
         else:
             return "", 404
-
-    @app.route("/mapping/<mapping_id>/field/<field_id>", methods=["POST"])
-    def post_mapping_field(mapping_id: str, field_id: str):
-        """
-        Post a manual entry for a field
-        Overrides the default classification of a field. A field can target a field with the same name or a different one to map the field, can point to 'null' to ignore it or can be set to a fixed value
-        ---
-        consumes:
-          - application/json
-        parameters:
-          - in: path
-            name: mapping_id
-            type: string
-            required: true
-            description: The id of the mapping
-          - in: path
-            name: field_id
-            type: string
-            required: true
-            description: The id of the field
-          - in: body
-            name: body
-            schema:
-              properties:
-                target:
-                  type: string
-                  description: The target field
-                fixed:
-                  type: string
-                  description: Fixed value to assign to the field
-        responses:
-          200:
-            description: The field was updated
-          404:
-            description: Mapping or field not found
-        """
-        result = post_mapping_field_int(
-            app.project, mapping_id, field_id, request.get_json()
-        )
-        if result is None:
-            return "", 404
-
-        return "", 200
 
     @app.route(
         "/mapping/<mapping_id>/field/<field_id>/classification", methods=["POST"]

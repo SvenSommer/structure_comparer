@@ -1,9 +1,9 @@
 from collections import OrderedDict
 from dataclasses import dataclass
-from profile import Profile
 from typing import Dict, List
 
 from structure_comparer.classification import Classification
+from structure_comparer.data.profile import Profile, ProfileMap
 
 
 @dataclass
@@ -50,42 +50,49 @@ class ComparisonField:
         return result
 
 
-@dataclass(init=False)
 class Comparison:
-    sources: List[Profile]
-    target: Profile
-    fields: OrderedDict[str, ComparisonField]
-    version: str
-    last_updated: str
-    status: str
+    def __init__(self, profile_map: ProfileMap = None) -> None:
+        self.id: str = None
+        self.sources: List[Profile] = []
+        self.target: Profile = None
+        self.fields: OrderedDict[str, ComparisonField] = OrderedDict()
+        self.version: str = None
+        self.last_updated: str = None
+        self.status: str = None
 
-    def __init__(self) -> None:
-        self.sources = []
-        self.target = None
-        self.fields = OrderedDict()
-        self.version = None
-        self.last_updated = None
-        self.status = None
+        if not profile_map is None:
+            self.id = profile_map.id
+            self.sources = profile_map.sources
+            self.target = profile_map.target
+            self.version = profile_map.version
+            self.last_updated = profile_map.last_updated
+            self.status = profile_map.status
 
     @property
     def name(self) -> str:
-        source_profiles = ', '.join(f"{profile.name}|{profile.version}" for profile in self.sources)
+        source_profiles = ", ".join(
+            f"{profile.name}|{profile.version}" for profile in self.sources
+        )
         target_profile = f"{self.target.name}|{self.target.version}"
         return f"{source_profiles} -> {target_profile}"
+
     def dict(self) -> dict:
         return {
             "name": self.name,
-            "sources": [{
-                "name": profile.name,
-                "profile_key": profile.profile_key,
-                "version": profile.version,
-                "simplifier_url": profile.simplifier_url
-            } for profile in self.sources],
+            "sources": [
+                {
+                    "name": profile.name,
+                    "profile_key": profile.profile_key,
+                    "version": profile.version,
+                    "simplifier_url": profile.simplifier_url,
+                }
+                for profile in self.sources
+            ],
             "target": {
                 "name": self.target.name,
                 "profile_key": self.target.profile_key,
                 "version": self.target.version,
-                "simplifier_url": self.target.simplifier_url
+                "simplifier_url": self.target.simplifier_url,
             },
             "fields": [field.dict() for field in self.fields.values()],
             "version": self.version,

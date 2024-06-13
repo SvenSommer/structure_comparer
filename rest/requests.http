@@ -34,55 +34,12 @@ GET http://{{host}}/mapping/{{mapping_id}}/fields
 
 @field_id = {{getmapping.response.body.fields[0].id}}
 @targetsame = {{getmapping.response.body.fields[0].id}}
-
-# @name postmapsame
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
-Content-Type: application/json
-
-{
-    "target": "{{targetsame}}"
-}
-
-###
-
 @targetdiff = {{getmapping.response.body.fields[1].id}}
-
-# @name postmapdiff
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
-Content-Type: application/json
-
-{
-    "target": "{{targetdiff}}"
-}
-
-###
-
-# @name postignore
-
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
-Content-Type: application/json
-
-{
-    "target": null
-}
-
-###
-
-@fixed = <fixed value>
-
-# @name postfixed
-
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}
-Content-Type: application/json
-
-{
-    "fixed": "{{fixed}}"
-}
 
 ###
 
 # @name post_copy_from
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
@@ -94,7 +51,7 @@ Content-Type: application/json
 
 
 # @name post_copy_to
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
@@ -106,19 +63,19 @@ Content-Type: application/json
 
 # @name post_fixed
 
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
     "action": "fixed",
-    "value": "fixed-value"
+    "fixed": "fixed-value"
 }
 
 ###
 
 # @name post_use
 
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
@@ -129,7 +86,7 @@ Content-Type: application/json
 
 # @name post_not_use
 
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
@@ -140,9 +97,10 @@ Content-Type: application/json
 
 # @name post_empty
 
-POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/action
+POST http://{{host}}/mapping/{{mapping_id}}/field/{{field_id}}/classification
 Content-Type: application/json
 
 {
     "action": "empty"
 }
+
