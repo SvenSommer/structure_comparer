@@ -34,10 +34,9 @@
             <div>
                 <h3>Color Legend:</h3>
                 <ul style="list-style: none; padding: 0;">
-                    <li><span style="background-color: #DCF6E9;">&nbsp;&nbsp;&nbsp;&nbsp;</span> No action needed for this mapping</li>
-                    <li><span style="background-color: #FFEBE6;">&nbsp;&nbsp;&nbsp;&nbsp;</span> Information will be removed or left empty in this mapping</li>
-                    <li><span style="background-color: #FFFAE6;">&nbsp;&nbsp;&nbsp;&nbsp;</span> Special action required for this mapping</li>
-                    <li><span style="background-color: #ACF0F9;">&nbsp;&nbsp;&nbsp;&nbsp;</span> Caution reference!</li>
+                    <li><span style="background-color: #DCF6E9;">&nbsp;&nbsp;&nbsp;&nbsp;</span> Information present in the source will be retained in the target mapping</li>
+                    <li><span style="background-color: #FFEBE6;">&nbsp;&nbsp;&nbsp;&nbsp;</span> Information will be removed or left empty in the target mapping</li>
+                    <li><span style="background-color: #FFFAE6;">&nbsp;&nbsp;&nbsp;&nbsp;</span> Special action is required for this mapping</li>
                 </ul>
             </div>
         </div>
@@ -83,8 +82,8 @@
     <script>
         $(document).ready(function () {
             $('#resultsTable').DataTable({
-                'pageLength': 25,
-                'lengthMenu': [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 150, 'All']]
+                'pageLength': -1,
+                'lengthMenu': [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, 'All']]
             });
         });
     </script>

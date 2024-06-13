@@ -1,25 +1,25 @@
 from .classification import Classification
 
 REMARKS = {
-    Classification.USE: "Eigenschaft und Wert(e) werden übernommen",
-    Classification.NOT_USE: "Eigenschaft und Wert(e) werden NICHT übernommen",
-    Classification.EMPTY: "Bleibt vorerst leer, da keine Quellinformationen vorhanden sind",
-    Classification.EXTENSION: "Extension und Wert(e) werden übernommen",
+    Classification.USE: "Property and value(s) will be retained",
+    Classification.NOT_USE: "Property and value(s) will NOT be retained",
+    Classification.EMPTY: "Will remain empty for now, as no source information is available",
+    Classification.EXTENSION: "Extension and value(s) will be retained",
     Classification.MANUAL: "",
-    Classification.COPY_FROM: "Wird aus {} übernommen",
-    Classification.COPY_TO: "Wird in {} übernommen",
-    Classification.FIXED: "Wird fix auf '{}' gesetzt",
-    Classification.MEDICATION_SERVICE: "Wird durch den Medication Service gesetzt",
+    Classification.COPY_FROM: "Mapped from '{}'",
+    Classification.COPY_TO: "Mapped to '{}'",
+    Classification.FIXED: "Set to '{}' fixed value",
+    Classification.MEDICATION_SERVICE: "Set by the Medication Service",
 }
 
 INSTRUCTIONS = {
-    Classification.USE: "Eigenschaft und Wert(e) werden ÜBERNOMMEN",
-    Classification.NOT_USE: "Eigenschaft und Wert(e) werden NICHT übernommen",
-    Classification.EMPTY: "Bleibt vorerst LEER, da keine Quellinformationen vorhanden sind",
-    Classification.EXTENSION: "Extension und Wert(e) werden ÜBERNOMMEN",
-    Classification.MANUAL: "Eigenen VERMERK machen",
-    Classification.COPY_FROM: "Wert(e) werden AUS einem anderen Feld übernommen",
-    Classification.COPY_TO: "Wert(e) werden IN einem anderen Feld übernommen",
-    Classification.FIXED: "Wert wird FIX festgelegt",
-    Classification.MEDICATION_SERVICE: "Wert durch den MEDICATION SERVICE gesetzt",
+    Classification.USE: "Property and value(s) will be RETAINED",
+    Classification.NOT_USE: "Property and value(s) will NOT be retained",
+    Classification.EMPTY: "Will remain EMPTY for now, as no source information is available",
+    Classification.EXTENSION: "Extension and value(s) will be RETAINED",
+    Classification.MANUAL: "Make your own NOTE",
+    Classification.COPY_FROM: "Value(s) will be MAPPED FROM another field",
+    Classification.COPY_TO: "Value(s) will be MAPPED TO another field",
+    Classification.FIXED: "Value will be FIXED",
+    Classification.MEDICATION_SERVICE: "Value set by the MEDICATION SERVICE",
 }
