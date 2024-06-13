@@ -111,7 +111,7 @@ Content-Type: application/json
 
 {
     "action": "fixed",
-    "value": "fixed-value"
+    "fixed": "fixed-value"
 }
 
 ###
