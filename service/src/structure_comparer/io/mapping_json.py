@@ -5,8 +5,8 @@ from typing import Dict
 
 from structure_comparer.classification import Classification
 from structure_comparer.consts import REMARKS
-from structure_comparer.data.comparison import Comparison
 from structure_comparer.helpers import split_parent_child
+from structure_comparer.model.comparison import Comparison
 
 DICT_MAPPINGS = "mappings"
 DICT_FIXED = "fixed"

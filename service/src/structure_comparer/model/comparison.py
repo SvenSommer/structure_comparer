@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Dict, List
 
 from structure_comparer.classification import Classification
-from structure_comparer.data.profile import Profile, ProfileMap
+from structure_comparer.model.profile import Profile, ProfileMap
 
 
 @dataclass

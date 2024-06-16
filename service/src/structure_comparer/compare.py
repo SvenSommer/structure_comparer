@@ -6,8 +6,6 @@ from typing import Dict, List
 
 from .classification import Classification
 from .consts import REMARKS
-from .data.comparison import Comparison, ComparisonField, ProfileField
-from .data.profile import ProfileMap
 from .helpers import split_parent_child
 from .manual_entries import (
     MANUAL_ENTRIES,
@@ -15,6 +13,8 @@ from .manual_entries import (
     MANUAL_ENTRIES_EXTRA,
     MANUAL_ENTRIES_REMARK,
 )
+from .model.comparison import Comparison, ComparisonField, ProfileField
+from .model.profile import ProfileMap
 
 MANUAL_SUFFIXES = ["reference", "profile"]
 

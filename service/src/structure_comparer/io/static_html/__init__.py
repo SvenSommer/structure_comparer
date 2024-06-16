@@ -5,7 +5,7 @@ from typing import Dict, List
 
 from jinja2 import Environment, FileSystemLoader
 from structure_comparer.classification import Classification
-from structure_comparer.data.comparison import Comparison
+from structure_comparer.model.comparison import Comparison
 
 CSS_CLASS = {
     Classification.USE: "row-use",

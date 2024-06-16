@@ -7,12 +7,12 @@ from structure_comparer.consts import INSTRUCTIONS, REMARKS
 from .classification import Classification
 from .compare import fill_classification_remark, generate_comparison
 from .compare import load_profiles as _load_profiles
-from .data.comparison import Comparison, get_field_by_id
 from .manual_entries import (
     MANUAL_ENTRIES,
     MANUAL_ENTRIES_CLASSIFICATION,
     MANUAL_ENTRIES_EXTRA,
 )
+from .model.comparison import Comparison, get_field_by_id
 
 
 def init_project(project_dir: Path):
