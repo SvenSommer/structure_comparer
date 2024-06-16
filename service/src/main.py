@@ -3,9 +3,10 @@ import argparse
 import json
 from pathlib import Path
 
+from structure_comparer.data.file import DataHandler
 from structure_comparer.io import mapping_json, static_html
 
-from structure_comparer import MANUAL_ENTRIES, compare_profiles
+from structure_comparer import compare_profiles
 
 
 def get_args():
@@ -33,9 +34,7 @@ if __name__ == "__main__":
 
     config = json.loads((args.project_dir / "config.json").read_text())
 
-    # Read the manual entries
-    manual_entries_file = config.get("manual_entries_file", "manual_entries.yaml")
-    MANUAL_ENTRIES.read(args.project_dir / manual_entries_file)
+    dataHandler = DataHandler(config, args.project_dir)
 
     profiles_to_compare = config["profiles_to_compare"]
     data_dir = args.project_dir / config.get("data_dir", "data")

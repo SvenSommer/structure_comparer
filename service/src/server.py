@@ -4,14 +4,7 @@ from pathlib import Path
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_swagger import swagger
-from structure_comparer.serve import (
-    get_classifications_int,
-    get_mapping_fields_int,
-    get_mapping_int,
-    get_mappings_int,
-    init_project,
-    post_mapping_classification_int,
-)
+from structure_comparer.serve import Server
 
 
 def create_app(project_dir: Path):
@@ -20,7 +13,7 @@ def create_app(project_dir: Path):
     CORS(app, origins="http://localhost:4200")
 
     # project config
-    project = init_project(project_dir)
+    project = Server(project_dir)
     setattr(app, "project", project)
 
     @app.route("/", methods=["GET"])
@@ -53,7 +46,7 @@ def create_app(project_dir: Path):
                       instruction:
                         type: string
         """
-        return get_classifications_int()
+        return project.get_classifications()
 
     @app.route("/mappings", methods=["GET"])
     def get_mappings():
@@ -125,7 +118,7 @@ def create_app(project_dir: Path):
                   items:
                     $ref: "#/definitions/OverviewMapping"
         """
-        return jsonify(get_mappings_int(app.project))
+        return jsonify(project.get_mappings())
 
     @app.route("/mapping/<id>", methods=["GET"])
     def get_mapping(id: str):
@@ -216,7 +209,7 @@ def create_app(project_dir: Path):
             description: Mapping not found
         """
 
-        mapping = get_mapping_int(app.project, id)
+        mapping = project.get_mapping(id)
         if mapping:
             return mapping
         else:
@@ -269,7 +262,7 @@ def create_app(project_dir: Path):
           404:
             description: Mapping not found
         """
-        fields = get_mapping_fields_int(app.project, id)
+        fields = project.get_mapping_fields(id)
         if fields:
             return fields
         else:
@@ -332,8 +325,8 @@ def create_app(project_dir: Path):
             description: Mapping or field not found
         """
         try:
-            result = post_mapping_classification_int(
-                app.project, mapping_id, field_id, request.get_json()
+            result = project.post_mapping_classification(
+                mapping_id, field_id, request.get_json()
             )
         except ValueError as e:
             error = {"error": str(e)}

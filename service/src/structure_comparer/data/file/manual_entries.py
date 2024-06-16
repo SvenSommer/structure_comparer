@@ -5,8 +5,7 @@ from pathlib import Path
 from typing import Dict
 
 import yaml
-
-from .classification import Classification
+from structure_comparer.classification import Classification
 
 MANUAL_ENTRIES_CLASSIFICATION = "classification"
 MANUAL_ENTRIES_REMARK = "remark"
