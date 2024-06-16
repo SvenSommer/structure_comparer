@@ -1,11 +1,12 @@
+import json
 import logging
+from pathlib import Path
 from typing import Dict
 
-from .classification import Classification
-from .data.comparison import Comparison
-from .consts import REMARKS
-from .helpers import split_parent_child
-
+from structure_comparer.classification import Classification
+from structure_comparer.consts import REMARKS
+from structure_comparer.data.comparison import Comparison
+from structure_comparer.helpers import split_parent_child
 
 DICT_MAPPINGS = "mappings"
 DICT_FIXED = "fixed"
@@ -20,6 +21,11 @@ IGNORE_CLASSIFICATIONS = [
 
 
 logger = logging.getLogger(__name__)
+
+
+def write(structured_mapping: dict, output_file: Path):
+    mapping_dict = gen_mapping_dict(structured_mapping)
+    output_file.write_text(json.dumps(mapping_dict, indent=4))
 
 
 def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):

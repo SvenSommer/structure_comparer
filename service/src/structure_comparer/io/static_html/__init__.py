@@ -1,14 +1,11 @@
-from pathlib import Path
 import re
 import shutil
+from pathlib import Path
 from typing import Dict, List
 
 from jinja2 import Environment, FileSystemLoader
-
-
-from .classification import Classification
-from .data.comparison import Comparison
-
+from structure_comparer.classification import Classification
+from structure_comparer.data.comparison import Comparison
 
 CSS_CLASS = {
     Classification.USE: "row-use",
@@ -23,13 +20,14 @@ CSS_CLASS = {
 }
 
 STYLE_FILE_NAME = "style.css"
-FILES_FOLDER = Path(__file__).parent / "files"
+FILES_FOLDER = Path(__file__).parent
 
 
 def flatten_profiles(profiles: List[str]) -> str:
     return "_".join(profiles)
 
-def create_results_html(
+
+def write(
     structured_mapping: Dict[str, Comparison],
     results_folder: str | Path,
     show_remarks: bool,
@@ -81,16 +79,19 @@ def create_results_html(
             "show_remarks": show_remarks,
             "version": comp.version,
             "last_updated": comp.last_updated,
-            "status": comp.status
+            "status": comp.status,
         }
 
         content = template.render(**data)
 
-        source_profiles_flat = flatten_profiles([profile['key'] for profile in data['source_profiles']])
-        html_file = results_folder / f"{source_profiles_flat}_to_{data['target_profile']['key']}.html"
+        source_profiles_flat = flatten_profiles(
+            [profile["key"] for profile in data["source_profiles"]]
+        )
+        html_file = (
+            results_folder
+            / f"{source_profiles_flat}_to_{data['target_profile']['key']}.html"
+        )
         html_file.write_text(content)
-
-
 
 
 def format_links(text: str) -> str:
