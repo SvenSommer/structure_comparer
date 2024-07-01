@@ -16,8 +16,8 @@ CSS_CLASS = {
     Classification.EMPTY: "row-not-use",
     Classification.EXTENSION: "row-extension",
     Classification.MANUAL: "row-manual",
-    Classification.COPY_FROM: "row-use",
-    Classification.COPY_TO: "row-use",
+    Classification.COPY_FROM: "row-manual",
+    Classification.COPY_TO: "row-manual",
     Classification.FIXED: "row-manual",
     Classification.MEDICATION_SERVICE: "row-not-use",
 }

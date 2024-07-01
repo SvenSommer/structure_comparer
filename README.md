@@ -46,27 +46,7 @@ To execute a request, simply click on the Send Request link located above the re
 
 ### Frontend
 
-The frontend for the Structure Comparer Web App is developed using Angular. It provides an interactive user interface to visualize and configure mappings between different FHIR profiles.
-
-#### Setup and Development
-
-Before you start, make sure you have Node.js and the Angular CLI installed. The development environment is prepared to run inside a Dev Container with all necessary dependencies.
-
-1. Navigate to the frontend directory:
-    ```bash
-    cd /workspaces/structure_comparer/frontend/structure-comparer
-    ```
-
-2. Install the required npm packages:
-    ```bash
-    npm install
-    ```
-
-3. Start the development server:
-    ```bash
-    ng serve
-    ```
-    The Angular development server will start, and you can access the frontend by navigating to `http://localhost:4200` in your web browser.
+Frontend is currently moved to a seperate Repo: https://github.com/SvenSommer/structure_comparer_frontend
 
 #### Features
 

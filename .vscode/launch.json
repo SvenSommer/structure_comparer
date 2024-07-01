@@ -35,6 +35,21 @@
             "cwd": "${workspaceFolder}/service/src",
         },
         {
+            "name": "Generate ePA",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--project-dir",
+                "../../projects/epa",
+                "--html",
+                "--json"
+            ],
+            "cwd": "${workspaceFolder}/service/src",
+        },
+        {
             "name": "Flask App eRP",
             "type": "debugpy",
             "request": "launch",
