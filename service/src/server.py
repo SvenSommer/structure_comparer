@@ -1,4 +1,5 @@
 import argparse
+import json
 from pathlib import Path
 
 from flask import Flask, jsonify, request
@@ -14,18 +15,70 @@ from structure_comparer.serve import (
 )
 
 
-def create_app(project_dir: Path):
+def create_app(projects_root_dir: Path):
     # create the app
     app = Flask(__name__)
     CORS(app, origins="http://localhost:4200")
 
-    # project config
-    project = init_project(project_dir)
-    setattr(app, "project", project)
+    setattr(app, "projects_root", projects_root_dir)
+    setattr(app, "project", None)
 
     @app.route("/", methods=["GET"])
     def hello_world():
         return "<p>Hello, World!</p>"
+
+    @app.route("/projects", methods=["GET"])
+    def list_projects():
+        if not app.projects_root.exists():
+            return jsonify({"error": "Projects root directory does not exist"}), 400
+
+        projects = [p.name for p in app.projects_root.iterdir() if p.is_dir()]
+        return jsonify(projects)
+
+    @app.route("/init_project", methods=["POST"])
+    def init_project_endpoint():
+        # global current_project
+        data = request.json
+        project_name = data.get("project_name")
+        if not project_name:
+            return jsonify({"error": "Project name is required"}), 400
+
+        project_path = app.projects_root / project_name
+        if not project_path.exists():
+            return jsonify({"error": "Project directory does not exist"}), 404
+
+        app.project = init_project(project_path)
+
+        return jsonify({"message": "Project initialized successfully"}), 201
+
+    @app.route("/create_project", methods=["POST"])
+    def create_project():
+        data = request.json
+        project_name = data.get("project_name")
+        if not project_name:
+            return jsonify({"error": "Project name is required"}), 400
+
+        project_path = app.projects_root / project_name
+        project_path.mkdir(parents=True, exist_ok=True)
+
+        # Create empty manual_entries.yaml file
+        manual_entries_file = project_path / "manual_entries.yaml"
+        manual_entries_file.touch()
+
+        # Create default config.json file
+        config_file = project_path / "config.json"
+        config_data = {
+            "manual_entries_file": "manual_entries.yaml",
+            "data_dir": "data",
+            "html_output_dir": "docs",
+            "mapping_output_file": "mapping.json",
+            "profiles_to_compare": [],
+        }
+
+        with config_file.open("w") as f:
+            json.dump(config_data, f, indent=4)
+
+        return jsonify({"message": "Project created successfully"}), 201
 
     @app.route("/classification", methods=["GET"])
     def get_classifications():
@@ -360,9 +413,9 @@ def get_args():
     )
 
     parser.add_argument(
-        "--project-dir",
+        "--projects-root-dir",
         type=Path,
-        help="The project directory containing the profiles and config",
+        help="The root directory containing all project with their profiles and configs",
     )
 
     return parser.parse_args()
@@ -371,5 +424,5 @@ def get_args():
 if __name__ == "__main__":
     args = get_args()
 
-    app = create_app(project_dir=args.project_dir)
+    app = create_app(projects_root_dir=args.projects_root_dir)
     app.run()
