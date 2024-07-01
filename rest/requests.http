@@ -15,6 +15,22 @@ GET http://{{host}}/classification
 
 ###
 
+# @name getprojects
+GET http://{{host}}/projects
+
+###
+
+# Initialize erp_project
+# @name init_erp_project
+POST http://{{host}}/init_project
+Content-Type: application/json
+
+{
+  "project_name": "erp"
+}
+
+###
+
 # @name getmappings
 GET http://{{host}}/mappings
 
