@@ -54,10 +54,6 @@
             "type": "debugpy",
             "request": "launch",
             "program": "server.py",
-            "args": [
-                "--project-dir",
-                "../../projects/erp"
-            ],
             "cwd": "${workspaceFolder}/service/src",
             "jinja": true,
             "justMyCode": true

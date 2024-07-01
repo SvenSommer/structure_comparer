@@ -67,8 +67,9 @@ class ManualEntries:
             data = yaml.safe_load(self._file.read_text(encoding="utf-8"))
 
         self._data["entries"] = {}
-        for id, mappings in data.items():
-            self._data["entries"][id] = ManualMappings(mappings)
+        if data is not None:
+            for id, mappings in data.items():
+                self._data["entries"][id] = ManualMappings(mappings)
 
     def write(self):
         data = {}
