@@ -50,13 +50,13 @@
             "cwd": "${workspaceFolder}/service/src",
         },
         {
-            "name": "Flask App eRP",
+            "name": "Flask App",
             "type": "debugpy",
             "request": "launch",
             "program": "server.py",
             "args": [
-                "--project-dir",
-                "../../projects/erp"
+                "--projects-root-dir",
+                "../../projects"
             ],
             "cwd": "${workspaceFolder}/service/src",
             "jinja": true,
