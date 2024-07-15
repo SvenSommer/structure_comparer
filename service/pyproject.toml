@@ -12,6 +12,7 @@ flask = ">=3.0,<4.0"
 flask-swagger = ">=0.2.14,<0.3.0"
 flask-cors = "^4.0.1"
 pyyaml = "^6.0.1"
+fhir-resources = "^7.1.0"
 
 
 [tool.poetry.group.dev.dependencies]
