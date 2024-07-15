@@ -216,7 +216,7 @@ def create_app(projects_root_dir: Path):
                   type: string
                 classification:
                   type: string
-                classifications_allowed
+                classifications_allowed:
                   type: array
                   items:
                     string
