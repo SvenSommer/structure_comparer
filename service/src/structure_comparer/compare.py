@@ -1,9 +1,9 @@
 import logging
 from collections import OrderedDict
 from pathlib import Path
-from profile import Profile
 from typing import Dict, List
 
+from .config import CompareConfig
 from .classification import Classification
 from .consts import REMARKS
 from .data.comparison import Comparison, ComparisonField, ProfileField
@@ -35,7 +35,7 @@ DERIVED_CLASSIFICATIONS = [
 logger = logging.getLogger()
 
 
-def compare_profiles(profiles_to_compare: List, datapath: Path):
+def compare_profiles(profiles_to_compare: List[CompareConfig], datapath: Path):
     """
     Compares the presence of properties in KBV and ePA profiles.
     """
@@ -46,7 +46,7 @@ def compare_profiles(profiles_to_compare: List, datapath: Path):
     return structured_results
 
 
-def load_profiles(profiles_to_compare: List, datapath: Path) -> Dict[str, ProfileMap]:
+def load_profiles(profiles_to_compare: List[CompareConfig], datapath: Path) -> Dict[str, ProfileMap]:
     """
     Loads the FHIR structure definitions from the local JSON files.
     """
@@ -60,7 +60,8 @@ def load_profiles(profiles_to_compare: List, datapath: Path) -> Dict[str, Profil
 def _compare_profiles(profile_maps: Dict[str, ProfileMap]) -> Dict[str, Comparison]:
     mapping = {}
     for map in profile_maps.values():
-        sources_key = tuple((entry.name, entry.version) for entry in map.sources)
+        sources_key = tuple((entry.name, entry.version)
+                            for entry in map.sources)
         target_key = (map.target.name, map.target.version)
         key = str((sources_key, target_key))
         mapping[key] = compare_profile(map)
@@ -95,7 +96,8 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
                 not (field_entry := comparison.fields.get(field.name))
                 or field_entry.extension != field.extension
             ):
-                comparison.fields[field.name] = ComparisonField(field.name, field.id)
+                comparison.fields[field.name] = ComparisonField(
+                    field.name, field.id)
                 comparison.fields[field.name].extension = field.extension
 
             profile_key = source_profile.profile_key
@@ -180,7 +182,8 @@ def _classify_remark_field(
         )
 
         # If there is a remark in the manual entry, use it else use the default remark
-        remark = manual_entry.get(MANUAL_ENTRIES_REMARK, REMARKS[classification])
+        remark = manual_entry.get(
+            MANUAL_ENTRIES_REMARK, REMARKS[classification])
 
         # If the classification needs extra information, generate the remark with the extra information
         if classification in EXTRA_CLASSIFICATIONS:
@@ -201,7 +204,7 @@ def _classify_remark_field(
         if classification in EXTRA_CLASSIFICATIONS:
 
             # Cut away the common part with the parent and add the remainder to the parent's extra
-            extra = parent_update.extra + field.name[len(parent) :]
+            extra = parent_update.extra + field.name[len(parent):]
             remark = REMARKS[classification].format(extra)
 
         # Else use the parent's remark

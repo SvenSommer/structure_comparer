@@ -2,6 +2,7 @@ from pathlib import Path
 
 from structure_comparer import serve
 from structure_comparer.manual_entries import MANUAL_ENTRIES
+from structure_comparer.config import Config
 
 
 def test_init_project():
@@ -13,7 +14,7 @@ def test_init_project():
     assert project.dir == project_dir
 
     assert project.config is not None
-    assert isinstance(project.config, dict)
+    assert isinstance(project.config, Config)
 
     assert project.data_dir == project_dir / "data"
 

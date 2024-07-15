@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta, timezone
 import json
 from pathlib import Path
 from typing import Dict, List
@@ -26,7 +27,8 @@ class Config:
         )
         config.data_dir = dict_.get("data_dir", "data")
         config.html_output_dir = dict_.get("html_output_dir", "docs")
-        config.mapping_output_file = dict_.get("mapping_output_file", "mapping.json")
+        config.mapping_output_file = dict_.get(
+            "mapping_output_file", "mapping.json")
         config.profiles_to_compare = [
             CompareConfig.from_dict(compare)
             for compare in dict_.get("profiles_to_compare")
@@ -41,14 +43,25 @@ class CompareConfig:
         self.version: str = None
         self.status: str = None
         self.mappings: MappingConfig = None
+        self.last_updated: str = None
+        self.status: str = None
 
     @staticmethod
     def from_dict(dict_: Dict) -> "CompareConfig":
         config = CompareConfig()
         config.id = dict_["id"]
-        config.version = dict_["version"]
-        config.status = dict_["status"]
+        config.version = dict_.get("version")
+
+        if config.version is None:
+            raise KeyError(
+                "The 'version' key is not set in the configuration of the mapping. Please set the version and try again."
+            )
+
+        config.status = dict_.get("status", "draft")
         config.mappings = MappingConfig.from_dict(dict_.get("mappings"))
+        config.last_updated = dict_.get("last_updated") or (
+            datetime.now(timezone.utc) + timedelta(hours=2)
+        ).strftime("%Y-%m-%d %H:%M:%S")
         return config
 
 
@@ -63,7 +76,8 @@ class MappingConfig:
         config.source_profiles = [
             ProfileConfig.from_dict(profile) for profile in dict_.get("sourceprofiles")
         ]
-        config.target_profile = ProfileConfig.from_dict(dict_.get("targetprofile"))
+        config.target_profile = ProfileConfig.from_dict(
+            dict_.get("targetprofile"))
         return config
 
 
@@ -78,7 +92,8 @@ class ProfileConfig:
     def from_dict(dict_: Dict) -> "ProfileConfig":
         config = ProfileConfig()
         config.file = dict_["file"]
-        config.version = dict_["version"]
-        config.simplifier_url = dict_["simplifier_url"]
-        config.file_download_url = dict_["file_download_url"]
+        config.version = dict_.get("version")
+        config.simplifier_url = dict_.get("simplifier_url")
+        config.file_download_url = dict_.get("file_download_url")
+
         return config

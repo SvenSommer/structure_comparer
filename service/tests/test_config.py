@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from structure_comparer.config import CompareConfig, Config, ProfileConfig
 
 SOURCE_PROFILE = {
@@ -17,7 +18,8 @@ TARGET_PROFILE = {
 MAPPINGS = {
     "id": "91db64da-9777-4c5f-a7d4-e0601ab51ad1",
     "version": "1.0",
-    "status": "draft",
+    "status": "active",
+    "last_updated": "2024-01-01 00:00:00",
     "mappings": {
         "sourceprofiles": [SOURCE_PROFILE],
         "targetprofile": TARGET_PROFILE,
@@ -65,10 +67,35 @@ def test_compare_config_from_dict():
 
     assert result.id == "91db64da-9777-4c5f-a7d4-e0601ab51ad1"
     assert result.version == "1.0"
-    assert result.status == "draft"
+    assert result.status == "active"
     assert result.mappings is not None
+    assert result.last_updated == "2024-01-01 00:00:00"
 
     assert len(result.mappings.source_profiles) == 1
+    assert result.mappings.target_profile is not None
+
+
+def test_compare_config_from_dict_defaults():
+    input = {
+        "id": "91db64da-9777-4c5f-a7d4-e0601ab51ad1",
+        "version": "1.0",
+        "mappings": {
+            "sourceprofiles": [],
+            "targetprofile": TARGET_PROFILE,
+        }
+    }
+
+    now = datetime.now()
+    result = CompareConfig.from_dict(input)
+
+    assert result.id == "91db64da-9777-4c5f-a7d4-e0601ab51ad1"
+    assert result.version == "1.0"
+    assert result.status == "draft"
+    assert result.mappings is not None
+    assert datetime.strptime(result.last_updated, "%Y-%m-%d %H:%M:%S") - \
+        timedelta(hours=2) - now < timedelta(minutes=5)
+
+    assert len(result.mappings.source_profiles) == 0
     assert result.mappings.target_profile is not None
 
 
@@ -82,3 +109,16 @@ def test_profile_config_from_dict():
         result.file_download_url
         == "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=1234format=json"
     )
+
+
+def test_profile_config_from_dict_defaults():
+    input = {
+        "file": "foo.json"
+    }
+
+    result = ProfileConfig.from_dict(input)
+
+    assert result.file == "foo.json"
+    assert result.version is None
+    assert result.simplifier_url is None
+    assert result.file_download_url is None
