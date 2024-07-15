@@ -41,7 +41,7 @@ def test_config_from_dict():
     assert result.data_dir == "data"
     assert result.html_output_dir == "docs"
     assert result.mapping_output_file == "mapping.json"
-    assert result.show_remarks == True
+    assert result.show_remarks is True
     assert len(result.profiles_to_compare) == 1
 
 
@@ -56,7 +56,7 @@ def test_config_from_dict_defaults():
     assert result.data_dir == "data"
     assert result.html_output_dir == "docs"
     assert result.mapping_output_file == "mapping.json"
-    assert result.show_remarks == False
+    assert result.show_remarks is False
     assert len(result.profiles_to_compare) == 0
 
 
@@ -66,10 +66,10 @@ def test_compare_config_from_dict():
     assert result.id == "91db64da-9777-4c5f-a7d4-e0601ab51ad1"
     assert result.version == "1.0"
     assert result.status == "draft"
-    assert result.mappings != None
+    assert result.mappings is not None
 
     assert len(result.mappings.source_profiles) == 1
-    assert result.mappings.target_profile != None
+    assert result.mappings.target_profile is not None
 
 
 def test_profile_config_from_dict():
