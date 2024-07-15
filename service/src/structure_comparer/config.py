@@ -33,7 +33,7 @@ class Config:
             CompareConfig.from_dict(compare)
             for compare in dict_.get("profiles_to_compare")
         ]
-        config.show_remarks = dict_.get("show_remarks", False)
+        config.show_remarks = dict_.get("show_remarks", True)
         return config
 
 
