@@ -58,7 +58,7 @@ def test_config_from_dict_defaults():
     assert result.data_dir == "data"
     assert result.html_output_dir == "docs"
     assert result.mapping_output_file == "mapping.json"
-    assert result.show_remarks is False
+    assert result.show_remarks is True
     assert len(result.profiles_to_compare) == 0
 
 
