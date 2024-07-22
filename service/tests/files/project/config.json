@@ -1,0 +1,29 @@
+{
+    "manual_entries_file": "manual_entries.yaml",
+    "data_dir": "data",
+    "html_output_dir": "docs",
+    "mapping_output_file": "mapping.json",
+    "profiles_to_compare": [
+        {
+            "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
+            "version": "0.1",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "StructureDefinition-observation-de-vitalsign.json",
+                        "version": "1.5.0",
+                        "simplifier_url": "https://simplifier.net/packages/de.basisprofil.r4/1.5.0/files/2461200",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2461200&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "StructureDefinition-observation-de-vitalsign-atemfrequenz.json",
+                    "version": "1.5.0",
+                    "simplifier_url": "https://simplifier.net/packages/de.basisprofil.r4/1.5.0/files/2461203",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2461203&format=json"
+                }
+            }
+        }
+    ]
+}

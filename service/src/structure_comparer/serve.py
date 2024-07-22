@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 
 from flask import jsonify
@@ -13,16 +12,19 @@ from .manual_entries import (
     MANUAL_ENTRIES_CLASSIFICATION,
     MANUAL_ENTRIES_EXTRA,
 )
+from .config import Config
 
 
 def init_project(project_dir: Path):
-    project_obj = lambda: None
+    def project_obj():
+        return None
+
     project_obj.dir = project_dir
-    project_obj.config = json.loads((project_dir / "config.json").read_text())
-    project_obj.data_dir = project_dir / project_obj.config.get("data_dir", "data")
+    project_obj.config = Config.from_json(project_dir / "config.json")
+    project_obj.data_dir = project_dir / project_obj.config.data_dir
 
     # Get profiles to compare
-    project_obj.profiles_to_compare_list = project_obj.config["profiles_to_compare"]
+    project_obj.profiles_to_compare_list = project_obj.config.profiles_to_compare
 
     # Load profiles
     load_profiles(project_obj)
@@ -34,14 +36,17 @@ def init_project(project_dir: Path):
 
 
 def read_manual_entries(project):
-    manual_entries_file = project.dir / project.config.get(
-        "manual_entries_file", "manual_entries.json"
-    )
+    manual_entries_file = project.dir / project.config.manual_entries_file
+
+    if not manual_entries_file.exists():
+        manual_entries_file.touch()
+
     MANUAL_ENTRIES.read(manual_entries_file)
 
 
 def load_profiles(project):
-    profile_maps = _load_profiles(project.profiles_to_compare_list, project.data_dir)
+    profile_maps = _load_profiles(
+        project.profiles_to_compare_list, project.data_dir)
     project.comparisons = {
         entry.id: generate_comparison(entry) for entry in profile_maps.values()
     }
@@ -49,7 +54,8 @@ def load_profiles(project):
 
 def get_classifications_int():
     classifications = [
-        {"value": c.value, "remark": REMARKS[c], "instruction": INSTRUCTIONS[c]}
+        {"value": c.value, "remark": REMARKS[c],
+            "instruction": INSTRUCTIONS[c]}
         for c in Classification
     ]
     return jsonify({"classifications": classifications})
@@ -137,7 +143,8 @@ def post_mapping_classification_int(
     # Check if action is allowed for this field
     if action not in field.classifications_allowed:
         raise ValueError(
-            f"action '{action.value}' not allowed for this field, allowed: {', '.join([field.value for field in field.classifications_allowed])}"
+            f"action '{action.value}' not allowed for this field, allowed: {
+                ', '.join([field.value for field in field.classifications_allowed])}"
         )
 
     # Build the entry that should be created/updated

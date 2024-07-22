@@ -1,9 +1,10 @@
-import datetime
 import json
 from collections import OrderedDict
 from pathlib import Path
 from typing import Dict, List
 from uuid import uuid4
+
+from structure_comparer.config import CompareConfig, ProfileConfig
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]
 IGNORE_SLICES = [
@@ -27,25 +28,19 @@ class ProfileMap:
         self.status: str = None
 
     @staticmethod
-    def from_json(profile_mapping: Dict, datapath: Path) -> "ProfileMap":
-        sources = profile_mapping["mappings"]["sourceprofiles"]
-        target = profile_mapping["mappings"]["targetprofile"]
+    def from_json(compare_config: CompareConfig, datapath: Path) -> "ProfileMap":
+        sources = compare_config.mappings.source_profiles
+        target = compare_config.mappings.target_profile
 
         profiles_map = ProfileMap()
-        profiles_map.id = profile_mapping["id"]
+        profiles_map.id = compare_config.id
         profiles_map.sources = [
             Profile.from_dict(source, datapath) for source in sources
         ]
         profiles_map.target = Profile.from_dict(target, datapath)
-        profiles_map.version = profile_mapping.get("version")
-        if not profiles_map.version:
-            raise ValueError(
-                "The 'version' key is not set in the configuration of the mapping. Please set the version and try again."
-            )
-        profiles_map.last_updated = profile_mapping.get("last_updated") or (
-            datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=2)
-        ).strftime("%Y-%m-%d %H:%M:%S")
-        profiles_map.status = profile_mapping.get("status", "draft")
+        profiles_map.version = compare_config.version
+        profiles_map.last_updated = compare_config.last_updated
+        profiles_map.status = compare_config.status
 
         return profiles_map
 
@@ -79,20 +74,21 @@ class Profile:
         return str(self)
 
     @staticmethod
-    def from_dict(data: Dict, datapath: Path) -> "Profile":
-        file_path = datapath / data["file"]
+    def from_dict(config: ProfileConfig, datapath: Path) -> "Profile":
+        file_path = datapath / config.file
         if not file_path.exists():
             raise FileNotFoundError(
-                f"The file {file_path} does not exist. Please check the file path and try again."
+                f"The file {
+                    file_path} does not exist. Please check the file path and try again."
             )
 
         content = json.loads(file_path.read_text())
 
         profile = Profile(
             name=content["name"],
-            version=data.get("version"),
-            simplifier_url=data.get("simplifier_url"),
-            file_download_url=data.get("file_download_url"),
+            version=config.version,
+            simplifier_url=config.simplifier_url,
+            file_download_url=config.file_download_url,
         )
 
         extracted_elements = _extract_elements(content["snapshot"]["element"])

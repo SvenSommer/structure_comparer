@@ -9,6 +9,7 @@ from structure_comparer import (
     create_results_html,
     gen_mapping_dict,
 )
+from structure_comparer.config import Config
 
 
 def write_mapping_json(structured_mapping: dict, output_file: Path):
@@ -26,7 +27,8 @@ def get_args():
         type=Path,
         help="The project directory containing the profiles and config",
     )
-    parser.add_argument("--html", action="store_true", help="Generate html files")
+    parser.add_argument("--html", action="store_true",
+                        help="Generate html files")
     parser.add_argument(
         "--json",
         action="store_true",
@@ -39,25 +41,23 @@ def get_args():
 if __name__ == "__main__":
     args = get_args()
 
-    config = json.loads((args.project_dir / "config.json").read_text())
+    config = Config.from_json(args.project_dir / "config.json")
 
     # Read the manual entries
-    manual_entries_file = config.get("manual_entries_file", "manual_entries.yaml")
+    manual_entries_file = config.manual_entries_file
     MANUAL_ENTRIES.read(args.project_dir / manual_entries_file)
 
-    profiles_to_compare = config["profiles_to_compare"]
-    data_dir = args.project_dir / config.get("data_dir", "data")
-    structured_mapping = compare_profiles(profiles_to_compare, data_dir)
+    data_dir = args.project_dir / config.data_dir
+    structured_mapping = compare_profiles(config.profiles_to_compare, data_dir)
 
     if args.html:
         # Create the result html files
-        show_remarks = config.get("show_remarks", True)
-        html_output_dir = args.project_dir / config.get("html_output_dir", "html")
+        show_remarks = config.show_remarks
+        html_output_dir = args.project_dir / \
+            config.html_output_dir
         create_results_html(structured_mapping, html_output_dir, show_remarks)
 
     if args.json:
         # Generate the mapping dict and write to file
-        mapping_output_file = args.project_dir / config.get(
-            "mapping_output_file", "mapping.json"
-        )
+        mapping_output_file = args.project_dir / config.mapping_output_file
         write_mapping_json(structured_mapping, mapping_output_file)

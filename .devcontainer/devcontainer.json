@@ -5,12 +5,15 @@
         "ghcr.io/devcontainers-contrib/features/black:2": {},
         "node": "18"
     },
-    "forwardPorts": [4200],
+    "forwardPorts": [
+        4200
+    ],
     "postCreateCommand": "pip3 install --user -r requirements.txt && npm install -g @angular/cli@16",
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-python.black-formatter",
+                "ms-python.flake8",
                 "ms-python.debugpy",
                 "ms-python.python",
                 "samuelcolvin.jinjahtml",
