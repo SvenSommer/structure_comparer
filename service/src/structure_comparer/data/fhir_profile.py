@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from typing import List
 
 # from fhir.resources.R4B.structuredefinition import StructureDefinition
 
@@ -13,6 +14,11 @@ class FhirProfile:
             raise ValueError("'snapshot' is needed in data")
 
         self._data = data
+
+        self._elements = {
+            element["id"]: FhirProfileElement(element)
+            for element in data["snapshot"]["element"]
+        }
 
     @staticmethod
     def from_json(file_path: Path) -> "FhirProfile":
@@ -58,3 +64,22 @@ class FhirProfile:
     @property
     def base_definition(self) -> str:
         return self._data["baseDefinition"]
+
+    @property
+    def element_names(self) -> List[str]:
+        return list(self._elements.keys())
+
+    @property
+    def elements(self) -> List["FhirProfileElement"]:
+        return list(self._elements.values())
+
+    def __getitem__(self, id: str) -> "FhirProfileElement":
+        return self._elements.get(id)
+
+
+class FhirProfileElement:
+    def __init__(self, data: dict) -> None:
+        if data is None:
+            raise ValueError("'data' shall not be None")
+
+        self._data = data
