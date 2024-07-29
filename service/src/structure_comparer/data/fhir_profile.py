@@ -1,7 +1,8 @@
 import json
 from pathlib import Path
-from typing import List
+from typing import Dict
 
+# TODO switch when type of `Element.id` was fixed
 # from fhir.resources.R4B.structuredefinition import StructureDefinition
 
 
@@ -15,7 +16,7 @@ class FhirProfile:
 
         self._data = data
 
-        self._elements = {
+        self._elements: Dict[str, "FhirProfileElement"] = {
             element["id"]: FhirProfileElement(element)
             for element in data["snapshot"]["element"]
         }
@@ -66,12 +67,8 @@ class FhirProfile:
         return self._data["baseDefinition"]
 
     @property
-    def element_names(self) -> List[str]:
-        return list(self._elements.keys())
-
-    @property
-    def elements(self) -> List["FhirProfileElement"]:
-        return list(self._elements.values())
+    def elements(self) -> Dict[str, "FhirProfileElement"]:
+        return self._elements
 
     def __getitem__(self, id: str) -> "FhirProfileElement":
         return self._elements.get(id)
@@ -83,3 +80,32 @@ class FhirProfileElement:
             raise ValueError("'data' shall not be None")
 
         self._data = data
+
+    @property
+    def id(self) -> str:
+        return self._data["id"]
+
+    @property
+    def path(self) -> str:
+        return self._data["path"]
+
+    @property
+    def short(self) -> str:
+        return self._data["short"]
+
+    @property
+    def min(self) -> int:
+        return self._data["min"]
+
+    @property
+    def max(self) -> str:
+        return self._data["max"]
+
+    @property
+    def type(self) -> str:
+        value = self._data.get("type")
+        return None if value is None else value[0]["code"]
+
+    @property
+    def must_support(self) -> bool:
+        return self._data.get("mustSupport", False)
