@@ -3,12 +3,18 @@
     classification: not_use
   MedicationRequest.extension:BVG:
     classification: not_use
+  MedicationRequest.extension:Mehrfachverordnung:
+    classification: copy_from
+    extra: MedicationRequest.extension:multiplePrescription
   MedicationRequest.extension:Notdienstgebuehr:
     classification: not_use
   MedicationRequest.extension:Unfallinformationen:
     classification: not_use
   MedicationRequest.extension:Zuzahlungsstatus:
     classification: not_use
+  MedicationRequest.extension:multiplePrescription:
+    classification: copy_to
+    extra: MedicationRequest.extension:Mehrfachverordnung
   MedicationRequest.identifier:rxPrescriptionProcessIdentifier:
     classification: empty
     remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
@@ -31,12 +37,13 @@
   MedicationRequest.meta.profile:
     classification: not_use
   MedicationRequest.requester.reference:
+    classification: not_use
+  MedicationRequest.subject.identifier:
     classification: medication_service
   MedicationRequest.subject.reference:
-    classification: medication_service
+    classification: not_use
   MedicationRequest.substitution.allowed[x]:allowedBoolean:
-    classification: empty
-    remark: "Einschr\xE4nkung wird nicht \xFCbernommen"
+    classification: use
 10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a:
   Medication.amount.numerator.extension:Gesamtmenge:
     classification: copy_to
@@ -101,6 +108,9 @@
   Medication.extension:normSizeCode:
     classification: copy_from
     extra: Medication.extension:Normgroesse
+  Medication.extension:packaging:
+    classification: copy_from
+    extra: Medication.extension:Verpackung
   Medication.form.coding:KBVDarreichungsform:
     classification: copy_from
     extra: Medication.form.coding:kbvDarreichungsform
@@ -151,6 +161,24 @@
   Medication.ingredient.strength.extension:amountText:
     classification: copy_from
     extra: Medication.ingredient.strength.extension:MengeFreitext
+  Medication.ingredient.strength.numerator.code:
+    classification: manual
+    remark: "If Property and value exists, it will be retained. If it is missing please\
+      \ add a new extension with the following content:\n\"extension\": [\n  {\n \
+      \   \"url\": \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\"\
+      ,\n    \"valueCode\": \"unknown\"\n  }\n]\n"
+  Medication.ingredient.strength.numerator.system:
+    classification: manual
+    remark: "If Property and value exists, it will be retained. If it is missing please\
+      \ add a new extension with the following content:\n\"extension\": [\n  {\n \
+      \   \"url\": \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\"\
+      ,\n    \"valueCode\": \"unknown\"\n  }\n]\n"
+  Medication.ingredient.strength.numerator.value:
+    classification: manual
+    remark: "If Property and value exists, it will be retained. If it is missing please\
+      \ add a new extension with the following content:\n\"extension\": [\n  {\n \
+      \   \"url\": \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\"\
+      ,\n    \"valueCode\": \"unknown\"\n  }\n]\n"
   Medication.manufacturer.reference:
     classification: empty
   Medication.meta.profile:
@@ -204,9 +232,6 @@
     extra: Medication.extension:normSizeCode
   Medication.extension:RxPrescriptionProcessIdentifier:
     classification: medication_service
-  Medication.extension:Verpackung:
-    classification: copy_to
-    extra: Medication.extension:packaging
   Medication.extension:drugCategory:
     classification: copy_from
     extra: Medication.extension:Arzneimittelkategorie

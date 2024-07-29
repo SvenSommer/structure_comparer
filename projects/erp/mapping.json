@@ -1,10 +1,10 @@
 {
     "KBV_PR_ERP_Medication_Compounding|1.1.0": {
-        "EPAMedication|1.0.2-rc1": {
+        "EPAMedication|1.1.0-rc1": {
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:11",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:totalQuantity",
@@ -27,11 +27,11 @@
                 "Medication.meta.profile"
             ]
         },
-        "GEM_ERP_PR_Medication|1.4.0-rc1": {
+        "GEM_ERP_PR_Medication|1.4.0": {
             "id": "477e227a-6664-437d-8084-325bc9d25405",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:totalQuantity",
@@ -40,7 +40,7 @@
                 "Medication.extension:Arzneimittelkategorie": "Medication.extension:drugCategory",
                 "Medication.extension:Herstellungsanweisung": "Medication.extension:manufacturingInstructions",
                 "Medication.extension:Impfstoff": "Medication.extension:isVaccine",
-                "Medication.extension:Verpackung": "Medication.extension:packaging",
+                "Medication.extension:Verpackung": "Medication.extension:Verpackung",
                 "Medication.form": "Medication.form",
                 "Medication.ingredient": "Medication.ingredient",
                 "Medication.ingredient.extension:Darreichungsform": "Medication.ingredient.extension:darreichungsform",
@@ -56,11 +56,11 @@
         }
     },
     "KBV_PR_ERP_Medication_FreeText|1.1.0": {
-        "EPAMedication|1.0.2-rc1": {
+        "EPAMedication|1.1.0-rc1": {
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:11",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
@@ -75,11 +75,11 @@
                 "Medication.meta.profile"
             ]
         },
-        "GEM_ERP_PR_Medication|1.4.0-rc1": {
+        "GEM_ERP_PR_Medication|1.4.0": {
             "id": "477e227a-6664-437d-8084-325bc9d25405",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
@@ -96,11 +96,11 @@
         }
     },
     "KBV_PR_ERP_Medication_Ingredient|1.1.0": {
-        "EPAMedication|1.0.2-rc1": {
+        "EPAMedication|1.1.0-rc1": {
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:11",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -120,11 +120,11 @@
                 "Medication.meta.profile"
             ]
         },
-        "GEM_ERP_PR_Medication|1.4.0-rc1": {
+        "GEM_ERP_PR_Medication|1.4.0": {
             "id": "477e227a-6664-437d-8084-325bc9d25405",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -146,11 +146,11 @@
         }
     },
     "KBV_PR_ERP_Medication_PZN|1.1.0": {
-        "EPAMedication|1.0.2-rc1": {
+        "EPAMedication|1.1.0-rc1": {
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:11",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -169,11 +169,11 @@
                 "Medication.meta.profile"
             ]
         },
-        "GEM_ERP_PR_Medication|1.4.0-rc1": {
+        "GEM_ERP_PR_Medication|1.4.0": {
             "id": "477e227a-6664-437d-8084-325bc9d25405",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -194,11 +194,11 @@
         }
     },
     "KBV_PR_FOR_Practitioner|1.1.0": {
-        "PractitionerDirectory|0.11.7": {
+        "PractitionerDirectory|0.11.11": {
             "id": "615205d2-7288-47ce-a65a-009c37ed8447",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Practitioner.identifier": "Practitioner.identifier",
                 "Practitioner.identifier:ANR": "Practitioner.identifier:LANR",
@@ -223,12 +223,12 @@
             ]
         }
     },
-    "GEM_ERP_PR_Medication|1.4.0-rc1": {
-        "EPAMedication|1.0.2-rc1": {
+    "GEM_ERP_PR_Medication|1.4.0": {
+        "EPAMedication|1.1.0-rc1": {
             "id": "5208113a-6fcc-45ba-a9f7-d8fdb14a1ed9",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.batch": "Medication.batch",
@@ -240,6 +240,7 @@
                 "Medication.extension:normSizeCode": "Medication.extension:normSizeCode",
                 "Medication.extension:packaging": "Medication.extension:packaging",
                 "Medication.extension:rxPrescriptionProcessIdentifier": "Medication.extension:rxPrescriptionProcessIdentifier",
+                "Medication.extension:type": "Medication.extension:type",
                 "Medication.form": "Medication.form",
                 "Medication.identifier": "Medication.identifier",
                 "Medication.identifier:EPAMedicationUniqueIdentifier": "Medication.identifier:EPAMedicationUniqueIdentifier",
@@ -265,16 +266,15 @@
         }
     },
     "KBV_PR_ERP_Prescription|1.1.0": {
-        "EPAMedicationRequest|1.0.2-rc1": {
+        "EPAMedicationRequest|1.1.0-rc1": {
             "id": "0760ae49-8551-459b-bc65-39bfb47697f8",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "MedicationRequest.authoredOn": "MedicationRequest.authoredOn",
                 "MedicationRequest.dispenseRequest": "MedicationRequest.dispenseRequest",
                 "MedicationRequest.dosageInstruction": "MedicationRequest.dosageInstruction",
-                "MedicationRequest.extension:Mehrfachverordnung": "MedicationRequest.extension:Mehrfachverordnung",
                 "MedicationRequest.insurance": "MedicationRequest.insurance",
                 "MedicationRequest.medication[x]": "MedicationRequest.medication[x]",
                 "MedicationRequest.meta": "MedicationRequest.meta",
@@ -292,17 +292,16 @@
                 "MedicationRequest.insurance.reference",
                 "MedicationRequest.meta.profile",
                 "MedicationRequest.requester.reference",
-                "MedicationRequest.subject.reference",
-                "MedicationRequest.substitution.allowed[x]:allowedBoolean"
+                "MedicationRequest.subject.reference"
             ]
         }
     },
     "KBV_PR_FOR_Organization|1.1.0": {
-        "OrganizationDirectory|0.11.7": {
+        "OrganizationDirectory|0.11.11": {
             "id": "79595f0e-d292-4c12-9413-cb8836d7de34",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "Organization.address": "Organization.address",
                 "Organization.address:Strassenanschrift": "Organization.address:Strassenanschrift",
@@ -326,11 +325,11 @@
         }
     },
     "GEM_ERP_PR_MedicationDispense|1.3.1": {
-        "GEM_ERP_PR_MedicationDispense|1.4.0-rc1": {
+        "GEM_ERP_PR_MedicationDispense|1.4.0": {
             "id": "aeeb2f06-297e-4ed9-b189-d0030fd883fe",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -364,11 +363,11 @@
             "fixed": {},
             "remove": []
         },
-        "EPAMedicationDispense|1.0.2-rc1": {
+        "EPAMedicationDispense|1.1.0-rc1": {
             "id": "86750842-3975-4344-9656-48d74c5d8a00",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -406,12 +405,12 @@
             "remove": []
         }
     },
-    "GEM_ERP_PR_MedicationDispense|1.4.0-rc1": {
-        "EPAMedicationDispense|1.0.2-rc1": {
+    "GEM_ERP_PR_MedicationDispense|1.4.0": {
+        "EPAMedicationDispense|1.1.0-rc1": {
             "id": "db59e5db-b93d-4a34-82b3-948bb1656392",
-            "version": "0.92",
-            "status": "draft",
-            "last_updated": "2024-06-13 13:17:12",
+            "version": "1.0",
+            "status": "active",
+            "last_updated": "2024-07-26 16:20:50",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",

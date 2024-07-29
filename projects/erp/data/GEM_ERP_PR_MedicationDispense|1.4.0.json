@@ -5,7 +5,7 @@
   "version": "1.4",
   "name": "GEM_ERP_PR_MedicationDispense",
   "title": "Dispensation of the Prescription",
-  "status": "draft",
+  "status": "active",
   "date": "2024-07-15",
   "description": "Handles information about the redeem of the prescription and the submited medication.",
   "fhirVersion": "4.0.1",
@@ -1579,9 +1579,6 @@
             "code": "Reference",
             "targetProfile": [
               "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication"
-            ],
-            "aggregation": [
-              "contained"
             ]
           }
         ],
@@ -3628,6 +3625,13 @@
             "expression": "hasValue() or (children().count() > id.count())",
             "xpath": "@value|f:*|h:div",
             "source": "http://hl7.org/fhir/StructureDefinition/Element"
+          },
+          {
+            "key": "workflow-abgabeDatumsFormat",
+            "severity": "error",
+            "human": "Wert muss ein Datum in der Form: YYYY-MM-DD sein.",
+            "expression": "toString().length()=10",
+            "source": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense"
           }
         ],
         "mustSupport": false,
@@ -4681,9 +4685,6 @@
             "code": "Reference",
             "targetProfile": [
               "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication"
-            ],
-            "aggregation": [
-              "contained"
             ]
           }
         ]
@@ -4704,6 +4705,15 @@
       {
         "id": "MedicationDispense.whenPrepared",
         "path": "MedicationDispense.whenPrepared",
+        "constraint": [
+          {
+            "key": "workflow-abgabeDatumsFormat",
+            "severity": "error",
+            "human": "Wert muss ein Datum in der Form: YYYY-MM-DD sein.",
+            "expression": "toString().length()=10",
+            "source": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense"
+          }
+        ],
         "mustSupport": false
       },
       {

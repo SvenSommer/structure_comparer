@@ -20,6 +20,9 @@ def create_app(projects_root_dir: Path):
     app = Flask(__name__)
     CORS(app, origins="http://localhost:4200")
 
+    if not isinstance(projects_root_dir, Path):
+        raise ValueError("projects_root_dir must be a Path object")
+
     setattr(app, "projects_root", projects_root_dir)
     setattr(app, "project", None)
 

@@ -2,12 +2,12 @@
   "resourceType": "StructureDefinition",
   "id": "epa-medication-request",
   "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request",
-  "version": "1.0.2-rc1",
+  "version": "1.1.0-rc1",
   "name": "EPAMedicationRequest",
   "title": "EPA MedicationRequest",
   "status": "active",
   "experimental": false,
-  "date": "2024-06-07",
+  "date": "2024-07-15",
   "publisher": "gematik GmbH",
   "description": "Defines the medication request resource for the Medication Service in the ePA system.",
   "fhirVersion": "4.0.1",
@@ -869,6 +869,74 @@
         ]
       },
       {
+        "id": "MedicationRequest.extension:medicationRequestLinkedStatement",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+            "valueCode": "normative"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+            "valueCode": "4.0.0"
+          }
+        ],
+        "path": "MedicationRequest.extension",
+        "sliceName": "medicationRequestLinkedStatement",
+        "short": "MedicationRequest Linked Statement",
+        "definition": "This FHIR extension is designed for use within the MedicationRequest resource to establish a direct linkage to one or more MedicationStatement resources. It enables the association of medication requests with specific medication statements, facilitating a clear understanding of the relationship between prescribed medications and the patient's medication history. This extension is crucial for ensuring comprehensive medication management and tracking within patient care workflows.",
+        "comment": "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.",
+        "alias": [
+          "extensions",
+          "user content"
+        ],
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-request-linked-statement-extension"
+            ]
+          }
+        ],
+        "condition": [
+          "ele-1"
+        ],
+        "constraint": [
+          {
+            "key": "ele-1",
+            "severity": "error",
+            "human": "All FHIR elements must have a @value or children",
+            "expression": "hasValue() or (children().count() > id.count())",
+            "xpath": "@value|f:*|h:div",
+            "source": "http://hl7.org/fhir/StructureDefinition/Element"
+          },
+          {
+            "key": "ext-1",
+            "severity": "error",
+            "human": "Must have either extensions or value[x], not both",
+            "expression": "extension.exists() != value.exists()",
+            "xpath": "exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])",
+            "source": "http://hl7.org/fhir/StructureDefinition/Extension"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "n/a"
+          },
+          {
+            "identity": "rim",
+            "map": "N/A"
+          }
+        ]
+      },
+      {
         "id": "MedicationRequest.extension:multiplePrescription",
         "extension": [
           {
@@ -1264,67 +1332,6 @@
           }
         ],
         "path": "MedicationRequest.extension.extension.value[x]",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "rules": "closed"
-        },
-        "short": "Value of extension",
-        "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.value[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "boolean"
-          }
-        ],
-        "condition": [
-          "ele-1"
-        ],
-        "constraint": [
-          {
-            "key": "ele-1",
-            "severity": "error",
-            "human": "All FHIR elements must have a @value or children",
-            "expression": "hasValue() or (children().count() > id.count())",
-            "xpath": "@value|f:*|h:div",
-            "source": "http://hl7.org/fhir/StructureDefinition/Element"
-          }
-        ],
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          },
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:indicator.value[x]:valueBoolean",
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
-            "valueCode": "normative"
-          },
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
-            "valueCode": "4.0.0"
-          }
-        ],
-        "path": "MedicationRequest.extension.extension.value[x]",
-        "sliceName": "valueBoolean",
         "short": "Multiple Prescription Indicator",
         "definition": "Indicator of whether the current prescription is part of a multiple prescription\r\n\r\ntrue - the current prescription is part of a multiple prescription \r\nfalse - the current prescription is not part of a multiple prescription",
         "min": 1,
@@ -1584,67 +1591,6 @@
           }
         ],
         "path": "MedicationRequest.extension.extension.value[x]",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "rules": "closed"
-        },
-        "short": "Value of extension",
-        "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.value[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Ratio"
-          }
-        ],
-        "condition": [
-          "ele-1"
-        ],
-        "constraint": [
-          {
-            "key": "ele-1",
-            "severity": "error",
-            "human": "All FHIR elements must have a @value or children",
-            "expression": "hasValue() or (children().count() > id.count())",
-            "xpath": "@value|f:*|h:div",
-            "source": "http://hl7.org/fhir/StructureDefinition/Element"
-          }
-        ],
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          },
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio",
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
-            "valueCode": "normative"
-          },
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
-            "valueCode": "4.0.0"
-          }
-        ],
-        "path": "MedicationRequest.extension.extension.value[x]",
-        "sliceName": "valueRatio",
         "short": "Value of extension",
         "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
         "min": 1,
@@ -1685,7 +1631,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.id",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].id",
         "path": "MedicationRequest.extension.extension.value[x].id",
         "representation": [
           "xmlAttr"
@@ -1718,7 +1664,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.extension",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].extension",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -1792,7 +1738,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -1862,7 +1808,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator.id",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator.id",
         "path": "MedicationRequest.extension.extension.value[x].numerator.id",
         "representation": [
           "xmlAttr"
@@ -1895,7 +1841,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator.extension",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator.extension",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -1969,7 +1915,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator.value",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator.value",
         "path": "MedicationRequest.extension.extension.value[x].numerator.value",
         "short": "Multiple Prescription Counter",
         "definition": "The field serves to indicate which number in a series of multiple prescriptions it is. Example: \"2\" in \"2 out of 4\"",
@@ -2018,7 +1964,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator.comparator",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator.comparator",
         "path": "MedicationRequest.extension.extension.value[x].numerator.comparator",
         "short": "< | <= | >= | > - how to understand the value",
         "definition": "How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.",
@@ -2080,7 +2026,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator.unit",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator.unit",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable",
@@ -2134,7 +2080,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator.system",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator.system",
         "path": "MedicationRequest.extension.extension.value[x].numerator.system",
         "short": "System that defines coded unit form",
         "definition": "The identification of the system that provides the coded form of the unit.",
@@ -2183,7 +2129,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator.code",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator.code",
         "path": "MedicationRequest.extension.extension.value[x].numerator.code",
         "short": "Coded form of the unit",
         "definition": "A computer processable form of the unit in some unit representation system.",
@@ -2231,7 +2177,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -2301,7 +2247,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator.id",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator.id",
         "path": "MedicationRequest.extension.extension.value[x].denominator.id",
         "representation": [
           "xmlAttr"
@@ -2334,7 +2280,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator.extension",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator.extension",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -2408,7 +2354,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator.value",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator.value",
         "path": "MedicationRequest.extension.extension.value[x].denominator.value",
         "short": "Denominator of Multiple Prescription Series",
         "definition": "The field serves to indicate the length of this series. Example: \"4\" in \"2 out of 4\"",
@@ -2457,7 +2403,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator.comparator",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator.comparator",
         "path": "MedicationRequest.extension.extension.value[x].denominator.comparator",
         "short": "< | <= | >= | > - how to understand the value",
         "definition": "How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.",
@@ -2519,7 +2465,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator.unit",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator.unit",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable",
@@ -2573,7 +2519,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator.system",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator.system",
         "path": "MedicationRequest.extension.extension.value[x].denominator.system",
         "short": "System that defines coded unit form",
         "definition": "The identification of the system that provides the coded form of the unit.",
@@ -2622,7 +2568,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator.code",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator.code",
         "path": "MedicationRequest.extension.extension.value[x].denominator.code",
         "short": "Coded form of the unit",
         "definition": "A computer processable form of the unit in some unit representation system.",
@@ -2889,67 +2835,6 @@
           }
         ],
         "path": "MedicationRequest.extension.extension.value[x]",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "rules": "closed"
-        },
-        "short": "Value of extension",
-        "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.value[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Period"
-          }
-        ],
-        "condition": [
-          "ele-1"
-        ],
-        "constraint": [
-          {
-            "key": "ele-1",
-            "severity": "error",
-            "human": "All FHIR elements must have a @value or children",
-            "expression": "hasValue() or (children().count() > id.count())",
-            "xpath": "@value|f:*|h:div",
-            "source": "http://hl7.org/fhir/StructureDefinition/Element"
-          }
-        ],
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          },
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x]:valuePeriod",
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
-            "valueCode": "normative"
-          },
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
-            "valueCode": "4.0.0"
-          }
-        ],
-        "path": "MedicationRequest.extension.extension.value[x]",
-        "sliceName": "valuePeriod",
         "short": "Value of extension",
         "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
         "min": 1,
@@ -3004,7 +2889,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x]:valuePeriod.id",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x].id",
         "path": "MedicationRequest.extension.extension.value[x].id",
         "representation": [
           "xmlAttr"
@@ -3037,7 +2922,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x]:valuePeriod.extension",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x].extension",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -3111,7 +2996,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x]:valuePeriod.start",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x].start",
         "path": "MedicationRequest.extension.extension.value[x].start",
         "short": "Start Date of the Prescription Redemption Period",
         "definition": "Date from which the partial prescription of the multiple prescription can be redeemed",
@@ -3160,7 +3045,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x]:valuePeriod.end",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x].end",
         "path": "MedicationRequest.extension.extension.value[x].end",
         "short": "End Date of the Prescription Redemption Period",
         "definition": "Date of the last redemption day for the partial prescription within the multiple prescription series. \nThe issuer may specify a redemption period different from the one outlined in the Medicinal Products Prescription Ordinance (AMVV)",
@@ -3429,67 +3314,6 @@
           }
         ],
         "path": "MedicationRequest.extension.extension.value[x]",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "rules": "closed"
-        },
-        "short": "Value of extension",
-        "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.value[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "Identifier"
-          }
-        ],
-        "condition": [
-          "ele-1"
-        ],
-        "constraint": [
-          {
-            "key": "ele-1",
-            "severity": "error",
-            "human": "All FHIR elements must have a @value or children",
-            "expression": "hasValue() or (children().count() > id.count())",
-            "xpath": "@value|f:*|h:div",
-            "source": "http://hl7.org/fhir/StructureDefinition/Element"
-          }
-        ],
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          },
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier",
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
-            "valueCode": "normative"
-          },
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
-            "valueCode": "4.0.0"
-          }
-        ],
-        "path": "MedicationRequest.extension.extension.value[x]",
-        "sliceName": "valueIdentifier",
         "short": "Value of extension",
         "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
         "min": 1,
@@ -3530,7 +3354,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.id",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].id",
         "path": "MedicationRequest.extension.extension.value[x].id",
         "representation": [
           "xmlAttr"
@@ -3563,7 +3387,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.extension",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].extension",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -3637,7 +3461,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.use",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].use",
         "path": "MedicationRequest.extension.extension.value[x].use",
         "short": "usual | official | temp | secondary | old (If known)",
         "definition": "The purpose of this identifier.",
@@ -3698,7 +3522,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.type",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].type",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -3783,7 +3607,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.system",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].system",
         "path": "MedicationRequest.extension.extension.value[x].system",
         "short": "Specification as UUID",
         "definition": "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
@@ -3843,7 +3667,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.value",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].value",
         "path": "MedicationRequest.extension.extension.value[x].value",
         "short": "Multiple Prescription ID",
         "definition": "A unique ID that is identical across all partial prescriptions of a multiple prescription.",
@@ -3901,7 +3725,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.period",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].period",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -3978,7 +3802,7 @@
         ]
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.assigner",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].assigner",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
@@ -4510,68 +4334,6 @@
           }
         ],
         "path": "MedicationRequest.extension.value[x]",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "type",
-              "path": "$this"
-            }
-          ],
-          "rules": "open"
-        },
-        "short": "Value of extension",
-        "definition": "Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).",
-        "min": 1,
-        "max": "1",
-        "base": {
-          "path": "Extension.value[x]",
-          "min": 0,
-          "max": "1"
-        },
-        "type": [
-          {
-            "code": "boolean"
-          }
-        ],
-        "condition": [
-          "ele-1"
-        ],
-        "constraint": [
-          {
-            "key": "ele-1",
-            "severity": "error",
-            "human": "All FHIR elements must have a @value or children",
-            "expression": "hasValue() or (children().count() > id.count())",
-            "xpath": "@value|f:*|h:div",
-            "source": "http://hl7.org/fhir/StructureDefinition/Element"
-          }
-        ],
-        "mustSupport": true,
-        "mapping": [
-          {
-            "identity": "rim",
-            "map": "n/a"
-          },
-          {
-            "identity": "rim",
-            "map": "N/A"
-          }
-        ]
-      },
-      {
-        "id": "MedicationRequest.extension:isBvg.value[x]:valueBoolean",
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
-            "valueCode": "normative"
-          },
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
-            "valueCode": "4.0.0"
-          }
-        ],
-        "path": "MedicationRequest.extension.value[x]",
-        "sliceName": "valueBoolean",
         "short": "BVG",
         "definition": "Indicator of whether this regulation applies to claimants under the 'Bundesentschädigungsgesetz' (BEG) or to claimants under the 'Bundesversorgungsgesetz' (BVG).\n\r\n\r\nfalse - not BVG (default value)\n\r\ntrue - BVG",
         "min": 1,
@@ -5800,7 +5562,7 @@
         "short": "An identifier intended for computation",
         "definition": "An identifier - identifies some entity uniquely and unambiguously. Typically this is used for business identifiers.",
         "comment": "When an identifier is provided in place of a reference, any system processing the reference will only be able to resolve the identifier to a reference if it understands the business context in which the identifier is used. Sometimes this is global (e.g. a national identifier) but often it is not. For this reason, none of the useful mechanisms described for working with references (e.g. chaining, includes) are possible, nor should servers be expected to be able resolve the reference. Servers may accept an identifier based reference untouched, resolve it, and/or reject it - see CapabilityStatement.rest.resource.referencePolicy. \n\nWhen both an identifier and a literal reference are provided, the literal reference is preferred. Applications processing the resource are allowed - but not required - to check that the identifier matches the literal reference\n\nApplications converting a logical reference to a literal reference may choose to leave the logical reference present, or remove it.\n\nReference is intended to point to a structure that can potentially be expressed as a FHIR resource, though there is no need for it to exist as an actual FHIR resource instance - except in as much as an application wishes to actual find the target of the reference. The content referred to be the identifier must meet the logical constraints implied by any limitations on what resource types are permitted for the reference.  For example, it would not be legitimate to send the identifier for a drug prescription if the type were Reference(Observation|DiagnosticReport).  One of the use-cases for Reference.identifier is the situation where no FHIR representation exists (where the type is Reference (Any).",
-        "min": 0,
+        "min": 1,
         "max": "1",
         "base": {
           "path": "Reference.identifier",
@@ -10815,6 +10577,21 @@
         "mustSupport": true
       },
       {
+        "id": "MedicationRequest.extension:medicationRequestLinkedStatement",
+        "path": "MedicationRequest.extension",
+        "sliceName": "medicationRequestLinkedStatement",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-request-linked-statement-extension"
+            ]
+          }
+        ]
+      },
+      {
         "id": "MedicationRequest.extension:multiplePrescription",
         "path": "MedicationRequest.extension",
         "sliceName": "multiplePrescription",
@@ -10836,14 +10613,8 @@
         "sliceName": "indicator"
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:indicator.value[x]:valueBoolean",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:indicator.value[x]",
         "path": "MedicationRequest.extension.extension.value[x]",
-        "sliceName": "valueBoolean",
-        "type": [
-          {
-            "code": "boolean"
-          }
-        ],
         "mustSupport": true
       },
       {
@@ -10852,33 +10623,27 @@
         "sliceName": "counter"
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]",
         "path": "MedicationRequest.extension.extension.value[x]",
-        "sliceName": "valueRatio",
-        "type": [
-          {
-            "code": "Ratio"
-          }
-        ],
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator",
         "path": "MedicationRequest.extension.extension.value[x].numerator",
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.numerator.value",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].numerator.value",
         "path": "MedicationRequest.extension.extension.value[x].numerator.value",
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator",
         "path": "MedicationRequest.extension.extension.value[x].denominator",
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x]:valueRatio.denominator.value",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:counter.value[x].denominator.value",
         "path": "MedicationRequest.extension.extension.value[x].denominator.value",
         "mustSupport": true
       },
@@ -10888,23 +10653,17 @@
         "sliceName": "period"
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x]:valuePeriod",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x]",
         "path": "MedicationRequest.extension.extension.value[x]",
-        "sliceName": "valuePeriod",
-        "type": [
-          {
-            "code": "Period"
-          }
-        ],
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x]:valuePeriod.start",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x].start",
         "path": "MedicationRequest.extension.extension.value[x].start",
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x]:valuePeriod.end",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:period.value[x].end",
         "path": "MedicationRequest.extension.extension.value[x].end",
         "mustSupport": true
       },
@@ -10914,23 +10673,17 @@
         "sliceName": "id"
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]",
         "path": "MedicationRequest.extension.extension.value[x]",
-        "sliceName": "valueIdentifier",
-        "type": [
-          {
-            "code": "Identifier"
-          }
-        ],
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.system",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].system",
         "path": "MedicationRequest.extension.extension.value[x].system",
         "mustSupport": true
       },
       {
-        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x]:valueIdentifier.value",
+        "id": "MedicationRequest.extension:multiplePrescription.extension:id.value[x].value",
         "path": "MedicationRequest.extension.extension.value[x].value",
         "mustSupport": true
       },
@@ -10953,17 +10706,6 @@
       {
         "id": "MedicationRequest.extension:isBvg.value[x]",
         "path": "MedicationRequest.extension.value[x]",
-        "mustSupport": true
-      },
-      {
-        "id": "MedicationRequest.extension:isBvg.value[x]:valueBoolean",
-        "path": "MedicationRequest.extension.value[x]",
-        "sliceName": "valueBoolean",
-        "type": [
-          {
-            "code": "boolean"
-          }
-        ],
         "mustSupport": true
       },
       {
@@ -11061,6 +10803,7 @@
       {
         "id": "MedicationRequest.subject.identifier",
         "path": "MedicationRequest.subject.identifier",
+        "min": 1,
         "type": [
           {
             "code": "Identifier",
