@@ -5,6 +5,7 @@
     <title>Mapping: {% for profile in source_profiles %}{{ profile['key'] }}{% if not loop.last %}, {% endif %}{% endfor %} in {{ target_profile['key'] }}</title>
     <link rel='stylesheet' type='text/css' href='./{{ css_file }}'>
     <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
     <script type='text/javascript' src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     <script type='text/javascript' src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>
 </head>
@@ -52,9 +53,7 @@
                 <th style="text-align: center;">Source Profile</th>
                 {% endif %}
                 <th style="text-align: center;">Target Profile</th>
-                {% if show_warnings %}
-                    <th rowspan="2">Warning</th>
-                {% endif %}
+                <th rowspan="2" class="warning-column">Warning</th>
                 {% if show_remarks %}
                     <th rowspan="2">Remarks</th>
                 {% endif %}
@@ -79,30 +78,41 @@
                     {% endif %}
                 </td>
                 {% endfor %}
-                {% if show_warnings %}
-                    <td>
-                        {% if entry.warning %}
-                        <ul>
-                            {% for warning in entry.warning %}
-                            <li>{{ warning }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                    </td>
-                {% endif %}
+                <td class="warning-column">
+                    {% if entry.warning %}
+                    <ul>
+                        {% for warning in entry.warning %}
+                        <li>{{ warning }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </td>
                 {% if show_remarks %}
                     <td>{{ entry.remark | format_links }}</td>
                 {% endif %}
-
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <script>
         $(document).ready(function () {
+            var warningsVisible = true;
+            var numberOfWarnings = {{ number_of_warnings }};
+            
             $('#resultsTable').DataTable({
                 'pageLength': -1,
-                'lengthMenu': [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, 'All']]
+                'lengthMenu': [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, 'All']],
+                'dom': '<"top"f>rt<"bottom"ilp><"clear">',
+                'initComplete': function() {
+                    var buttonHtml = '<button id="toggleWarnings"><i class="fas fa-exclamation-triangle"></i> hide warnings (' + numberOfWarnings + ')</button>';
+                    $('#resultsTable_filter').prepend(buttonHtml);
+                    
+                    $('#toggleWarnings').click(function () {
+                        $('.warning-column').toggle();
+                        warningsVisible = !warningsVisible;
+                        $(this).html('<i class="fas fa-exclamation-triangle"></i> ' + (warningsVisible ? 'hide warnings (' + numberOfWarnings + ')' : 'show warnings (' + numberOfWarnings + ')'));
+                    });
+                }
             });
         });
     </script>

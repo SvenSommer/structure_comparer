@@ -4,7 +4,7 @@
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:totalQuantity",
@@ -31,7 +31,7 @@
             "id": "477e227a-6664-437d-8084-325bc9d25405",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Gesamtmenge": "Medication.amount.numerator.extension:totalQuantity",
@@ -60,7 +60,7 @@
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
@@ -79,7 +79,7 @@
             "id": "477e227a-6664-437d-8084-325bc9d25405",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Medication.batch": "Medication.batch",
                 "Medication.code": "Medication.code",
@@ -100,7 +100,7 @@
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -124,7 +124,7 @@
             "id": "477e227a-6664-437d-8084-325bc9d25405",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -150,7 +150,7 @@
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -173,7 +173,7 @@
             "id": "477e227a-6664-437d-8084-325bc9d25405",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.amount.numerator.extension:Packungsgroesse": "Medication.amount.numerator.extension:packagingSize",
@@ -198,7 +198,7 @@
             "id": "615205d2-7288-47ce-a65a-009c37ed8447",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Practitioner.identifier": "Practitioner.identifier",
                 "Practitioner.identifier:ANR": "Practitioner.identifier:LANR",
@@ -228,7 +228,7 @@
             "id": "5208113a-6fcc-45ba-a9f7-d8fdb14a1ed9",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Medication.amount": "Medication.amount",
                 "Medication.batch": "Medication.batch",
@@ -270,7 +270,7 @@
             "id": "0760ae49-8551-459b-bc65-39bfb47697f8",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "MedicationRequest.authoredOn": "MedicationRequest.authoredOn",
                 "MedicationRequest.dispenseRequest": "MedicationRequest.dispenseRequest",
@@ -301,7 +301,7 @@
             "id": "79595f0e-d292-4c12-9413-cb8836d7de34",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "Organization.address": "Organization.address",
                 "Organization.address:Strassenanschrift": "Organization.address:Strassenanschrift",
@@ -329,7 +329,7 @@
             "id": "aeeb2f06-297e-4ed9-b189-d0030fd883fe",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -367,7 +367,7 @@
             "id": "86750842-3975-4344-9656-48d74c5d8a00",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",
@@ -410,7 +410,7 @@
             "id": "db59e5db-b93d-4a34-82b3-948bb1656392",
             "version": "1.0",
             "status": "active",
-            "last_updated": "2024-07-30 16:51:11",
+            "last_updated": "2024-07-30 17:55:12",
             "mappings": {
                 "MedicationDispense.authorizingPrescription": "MedicationDispense.authorizingPrescription",
                 "MedicationDispense.category": "MedicationDispense.category",

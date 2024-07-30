@@ -5,6 +5,8 @@ from typing import Dict, List
 
 from jinja2 import Environment, FileSystemLoader
 
+from structure_comparer.helpers import split_parent_child
+
 
 from .classification import Classification
 from .data.comparison import Comparison
@@ -62,51 +64,63 @@ def create_results_html(
     for comp in structured_mapping.values():
 
         entries = {}
-        for prop, entry in comp.fields.items():
-            warnings = []
+        number_of_warnings = 0  # Initialize the warning counter
+
+        for field, entry in comp.fields.items():
+            warnings = set()  # Use a set to collect unique warnings
             target_min_card = entry.profiles[comp.target.profile_key].min_cardinality
             target_max_card = entry.profiles[comp.target.profile_key].max_cardinality
+
+            parent, _ = split_parent_child(field)
+            comparison_parent = comp.fields.get(parent)
 
             for profile in comp.sources:
                 source_min_card = entry.profiles[profile.profile_key].min_cardinality
                 source_max_card = entry.profiles[profile.profile_key].max_cardinality
 
-            if target_max_card < source_max_card and entry.classification not in [
-                Classification.COPY_TO,
-                Classification.COPY_FROM,
-                Classification.EMPTY,
-                Classification.NOT_USE,
-                Classification.MANUAL,
-                Classification.EXTENSION	
-	
+                if comparison_parent and comparison_parent.classification in [
+                    Classification.USE
+                ]:
+                    # Skip the specific warning if the parent is being copied or extended
+                    if target_max_card < source_max_card:
+                        continue
 
-            ]:
-                warnings.append(
-                    "Maximale Kardinalität eines der Sourceprofile übersteigt die minimale Kardinalität des Targetprofils"
-                )
+                if target_max_card < source_max_card and entry.classification not in [
+                    Classification.COPY_TO,
+                    Classification.COPY_FROM,
+                    Classification.EMPTY,
+                    Classification.NOT_USE,
+                    Classification.MANUAL,
+                    Classification.EXTENSION,
+                    Classification.MEDICATION_SERVICE
+                ]:
+                    warnings.add(
+                        "The maximum cardinality of one of the source profiles exceeds the minimum cardinality of the target profile"
+                    )
 
-            if source_min_card < target_min_card and entry.classification not in [
-                Classification.COPY_TO,
-                Classification.COPY_FROM,
-                Classification.EMPTY,
-                Classification.NOT_USE,
-                Classification.MANUAL,
-                Classification.EXTENSION	
-	
+                if source_min_card < target_min_card and entry.classification not in [
+                    Classification.COPY_TO,
+                    Classification.COPY_FROM,
+                    Classification.EMPTY,
+                    Classification.NOT_USE,
+                    Classification.MANUAL,
+                    Classification.EXTENSION,
+                    Classification.MEDICATION_SERVICE
+                ]:
+                    warnings.add(
+                        "The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile"
+                    )
 
-            ]:
-                warnings.append(
-                    "Minimale Kardinalität eines der Sourceprofile unterschreitet die minimale Kardinalität des Targetprofils"
-                )
+            number_of_warnings += len(warnings)  # Increment the warning counter
 
-            entries[prop] = {
+            entries[field] = {
                 "classification": entry.classification,
                 "css_class": CSS_CLASS[entry.classification],
                 "extension": entry.extension,
                 "extra": entry.extra,
                 "profiles": entry.profiles,
                 "remark": entry.remark,
-                "warning": warnings,
+                "warning": list(warnings),  # Convert set back to list
             }
 
         data = {
@@ -125,6 +139,7 @@ def create_results_html(
             "entries": entries,
             "show_remarks": show_remarks,
             "show_warnings": show_warnings,
+            "number_of_warnings": number_of_warnings,  # Add the warning count to the data
             "version": comp.version,
             "last_updated": comp.last_updated,
             "status": comp.status,
