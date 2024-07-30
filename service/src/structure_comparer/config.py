@@ -12,6 +12,7 @@ class Config:
         self.mapping_output_file: str = None
         self.profiles_to_compare: List[CompareConfig] = None
         self.show_remarks: bool = None
+        self.show_warnings: bool = None
 
     @staticmethod
     def from_json(file: str | Path) -> "Config":
@@ -34,6 +35,7 @@ class Config:
             for compare in dict_.get("profiles_to_compare")
         ]
         config.show_remarks = dict_.get("show_remarks", True)
+        config.show_warnings = dict_.get("show_warnings", True)
         return config
 
 

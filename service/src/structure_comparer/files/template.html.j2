@@ -52,8 +52,11 @@
                 <th style="text-align: center;">Source Profile</th>
                 {% endif %}
                 <th style="text-align: center;">Target Profile</th>
+                {% if show_warnings %}
+                    <th rowspan="2">Warning</th>
+                {% endif %}
                 {% if show_remarks %}
-                <th rowspan="2">Remarks</th>
+                    <th rowspan="2">Remarks</th>
                 {% endif %}
             </tr>
             <tr>
@@ -70,11 +73,27 @@
                     {% if entry.extension is not none %}<br>({{ entry.extension | format_links }}){% endif %}
                 </td>
                 {% for profile in source_profiles + [target_profile] %}
-                <td style="text-align: center;">{% if entry.profiles[profile['key']].present %}X{% endif %}</td>
+                <td style="text-align: center;">
+                    {% if entry.profiles[profile['key']].present %}
+                        {{ entry.profiles[profile['key']].min_cardinality }}..{{ entry.profiles[profile['key']].max_cardinality | format_cardinality }}
+                    {% endif %}
+                </td>
                 {% endfor %}
-                {% if show_remarks %}
-                <td>{{ entry.remark | format_links }}</td>
+                {% if show_warnings %}
+                    <td>
+                        {% if entry.warning %}
+                        <ul>
+                            {% for warning in entry.warning %}
+                            <li>{{ warning }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </td>
                 {% endif %}
+                {% if show_remarks %}
+                    <td>{{ entry.remark | format_links }}</td>
+                {% endif %}
+
             </tr>
             {% endfor %}
         </tbody>

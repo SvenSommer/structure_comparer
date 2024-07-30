@@ -3,6 +3,8 @@
     "data_dir": "data",
     "html_output_dir": "docs",
     "mapping_output_file": "mapping.json",
+    "show_remarks": true,
+    "show_warnings": false,
     "profiles_to_compare": [
         {
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",

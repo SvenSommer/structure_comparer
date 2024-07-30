@@ -47,5 +47,6 @@
             }
         }
     ],
-    "show_remarks": true
+    "show_remarks": true,
+    "show_warnings": true
 }

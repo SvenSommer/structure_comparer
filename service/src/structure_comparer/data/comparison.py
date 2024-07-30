@@ -10,6 +10,9 @@ from structure_comparer.data.profile import Profile, ProfileMap
 class ProfileField:
     name: str
     present: bool
+    min_cardinality: int = 0
+    max_cardinality: int = 0
+    
 
 
 @dataclass(init=False)
