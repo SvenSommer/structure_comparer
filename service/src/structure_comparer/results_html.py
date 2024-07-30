@@ -85,27 +85,20 @@ def create_results_html(
                     if target_max_card < source_max_card:
                         continue
 
-                if target_max_card < source_max_card and entry.classification not in [
+                if source_max_card > target_max_card and entry.classification not in [
                     Classification.COPY_TO,
                     Classification.COPY_FROM,
-                    Classification.EMPTY,
-                    Classification.NOT_USE,
-                    Classification.MANUAL,
                     Classification.EXTENSION,
-                    Classification.MEDICATION_SERVICE
                 ]:
                     warnings.add(
-                        "The maximum cardinality of one of the source profiles exceeds the minimum cardinality of the target profile"
+                        "The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile"
                     )
 
-                if source_min_card < target_min_card and entry.classification not in [
+                # Check if source_max_card is not 0 before considering source_min_card
+                if source_max_card != 0 and source_min_card < target_min_card and entry.classification not in [
                     Classification.COPY_TO,
                     Classification.COPY_FROM,
-                    Classification.EMPTY,
-                    Classification.NOT_USE,
-                    Classification.MANUAL,
                     Classification.EXTENSION,
-                    Classification.MEDICATION_SERVICE
                 ]:
                     warnings.add(
                         "The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile"

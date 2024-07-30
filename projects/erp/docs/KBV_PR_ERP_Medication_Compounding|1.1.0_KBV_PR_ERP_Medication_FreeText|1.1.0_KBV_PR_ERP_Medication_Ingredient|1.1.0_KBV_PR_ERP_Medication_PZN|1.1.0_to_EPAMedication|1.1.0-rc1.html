@@ -31,8 +31,8 @@
             
             
             <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.1.0-rc1/files/2465055" target="_blank">EPAMedication|1.1.0-rc1</a></p>
-            <p>Version: 1.0, Status: active</p>
-            <p>Last updated on: 2024-07-30 17:55:12</p>
+            <p>Version: 1.1, Status: active</p>
+            <p>Last updated on: 2024-07-30 21:27:43</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -1945,6 +1945,12 @@
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -1983,6 +1989,12 @@
                 </td>
                 
                 <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
                     
                 </td>
                 
@@ -2213,6 +2225,12 @@
                 </td>
                 
                 <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
                     
                 </td>
                 
@@ -3648,12 +3666,6 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
                 </td>
                 
                     <td>Property and value(s) will be retained</td>
@@ -4903,12 +4915,6 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
                 </td>
                 
                     <td>Property and value(s) will be retained</td>
@@ -4985,7 +4991,7 @@
                 
             </tr>
             
-            <tr class="row-use">
+            <tr class="row-manual">
                 <td>Medication.ingredient.strength.numerator
                     
                 </td>
@@ -5026,7 +5032,14 @@
                     
                 </td>
                 
-                    <td>Property and value(s) will be retained</td>
+                    <td>If Property and value exists, it will be retained. If it is missing please add a new extension with the following content:
+"extension": [
+  {
+    "url": "<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>",
+    "valueCode": "unknown"
+  }
+]
+</td>
                 
             </tr>
             
@@ -5062,6 +5075,12 @@
                 </td>
                 
                 <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile</li>
+                        
+                    </ul>
                     
                 </td>
                 
@@ -5143,6 +5162,12 @@
                 </td>
                 
                 <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile</li>
+                        
+                    </ul>
                     
                 </td>
                 
@@ -5787,16 +5812,18 @@
     </table>
     <script>
         $(document).ready(function () {
-            var warningsVisible = true;
-            var numberOfWarnings = 3;
+            var warningsVisible = false;
+            var numberOfWarnings = 6;
             
             $('#resultsTable').DataTable({
                 'pageLength': -1,
                 'lengthMenu': [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, 'All']],
                 'dom': '<"top"f>rt<"bottom"ilp><"clear">',
                 'initComplete': function() {
-                    var buttonHtml = '<button id="toggleWarnings"><i class="fas fa-exclamation-triangle"></i> hide warnings (' + numberOfWarnings + ')</button>';
+                    var buttonHtml = '<button id="toggleWarnings"><i class="fas fa-exclamation-triangle"></i> show warnings (' + numberOfWarnings + ')</button>';
                     $('#resultsTable_filter').prepend(buttonHtml);
+                    
+                    $('.warning-column').hide(); // Hide warnings by default
                     
                     $('#toggleWarnings').click(function () {
                         $('.warning-column').toggle();

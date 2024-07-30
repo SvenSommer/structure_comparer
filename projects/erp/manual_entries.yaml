@@ -161,6 +161,12 @@
   Medication.ingredient.strength.extension:amountText:
     classification: copy_from
     extra: Medication.ingredient.strength.extension:MengeFreitext
+  Medication.ingredient.strength.numerator:
+    classification: manual
+    remark: "If Property and value exists, it will be retained. If it is missing please\
+        \ add a new extension with the following content:\n\"extension\": [\n  {\n \
+        \   \"url\": \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\"\
+        ,\n    \"valueCode\": \"unknown\"\n  }\n]\n"
   Medication.ingredient.strength.numerator.code:
     classification: manual
     remark: "If Property and value exists, it will be retained. If it is missing please\
@@ -294,11 +300,38 @@
   Medication.ingredient.strength.extension:amountText:
     classification: copy_from
     extra: Medication.ingredient.strength.extension:MengeFreitext
+  Medication.ingredient.strength.numerator:
+    classification: manual
+    remark: "If Property and value exists, it will be retained. If it is missing please\
+        \ add a new extension with the following content:\n\"extension\": [\n  {\n \
+        \   \"url\": \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\"\
+        ,\n    \"valueCode\": \"unknown\"\n  }\n]\n"
+  Medication.ingredient.strength.numerator.code:
+    classification: manual
+    remark: "If Property and value exists, it will be retained. If it is missing please\
+      \ add a new extension with the following content:\n\"extension\": [\n  {\n \
+      \   \"url\": \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\"\
+      ,\n    \"valueCode\": \"unknown\"\n  }\n]\n"
+  Medication.ingredient.strength.numerator.system:
+    classification: manual
+    remark: "If Property and value exists, it will be retained. If it is missing please\
+      \ add a new extension with the following content:\n\"extension\": [\n  {\n \
+      \   \"url\": \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\"\
+      ,\n    \"valueCode\": \"unknown\"\n  }\n]\n"
+  Medication.ingredient.strength.numerator.value:
+    classification: manual
+    remark: "If Property and value exists, it will be retained. If it is missing please\
+      \ add a new extension with the following content:\n\"extension\": [\n  {\n \
+      \   \"url\": \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\"\
+      ,\n    \"valueCode\": \"unknown\"\n  }\n]\n"
   Medication.manufacturer.reference:
     classification: empty
   Medication.meta.profile:
     classification: not_use
 615205d2-7288-47ce-a65a-009c37ed8447:
+  Practitioner.identifier:
+    classification: manual
+    remark: Muss mindestens die TelematikID des Arztes enthalten, die auch im Signaturzertifikat der QES angegeben ist.
   Practitioner.identifier:ANR:
     classification: copy_to
     extra: Practitioner.identifier:LANR
@@ -374,6 +407,12 @@
   Practitioner.qualification:Typ:
     classification: not_use
 79595f0e-d292-4c12-9413-cb8836d7de34:
+  Organization.identifier:
+    classification: manual
+    remark: Muss mindestens die TelematikID der Organisation enthalten, die auch im ACCESS_TOKEN der Anfrage angegeben ist.
+  Organization.name:
+    classification: manual
+    remark: Sollte den Namen der Organisation enthalten, wie er auch im ACCESS_TOKEN der Anfrage angegeben ist.
   Organization.identifier:BSNR:
     classification: copy_from
     extra: Organization.identifier:Betriebsstaettennummer
@@ -406,6 +445,9 @@
     extra: MedicationDispense.identifier:prescriptionID
     remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
       zusammen. Er wird durch den Medication Service vergeben.
+  MedicationDispense.subject.identifier:
+    classification: manual
+    remark: 'Ist mit der Krankenversichertennummer des Versicherten im System "http://fhir.de/sid/gkv/kvid-10" zu befüllen.'
   MedicationDispense.identifier:
     classification: manual
     remark: "Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID\
@@ -448,6 +490,9 @@ db59e5db-b93d-4a34-82b3-948bb1656392:
     extra: MedicationDispense.identifier:prescriptionID
     remark: Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn
       zusammen. Er wird durch den Medication Service vergeben.
+  MedicationDispense.subject.identifier:
+    classification: manual
+    remark: 'Ist mit der Krankenversichertennummer des Versicherten im System "http://fhir.de/sid/gkv/kvid-10" zu befüllen.'
   MedicationDispense.identifier:
     classification: manual
     remark: "Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID\

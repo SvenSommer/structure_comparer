@@ -21,8 +21,8 @@
             
             
             <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.1.0-rc1/files/2465069" target="_blank">EPAMedicationRequest|1.1.0-rc1</a></p>
-            <p>Version: 1.0, Status: active</p>
-            <p>Last updated on: 2024-07-30 17:55:12</p>
+            <p>Version: 1.1, Status: active</p>
+            <p>Last updated on: 2024-07-30 21:27:43</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -1036,6 +1036,12 @@
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -1082,6 +1088,12 @@
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -1105,6 +1117,12 @@
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -1127,6 +1145,12 @@
                 </td>
                 
                 <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
                     
                 </td>
                 
@@ -1502,6 +1526,12 @@
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
                     <td>Die Referenz der KBV-Medikation wird durch eine Referenz auf eine EPA-Medikation ersetzt.</td>
@@ -1524,6 +1554,12 @@
                 </td>
                 
                 <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
                     
                 </td>
                 
@@ -2337,16 +2373,18 @@
     </table>
     <script>
         $(document).ready(function () {
-            var warningsVisible = true;
-            var numberOfWarnings = 0;
+            var warningsVisible = false;
+            var numberOfWarnings = 6;
             
             $('#resultsTable').DataTable({
                 'pageLength': -1,
                 'lengthMenu': [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, 'All']],
                 'dom': '<"top"f>rt<"bottom"ilp><"clear">',
                 'initComplete': function() {
-                    var buttonHtml = '<button id="toggleWarnings"><i class="fas fa-exclamation-triangle"></i> hide warnings (' + numberOfWarnings + ')</button>';
+                    var buttonHtml = '<button id="toggleWarnings"><i class="fas fa-exclamation-triangle"></i> show warnings (' + numberOfWarnings + ')</button>';
                     $('#resultsTable_filter').prepend(buttonHtml);
+                    
+                    $('.warning-column').hide(); // Hide warnings by default
                     
                     $('#toggleWarnings').click(function () {
                         $('.warning-column').toggle();
