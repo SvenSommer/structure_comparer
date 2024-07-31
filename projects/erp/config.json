@@ -3,10 +3,12 @@
     "data_dir": "data",
     "html_output_dir": "docs",
     "mapping_output_file": "mapping.json",
+    "show_remarks": true,
+    "show_warnings": false,
     "profiles_to_compare": [
         {
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
-            "version": "1.0",
+            "version": "1.1",
             "status": "active",
             "mappings": {
                 "sourceprofiles": [
@@ -45,7 +47,7 @@
         },
         {
             "id": "477e227a-6664-437d-8084-325bc9d25405",
-            "version": "1.0",
+            "version": "1.1",
             "status": "active",
             "mappings": {
                 "sourceprofiles": [
@@ -84,7 +86,7 @@
         },
         {
             "id": "615205d2-7288-47ce-a65a-009c37ed8447",
-            "version": "1.0",
+            "version": "1.1",
             "status": "active",
             "mappings": {
                 "sourceprofiles": [
@@ -105,7 +107,7 @@
         },
         {
             "id": "5208113a-6fcc-45ba-a9f7-d8fdb14a1ed9",
-            "version": "1.0",
+            "version": "1.1",
             "status": "active",
             "mappings": {
                 "sourceprofiles": [
@@ -126,7 +128,7 @@
         },
         {
             "id": "0760ae49-8551-459b-bc65-39bfb47697f8",
-            "version": "1.0",
+            "version": "1.1",
             "status": "active",
             "mappings": {
                 "sourceprofiles": [
@@ -147,7 +149,7 @@
         },
         {
             "id": "79595f0e-d292-4c12-9413-cb8836d7de34",
-            "version": "1.0",
+            "version": "1.1",
             "status": "active",
             "mappings": {
                 "sourceprofiles": [
@@ -168,7 +170,7 @@
         },
         {
             "id": "aeeb2f06-297e-4ed9-b189-d0030fd883fe",
-            "version": "1.0",
+            "version": "1.1",
             "status": "active",
             "mappings": {
                 "sourceprofiles": [
@@ -189,7 +191,7 @@
         },
         {
             "id": "86750842-3975-4344-9656-48d74c5d8a00",
-            "version": "1.0",
+            "version": "1.1",
             "status": "active",
             "mappings": {
                 "sourceprofiles": [
@@ -210,7 +212,7 @@
         },
         {
             "id": "db59e5db-b93d-4a34-82b3-948bb1656392",
-            "version": "1.0",
+            "version": "1.1",
             "status": "active",
             "mappings": {
                 "sourceprofiles": [

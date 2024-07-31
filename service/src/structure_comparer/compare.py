@@ -102,7 +102,10 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
 
             profile_key = source_profile.profile_key
             comparison.fields[field.name].profiles[profile_key] = ProfileField(
-                name=profile_key, present=True
+                name=profile_key, 
+                present=True,
+                min_cardinality=field.min_cardinality,
+                max_cardinality=field.max_cardinality
             )
 
     # Sort the fields by name
@@ -116,7 +119,10 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
         for profile_key in all_profiles_keys:
             if profile_key not in field.profiles:
                 field.profiles[profile_key] = ProfileField(
-                    name=profile_key, present=False
+                    name=profile_key, 
+                    present=False,
+                    min_cardinality=0,
+                    max_cardinality=0
                 )
 
     # Add remarks and classifications for each field

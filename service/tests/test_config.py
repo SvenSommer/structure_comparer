@@ -33,6 +33,7 @@ FULL_EXAMPLE = {
     "mapping_output_file": "mapping.json",
     "profiles_to_compare": [MAPPINGS],
     "show_remarks": True,
+    "show_warnings": False,
 }
 
 
@@ -44,6 +45,7 @@ def test_config_from_dict():
     assert result.html_output_dir == "docs"
     assert result.mapping_output_file == "mapping.json"
     assert result.show_remarks is True
+    assert result.show_warnings is False
     assert len(result.profiles_to_compare) == 1
 
 
@@ -59,6 +61,7 @@ def test_config_from_dict_defaults():
     assert result.html_output_dir == "docs"
     assert result.mapping_output_file == "mapping.json"
     assert result.show_remarks is True
+    assert result.show_warnings is True
     assert len(result.profiles_to_compare) == 0
 
 
