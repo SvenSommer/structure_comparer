@@ -374,25 +374,32 @@
     extra: Practitioner.name:name.use
   Practitioner.name:name:
     classification: not_use
+  Practitioner.name.text:
+    classification: manual
+    remark: "Property is concatinated from values of {prefix-qualifier} {name.prefix} {name.given} {vorsatzwort} {nachname} {namenszusatz}"
   Practitioner.name:name.family:
     classification: copy_to
     extra: Practitioner.name.family
   Practitioner.name:name.family.extension:nachname:
-    classification: not_use
+    classification: manual
+    remark: "Property will be used in Practitioner.name.text"
   Practitioner.name:name.family.extension:namenszusatz:
-    classification: not_use
+    classification: manual
+    remark: "Property will be used in Practitioner.name.text"
   Practitioner.name:name.family.extension:vorsatzwort:
-    classification: not_use
+    classification: manual
+    remark: "Property will be used in Practitioner.name.text"
   Practitioner.name:name.family.value:
     classification: not_use
   Practitioner.name:name.given:
-    classification: copy_to
-    extra: Practitioner.name.given
+    classification: manual
+    remark: "Property will be used in Practitioner.name.text and mapped to Practitioner.name.given"
   Practitioner.name:name.prefix:
-    classification: copy_to
-    extra: Practitioner.name.prefix
+    classification: manual
+    remark: "Property will be used in Practitioner.name.text and mapped to Practitioner.name.prefix"
   Practitioner.name:name.prefix.extension:prefix-qualifier:
-    classification: not_use
+    classification: manual
+    remark: "Property will be used in Practitioner.name.text"
   Practitioner.name:name.prefix.value:
     classification: not_use
   Practitioner.name:name.use:
@@ -439,6 +446,18 @@
     extra: Organization.identifier:Telematik-ID
   Organization.meta.profile:
     classification: not_use
+  Organization.meta.tag:
+    classification: manual
+    remark: Will be set by the mapping system
+  Organization.meta.tag:Origin:
+    classification: manual
+    remark: Will be set by the mapping system
+  Organization.meta.tag:Origin.system:
+    classification: fixed
+    extra: https://gematik.de/fhir/directory/CodeSystem/Origin
+  Organization.meta.tag:Origin.code:
+    classification: fixed
+    extra: ldap
 86750842-3975-4344-9656-48d74c5d8a00:
   MedicationDispense.extension:rxPrescriptionProcessIdentifier:
     classification: manual
