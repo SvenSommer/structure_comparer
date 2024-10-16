@@ -12,6 +12,7 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
+                "project-map",
                 "--project-dir",
                 "../../projects/erp",
                 "--html",
@@ -27,6 +28,7 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
+                "project-map",
                 "--project-dir",
                 "../../projects/apovzd",
                 "--html",
@@ -42,6 +44,7 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
+                "project-map",
                 "--project-dir",
                 "../../projects/epa",
                 "--html",
@@ -62,5 +65,19 @@
             "jinja": true,
             "justMyCode": true
         },
+        {
+            "name": "Diff Profiles",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "diff",
+                "../tests/files/project/data/StructureDefinition-observation-de-vitalsign.json",
+                "../tests/files/project/data/StructureDefinition-observation-de-vitalsign-atemfrequenz.json",
+            ],
+            "cwd": "${workspaceFolder}/service/src",
+        }
     ]
 }

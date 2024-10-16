@@ -14,6 +14,9 @@ class Meta:
     def from_profile(profile: FhirProfile) -> "Meta":
         return Meta(profile.name, profile.url, profile.version)
 
+    def __str__(self) -> str:
+        return f"Name: {self.name}\nURL:{self.url}\nVersion:{self.version}"
+
 
 class EntryClassification(Enum):
     ONLY_LEFT = "only left"
@@ -79,6 +82,9 @@ class ProfileDiff:
 
     def items(self) -> Dict[str, DiffEntry]:
         return self._data.items()
+
+    def __str__(self) -> str:
+        return f"=Left=\n{str(self.meta_left)}\n\n=Right=\n{str(self.meta_right)}\n\n=Entries=\n{'\n'.join([f'{key}:{str(value)}' for key, value in self.items()])}"
 
     @staticmethod
     def compare(left: FhirProfile, right: FhirProfile) -> "ProfileDiff":
