@@ -52,6 +52,13 @@ class FhirProfile:
         return self._file_download_url
 
     @property
+    def profile_key(self) -> str:
+        return f"{self.name}|{self.version}"
+
+    def __lt__(self, other: "FhirProfile") -> bool:
+        return self.profile_key < other.profile_key
+
+    @property
     def url(self) -> str:
         return self._data["url"]
 
@@ -128,6 +135,10 @@ class FhirProfileElement:
         return self._data["max"]
 
     @property
+    def max_safe(self) -> int:
+        return float('inf') if self._data["max"] == "*" else int(self._data["max"])
+
+    @property
     def type(self) -> str:
         value = self._data.get("type")
         return None if value is None else value[0]["code"]
@@ -178,6 +189,8 @@ class FhirProfileElement:
                 else:
                     for ext, value in self.extension.items():
                         if value != o.extension[ext]:
-                            diff.append(f"extension: {ext}: {value} != {o.extension[ext]}")
+                            diff.append(
+                                f"extension: {ext}: {value} != {o.extension[ext]}"
+                            )
 
         return diff

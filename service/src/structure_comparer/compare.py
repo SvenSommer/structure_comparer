@@ -7,7 +7,7 @@ from .config import CompareConfig
 from .classification import Classification
 from .consts import REMARKS
 from .data.comparison import Comparison, ComparisonField, ProfileField
-from .data.profile import ProfileMap
+from .data.profile_map import ProfileMap
 from .helpers import split_parent_child
 from .manual_entries import (
     MANUAL_ENTRIES,
@@ -46,7 +46,9 @@ def compare_profiles(profiles_to_compare: List[CompareConfig], datapath: Path):
     return structured_results
 
 
-def load_profiles(profiles_to_compare: List[CompareConfig], datapath: Path) -> Dict[str, ProfileMap]:
+def load_profiles(
+    profiles_to_compare: List[CompareConfig], datapath: Path
+) -> Dict[str, ProfileMap]:
     """
     Loads the FHIR structure definitions from the local JSON files.
     """
@@ -60,8 +62,7 @@ def load_profiles(profiles_to_compare: List[CompareConfig], datapath: Path) -> D
 def _compare_profiles(profile_maps: Dict[str, ProfileMap]) -> Dict[str, Comparison]:
     mapping = {}
     for map in profile_maps.values():
-        sources_key = tuple((entry.name, entry.version)
-                            for entry in map.sources)
+        sources_key = tuple((entry.name, entry.version) for entry in map.sources)
         target_key = (map.target.name, map.target.version)
         key = str((sources_key, target_key))
         mapping[key] = compare_profile(map)
@@ -90,22 +91,21 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
     all_profiles = [profile_map.target] + profile_map.sources
 
     for source_profile in all_profiles:
-        for _, field in source_profile.fields.items():
+        for _, field in source_profile.elements.items():
             # Check if field already exists or needs to be created
             if (
-                not (field_entry := comparison.fields.get(field.name))
+                not (field_entry := comparison.fields.get(field.id))
                 or field_entry.extension != field.extension
             ):
-                comparison.fields[field.name] = ComparisonField(
-                    field.name, field.id)
-                comparison.fields[field.name].extension = field.extension
+                comparison.fields[field.id] = ComparisonField(field.path, field.id)
+                comparison.fields[field.id].extension = field.extension
 
             profile_key = source_profile.profile_key
-            comparison.fields[field.name].profiles[profile_key] = ProfileField(
-                name=profile_key, 
+            comparison.fields[field.id].profiles[profile_key] = ProfileField(
+                name=profile_key,
                 present=True,
-                min_cardinality=field.min_cardinality,
-                max_cardinality=field.max_cardinality
+                min_cardinality=field.min,
+                max_cardinality=field.max_safe,
             )
 
     # Sort the fields by name
@@ -119,10 +119,10 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
         for profile_key in all_profiles_keys:
             if profile_key not in field.profiles:
                 field.profiles[profile_key] = ProfileField(
-                    name=profile_key, 
+                    name=profile_key,
                     present=False,
                     min_cardinality=0,
-                    max_cardinality=0
+                    max_cardinality=0,
                 )
 
     # Add remarks and classifications for each field
@@ -188,8 +188,7 @@ def _classify_remark_field(
         )
 
         # If there is a remark in the manual entry, use it else use the default remark
-        remark = manual_entry.get(
-            MANUAL_ENTRIES_REMARK, REMARKS[classification])
+        remark = manual_entry.get(MANUAL_ENTRIES_REMARK, REMARKS[classification])
 
         # If the classification needs extra information, generate the remark with the extra information
         if classification in EXTRA_CLASSIFICATIONS:
@@ -210,7 +209,7 @@ def _classify_remark_field(
         if classification in EXTRA_CLASSIFICATIONS:
 
             # Cut away the common part with the parent and add the remainder to the parent's extra
-            extra = parent_update.extra + field.name[len(parent):]
+            extra = parent_update.extra + field.name[len(parent) :]
             remark = REMARKS[classification].format(extra)
 
         # Else use the parent's remark

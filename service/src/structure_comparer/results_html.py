@@ -31,6 +31,7 @@ FILES_FOLDER = Path(__file__).parent / "files"
 def flatten_profiles(profiles: List[str]) -> str:
     return "_".join(profiles)
 
+
 # Define the custom filter function
 def format_cardinality(value):
     if value == float("inf"):
@@ -95,11 +96,16 @@ def create_results_html(
                     )
 
                 # Check if source_max_card is not 0 before considering source_min_card
-                if source_max_card != 0 and source_min_card < target_min_card and entry.classification not in [
-                    Classification.COPY_TO,
-                    Classification.COPY_FROM,
-                    Classification.EXTENSION,
-                ]:
+                if (
+                    source_max_card != 0
+                    and source_min_card < target_min_card
+                    and entry.classification
+                    not in [
+                        Classification.COPY_TO,
+                        Classification.COPY_FROM,
+                        Classification.EXTENSION,
+                    ]
+                ):
                     warnings.add(
                         "The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile"
                     )
@@ -153,6 +159,9 @@ def create_results_html(
 def format_links(text: str) -> str:
     if not text:
         return text
+
+    if isinstance(text, dict):
+        text = list(text.keys())[0]
 
     # Regex zum Erkennen von URLs
     url_pattern = r"(https?://[\w\.\/\-\|]+)"
