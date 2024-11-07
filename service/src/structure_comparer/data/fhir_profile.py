@@ -98,6 +98,13 @@ class FhirProfile:
         return self._elements.get(id)
 
 
+IGNORE_EXTENSIONS = [
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable",
+]
+
+
 class FhirProfileElement:
     def __init__(self, data: dict) -> None:
         if data is None:
@@ -109,6 +116,9 @@ class FhirProfileElement:
         if extensions := data.get("extension"):
             for extension in extensions:
                 url: str = extension.get("url")
+
+                if url in IGNORE_EXTENSIONS:
+                    continue
 
                 for key, value in extension.items():
                     if key.startswith("value"):
@@ -135,8 +145,8 @@ class FhirProfileElement:
         return self._data["max"]
 
     @property
-    def max_safe(self) -> int:
-        return float('inf') if self._data["max"] == "*" else int(self._data["max"])
+    def max_safe(self) -> int | float:
+        return float("inf") if self._data["max"] == "*" else int(self._data["max"])
 
     @property
     def type(self) -> str:

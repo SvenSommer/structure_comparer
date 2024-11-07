@@ -69,11 +69,11 @@
             {% for prop, entry in entries.items() %}
             <tr class="{{ entry.css_class }}">
                 <td>{{ prop }}
-                    {% if entry.extension is not none %}<br>({{ entry.extension | format_links }}){% endif %}
+                    {% if entry.extension %}<br>({{ entry.extension | format_links }}){% endif %}
                 </td>
                 {% for profile in source_profiles + [target_profile] %}
                 <td style="text-align: center;">
-                    {% if entry.profiles[profile['key']].present %}
+                    {% if profile['key'] in entry.profiles %}
                         {{ entry.profiles[profile['key']].min_cardinality }}..{{ entry.profiles[profile['key']].max_cardinality | format_cardinality }}
                     {% endif %}
                 </td>

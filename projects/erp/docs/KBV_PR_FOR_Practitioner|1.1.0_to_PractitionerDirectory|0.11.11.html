@@ -22,7 +22,7 @@
             
             <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.fhir.directory/0.11.11/files/2522116" target="_blank">PractitionerDirectory|0.11.11</a></p>
             <p>Version: 1.1, Status: active</p>
-            <p>Last updated on: 2024-07-30 21:27:43</p>
+            <p>Last updated on: 2024-11-07 10:13:42</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -58,13 +58,15 @@
         </thead>
         <tbody>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.active
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
+                        0..0
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -77,17 +79,19 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.address
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
+                        0..0
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -100,17 +104,65 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-extension">
+                <td>Practitioner.address:Postfach
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.address:Strassenanschrift
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Practitioner.birthDate
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
+                        0..0
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -123,17 +175,226 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
+                <td>Practitioner.birthDate.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.birthDate.extension:data-absent-reason
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.birthDate.extension:data-absent-reason.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.birthDate.extension:data-absent-reason.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.birthDate.extension:data-absent-reason.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.birthDate.extension:data-absent-reason.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.birthDate.extension:data-absent-reason.value[x]:valueCode
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.birthDate.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.birthDate.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Practitioner.communication
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
+                        0..0
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -146,17 +407,19 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.contained
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
+                        0..0
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -169,16 +432,66 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
+                <td>Practitioner.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.extension:ergaenzende_Angaben
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Practitioner.gender
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                        0..0
                     
                 </td>
                 
@@ -192,7 +505,124 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.gender.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.gender.extension:other-amtlich
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.gender.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.gender.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -251,6 +681,420 @@
             </tr>
             
             <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRigner'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerplay'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerension'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRigner'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerntifier'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.identifier.assigner
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerntifierigner'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.identifier.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerntifierension'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.identifier.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerntifier'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.identifier.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerntifieriod'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.identifier.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerntifiertem'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.identifier.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerntifiere'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.identifier.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerntifier'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.identifier.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignerntifierue'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.reference
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td></td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.assigner.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRignere'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRension'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANR'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRiod'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
                 <td>Practitioner.identifier:ANR.system
                     
                 </td>
@@ -269,7 +1113,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:LANR.system'</td>
+                    <td>Mapped to 'Practitioner.identifier:LANRtem'</td>
                 
             </tr>
             
@@ -292,7 +1136,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:LANR.type'</td>
+                    <td>Mapped to 'Practitioner.identifier:LANRe'</td>
                 
             </tr>
             
@@ -315,7 +1159,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:LANR.type.coding'</td>
+                    <td>Mapped to 'Practitioner.identifier:LANReing'</td>
                 
             </tr>
             
@@ -338,7 +1182,76 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:LANR.type.coding.code'</td>
+                    <td>Mapped to 'Practitioner.identifier:LANReinge'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.coding.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANReingplay'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.coding.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANReingension'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.coding.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANReing'</td>
                 
             </tr>
             
@@ -361,7 +1274,122 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:LANR.type.coding.system'</td>
+                    <td>Mapped to 'Practitioner.identifier:LANReingtem'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.coding.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANReingrSelected'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.coding.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANReingsion'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANReension'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRe'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANRet'</td>
                 
             </tr>
             
@@ -384,7 +1412,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:LANR.use'</td>
+                    <td>Mapped to 'Practitioner.identifier:LANR'</td>
                 
             </tr>
             
@@ -407,7 +1435,789 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:LANR.value'</td>
+                    <td>Mapped to 'Practitioner.identifier:LANRue'</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.identifier.assigner
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.identifier.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.identifier.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.identifier.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.identifier.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.identifier.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.identifier.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.identifier.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:EFN.assigner.reference
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td></td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.assigner.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.coding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.coding.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.coding.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.coding.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.coding.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.coding.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.coding.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.coding.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.type.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.identifier:EFN.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
                 
             </tr>
             
@@ -458,6 +2268,98 @@
             </tr>
             
             <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.assigner
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
                 <td>Practitioner.identifier:Telematik-ID.system
                     
                 </td>
@@ -476,7 +2378,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:TelematikID.system'</td>
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
                 
             </tr>
             
@@ -499,7 +2401,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:TelematikID.type'</td>
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
                 
             </tr>
             
@@ -522,7 +2424,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:TelematikID.type.coding'</td>
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
                 
             </tr>
             
@@ -545,7 +2447,76 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:TelematikID.type.coding.code'</td>
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.coding.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.coding.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.coding.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
                 
             </tr>
             
@@ -568,7 +2539,122 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:TelematikID.type.coding.system'</td>
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.coding.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.coding.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
                 
             </tr>
             
@@ -591,7 +2677,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:TelematikID.use'</td>
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
                 
             </tr>
             
@@ -614,7 +2700,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Practitioner.identifier:TelematikID.value'</td>
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
                 
             </tr>
             
@@ -655,6 +2741,420 @@
                 <td style="text-align: center;">
                     
                         0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.identifier.assigner
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.identifier.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.identifier.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.identifier.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.identifier.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.identifier.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.identifier.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.identifier.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ZANR.assigner.reference
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td></td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.assigner.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
                     
                 </td>
                 
@@ -759,6 +3259,75 @@
             </tr>
             
             <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.coding.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.coding.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.coding.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Practitioner.identifier:ZANR.type.coding.system
                     
                 </td>
@@ -766,6 +3335,121 @@
                 <td style="text-align: center;">
                     
                         1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.coding.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.coding.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
                     
                 </td>
                 
@@ -827,13 +3511,15 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.implicitRules
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
+                        0..0
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -846,17 +3532,19 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.language
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
+                        0..0
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -869,7 +3557,7 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -898,12 +3586,39 @@
                 
             </tr>
             
-            <tr class="row-not-use">
-                <td>Practitioner.meta.lastUpdated
+            <tr class="row-use">
+                <td>Practitioner.meta.extension
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.meta.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
                     
                 </td>
                 
@@ -917,7 +3632,32 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.meta.lastUpdated
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -946,12 +3686,14 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.meta.security
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                        0..0
                     
                 </td>
                 
@@ -965,16 +3707,18 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.meta.source
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                        0..0
                     
                 </td>
                 
@@ -988,16 +3732,18 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.meta.tag
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                        0..0
                     
                 </td>
                 
@@ -1011,11 +3757,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.meta.tag:Origin
                     
                 </td>
@@ -1034,11 +3780,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.meta.tag:Origin.code
                     
                 </td>
@@ -1057,11 +3803,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.meta.tag:Origin.display
                     
                 </td>
@@ -1080,11 +3826,57 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
+                <td>Practitioner.meta.tag:Origin.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.meta.tag:Origin.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Practitioner.meta.tag:Origin.system
                     
                 </td>
@@ -1103,11 +3895,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.meta.tag:Origin.userSelected
                     
                 </td>
@@ -1126,11 +3918,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.meta.tag:Origin.version
                     
                 </td>
@@ -1149,16 +3941,18 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.meta.versionId
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                        0..0
                     
                 </td>
                 
@@ -1172,7 +3966,32 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.modifierExtension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -1190,6 +4009,29 @@
                 <td style="text-align: center;">
                     
                         1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.name.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
                     
                 </td>
                 
@@ -1247,7 +4089,30 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
+                <td>Practitioner.name.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Practitioner.name.period
                     
                 </td>
@@ -1266,7 +4131,7 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -1293,7 +4158,7 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.name.suffix
                     
                 </td>
@@ -1312,11 +4177,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.name.text
                     
                 </td>
@@ -1335,7 +4200,7 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -1362,6 +4227,581 @@
                 
             </tr>
             
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.family
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.family.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.family.extension:nachname
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.family.extension:namenszusatz
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.family.extension:vorsatzwort
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.family.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.family.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.given
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix.extension:prefix-qualifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix.extension:prefix-qualifier.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix.extension:prefix-qualifier.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix.extension:prefix-qualifier.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix.extension:prefix-qualifier.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix.extension:prefix-qualifier.value[x]:valueCode
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.prefix.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.suffix
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Practitioner.name:geburtsname.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
             <tr class="row-not-use">
                 <td>Practitioner.name:name
                     
@@ -1379,11 +4819,28 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -1414,9 +4871,32 @@
                 
             </tr>
             
+            <tr class="row-manual">
+                <td>Practitioner.name:name.family.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.name.familynsion'</td>
+                
+            </tr>
+            
             <tr class="row-not-use">
                 <td>Practitioner.name:name.family.extension:nachname
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/humanname-own-name" target="_blank">http://hl7.org/fhir/StructureDefinition/humanname-own-name</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1431,11 +4911,120 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:nachname.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:nachname.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:nachname.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:nachname.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:nachname.value[x]:valueString
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -1445,7 +5034,7 @@
             
             <tr class="row-not-use">
                 <td>Practitioner.name:name.family.extension:namenszusatz
-                    <br>(<a href="http://fhir.de/StructureDefinition/humanname-namenszusatz" target="_blank">http://fhir.de/StructureDefinition/humanname-namenszusatz</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1460,11 +5049,120 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:namenszusatz.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:namenszusatz.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:namenszusatz.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:namenszusatz.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:namenszusatz.value[x]:valueString
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -1474,7 +5172,7 @@
             
             <tr class="row-not-use">
                 <td>Practitioner.name:name.family.extension:vorsatzwort
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix" target="_blank">http://hl7.org/fhir/StructureDefinition/humanname-own-prefix</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1489,15 +5187,147 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:vorsatzwort.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:vorsatzwort.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:vorsatzwort.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:vorsatzwort.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.extension:vorsatzwort.value[x]:valueString
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.name:name.family.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.name.family'</td>
                 
             </tr>
             
@@ -1517,12 +5347,6 @@
                 </td>
                 
                 <td class="warning-column">
-                    
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
                     
                 </td>
                 
@@ -1553,6 +5377,52 @@
                 
             </tr>
             
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
             <tr class="row-manual">
                 <td>Practitioner.name:name.prefix
                     
@@ -1576,9 +5446,32 @@
                 
             </tr>
             
+            <tr class="row-manual">
+                <td>Practitioner.name:name.prefix.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.name.prefixnsion'</td>
+                
+            </tr>
+            
             <tr class="row-not-use">
                 <td>Practitioner.name:name.prefix.extension:prefix-qualifier
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier" target="_blank">http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1593,15 +5486,147 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.prefix.extension:prefix-qualifier.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.prefix.extension:prefix-qualifier.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.prefix.extension:prefix-qualifier.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.prefix.extension:prefix-qualifier.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.prefix.extension:prefix-qualifier.value[x]:valueCode
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.name:name.prefix.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.name.prefix'</td>
                 
             </tr>
             
@@ -1622,11 +5647,51 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.suffix
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -1657,12 +5722,14 @@
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.photo
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                        0..0
                     
                 </td>
                 
@@ -1676,7 +5743,7 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -1719,6 +5786,56 @@
                 <td style="text-align: center;">
                     
                         1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
                     
                 </td>
                 
@@ -1781,6 +5898,31 @@
             </tr>
             
             <tr class="row-not-use">
+                <td>Practitioner.qualification.modifierExtension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
                 <td>Practitioner.qualification.period
                     
                 </td>
@@ -1822,12 +5964,6 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -1850,12 +5986,6 @@
                 </td>
                 
                 <td class="warning-column">
-                    
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
                     
                 </td>
                 
@@ -1880,12 +6010,6 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -1909,11 +6033,74 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.coding.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.coding.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.coding.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -1938,11 +6125,258 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.coding.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.coding.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.issuer
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.modifierExtension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -1967,12 +6401,6 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -1995,12 +6423,6 @@
                 </td>
                 
                 <td class="warning-column">
-                    
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
                     
                 </td>
                 
@@ -2025,12 +6447,6 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -2054,11 +6470,74 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.coding.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.coding.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.coding.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -2083,11 +6562,97 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.coding.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.coding.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -2112,11 +6677,143 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.issuer
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.modifierExtension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -2141,12 +6838,6 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -2169,12 +6860,6 @@
                 </td>
                 
                 <td class="warning-column">
-                    
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
                     
                 </td>
                 
@@ -2199,12 +6884,6 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
                 </td>
                 
                     <td>Property and value(s) will NOT be retained</td>
@@ -2228,11 +6907,74 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.coding.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.coding.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.coding.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -2257,11 +6999,28 @@
                 
                 <td class="warning-column">
                     
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.coding.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
                     
                 </td>
                 
@@ -2270,7 +7029,262 @@
             </tr>
             
             <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.coding.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.issuer
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.modifierExtension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Practitioner.telecom
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.telecom.extension
                     
                 </td>
                 
@@ -2288,11 +7302,34 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
+                <td>Practitioner.telecom.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Practitioner.telecom.period
                     
                 </td>
@@ -2311,11 +7348,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.telecom.rank
                     
                 </td>
@@ -2334,11 +7371,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.telecom.system
                     
                 </td>
@@ -2357,11 +7394,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.telecom.use
                     
                 </td>
@@ -2380,11 +7417,11 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.telecom.value
                     
                 </td>
@@ -2403,16 +7440,18 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
+            <tr class="row-use">
                 <td>Practitioner.text
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                        0..0
                     
                 </td>
                 
@@ -2426,7 +7465,7 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -2435,7 +7474,7 @@
     <script>
         $(document).ready(function () {
             var warningsVisible = false;
-            var numberOfWarnings = 24;
+            var numberOfWarnings = 1;
             
             $('#resultsTable').DataTable({
                 'pageLength': -1,

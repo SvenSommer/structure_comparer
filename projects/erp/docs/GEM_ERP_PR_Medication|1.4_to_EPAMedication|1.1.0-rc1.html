@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mapping: GEM_ERP_PR_Medication|1.4.0 in EPAMedication|1.1.0-rc1</title>
+    <title>Mapping: GEM_ERP_PR_Medication|1.4 in EPAMedication|1.1.0-rc1</title>
     <link rel='stylesheet' type='text/css' href='./style.css'>
     <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
@@ -11,18 +11,18 @@
 </head>
 
 <body>
-    <h2>Mapping: GEM_ERP_PR_Medication|1.4.0 in EPAMedication|1.1.0-rc1</h2>
+    <h2>Mapping: GEM_ERP_PR_Medication|1.4 in EPAMedication|1.1.0-rc1</h2>
     
     <div style="display: flex; justify-content: space-between;">
         <div style="flex: 1;">
             
             <p>Source Profile: 
-            <a href="https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.4.0/files/2521493" target="_blank">GEM_ERP_PR_Medication|1.4.0</a></p>
+            <a href="https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.4.0/files/2521493" target="_blank">GEM_ERP_PR_Medication|1.4</a></p>
             
             
             <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.1.0-rc1/files/2465055" target="_blank">EPAMedication|1.1.0-rc1</a></p>
             <p>Version: 1.1, Status: active</p>
-            <p>Last updated on: 2024-07-30 21:27:43</p>
+            <p>Last updated on: 2024-11-07 10:13:42</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -51,7 +51,7 @@
             </tr>
             <tr>
                 
-                <th style="text-align: center;">GEM_ERP_PR_Medication|1.4.0</th>
+                <th style="text-align: center;">GEM_ERP_PR_Medication|1.4</th>
                 
                 <th style="text-align: center;">EPAMedication|1.1.0-rc1</th>
             </tr>
@@ -159,6 +159,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.amount.denominator.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.denominator.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.amount.denominator.system
                     
                 </td>
@@ -210,6 +260,56 @@
             
             <tr class="row-use">
                 <td>Medication.amount.denominator.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.id
                     
                 </td>
                 
@@ -309,8 +409,33 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.amount.numerator.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.amount.numerator.extension:packagingSize
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -334,8 +459,279 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.amount.numerator.extension:packagingSize.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:packagingSize.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:packagingSize.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:packagingSize.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:packagingSize.value[x]:valueString
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.amount.numerator.extension:totalQuantity
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension</a>)
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:totalQuantity.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:totalQuantity.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:totalQuantity.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:totalQuantity.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:totalQuantity.value[x]:valueString
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.id
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -484,6 +880,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.batch.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.batch.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.batch.lotNumber
                     
                 </td>
@@ -497,6 +943,31 @@
                 <td style="text-align: center;">
                     
                         0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.batch.modifierExtension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
                     
                 </td>
                 
@@ -610,6 +1081,56 @@
             
             <tr class="row-use">
                 <td>Medication.code.coding:ask.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:ask.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:ask.id
                     
                 </td>
                 
@@ -784,6 +1305,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.code.coding:atc-de.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:atc-de.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.code.coding:atc-de.system
                     
                 </td>
@@ -910,6 +1481,56 @@
             
             <tr class="row-use">
                 <td>Medication.code.coding:pzn.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:pzn.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:pzn.id
                     
                 </td>
                 
@@ -1084,6 +1705,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.code.coding:snomed.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:snomed.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.code.coding:snomed.system
                     
                 </td>
@@ -1159,6 +1830,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.code.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.code.text
                     
                 </td>
@@ -1209,8 +1930,33 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.extension:drugCategory
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1233,9 +1979,454 @@
                 
             </tr>
             
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x].code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x].display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x].extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x].id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x].system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x].userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x].version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x]:valueCoding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x]:valueCoding.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x]:valueCoding.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x]:valueCoding.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x]:valueCoding.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x]:valueCoding.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x]:valueCoding.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory.value[x]:valueCoding.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
             <tr class="row-not-use">
                 <td>Medication.extension:epaDispensationIdentifier
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/dispensation-identifier-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/dispensation-identifier-extension</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1258,7 +2449,57 @@
             
             <tr class="row-use">
                 <td>Medication.extension:isVaccine
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension</a>)
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:isVaccine.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:isVaccine.id
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1270,6 +2511,79 @@
                 <td style="text-align: center;">
                     
                         0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:isVaccine.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:isVaccine.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:isVaccine.value[x]:valueBoolean
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
                     
                 </td>
                 
@@ -1283,7 +2597,7 @@
             
             <tr class="row-use">
                 <td>Medication.extension:manufacturingInstructions
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-manufacturing-instructions-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-manufacturing-instructions-extension</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1307,8 +2621,231 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.extension:manufacturingInstructions.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:manufacturingInstructions.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:manufacturingInstructions.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:manufacturingInstructions.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:manufacturingInstructions.value[x]:valueString
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.extension:normSizeCode
-                    <br>(<a href="http://fhir.de/StructureDefinition/normgroesse" target="_blank">http://fhir.de/StructureDefinition/normgroesse</a>)
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:normSizeCode.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:normSizeCode.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:normSizeCode.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:normSizeCode.value[x]
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1333,7 +2870,7 @@
             
             <tr class="row-use">
                 <td>Medication.extension:packaging
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1357,8 +2894,131 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.extension:packaging.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:packaging.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:packaging.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:packaging.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:packaging.value[x]:valueString
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.extension:rxPrescriptionProcessIdentifier
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1383,7 +3043,7 @@
             
             <tr class="row-use">
                 <td>Medication.extension:type
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1508,6 +3168,56 @@
             
             <tr class="row-use">
                 <td>Medication.form.coding:edqm.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:edqm.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:edqm.id
                     
                 </td>
                 
@@ -1682,6 +3392,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.form.coding:kbvDarreichungsform.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:kbvDarreichungsform.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.form.coding:kbvDarreichungsform.system
                     
                 </td>
@@ -1832,6 +3592,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.form.coding:snomed.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:snomed.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.form.coding:snomed.system
                     
                 </td>
@@ -1907,7 +3717,82 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.form.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.form.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.id
                     
                 </td>
                 
@@ -2057,8 +3942,58 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.ingredient.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.extension:darreichungsform
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension</a>)
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.id
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -2257,6 +4192,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:ask.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:ask.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:ask.system
                     
                 </td>
@@ -2407,6 +4392,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:atc-de.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:atc-de.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:atc-de.system
                     
                 </td>
@@ -2482,6 +4517,31 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:pzn
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed
                     
                 </td>
@@ -2533,6 +4593,56 @@
             
             <tr class="row-use">
                 <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed.id
                     
                 </td>
                 
@@ -2632,6 +4742,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.item[x]:itemCodeableConcept.text
                     
                 </td>
@@ -2670,6 +4830,31 @@
                 <td style="text-align: center;">
                     
                         0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.modifierExtension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
                     
                 </td>
                 
@@ -2756,9 +4941,32 @@
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.code.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.denominator.code.extension:dataAbsentReason
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -2775,11 +4983,126 @@
                     
                 </td>
                 
-                    <td>Extension and value(s) will be retained</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.code.extension:dataAbsentReason.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.code.extension:dataAbsentReason.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.code.extension:dataAbsentReason.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.code.extension:dataAbsentReason.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.code.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.denominator.code.value
                     
                 </td>
@@ -2798,12 +5121,62 @@
                     
                 </td>
                 
-                    <td>Extension and value(s) will be retained</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
             <tr class="row-use">
                 <td>Medication.ingredient.strength.denominator.comparator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.id
                     
                 </td>
                 
@@ -2852,9 +5225,32 @@
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.system.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.denominator.system.extension:dataAbsentReason
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -2871,11 +5267,126 @@
                     
                 </td>
                 
-                    <td>Extension and value(s) will be retained</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.system.extension:dataAbsentReason.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.system.extension:dataAbsentReason.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.system.extension:dataAbsentReason.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.system.extension:dataAbsentReason.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.system.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.denominator.system.value
                     
                 </td>
@@ -2894,7 +5405,7 @@
                     
                 </td>
                 
-                    <td>Extension and value(s) will be retained</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -2949,8 +5460,181 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.ingredient.strength.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.extension:amountText
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension</a>)
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.extension:amountText.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.extension:amountText.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.extension:amountText.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.extension:amountText.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.extension:amountText.value[x]:valueString
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.id
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -3023,9 +5707,32 @@
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.code.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.numerator.code.extension:dataAbsentReason
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -3042,11 +5749,126 @@
                     
                 </td>
                 
-                    <td>Extension and value(s) will be retained</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.code.extension:dataAbsentReason.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.code.extension:dataAbsentReason.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.code.extension:dataAbsentReason.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.code.extension:dataAbsentReason.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.code.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.numerator.code.value
                     
                 </td>
@@ -3065,12 +5887,62 @@
                     
                 </td>
                 
-                    <td>Extension and value(s) will be retained</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
             <tr class="row-use">
                 <td>Medication.ingredient.strength.numerator.comparator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.id
                     
                 </td>
                 
@@ -3119,9 +5991,32 @@
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.system.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.numerator.system.extension:dataAbsentReason
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -3138,11 +6033,126 @@
                     
                 </td>
                 
-                    <td>Extension and value(s) will be retained</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-extension">
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.system.extension:dataAbsentReason.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..0
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.system.extension:dataAbsentReason.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.system.extension:dataAbsentReason.url
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.system.extension:dataAbsentReason.value[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.system.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.ingredient.strength.numerator.system.value
                     
                 </td>
@@ -3161,7 +6171,7 @@
                     
                 </td>
                 
-                    <td>Extension and value(s) will be retained</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -3291,6 +6301,56 @@
             </tr>
             
             <tr class="row-use">
+                <td>Medication.manufacturer.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.manufacturer.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
                 <td>Medication.manufacturer.identifier
                     
                 </td>
@@ -3373,6 +6433,56 @@
                 <td style="text-align: center;">
                     
                         1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.meta.extension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.meta.id
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
                     
                 </td>
                 
@@ -3529,6 +6639,31 @@
                 <td style="text-align: center;">
                     
                         0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.modifierExtension
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
                     
                 </td>
                 

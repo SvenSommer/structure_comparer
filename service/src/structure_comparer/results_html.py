@@ -5,9 +5,6 @@ from typing import Dict, List
 
 from jinja2 import Environment, FileSystemLoader
 
-from structure_comparer.helpers import split_parent_child
-
-
 from .classification import Classification
 from .data.comparison import Comparison
 
@@ -50,8 +47,9 @@ def create_results_html(
         results_folder = Path(results_folder)
 
     # Create the results folder if it does not exist
-    if not results_folder.exists():
-        results_folder.mkdir(parents=True)
+    if results_folder.exists():
+        shutil.rmtree(results_folder)
+    results_folder.mkdir(parents=True)
 
     # Copy the style file to the results folder
     styles_file = FILES_FOLDER / STYLE_FILE_NAME
@@ -69,46 +67,57 @@ def create_results_html(
 
         for field, entry in comp.fields.items():
             warnings = set()  # Use a set to collect unique warnings
-            target_min_card = entry.profiles[comp.target.profile_key].min_cardinality
-            target_max_card = entry.profiles[comp.target.profile_key].max_cardinality
 
-            parent, _ = split_parent_child(field)
-            comparison_parent = comp.fields.get(parent)
+            target_key = comp.target.profile_key
+
+            if target_key in entry.profiles:
+                target_min_card = entry.profiles[target_key].min_cardinality
+                target_max_card = entry.profiles[target_key].max_cardinality
+
+            comparison_parent = entry.parent
 
             for profile in comp.sources:
-                source_min_card = entry.profiles[profile.profile_key].min_cardinality
-                source_max_card = entry.profiles[profile.profile_key].max_cardinality
+                source_key = profile.profile_key
 
-                if comparison_parent and comparison_parent.classification in [
-                    Classification.USE
-                ]:
-                    # Skip the specific warning if the parent is being copied or extended
-                    if target_max_card < source_max_card:
-                        continue
+                if source_key in entry.profiles and target_key in entry.profiles:
 
-                if source_max_card > target_max_card and entry.classification not in [
-                    Classification.COPY_TO,
-                    Classification.COPY_FROM,
-                    Classification.EXTENSION,
-                ]:
-                    warnings.add(
-                        "The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile"
-                    )
+                    source_min_card = entry.profiles[source_key].min_cardinality
+                    source_max_card = entry.profiles[source_key].max_cardinality
 
-                # Check if source_max_card is not 0 before considering source_min_card
-                if (
-                    source_max_card != 0
-                    and source_min_card < target_min_card
-                    and entry.classification
-                    not in [
-                        Classification.COPY_TO,
-                        Classification.COPY_FROM,
-                        Classification.EXTENSION,
-                    ]
-                ):
-                    warnings.add(
-                        "The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile"
-                    )
+                    if comparison_parent and comparison_parent.classification in [
+                        Classification.USE
+                    ]:
+                        # Skip the specific warning if the parent is being copied or extended
+                        if target_max_card < source_max_card:
+                            continue
+
+                    if (
+                        source_max_card > target_max_card
+                        and entry.classification
+                        not in [
+                            Classification.COPY_TO,
+                            Classification.COPY_FROM,
+                            Classification.EXTENSION,
+                        ]
+                    ):
+                        warnings.add(
+                            "The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile"
+                        )
+
+                    # Check if source_max_card is not 0 before considering source_min_card
+                    if (
+                        source_max_card != 0
+                        and source_min_card < target_min_card
+                        and entry.classification
+                        not in [
+                            Classification.COPY_TO,
+                            Classification.COPY_FROM,
+                            Classification.EXTENSION,
+                        ]
+                    ):
+                        warnings.add(
+                            "The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile"
+                        )
 
             number_of_warnings += len(warnings)  # Increment the warning counter
 

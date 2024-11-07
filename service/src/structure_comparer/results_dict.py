@@ -4,7 +4,6 @@ from typing import Dict
 from .classification import Classification
 from .data.comparison import Comparison
 from .consts import REMARKS
-from .helpers import split_parent_child
 
 
 DICT_MAPPINGS = "mappings"
@@ -34,10 +33,9 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
             for field, presences in mappings.fields.items():
 
                 # If classification is the same as the parent, do not handle this entry
-                parent, _ = split_parent_child(field)
-                comparison_parent = mappings.fields.get(parent)
+                comparison_parent = presences.parent
                 if (
-                    not comparison_parent is None
+                    comparison_parent is not None
                     and presences.classification == comparison_parent.classification
                 ):
                     continue
@@ -47,7 +45,7 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
                     profile_handling[DICT_FIXED][field] = presences.extra
 
                 # Otherwise only if value is present
-                elif presences.profiles[source_profile.profile_key].present:
+                elif source_profile.profile_key in presences.profiles:
                     # If field should be used and remark was not changed
                     if (
                         presences.classification
@@ -65,12 +63,14 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
                     # or add to ignore if parent was not ignored or fixed
                     elif presences.classification in IGNORE_CLASSIFICATIONS:
                         if (
-                            parent_field := mappings.fields.get(parent)
-                        ) and parent_field.classification in [
-                            Classification.USE,
-                            Classification.EXTENSION,
-                            Classification.COPY_TO,
-                        ]:
+                            comparison_parent is not None
+                            and comparison_parent.classification
+                            in [
+                                Classification.USE,
+                                Classification.EXTENSION,
+                                Classification.COPY_TO,
+                            ]
+                        ):
                             profile_handling[DICT_REMOVE].append(field)
 
                     else:
