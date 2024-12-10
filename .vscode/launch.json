@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Generate eRP",
             "type": "debugpy",
@@ -44,6 +45,36 @@
             "args": [
                 "--project-dir",
                 "../../projects/epa",
+                "--html",
+                "--json"
+            ],
+            "cwd": "${workspaceFolder}/service/src",
+        },
+        {
+            "name": "Generate epa_versions",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--project-dir",
+                "../../projects/epa_versions",
+                "--html",
+                "--json"
+            ],
+            "cwd": "${workspaceFolder}/service/src",
+        },
+        {
+            "name": "Generate kbv_preview",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--project-dir",
+                "../../projects/kbv_e-rezept",
                 "--html",
                 "--json"
             ],
