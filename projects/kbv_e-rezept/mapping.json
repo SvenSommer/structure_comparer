@@ -1,0 +1,383 @@
+{
+    "KBV_EX_ERP_EmergencyServicesFee|1.1.0.json": {
+        "KBV_EX_ERP_EmergencyServicesFee|1.2.0.json": {
+            "id": "8f954cb4-7be8-4e64-b9de-656c7c15c316",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.url": "Extension.url",
+                "Extension.value[x]": "Extension.value[x]",
+                "Extension.value[x]:valueBoolean": "Extension.value[x]:valueBoolean"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_Multiple_Prescription|1.1.0.json": {
+        "KBV_EX_ERP_Multiple_Prescription|1.2.0.json": {
+            "id": "87732de6-8d9c-48b6-8b75-45ec2338916c",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.extension:ID": "Extension.extension:ID",
+                "Extension.extension:Kennzeichen": "Extension.extension:Kennzeichen",
+                "Extension.extension:Nummerierung": "Extension.extension:Nummerierung",
+                "Extension.extension:Zeitraum": "Extension.extension:Zeitraum",
+                "Extension.url": "Extension.url"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_PR_ERP_Bundle|1.1.0.json": {
+        "KBV_PR_ERP_Bundle|1.2.0.json": {
+            "id": "2ebb99b6-f4a9-485a-8365-76bd66aa7c06",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Bundle.entry": "Bundle.entry",
+                "Bundle.entry.slice(resource.meta.profile)": "Bundle.entry.slice(resource.meta.profile)",
+                "Bundle.entry:ASV-Ausuebung": "Bundle.entry:ASV-Ausuebung",
+                "Bundle.entry:AusstellendeVerschreibendeVerantwortlichePerson": "Bundle.entry:AusstellendeVerschreibendeVerantwortlichePerson",
+                "Bundle.entry:Dokumenteninformation": "Bundle.entry:Dokumenteninformation",
+                "Bundle.entry:Einrichtung": "Bundle.entry:Einrichtung",
+                "Bundle.entry:Krankenversicherungsverhaeltnis": "Bundle.entry:Krankenversicherungsverhaeltnis",
+                "Bundle.entry:Patient": "Bundle.entry:Patient",
+                "Bundle.entry:RezeptierdatenFreitextverordnung": "Bundle.entry:RezeptierdatenFreitextverordnung",
+                "Bundle.entry:RezeptierdatenPZNVerordnung": "Bundle.entry:RezeptierdatenPZNVerordnung",
+                "Bundle.entry:RezeptierdatenRezepturverordnung": "Bundle.entry:RezeptierdatenRezepturverordnung",
+                "Bundle.entry:RezeptierdatenWirkstoffverordnung": "Bundle.entry:RezeptierdatenWirkstoffverordnung",
+                "Bundle.entry:VerordnungArzneimittel": "Bundle.entry:VerordnungArzneimittel",
+                "Bundle.entry:VerordnungSprechstundenbedarf": "Bundle.entry:VerordnungSprechstundenbedarf",
+                "Bundle.identifier": "Bundle.identifier",
+                "Bundle.meta": "Bundle.meta",
+                "Bundle.signature": "Bundle.signature",
+                "Bundle.timestamp": "Bundle.timestamp",
+                "Bundle.type": "Bundle.type"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_Medication_Ingredient_Form|1.1.0.json": {
+        "KBV_EX_ERP_Medication_Ingredient_Form|1.2.0.json": {
+            "id": "7c2ffcf3-ec1a-40ba-bb81-81c1a08de11c",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.url": "Extension.url",
+                "Extension.value[x]": "Extension.value[x]",
+                "Extension.value[x]:valueString": "Extension.value[x]:valueString"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_PR_ERP_Composition|1.1.0.json": {
+        "KBV_PR_ERP_Composition|1.2.0.json": {
+            "id": "e7649624-5572-4344-8a60-3aaaf0e66fa5",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Composition.attester": "Composition.attester",
+                "Composition.author": "Composition.author",
+                "Composition.author:Arzt": "Composition.author:Arzt",
+                "Composition.author:Pruefnummer": "Composition.author:Pruefnummer",
+                "Composition.custodian": "Composition.custodian",
+                "Composition.date": "Composition.date",
+                "Composition.extension:PKV-Tarif": "Composition.extension:PKV-Tarif",
+                "Composition.extension:Rechtsgrundlage": "Composition.extension:Rechtsgrundlage",
+                "Composition.meta": "Composition.meta",
+                "Composition.section": "Composition.section",
+                "Composition.section.slice(code.coding.code)": "Composition.section.slice(code.coding.code)",
+                "Composition.section:ASV-Ausuebung": "Composition.section:ASV-Ausuebung",
+                "Composition.section:Krankenversicherungsverhaeltnis": "Composition.section:Krankenversicherungsverhaeltnis",
+                "Composition.section:Verordnung_Arzneimittel": "Composition.section:Verordnung_Arzneimittel",
+                "Composition.section:Verordnung_Sprechstundenbedarf": "Composition.section:Verordnung_Sprechstundenbedarf",
+                "Composition.status": "Composition.status",
+                "Composition.subject": "Composition.subject",
+                "Composition.text": "Composition.text",
+                "Composition.title": "Composition.title",
+                "Composition.type": "Composition.type"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_PR_ERP_Medication_Compounding|1.1.0.json": {
+        "KBV_PR_ERP_Medication_Compounding|1.2.0.json": {
+            "id": "27b5b210-1332-4242-8634-a8435e0c8425",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Medication.amount": "Medication.amount",
+                "Medication.amount.numerator.code": "Medication.amount.numerator.code",
+                "Medication.amount.numerator.system": "Medication.amount.numerator.system",
+                "Medication.batch": "Medication.batch",
+                "Medication.code": "Medication.code",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
+                "Medication.extension:Herstellungsanweisung": "Medication.extension:Herstellungsanweisung",
+                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
+                "Medication.extension:Kategorie": "Medication.extension:Kategorie",
+                "Medication.extension:Verpackung": "Medication.extension:Verpackung",
+                "Medication.form": "Medication.form",
+                "Medication.ingredient": "Medication.ingredient",
+                "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:pznCode",
+                "Medication.ingredient.strength.numerator.code": "Medication.ingredient.strength.numerator.code",
+                "Medication.ingredient.strength.numerator.system": "Medication.ingredient.strength.numerator.system",
+                "Medication.meta": "Medication.meta"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_PR_ERP_Medication_Ingredient|1.1.0.json": {
+        "KBV_PR_ERP_Medication_Ingredient|1.2.0.json": {
+            "id": "23a698ed-e952-4d2b-a034-e48fa978e187",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Medication.amount": "Medication.amount",
+                "Medication.amount.numerator.code": "Medication.amount.numerator.code",
+                "Medication.amount.numerator.system": "Medication.amount.numerator.system",
+                "Medication.batch": "Medication.batch",
+                "Medication.code": "Medication.code",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
+                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
+                "Medication.extension:Normgroesse": "Medication.extension:Normgroesse",
+                "Medication.form": "Medication.form",
+                "Medication.ingredient": "Medication.ingredient",
+                "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode": "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode",
+                "Medication.ingredient.strength.numerator.code": "Medication.ingredient.strength.numerator.code",
+                "Medication.ingredient.strength.numerator.system": "Medication.ingredient.strength.numerator.system",
+                "Medication.meta": "Medication.meta"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_DosageFlag|1.1.0.json": {
+        "KBV_EX_ERP_DosageFlag|1.2.0.json": {
+            "id": "6919e225-85fa-49d9-9a0a-19b4a081d22b",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.url": "Extension.url",
+                "Extension.value[x]": "Extension.value[x]",
+                "Extension.value[x]:valueBoolean": "Extension.value[x]:valueBoolean"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_Medication_Packaging|1.1.0.json": {
+        "KBV_EX_ERP_Medication_Packaging|1.2.0.json": {
+            "id": "3482421b-1cc0-4708-a768-0edf4571564d",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.url": "Extension.url",
+                "Extension.value[x]": "Extension.value[x]",
+                "Extension.value[x]:valueString": "Extension.value[x]:valueString"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_Medication_PackagingSize|1.1.0.json": {
+        "KBV_EX_ERP_Medication_PackagingSize|1.2.0.json": {
+            "id": "2563ac26-40ea-41d7-ae4e-453ff3934e2c",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.url": "Extension.url",
+                "Extension.value[x]": "Extension.value[x]",
+                "Extension.value[x]:valueString": "Extension.value[x]:valueString"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_Medication_Vaccine|1.1.0.json": {
+        "KBV_EX_ERP_Medication_Vaccine|1.2.0.json": {
+            "id": "5fb18e35-0411-4157-82f4-c82c3230943b",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.url": "Extension.url",
+                "Extension.value[x]": "Extension.value[x]",
+                "Extension.value[x]:valueBoolean": "Extension.value[x]:valueBoolean"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_Medication_Category|1.1.0.json": {
+        "KBV_EX_ERP_Medication_Category|1.2.0.json": {
+            "id": "0675744a-acae-49dc-8541-b66e90d2ecd8",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.url": "Extension.url",
+                "Extension.value[x]": "Extension.value[x]",
+                "Extension.value[x]:valueCoding": "Extension.value[x]:valueCoding"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_Medication_CompoundingInstruction|1.1.0.json": {
+        "KBV_EX_ERP_Medication_CompoundingInstruction|1.2.0.json": {
+            "id": "bdaeee71-c284-47c0-b600-eb396e8e960c",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.url": "Extension.url",
+                "Extension.value[x]": "Extension.value[x]",
+                "Extension.value[x]:valueString": "Extension.value[x]:valueString"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_PR_ERP_PracticeSupply|1.1.0.json": {
+        "KBV_PR_ERP_PracticeSupply|1.2.0.json": {
+            "id": "8516c692-e2d7-403f-b1bb-c46685ef4e8f",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "SupplyRequest.authoredOn": "SupplyRequest.authoredOn",
+                "SupplyRequest.extension:Kostentraeger": "SupplyRequest.extension:Kostentraeger",
+                "SupplyRequest.item[x]": "SupplyRequest.item[x]",
+                "SupplyRequest.item[x]:itemReference": "SupplyRequest.item[x]:itemReference",
+                "SupplyRequest.meta": "SupplyRequest.meta",
+                "SupplyRequest.quantity": "SupplyRequest.quantity",
+                "SupplyRequest.quantity.code": "SupplyRequest.quantity.code",
+                "SupplyRequest.quantity.system": "SupplyRequest.quantity.system",
+                "SupplyRequest.requester": "SupplyRequest.requester"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_Medication_Ingredient_Amount|1.1.0.json": {
+        "KBV_EX_ERP_Medication_Ingredient_Amount|1.2.0.json": {
+            "id": "4a60eb9e-fa40-4c72-9197-0f33a9bc8f54",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.url": "Extension.url",
+                "Extension.value[x]": "Extension.value[x]",
+                "Extension.value[x]:valueString": "Extension.value[x]:valueString"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_PR_ERP_Medication_PZN|1.1.0.json": {
+        "KBV_PR_ERP_Medication_PZN|1.2.0.json": {
+            "id": "e34e73dc-4781-4fca-8506-d66036ecde9a",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Medication.amount": "Medication.amount",
+                "Medication.amount.numerator.code": "Medication.amount.numerator.code",
+                "Medication.amount.numerator.system": "Medication.amount.numerator.system",
+                "Medication.batch": "Medication.batch",
+                "Medication.code": "Medication.code",
+                "Medication.code.coding:pznCode": "Medication.code.coding:pznCode",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
+                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
+                "Medication.extension:Kategorie": "Medication.extension:Kategorie",
+                "Medication.extension:Normgroesse": "Medication.extension:Normgroesse",
+                "Medication.form": "Medication.form",
+                "Medication.meta": "Medication.meta"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_PR_ERP_Medication_FreeText|1.1.0.json": {
+        "KBV_PR_ERP_Medication_FreeText|1.2.0.json": {
+            "id": "48b51303-b5d8-4345-8113-40951153b5d1",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Medication.batch": "Medication.batch",
+                "Medication.code": "Medication.code",
+                "Medication.extension:Arzneimittelkategorie": "Medication.extension:Arzneimittelkategorie",
+                "Medication.extension:Impfstoff": "Medication.extension:Impfstoff",
+                "Medication.form": "Medication.form",
+                "Medication.meta": "Medication.meta"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_PR_ERP_Prescription|1.1.0.json": {
+        "KBV_PR_ERP_Prescription|1.2.0.json": {
+            "id": "b3e109ce-b68c-4bc3-a30a-7516725b7087",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "MedicationRequest.authoredOn": "MedicationRequest.authoredOn",
+                "MedicationRequest.dispenseRequest": "MedicationRequest.dispenseRequest",
+                "MedicationRequest.dispenseRequest.quantity.code": "MedicationRequest.dispenseRequest.quantity.code",
+                "MedicationRequest.dispenseRequest.quantity.system": "MedicationRequest.dispenseRequest.quantity.system",
+                "MedicationRequest.dosageInstruction": "MedicationRequest.dosageInstruction",
+                "MedicationRequest.extension:BVG": "MedicationRequest.extension:BVG",
+                "MedicationRequest.extension:Mehrfachverordnung": "MedicationRequest.extension:Mehrfachverordnung",
+                "MedicationRequest.extension:Notdienstgebuehr": "MedicationRequest.extension:Notdienstgebuehr",
+                "MedicationRequest.extension:Unfallinformationen": "MedicationRequest.extension:Unfallinformationen",
+                "MedicationRequest.extension:Zuzahlungsstatus": "MedicationRequest.extension:Zuzahlungsstatus",
+                "MedicationRequest.insurance": "MedicationRequest.insurance",
+                "MedicationRequest.intent": "MedicationRequest.intent",
+                "MedicationRequest.medication[x]": "MedicationRequest.medication[x]",
+                "MedicationRequest.medication[x]:medicationReference": "MedicationRequest.medication[x]:medicationReference",
+                "MedicationRequest.meta": "MedicationRequest.meta",
+                "MedicationRequest.note": "MedicationRequest.note",
+                "MedicationRequest.requester": "MedicationRequest.requester",
+                "MedicationRequest.status": "MedicationRequest.status",
+                "MedicationRequest.subject": "MedicationRequest.subject",
+                "MedicationRequest.substitution": "MedicationRequest.substitution"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    },
+    "KBV_EX_ERP_PracticeSupply_Payor|1.1.0.json": {
+        "KBV_EX_ERP_PracticeSupply_Payor|1.2.0.json": {
+            "id": "9a89c41c-b4cb-4d49-aab1-45bebb5e74d5",
+            "version": "1.0.0",
+            "status": "draft",
+            "last_updated": "2024-12-10 15:05:51",
+            "mappings": {
+                "Extension.extension:IK": "Extension.extension:IK",
+                "Extension.extension:IK.value[x]:valueIdentifier.type.coding:XX-Type": "Extension.extension:IK.value[x]:valueIdentifier.type.coding:XX-Type",
+                "Extension.extension:Kostentraegertyp": "Extension.extension:Kostentraegertyp",
+                "Extension.extension:Name": "Extension.extension:Name",
+                "Extension.url": "Extension.url"
+            },
+            "fixed": {},
+            "remove": []
+        }
+    }
+}

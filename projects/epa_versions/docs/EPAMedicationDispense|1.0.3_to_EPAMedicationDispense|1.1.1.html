@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mapping: GEM_ERP_PR_MedicationDispense|1.4.0 in EPAMedicationDispense|1.1.0-rc1</title>
+    <title>Mapping: EPAMedicationDispense|1.0.3 in EPAMedicationDispense|1.1.1</title>
     <link rel='stylesheet' type='text/css' href='./style.css'>
     <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
@@ -11,18 +11,18 @@
 </head>
 
 <body>
-    <h2>Mapping: GEM_ERP_PR_MedicationDispense|1.4.0 in EPAMedicationDispense|1.1.0-rc1</h2>
+    <h2>Mapping: EPAMedicationDispense|1.0.3 in EPAMedicationDispense|1.1.1</h2>
     
     <div style="display: flex; justify-content: space-between;">
         <div style="flex: 1;">
             
             <p>Source Profile: 
-            <a href="https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.4.0/files/2521494" target="_blank">GEM_ERP_PR_MedicationDispense|1.4.0</a></p>
+            <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.0.3/files/2539779" target="_blank">EPAMedicationDispense|1.0.3</a></p>
             
             
-            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.1.0-rc1/files/2465056" target="_blank">EPAMedicationDispense|1.1.0-rc1</a></p>
-            <p>Version: 1.1, Status: active</p>
-            <p>Last updated on: 2024-09-17 11:38:16</p>
+            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.1.1/files/2532739" target="_blank">EPAMedicationDispense|1.1.1</a></p>
+            <p>Version: 0.1, Status: draft</p>
+            <p>Last updated on: 2024-09-17 11:39:38</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -51,9 +51,9 @@
             </tr>
             <tr>
                 
-                <th style="text-align: center;">GEM_ERP_PR_MedicationDispense|1.4.0</th>
+                <th style="text-align: center;">EPAMedicationDispense|1.0.3</th>
                 
-                <th style="text-align: center;">EPAMedicationDispense|1.1.0-rc1</th>
+                <th style="text-align: center;">EPAMedicationDispense|1.1.1</th>
             </tr>
         </thead>
         <tbody>
@@ -383,7 +383,7 @@
                 
             </tr>
             
-            <tr class="row-manual">
+            <tr class="row-use">
                 <td>MedicationDispense.extension:rxPrescriptionProcessIdentifier
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension</a>)
                 </td>
@@ -404,18 +404,18 @@
                     
                 </td>
                 
-                    <td>Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben.</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-manual">
+            <tr class="row-use">
                 <td>MedicationDispense.identifier
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        1..*
+                        0..*
                     
                 </td>
                 
@@ -429,7 +429,7 @@
                     
                 </td>
                 
-                    <td>Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID übernommen</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -456,7 +456,7 @@
                 
             </tr>
             
-            <tr class="row-manual">
+            <tr class="row-use">
                 <td>MedicationDispense.identifier:RxOriginatorProcessIdentifier
                     
                 </td>
@@ -477,30 +477,7 @@
                     
                 </td>
                 
-                    <td>Der Identifier wird vom Medication Service erstellt und verknüpft jede Prescription-ID mit der ursprünglichen Resource-ID zur genauen Nachverfolgung der Medikationsdaten im Format resourceID + ‘_’ + prescriptionID.</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>MedicationDispense.identifier:prescriptionID
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped from 'MedicationDispense.extension:rxPrescriptionProcessIdentifier'</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -611,7 +588,7 @@
                 
                 <td style="text-align: center;">
                     
-                        1..1
+                        0..1
                     
                 </td>
                 
@@ -661,7 +638,7 @@
                 
                 <td style="text-align: center;">
                     
-                        1..1
+                        0..*
                     
                 </td>
                 
@@ -675,7 +652,7 @@
                     
                 </td>
                 
-                    <td>Wird auf die meta.profile Angabe des Zielprofils umgeschrieben</td>
+                    <td></td>
                 
             </tr>
             
@@ -879,98 +856,6 @@
                 
             </tr>
             
-            <tr class="row-extension">
-                <td>MedicationDispense.performer.actor.display
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>MedicationDispense.performer.actor.identifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>MedicationDispense.performer.actor.reference
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td></td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>MedicationDispense.performer.actor.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
             <tr class="row-use">
                 <td>MedicationDispense.performer.function
                     
@@ -1146,7 +1031,7 @@
                 
             </tr>
             
-            <tr class="row-manual">
+            <tr class="row-use">
                 <td>MedicationDispense.subject.identifier
                     
                 </td>
@@ -1173,7 +1058,7 @@
                     
                 </td>
                 
-                    <td>Ist mit der Krankenversichertennummer des Versicherten im System "<a href="http://fhir.de/sid/gkv/kvid-10" target="_blank">http://fhir.de/sid/gkv/kvid-10</a>" zu befüllen.</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             

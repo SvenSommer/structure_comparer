@@ -84,12 +84,23 @@ class Profile:
 
         content = json.loads(file_path.read_text())
 
+        if not content.get("snapshot"):
+            raise KeyError(
+                f"The 'snapshot' element was not found in the profile file at {file_path}. Please check the file content."
+            )
+
         profile = Profile(
             name=content["name"],
             version=config.version,
             simplifier_url=config.simplifier_url,
             file_download_url=config.file_download_url,
         )
+
+        snapshot = content["snapshot"]
+        if "element" not in snapshot:
+            raise KeyError(
+                f"The 'element' element was not found in the 'snapshot' of the profile file at {file_path}. Please check the file content."
+            )
 
         extracted_elements = _extract_elements(content["snapshot"]["element"])
         profile.fields = OrderedDict(

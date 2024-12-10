@@ -1,0 +1,409 @@
+{
+    "manual_entries_file": "manual_entries.yaml",
+    "data_dir": "data",
+    "html_output_dir": "docs",
+    "mapping_output_file": "mapping.json",
+    "show_remarks": true,
+    "show_warnings": false,
+    "profiles_to_compare": [
+        {
+            "id": "8f954cb4-7be8-4e64-b9de-656c7c15c316",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_EmergencyServicesFee|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212805",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212805&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_EmergencyServicesFee|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667135",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667135&format=json"
+                }
+            }
+        },
+        {
+            "id": "87732de6-8d9c-48b6-8b75-45ec2338916c",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_Multiple_Prescription|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212811",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212811&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_Multiple_Prescription|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667143",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667143&format=json"
+                }
+            }
+        },
+        {
+            "id": "2ebb99b6-f4a9-485a-8365-76bd66aa7c06",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_PR_ERP_Bundle|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212799",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212799&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_PR_ERP_Bundle|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667152",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667152&format=json"
+                }
+            }
+        },
+        {
+            "id": "7c2ffcf3-ec1a-40ba-bb81-81c1a08de11c",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_Medication_Ingredient_Form|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212808",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212808&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_Medication_Ingredient_Form|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667139",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667139&format=json"
+                }
+            }
+        },
+        {
+            "id": "e7649624-5572-4344-8a60-3aaaf0e66fa5",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_PR_ERP_Composition|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212813",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212813&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_PR_ERP_Composition|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667153",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667153&format=json"
+                }
+            }
+        },
+        {
+            "id": "27b5b210-1332-4242-8634-a8435e0c8425",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_PR_ERP_Medication_Compounding|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212814",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212814&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_PR_ERP_Medication_Compounding|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667154",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667154&format=json"
+                }
+            }
+        },
+        {
+            "id": "23a698ed-e952-4d2b-a034-e48fa978e187",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_PR_ERP_Medication_Ingredient|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212816",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212816&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_PR_ERP_Medication_Ingredient|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667156",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667156&format=json"
+                }
+            }
+        },
+        {
+            "id": "6919e225-85fa-49d9-9a0a-19b4a081d22b",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_DosageFlag|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212804",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212804&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_DosageFlag|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667134",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667134&format=json"
+                }
+            }
+        },
+        {
+            "id": "3482421b-1cc0-4708-a768-0edf4571564d",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_Medication_Packaging|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212809",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212809&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_Medication_Packaging|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667140",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667140&format=json"
+                }
+            }
+        },
+        {
+            "id": "2563ac26-40ea-41d7-ae4e-453ff3934e2c",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_Medication_PackagingSize|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212798",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212798&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_Medication_PackagingSize|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667141",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667141&format=json"
+                }
+            }
+        },
+        {
+            "id": "5fb18e35-0411-4157-82f4-c82c3230943b",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_Medication_Vaccine|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212810",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212810&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_Medication_Vaccine|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667142",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667142&format=json"
+                }
+            }
+        },
+        {
+            "id": "0675744a-acae-49dc-8541-b66e90d2ecd8",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_Medication_Category|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212797",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212797&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_Medication_Category|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667136",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667136&format=json"
+                }
+            }
+        },
+        {
+            "id": "bdaeee71-c284-47c0-b600-eb396e8e960c",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_Medication_CompoundingInstruction|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212806",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212806&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_Medication_CompoundingInstruction|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667137",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667137&format=json"
+                }
+            }
+        },
+        {
+            "id": "8516c692-e2d7-403f-b1bb-c46685ef4e8f",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_PR_ERP_PracticeSupply|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212818",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212818&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_PR_ERP_PracticeSupply|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667158",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667158&format=json"
+                }
+            }
+        },
+        {
+            "id": "4a60eb9e-fa40-4c72-9197-0f33a9bc8f54",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_Medication_Ingredient_Amount|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212807",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212807&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_Medication_Ingredient_Amount|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667138",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667138&format=json"
+                }
+            }
+        },
+        {
+            "id": "e34e73dc-4781-4fca-8506-d66036ecde9a",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_PR_ERP_Medication_PZN|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212817",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212817&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_PR_ERP_Medication_PZN|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667157",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667157&format=json"
+                }
+            }
+        },
+        {
+            "id": "48b51303-b5d8-4345-8113-40951153b5d1",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_PR_ERP_Medication_FreeText|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212815",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212815&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_PR_ERP_Medication_FreeText|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667155",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667155&format=json"
+                }
+            }
+        },
+        {
+            "id": "b3e109ce-b68c-4bc3-a30a-7516725b7087",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_PR_ERP_Prescription|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212819",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212819&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_PR_ERP_Prescription|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667159",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667159&format=json"
+                }
+            }
+        },
+        {
+            "id": "9a89c41c-b4cb-4d49-aab1-45bebb5e74d5",
+            "version": "1.0.0",
+            "status": "draft",
+            "mappings": {
+                "sourceprofiles": [
+                    {
+                        "file": "1.1.2/KBV_EX_ERP_PracticeSupply_Payor|1.1.0.json",
+                        "version": "1.1.2",
+                        "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212812",
+                        "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2212812&format=json"
+                    }
+                ],
+                "targetprofile": {
+                    "file": "1.2.0/KBV_EX_ERP_PracticeSupply_Payor|1.2.0.json",
+                    "version": "1.2.0",
+                    "simplifier_url": "https://simplifier.net/packages/kbv.ita.erp/1.2.0-alpha/files/2667144",
+                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2667144&format=json"
+                }
+            }
+        }
+    ]
+}
