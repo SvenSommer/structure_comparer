@@ -6,6 +6,4 @@ __pycache__
 dist/
 
 # IDE specific
-.vscode/*
-!.vscode/launch.json
 .history
