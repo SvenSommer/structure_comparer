@@ -1,16 +1,13 @@
-from pathlib import Path
 import re
 import shutil
+from pathlib import Path
 from typing import Dict, List
 
 from jinja2 import Environment, FileSystemLoader
-
 from structure_comparer.helpers import split_parent_child
-
 
 from .classification import Classification
 from .data.comparison import Comparison
-
 
 CSS_CLASS = {
     Classification.USE: "row-use",
@@ -30,6 +27,7 @@ FILES_FOLDER = Path(__file__).parent / "files"
 
 def flatten_profiles(profiles: List[str]) -> str:
     return "_".join(profiles)
+
 
 # Define the custom filter function
 def format_cardinality(value):
@@ -70,6 +68,10 @@ def create_results_html(
             warnings = set()  # Use a set to collect unique warnings
             target_min_card = entry.profiles[comp.target.profile_key].min_cardinality
             target_max_card = entry.profiles[comp.target.profile_key].max_cardinality
+            if target_max_card == "*":
+                target_max_card = float("inf")
+            else:
+                target_max_card = int(target_max_card)
 
             parent, _ = split_parent_child(field)
             comparison_parent = comp.fields.get(parent)
@@ -77,6 +79,10 @@ def create_results_html(
             for profile in comp.sources:
                 source_min_card = entry.profiles[profile.profile_key].min_cardinality
                 source_max_card = entry.profiles[profile.profile_key].max_cardinality
+                if source_max_card == "*":
+                    source_max_card = float("inf")
+                else:
+                    source_max_card = int(source_max_card)
 
                 if comparison_parent and comparison_parent.classification in [
                     Classification.USE
@@ -95,11 +101,16 @@ def create_results_html(
                     )
 
                 # Check if source_max_card is not 0 before considering source_min_card
-                if source_max_card != 0 and source_min_card < target_min_card and entry.classification not in [
-                    Classification.COPY_TO,
-                    Classification.COPY_FROM,
-                    Classification.EXTENSION,
-                ]:
+                if (
+                    source_max_card != 0
+                    and source_min_card < target_min_card
+                    and entry.classification
+                    not in [
+                        Classification.COPY_TO,
+                        Classification.COPY_FROM,
+                        Classification.EXTENSION,
+                    ]
+                ):
                     warnings.add(
                         "The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile"
                     )

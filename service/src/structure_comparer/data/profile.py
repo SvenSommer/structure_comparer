@@ -108,7 +108,13 @@ class Profile:
 
 
 class ProfileField:
-    def __init__(self, name: str, extension: str = None, min_cardinality: int = 0, max_cardinality: int = 0) -> None:
+    def __init__(
+        self,
+        name: str,
+        extension: str = None,
+        min_cardinality: int = 0,
+        max_cardinality: int = 0,
+    ) -> None:
         self.name: str = name
         self.extension: str = extension
         self.min_cardinality: int = min_cardinality
@@ -150,10 +156,6 @@ def _extract_elements(elements: List[Dict]) -> List[ProfileField]:
 
         min_cardinality = int(element.get("min", 0))
         max_cardinality = element.get("max", 0)
-        if max_cardinality == '*':
-            max_cardinality = float('inf')
-        else:
-            max_cardinality = int(max_cardinality)
 
         # Check for specific extensions
         if extension := _get_extension(element, path):
@@ -164,7 +166,13 @@ def _extract_elements(elements: List[Dict]) -> List[ProfileField]:
             result.append(extension)
         else:
             # Add the base path of the element
-            result.append(ProfileField(name=path, min_cardinality=min_cardinality, max_cardinality=max_cardinality))
+            result.append(
+                ProfileField(
+                    name=path,
+                    min_cardinality=min_cardinality,
+                    max_cardinality=max_cardinality,
+                )
+            )
 
         # Check for and add slices, ignoring 'slice(url)' endings
         if "slicing" in element and "discriminator" in element["slicing"]:
@@ -173,7 +181,13 @@ def _extract_elements(elements: List[Dict]) -> List[ProfileField]:
                     slice_path = f"{path}.slice({discriminator['path']})"
                     slice_path_split = slice_path.split(".")
                     if not slice_path_split[-1] in IGNORE_SLICES:
-                        result.append(ProfileField(name=slice_path, min_cardinality=min_cardinality, max_cardinality=max_cardinality))
+                        result.append(
+                            ProfileField(
+                                name=slice_path,
+                                min_cardinality=min_cardinality,
+                                max_cardinality=max_cardinality,
+                            )
+                        )
 
     return result
 
