@@ -1,0 +1,11 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {},
+        "local": {
+            "host": "localhost:5000"
+        }
+    },
+    "flake8.args": [
+        "--max-line-length=120"
+    ]
+}

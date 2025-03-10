@@ -20,29 +20,13 @@ This project provides a web app to configure the mapping between different profi
 
 ### Backend
 
-Start the backend service from the repository root
+The backend can be found at [service/](service/README.md).
 
-```bash
-python server.py --project-dir projects/<name>
-```
-
-The started service is available at `localhost:5000`. The OpenAPI specification is available with the route `/spec`.
-
-#### REST Client
+#### REST Client Extension
 
 The service can be evaluated through a predefined collection of requests located in `rest/requests.http`. This collection utilizes the [Rest Client](`https://marketplace.visualstudio.com/items?itemName=humao.rest-client`) extension for easy execution.
 
-The target `host` for these requests is specified in the devcontainer.json file under the rest-client.environmentVariables setting, as shown below:
-
-```json
-"rest-client.environmentVariables": {
-    "local": {
-        "host": "localhost:5000"
-    }
-}
-```
-
-To execute a request, simply click on the Send Request link located above the respective request definition in the requests.http file. This action triggers the request to the configured host, facilitating the testing process directly within your development environment.
+To execute a request, simply click on the `Send Request` link located above the respective request definition in the requests.http file. This action triggers the request to the configured host, facilitating the testing process directly within your development environment.
 
 ### Frontend
 
