@@ -73,7 +73,7 @@ table.dataTable.display tbody tr.row-manual.even> .sorting_1,
 table.dataTable.display tbody tr.row-manual.even> .sorting_2,
 table.dataTable.display tbody tr.row-manual.even> .sorting_3,
 table.dataTable.display tbody tr.row-manual {
-    background-color: #F9F4E0;
+    background-color: #FFFAE6;
     color: #000000;
 }
 
@@ -83,9 +83,6 @@ table.dataTable.display tbody tr.row-manual.odd> .sorting_3,
 table.dataTable.display tbody tr.row-manual.odd {
     background-color: #F9F4E0;
 }
-
-
-
 
 .dataTables_wrapper {
     margin: 20px 0;

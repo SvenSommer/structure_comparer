@@ -1,9 +1,10 @@
 {
     "HealthcareServiceApoVzd|1.0": {
         "HealthcareServiceDirectory|0.11.6": {
+            "id": "91db64da-9777-4c5f-a7d4-e0601ab51ad1",
             "version": "0.9",
             "status": "draft",
-            "last_updated": "2024-05-31 14:14:35",
+            "last_updated": "2025-04-10 16:03:10",
             "mappings": {
                 "HealthcareService.active": "HealthcareService.active",
                 "HealthcareService.appointmentRequired": "HealthcareService.appointmentRequired",
@@ -42,9 +43,10 @@
     },
     "LocationApoVzd|1.0": {
         "LocationDirectory|0.11.6": {
+            "id": "4f087b02-87bc-46c7-9c0b-ed3c1e72868d",
             "version": "0.9",
             "status": "draft",
-            "last_updated": "2024-05-31 14:14:35",
+            "last_updated": "2025-04-10 16:03:10",
             "mappings": {
                 "Location.address": "Location.address",
                 "Location.alias": "Location.alias",

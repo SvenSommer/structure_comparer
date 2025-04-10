@@ -4,7 +4,7 @@
             "id": "3c1d70bb-6765-4d1d-a541-4a043f3b9d1d",
             "version": "0.1",
             "status": "draft",
-            "last_updated": "2024-06-17 11:41:05",
+            "last_updated": "2025-04-10 15:56:38",
             "mappings": {
                 "Observation.basedOn": "Observation.basedOn",
                 "Observation.bodySite": "Observation.bodySite",
@@ -65,7 +65,7 @@
             "id": "5246017e-ae19-40f9-a428-bbd32d3674ee",
             "version": "0.1",
             "status": "draft",
-            "last_updated": "2024-06-17 11:41:05",
+            "last_updated": "2025-04-10 15:56:38",
             "mappings": {
                 "Observation.basedOn": "Observation.basedOn",
                 "Observation.bodySite": "Observation.bodySite",

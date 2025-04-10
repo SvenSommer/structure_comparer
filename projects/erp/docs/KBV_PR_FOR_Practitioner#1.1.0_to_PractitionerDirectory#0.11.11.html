@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mapping: KBV_PR_ERP_Prescription|1.1.0 in EPAMedicationRequest|1.1.0-rc1</title>
+    <title>Mapping: KBV_PR_FOR_Practitioner|1.1.0 in PractitionerDirectory|0.11.11</title>
     <link rel='stylesheet' type='text/css' href='./style.css'>
     <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
@@ -11,18 +11,18 @@
 </head>
 
 <body>
-    <h2>Mapping: KBV_PR_ERP_Prescription|1.1.0 in EPAMedicationRequest|1.1.0-rc1</h2>
+    <h2>Mapping: KBV_PR_FOR_Practitioner|1.1.0 in PractitionerDirectory|0.11.11</h2>
     
     <div style="display: flex; justify-content: space-between;">
         <div style="flex: 1;">
             
             <p>Source Profile: 
-            <a href="https://simplifier.net/packages/kbv.ita.erp/1.1.2/files/2212819" target="_blank">KBV_PR_ERP_Prescription|1.1.0</a></p>
+            <a href="https://simplifier.net/packages/kbv.ita.for/1.1.0/files/720095" target="_blank">KBV_PR_FOR_Practitioner|1.1.0</a></p>
             
             
-            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.1.0-rc1/files/2465069" target="_blank">EPAMedicationRequest|1.1.0-rc1</a></p>
-            <p>Version: 1.1, Status: active</p>
-            <p>Last updated on: 2024-07-30 21:27:43</p>
+            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.fhir.directory/0.11.11/files/2522116" target="_blank">PractitionerDirectory|0.11.11</a></p>
+            <p>Version: 1.2, Status: active</p>
+            <p>Last updated on: 2025-04-10 16:02:18</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -51,27 +51,25 @@
             </tr>
             <tr>
                 
-                <th style="text-align: center;">KBV_PR_ERP_Prescription|1.1.0</th>
+                <th style="text-align: center;">KBV_PR_FOR_Practitioner|1.1.0</th>
                 
-                <th style="text-align: center;">EPAMedicationRequest|1.1.0-rc1</th>
+                <th style="text-align: center;">PractitionerDirectory|0.11.11</th>
             </tr>
         </thead>
         <tbody>
             
-            <tr class="row-use">
-                <td>MedicationRequest.authoredOn
+            <tr class="row-not-use">
+                <td>Practitioner.active
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        1..1
-                    
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        1..1
+                        0..1
                     
                 </td>
                 
@@ -79,12 +77,12 @@
                     
                 </td>
                 
-                    <td>Property and value(s) will be retained</td>
+                    <td>Will remain empty for now, as no source information is available</td>
                 
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.basedOn
+                <td>Practitioner.address
                     
                 </td>
                 
@@ -107,7 +105,30 @@
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.category
+                <td>Practitioner.birthDate
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.communication
                     
                 </td>
                 
@@ -130,7 +151,7 @@
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.contained
+                <td>Practitioner.contained
                     
                 </td>
                 
@@ -153,7 +174,7 @@
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.courseOfTherapyType
+                <td>Practitioner.gender
                     
                 </td>
                 
@@ -175,8 +196,223 @@
                 
             </tr>
             
-            <tr class="row-not-use">
-                <td>MedicationRequest.detectedIssue
+            <tr class="row-manual">
+                <td>Practitioner.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..2
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Muss mindestens die TelematikID des Arztes enthalten, die auch im Signaturzertifikat der QES angegeben ist.</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANR'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANR.system'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANR.type'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.coding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANR.type.coding'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.coding.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANR.type.coding.code'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.type.coding.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANR.type.coding.system'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANR.use'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:ANR.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:LANR.value'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:LANR
                     
                 </td>
                 
@@ -194,396 +430,225 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Mapped from 'Practitioner.identifier:ANR'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID.system'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID.type'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.coding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID.type.coding'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.coding.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID.type.coding.code'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.type.coding.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID.type.coding.system'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID.use'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:Telematik-ID.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.identifier:TelematikID.value'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.identifier:TelematikID
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped from 'Practitioner.identifier:Telematik-ID'</td>
                 
             </tr>
             
             <tr class="row-use">
-                <td>MedicationRequest.dispenseRequest
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dispenseRequest.dispenseInterval
-                    
-                </td>
-                
-                <td style="text-align: center;">
+                <td>Practitioner.identifier:ZANR
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
                         0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dispenseRequest.expectedSupplyDuration
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dispenseRequest.initialFill
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dispenseRequest.initialFill.duration
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dispenseRequest.initialFill.quantity
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dispenseRequest.numberOfRepeatsAllowed
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dispenseRequest.performer
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.dispenseRequest.quantity
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.dispenseRequest.quantity.code
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.dispenseRequest.quantity.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dispenseRequest.quantity.unit
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.dispenseRequest.quantity.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dispenseRequest.validityPeriod
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.doNotPerform
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.dosageInstruction
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.additionalInstruction
-                    
-                </td>
-                
-                <td style="text-align: center;">
                     
                 </td>
                 
@@ -597,12 +662,173 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.coding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.coding.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.type.coding.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.identifier:ZANR.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.asNeeded[x]
+                <td>Practitioner.implicitRules
                     
                 </td>
                 
@@ -625,109 +851,90 @@
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.doseAndRate
+                <td>Practitioner.language
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.meta
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.lastUpdated
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.profile
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
                         0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.doseAndRate.dose[x]
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.doseAndRate.rate[x]
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.doseAndRate.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.extension:Dosierungskennzeichen
-                    <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
                     
                 </td>
                 
@@ -740,264 +947,7 @@
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.maxDosePerAdministration
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.maxDosePerLifetime
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.maxDosePerPeriod
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.method
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.dosageInstruction.patientInstruction
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.route
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.sequence
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.site
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.dosageInstruction.text
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.dosageInstruction.timing
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.encounter
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.eventHistory
+                <td>Practitioner.meta.security
                     
                 </td>
                 
@@ -1020,8 +970,401 @@
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.extension:BVG
-                    <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_BVG" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_BVG</a>)
+                <td>Practitioner.meta.source
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.tag
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.tag:Origin
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.tag:Origin.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.tag:Origin.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.tag:Origin.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.tag:Origin.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.tag:Origin.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.meta.versionId
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Practitioner.name
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.name.family
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped from 'Practitioner.name:name.family'</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.name.given
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped from 'Practitioner.name:name.given'</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.name.prefix
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped from 'Practitioner.name:name.prefix'</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name.suffix
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.name.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property is concatinated from values of {prefix-qualifier} {name.prefix} {name.given} {vorsatzwort} {nachname} {namenszusatz}</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.name.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped from 'Practitioner.name:name.use'</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1049,8 +1392,8 @@
             </tr>
             
             <tr class="row-manual">
-                <td>MedicationRequest.extension:Mehrfachverordnung
-                    <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription</a>)
+                <td>Practitioner.name:name.family
+                    
                 </td>
                 
                 <td style="text-align: center;">
@@ -1067,355 +1410,13 @@
                     
                 </td>
                 
-                    <td>Mapped from 'MedicationRequest.extension:multiplePrescription'</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.extension:Notdienstgebuehr
-                    <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
-                </td>
-                
-                    <td>Property and value(s) will NOT be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.extension:Unfallinformationen
-                    <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
-                </td>
-                
-                    <td>Property and value(s) will NOT be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.extension:Zuzahlungsstatus
-                    <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                    <ul>
-                        
-                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
-                </td>
-                
-                    <td>Property and value(s) will NOT be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.extension:isBvg
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/indicator-bvg-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/indicator-bvg-extension</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.extension:medicationRequestLinkedStatement
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-request-linked-statement-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-request-linked-statement-extension</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Mapped to 'Practitioner.name.family'</td>
                 
             </tr>
             
             <tr class="row-manual">
-                <td>MedicationRequest.extension:multiplePrescription
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'MedicationRequest.extension:Mehrfachverordnung'</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.groupIdentifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.identifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.identifier:RxOriginatorProcessIdentifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.identifier:RxPrescriptionProcessIdentifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.implicitRules
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.instantiatesCanonical
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.instantiatesUri
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.insurance
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.insurance.reference
-                    
+                <td>Practitioner.name:name.family.extension:nachname
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/humanname-own-name" target="_blank">http://hl7.org/fhir/StructureDefinition/humanname-own-name</a>)
                 </td>
                 
                 <td style="text-align: center;">
@@ -1430,43 +1431,78 @@
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
-                    <td>Eigenschaft und Wert(e) werden NICHT übernommen</td>
+                    <td>Property will be used in Practitioner.name.text</td>
                 
             </tr>
             
             <tr class="row-manual">
-                <td>MedicationRequest.intent
-                    
+                <td>Practitioner.name:name.family.extension:namenszusatz
+                    <br>(<a href="http://fhir.de/StructureDefinition/humanname-namenszusatz" target="_blank">http://fhir.de/StructureDefinition/humanname-namenszusatz</a>)
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        1..1
+                        0..1
                     
                 </td>
                 
                 <td style="text-align: center;">
-                    
-                        1..1
                     
                 </td>
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
-                    <td>Set to 'filler-order' fixed value</td>
+                    <td>Property will be used in Practitioner.name.text</td>
                 
             </tr>
             
-            <tr class="row-not-use">
-                <td>MedicationRequest.language
+            <tr class="row-manual">
+                <td>Practitioner.name:name.family.extension:vorsatzwort
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix" target="_blank">http://hl7.org/fhir/StructureDefinition/humanname-own-prefix</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property will be used in Practitioner.name.text</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.family.value
                     
                 </td>
                 
@@ -1476,41 +1512,26 @@
                     
                 </td>
                 
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.medication[x]
-                    
-                </td>
-                
                 <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
                     
                 </td>
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
-                    <td>Property and value(s) will be retained</td>
+                    <td>Property and value(s) will NOT be retained</td>
                 
             </tr>
             
             <tr class="row-manual">
-                <td>MedicationRequest.medication[x]:medicationReference
+                <td>Practitioner.name:name.given
                     
                 </td>
                 
@@ -1534,12 +1555,299 @@
                     
                 </td>
                 
-                    <td>Die Referenz der KBV-Medikation wird durch eine Referenz auf eine EPA-Medikation ersetzt.</td>
+                    <td>Property will be used in Practitioner.name.text and mapped to Practitioner.name.given</td>
                 
             </tr>
             
             <tr class="row-manual">
-                <td>MedicationRequest.medication[x]:medicationReference.reference
+                <td>Practitioner.name:name.prefix
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property will be used in Practitioner.name.text and mapped to Practitioner.name.prefix</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.name:name.prefix.extension:prefix-qualifier
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier" target="_blank">http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property will be used in Practitioner.name.text</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.name:name.prefix.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Practitioner.name:name.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Mapped to 'Practitioner.name.use'</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.photo
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        2..3
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification.issuer
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code
                     
                 </td>
                 
@@ -1563,12 +1871,12 @@
                     
                 </td>
                 
-                    <td>Die Referenz ergibt sich aus der neu erzeugten EPA-Medikation.</td>
+                    <td>Property and value(s) will NOT be retained</td>
                 
             </tr>
             
-            <tr class="row-use">
-                <td>MedicationRequest.meta
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.coding
                     
                 </td>
                 
@@ -1580,59 +1888,15 @@
                 
                 <td style="text-align: center;">
                     
-                        0..1
-                    
                 </td>
                 
                 <td class="warning-column">
                     
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.meta.lastUpdated
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.meta.profile
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
                     
                 </td>
                 
@@ -1641,147 +1905,7 @@
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.meta.security
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.meta.source
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.meta.tag
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.meta.versionId
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.note
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.note.author[x]
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.note.text
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.coding.code
                     
                 </td>
                 
@@ -1793,410 +1917,15 @@
                 
                 <td style="text-align: center;">
                     
-                        1..1
-                    
                 </td>
                 
                 <td class="warning-column">
                     
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.note.time
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.performer
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.performerType
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.priorPrescription
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.priority
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.reasonCode
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.reasonReference
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.recorder
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.reported[x]
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.requester
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.requester.reference
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will NOT be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.status
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.statusReason
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.subject
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.subject.display
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.subject.identifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Set by the Medication Service</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationRequest.subject.reference
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
                     
                 </td>
                 
@@ -2205,80 +1934,7 @@
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.subject.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.substitution
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.substitution.allowed[x]
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationRequest.substitution.allowed[x]:allowedBoolean
+                <td>Practitioner.qualification:ASV-Fachgruppennummer.code.coding.system
                     
                 </td>
                 
@@ -2294,37 +1950,339 @@
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
-                    <td>Property and value(s) will be retained</td>
+                    <td>Property and value(s) will NOT be retained</td>
                 
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.substitution.reason
+                <td>Practitioner.qualification:Berufsbezeichnung
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
+                        1..1
+                    
                 </td>
                 
                 <td style="text-align: center;">
-                    
-                        0..1
                     
                 </td>
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will NOT be retained</td>
                 
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.supportingInformation
+                <td>Practitioner.qualification:Berufsbezeichnung.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.coding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.coding.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.coding.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Berufsbezeichnung.code.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.coding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.coding.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.qualification:Typ.code.coding.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                    <ul>
+                        
+                        <li>The maximum cardinality of one of the source profiles exceeds the maximum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
+                </td>
+                
+                    <td>Property and value(s) will NOT be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.telecom
                     
                 </td>
                 
@@ -2347,7 +2305,122 @@
             </tr>
             
             <tr class="row-not-use">
-                <td>MedicationRequest.text
+                <td>Practitioner.telecom.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.telecom.rank
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.telecom.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.telecom.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.telecom.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Practitioner.text
                     
                 </td>
                 
@@ -2374,7 +2447,7 @@
     <script>
         $(document).ready(function () {
             var warningsVisible = false;
-            var numberOfWarnings = 6;
+            var numberOfWarnings = 26;
             
             $('#resultsTable').DataTable({
                 'pageLength': -1,

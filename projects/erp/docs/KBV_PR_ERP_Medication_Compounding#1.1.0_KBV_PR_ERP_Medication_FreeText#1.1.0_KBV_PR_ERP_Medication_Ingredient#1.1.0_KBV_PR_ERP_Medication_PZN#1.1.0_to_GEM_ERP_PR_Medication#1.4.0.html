@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mapping: KBV_PR_ERP_Medication_Compounding|1.1.0, KBV_PR_ERP_Medication_FreeText|1.1.0, KBV_PR_ERP_Medication_Ingredient|1.1.0, KBV_PR_ERP_Medication_PZN|1.1.0 in EPAMedication|1.1.0-rc1</title>
+    <title>Mapping: KBV_PR_ERP_Medication_Compounding|1.1.0, KBV_PR_ERP_Medication_FreeText|1.1.0, KBV_PR_ERP_Medication_Ingredient|1.1.0, KBV_PR_ERP_Medication_PZN|1.1.0 in GEM_ERP_PR_Medication|1.4.0</title>
     <link rel='stylesheet' type='text/css' href='./style.css'>
     <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <h2>Mapping: KBV_PR_ERP_Medication_Compounding|1.1.0, KBV_PR_ERP_Medication_FreeText|1.1.0, KBV_PR_ERP_Medication_Ingredient|1.1.0, KBV_PR_ERP_Medication_PZN|1.1.0 in EPAMedication|1.1.0-rc1</h2>
+    <h2>Mapping: KBV_PR_ERP_Medication_Compounding|1.1.0, KBV_PR_ERP_Medication_FreeText|1.1.0, KBV_PR_ERP_Medication_Ingredient|1.1.0, KBV_PR_ERP_Medication_PZN|1.1.0 in GEM_ERP_PR_Medication|1.4.0</h2>
     
     <div style="display: flex; justify-content: space-between;">
         <div style="flex: 1;">
@@ -30,9 +30,9 @@
             </ul>
             
             
-            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.1.0-rc1/files/2465055" target="_blank">EPAMedication|1.1.0-rc1</a></p>
+            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.4.0/files/2521493" target="_blank">GEM_ERP_PR_Medication|1.4.0</a></p>
             <p>Version: 1.1, Status: active</p>
-            <p>Last updated on: 2024-07-30 21:27:43</p>
+            <p>Last updated on: 2025-04-10 16:02:18</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -69,7 +69,7 @@
                 
                 <th style="text-align: center;">KBV_PR_ERP_Medication_PZN|1.1.0</th>
                 
-                <th style="text-align: center;">EPAMedication|1.1.0-rc1</th>
+                <th style="text-align: center;">GEM_ERP_PR_Medication|1.4.0</th>
             </tr>
         </thead>
         <tbody>
@@ -2275,7 +2275,7 @@
                 
             </tr>
             
-            <tr class="row-manual">
+            <tr class="row-extension">
                 <td>Medication.extension:Verpackung
                     <br>(<a href="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Packaging" target="_blank">https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Packaging</a>)
                 </td>
@@ -2306,7 +2306,7 @@
                     
                 </td>
                 
-                    <td>Mapped to 'Medication.extension:packaging'</td>
+                    <td>Extension and value(s) will be retained</td>
                 
             </tr>
             
@@ -2342,41 +2342,6 @@
                 </td>
                 
                     <td>Mapped from 'Medication.extension:Arzneimittelkategorie'</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Medication.extension:epaDispensationIdentifier
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/dispensation-identifier-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/dispensation-identifier-extension</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
                 
             </tr>
             
@@ -2485,7 +2450,7 @@
                 
             </tr>
             
-            <tr class="row-manual">
+            <tr class="row-not-use">
                 <td>Medication.extension:packaging
                     <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension</a>)
                 </td>
@@ -2516,7 +2481,7 @@
                     
                 </td>
                 
-                    <td>Mapped from 'Medication.extension:Verpackung'</td>
+                    <td>Will remain empty for now, as no source information is available</td>
                 
             </tr>
             
@@ -4778,6 +4743,76 @@
             </tr>
             
             <tr class="row-not-use">
+                <td>Medication.ingredient.strength.denominator.code.extension:dataAbsentReason
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Medication.ingredient.strength.denominator.code.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
                 <td>Medication.ingredient.strength.denominator.comparator
                     
                 </td>
@@ -4836,6 +4871,76 @@
                 <td style="text-align: center;">
                     
                         1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Medication.ingredient.strength.denominator.system.extension:dataAbsentReason
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Medication.ingredient.strength.denominator.system.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
                     
                 </td>
                 
@@ -5096,6 +5201,76 @@
             </tr>
             
             <tr class="row-not-use">
+                <td>Medication.ingredient.strength.numerator.code.extension:dataAbsentReason
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Medication.ingredient.strength.numerator.code.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
                 <td>Medication.ingredient.strength.numerator.comparator
                     
                 </td>
@@ -5179,6 +5354,76 @@
   }
 ]
 </td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Medication.ingredient.strength.numerator.system.extension:dataAbsentReason
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Medication.ingredient.strength.numerator.system.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
                 
             </tr>
             
@@ -5508,7 +5753,7 @@
                 
                 <td style="text-align: center;">
                     
-                        0..1
+                        1..1
                     
                 </td>
                 
@@ -5586,7 +5831,7 @@
                 
                 <td style="text-align: center;">
                     
-                        0..*
+                        1..1
                     
                 </td>
                 
