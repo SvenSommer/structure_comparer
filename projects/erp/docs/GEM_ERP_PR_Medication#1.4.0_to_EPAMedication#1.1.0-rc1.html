@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mapping: KBV_PR_FOR_Organization|1.1.0 in OrganizationDirectory|0.11.11</title>
+    <title>Mapping: GEM_ERP_PR_Medication|1.4.0 in EPAMedication|1.1.0-rc1</title>
     <link rel='stylesheet' type='text/css' href='./style.css'>
     <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
@@ -11,18 +11,18 @@
 </head>
 
 <body>
-    <h2>Mapping: KBV_PR_FOR_Organization|1.1.0 in OrganizationDirectory|0.11.11</h2>
+    <h2>Mapping: GEM_ERP_PR_Medication|1.4.0 in EPAMedication|1.1.0-rc1</h2>
     
     <div style="display: flex; justify-content: space-between;">
         <div style="flex: 1;">
             
             <p>Source Profile: 
-            <a href="https://simplifier.net/packages/kbv.ita.for/1.1.0/files/720093" target="_blank">KBV_PR_FOR_Organization|1.1.0</a></p>
+            <a href="https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.4.0/files/2521493" target="_blank">GEM_ERP_PR_Medication|1.4.0</a></p>
             
             
-            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.fhir.directory/0.11.11/files/2522092" target="_blank">OrganizationDirectory|0.11.11</a></p>
-            <p>Version: 1.2, Status: active</p>
-            <p>Last updated on: 2024-09-13 11:15:12</p>
+            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.1.0-rc1/files/2465055" target="_blank">EPAMedication|1.1.0-rc1</a></p>
+            <p>Version: 1.1, Status: active</p>
+            <p>Last updated on: 2025-04-10 16:02:18</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -51,16 +51,1191 @@
             </tr>
             <tr>
                 
-                <th style="text-align: center;">KBV_PR_FOR_Organization|1.1.0</th>
+                <th style="text-align: center;">GEM_ERP_PR_Medication|1.4.0</th>
                 
-                <th style="text-align: center;">OrganizationDirectory|0.11.11</th>
+                <th style="text-align: center;">EPAMedication|1.1.0-rc1</th>
             </tr>
         </thead>
         <tbody>
             
-            <tr class="row-not-use">
-                <td>Organization.active
+            <tr class="row-use">
+                <td>Medication.amount
                     
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.denominator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.denominator.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.denominator.comparator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.denominator.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.denominator.unit
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.denominator.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.comparator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:packagingSize
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.extension:totalQuantity
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.unit
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.amount.numerator.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.batch
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.batch.expirationDate
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.batch.lotNumber
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:ask
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:ask.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:ask.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:ask.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:ask.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:ask.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:atc-de
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:atc-de.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:atc-de.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:atc-de.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:atc-de.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:atc-de.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:pzn
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:pzn.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:pzn.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:pzn.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:pzn.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:pzn.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:snomed
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:snomed.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:snomed.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:snomed.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:snomed.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.coding:snomed.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.code.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.contained
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:drugCategory
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>Medication.extension:epaDispensationIdentifier
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/dispensation-identifier-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/dispensation-identifier-extension</a>)
                 </td>
                 
                 <td style="text-align: center;">
@@ -82,19 +1257,19 @@
             </tr>
             
             <tr class="row-use">
-                <td>Organization.address
+                <td>Medication.extension:isVaccine
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
+                        0..1
                     
                 </td>
                 
@@ -103,1773 +1278,17 @@
                 </td>
                 
                     <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.city
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.country
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.district
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.line
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.period
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.postalCode
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.state
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.text
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.address.use
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift.city
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift.country
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift.line
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..2
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift.line.extension:Adresszusatz
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator" target="_blank">http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift.line.extension:Hausnummer
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber" target="_blank">http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift.line.extension:Strasse
-                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName" target="_blank">http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift.line.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift.postalCode
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.address:Strassenanschrift.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.alias
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.contact
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.contact.address
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.contact.name
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.contact.purpose
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.contact.telecom
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.contained
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.endpoint
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.extension:organizationVisibility
-                    <br>(<a href="https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility" target="_blank">https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..2
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                    <ul>
-                        
-                        <li>The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
-                </td>
-                
-                    <td>Muss mindestens die TelematikID der Organisation enthalten, die auch im ACCESS_TOKEN der Anfrage angegeben ist.</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:BSNR
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped from 'Organization.identifier:Betriebsstaettennummer'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Betriebsstaettennummer
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:BSNR'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Betriebsstaettennummer.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:BSNR.system'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Betriebsstaettennummer.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:BSNR.type'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Betriebsstaettennummer.type.coding
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:BSNR.type.coding'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Betriebsstaettennummer.type.coding.code
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:BSNR.type.coding.code'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Betriebsstaettennummer.type.coding.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:BSNR.type.coding.system'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Betriebsstaettennummer.use
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:BSNR.use'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Betriebsstaettennummer.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:BSNR.value'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:IKNR
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped from 'Organization.identifier:Institutionskennzeichen'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Institutionskennzeichen
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:IKNR'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Institutionskennzeichen.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:IKNR.system'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Institutionskennzeichen.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:IKNR.type'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Institutionskennzeichen.type.coding
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:IKNR.type.coding'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Institutionskennzeichen.type.coding.code
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:IKNR.type.coding.code'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Institutionskennzeichen.type.coding.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:IKNR.type.coding.system'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Institutionskennzeichen.use
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:IKNR.use'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Institutionskennzeichen.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:IKNR.value'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:KZV-Abrechnungsnummer
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:KZVA'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:KZV-Abrechnungsnummer.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:KZVA.system'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:KZV-Abrechnungsnummer.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:KZVA.type'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:KZV-Abrechnungsnummer.type.coding
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:KZVA.type.coding'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:KZV-Abrechnungsnummer.type.coding.code
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:KZVA.type.coding.code'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:KZV-Abrechnungsnummer.type.coding.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:KZVA.type.coding.system'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:KZV-Abrechnungsnummer.use
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:KZVA.use'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:KZV-Abrechnungsnummer.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:KZVA.value'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:KZVA
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped from 'Organization.identifier:KZV-Abrechnungsnummer'</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.identifier:Standortnummer
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.identifier:Standortnummer.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.identifier:Standortnummer.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.identifier:Standortnummer.type.coding
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.identifier:Standortnummer.type.coding.code
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.identifier:Standortnummer.type.coding.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.identifier:Standortnummer.use
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.identifier:Standortnummer.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Telematik-ID
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:TelematikID'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Telematik-ID.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:TelematikID.system'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Telematik-ID.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:TelematikID.type'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Telematik-ID.type.coding
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:TelematikID.type.coding'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Telematik-ID.type.coding.code
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:TelematikID.type.coding.code'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Telematik-ID.type.coding.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:TelematikID.type.coding.system'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Telematik-ID.use
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:TelematikID.use'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:Telematik-ID.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped to 'Organization.identifier:TelematikID.value'</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.identifier:TelematikID
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Mapped from 'Organization.identifier:Telematik-ID'</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.implicitRules
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.language
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
                 
             </tr>
             
             <tr class="row-use">
-                <td>Organization.meta
-                    
+                <td>Medication.extension:manufacturingInstructions
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-manufacturing-instructions-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-manufacturing-instructions-extension</a>)
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        1..1
+                        0..1
                     
                 </td>
                 
@@ -1884,349 +1303,142 @@
                 </td>
                 
                     <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.meta.lastUpdated
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.meta.profile
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will NOT be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.meta.security
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.meta.source
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.meta.tag
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will be set by the mapping system</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.meta.tag:Origin
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will be set by the mapping system</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.meta.tag:Origin.code
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Set to 'ldap' fixed value</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.meta.tag:Origin.display
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.meta.tag:Origin.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Set to '<a href="https://gematik.de/fhir/directory/CodeSystem/Origin" target="_blank">https://gematik.de/fhir/directory/CodeSystem/Origin</a>' fixed value</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.meta.tag:Origin.userSelected
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.meta.tag:Origin.version
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.meta.versionId
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>Organization.name
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                    <ul>
-                        
-                        <li>The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile</li>
-                        
-                    </ul>
-                    
-                </td>
-                
-                    <td>Sollte den Namen der Organisation enthalten, wie er auch im ACCESS_TOKEN der Anfrage angegeben ist.</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.partOf
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
                 
             </tr>
             
             <tr class="row-use">
-                <td>Organization.telecom
+                <td>Medication.extension:normSizeCode
+                    <br>(<a href="http://fhir.de/StructureDefinition/normgroesse" target="_blank">http://fhir.de/StructureDefinition/normgroesse</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        1..3
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:packaging
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:rxPrescriptionProcessIdentifier
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.extension:type
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
                     
                 </td>
                 
@@ -2244,265 +1456,14 @@
                 
             </tr>
             
-            <tr class="row-extension">
-                <td>Organization.telecom:eMail
+            <tr class="row-use">
+                <td>Medication.form.coding:edqm
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.telecom:eMail.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.telecom:eMail.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.telecom:fax
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.telecom:fax.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.telecom:fax.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.telecom:telefon
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.telecom:telefon.system
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>Organization.telecom:telefon.value
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.text
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>Organization.type:profession
-                    
-                </td>
-                
-                <td style="text-align: center;">
+                        0..*
                     
                 </td>
                 
@@ -2516,16 +1477,143 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
-            <tr class="row-not-use">
-                <td>Organization.type:providerType
+            <tr class="row-use">
+                <td>Medication.form.coding:edqm.code
                     
                 </td>
                 
                 <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:edqm.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:edqm.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:edqm.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:edqm.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:kbvDarreichungsform
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
                     
                 </td>
                 
@@ -2539,7 +1627,1966 @@
                     
                 </td>
                 
-                    <td>Will remain empty for now, as no source information is available</td>
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:kbvDarreichungsform.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:kbvDarreichungsform.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:kbvDarreichungsform.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:kbvDarreichungsform.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:kbvDarreichungsform.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:snomed
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:snomed.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:snomed.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:snomed.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:snomed.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.coding:snomed.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.form.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.identifier:EPAMedicationUniqueIdentifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.identifier:RxOriginatorProcessIdentifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.implicitRules
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.extension:darreichungsform
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.isActive
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:ask
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:ask.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:ask.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:ask.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:ask.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:ask.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:atc-de
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:atc-de.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:atc-de.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:atc-de.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:atc-de.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:atc-de.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.coding:snomed.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemCodeableConcept.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.item[x]:itemReference
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Medication.ingredient.strength.denominator.code.extension:dataAbsentReason
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Medication.ingredient.strength.denominator.code.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.comparator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Medication.ingredient.strength.denominator.system.extension:dataAbsentReason
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Medication.ingredient.strength.denominator.system.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.unit
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.denominator.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.extension:amountText
+                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Medication.ingredient.strength.numerator.code.extension:dataAbsentReason
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Medication.ingredient.strength.numerator.code.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.comparator
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Medication.ingredient.strength.numerator.system.extension:dataAbsentReason
+                    <br>(<a href="http://hl7.org/fhir/StructureDefinition/data-absent-reason" target="_blank">http://hl7.org/fhir/StructureDefinition/data-absent-reason</a>)
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-extension">
+                <td>Medication.ingredient.strength.numerator.system.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Extension and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.unit
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.ingredient.strength.numerator.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.language
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.manufacturer
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.manufacturer.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.manufacturer.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Medication.manufacturer.reference
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td></td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.manufacturer.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.meta
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.meta.lastUpdated
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-manual">
+                <td>Medication.meta.profile
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td></td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.meta.security
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.meta.source
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.meta.tag
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.meta.versionId
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.status
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>Medication.text
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
                 
             </tr>
             
@@ -2548,7 +3595,7 @@
     <script>
         $(document).ready(function () {
             var warningsVisible = false;
-            var numberOfWarnings = 2;
+            var numberOfWarnings = 0;
             
             $('#resultsTable').DataTable({
                 'pageLength': -1,

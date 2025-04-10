@@ -151,12 +151,13 @@ def create_results_html(
 
         content = template.render(**data)
 
+        # HOTFIX: prevent filenames to contain '|' but use '#' instead
         source_profiles_flat = flatten_profiles(
-            [profile["key"] for profile in data["source_profiles"]]
+            [profile["key"].replace("|", "#") for profile in data["source_profiles"]]
         )
         html_file = (
             results_folder
-            / f"{source_profiles_flat}_to_{data['target_profile']['key']}.html"
+            / f"{source_profiles_flat}_to_{data['target_profile']['key'].replace("|", "#")}.html"
         )
         html_file.write_text(content)
 

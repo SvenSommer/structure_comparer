@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mapping: GEM_ERP_PR_MedicationDispense|1.3.1 in EPAMedicationDispense|1.1.0-rc1</title>
+    <title>Mapping: HealthcareServiceApoVzd|1.0 in HealthcareServiceDirectory|0.11.6</title>
     <link rel='stylesheet' type='text/css' href='./style.css'>
     <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
@@ -11,18 +11,18 @@
 </head>
 
 <body>
-    <h2>Mapping: GEM_ERP_PR_MedicationDispense|1.3.1 in EPAMedicationDispense|1.1.0-rc1</h2>
+    <h2>Mapping: HealthcareServiceApoVzd|1.0 in HealthcareServiceDirectory|0.11.6</h2>
     
     <div style="display: flex; justify-content: space-between;">
         <div style="flex: 1;">
             
             <p>Source Profile: 
-            <a href="https://simplifier.net/packages/de.gematik.erezept-workflow.r4/1.3.1/files/2437867" target="_blank">GEM_ERP_PR_MedicationDispense|1.3.1</a></p>
+            <a href="unknown" target="_blank">HealthcareServiceApoVzd|1.0</a></p>
             
             
-            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.epa.medication/1.1.0-rc1/files/2465056" target="_blank">EPAMedicationDispense|1.1.0-rc1</a></p>
-            <p>Version: 1.1, Status: active</p>
-            <p>Last updated on: 2024-07-30 21:27:43</p>
+            <p>Target Profile: <a href="https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6/files/2433299" target="_blank">HealthcareServiceDirectory|0.11.6</a></p>
+            <p>Version: 0.9, Status: draft</p>
+            <p>Last updated on: 2025-04-10 16:03:10</p>
         </div>
         <div style="flex: 1; display: flex; justify-content: flex-end;">
             <div>
@@ -51,132 +51,15 @@
             </tr>
             <tr>
                 
-                <th style="text-align: center;">GEM_ERP_PR_MedicationDispense|1.3.1</th>
+                <th style="text-align: center;">HealthcareServiceApoVzd|1.0</th>
                 
-                <th style="text-align: center;">EPAMedicationDispense|1.1.0-rc1</th>
+                <th style="text-align: center;">HealthcareServiceDirectory|0.11.6</th>
             </tr>
         </thead>
         <tbody>
             
             <tr class="row-use">
-                <td>MedicationDispense.authorizingPrescription
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationDispense.authorizingPrescription.display
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationDispense.authorizingPrescription.identifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>MedicationDispense.authorizingPrescription.reference
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td></td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationDispense.authorizingPrescription.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.category
+                <td>HealthcareService.active
                     
                 </td>
                 
@@ -201,7 +84,57 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.contained
+                <td>HealthcareService.appointmentRequired
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.availabilityExceptions
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.availableTime
                     
                 </td>
                 
@@ -226,7 +159,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.context
+                <td>HealthcareService.availableTime.allDay
                     
                 </td>
                 
@@ -251,7 +184,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.daysSupply
+                <td>HealthcareService.availableTime.availableEndTime
                     
                 </td>
                 
@@ -276,7 +209,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.destination
+                <td>HealthcareService.availableTime.availableStartTime
                     
                 </td>
                 
@@ -301,7 +234,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.detectedIssue
+                <td>HealthcareService.availableTime.daysOfWeek
                     
                 </td>
                 
@@ -326,7 +259,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.dosageInstruction
+                <td>HealthcareService.category
                     
                 </td>
                 
@@ -351,7 +284,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.eventHistory
+                <td>HealthcareService.characteristic
                     
                 </td>
                 
@@ -375,102 +308,8 @@
                 
             </tr>
             
-            <tr class="row-manual">
-                <td>MedicationDispense.extension:rxPrescriptionProcessIdentifier
-                    <br>(<a href="https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension" target="_blank">https://gematik.de/fhir/epa-medication/StructureDefinition/rx-prescription-process-identifier-extension</a>)
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Dieser Identifier setzt sich aus der Task-ID und dem MedicationRequest.authoredOn zusammen. Er wird durch den Medication Service vergeben.</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>MedicationDispense.identifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Der Identifier.value (TaskId) wird in MedicationDispense.identifier:prescriptionID übernommen</td>
-                
-            </tr>
-            
-            <tr class="row-not-use">
-                <td>MedicationDispense.identifier:EPADispensationIdentifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Will remain empty for now, as no source information is available</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>MedicationDispense.identifier:RxOriginatorProcessIdentifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Der Identifier wird vom Medication Service erstellt und verknüpft jede Prescription-ID mit der ursprünglichen Resource-ID zur genauen Nachverfolgung der Medikationsdaten im Format resourceID + ‘_’ + prescriptionID.</td>
-                
-            </tr>
-            
             <tr class="row-use">
-                <td>MedicationDispense.implicitRules
+                <td>HealthcareService.comment
                     
                 </td>
                 
@@ -495,157 +334,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.language
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.location
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.medication[x]
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.meta
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.meta.lastUpdated
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>MedicationDispense.meta.profile
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Wird auf die meta.profile Angabe des Zielprofils umgeschrieben</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.meta.security
+                <td>HealthcareService.communication
                     
                 </td>
                 
@@ -670,7 +359,82 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.meta.source
+                <td>HealthcareService.contained
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.coverageArea
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.eligibility
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.eligibility.code
                     
                 </td>
                 
@@ -695,32 +459,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.meta.tag
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.meta.versionId
+                <td>HealthcareService.eligibility.comment
                     
                 </td>
                 
@@ -745,7 +484,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.note
+                <td>HealthcareService.endpoint
                     
                 </td>
                 
@@ -758,81 +497,6 @@
                 <td style="text-align: center;">
                     
                         0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.partOf
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.performer
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.performer.actor
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
                     
                 </td>
                 
@@ -845,82 +509,13 @@
             </tr>
             
             <tr class="row-extension">
-                <td>MedicationDispense.performer.actor.display
-                    
+                <td>HealthcareService.extension:PaymentOptions
+                    <br>(<a href="https://gematik.de/fhir/apovzd/StructureDefinition/PaymentOptionEX" target="_blank">https://gematik.de/fhir/apovzd/StructureDefinition/PaymentOptionEX</a>)
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>MedicationDispense.performer.actor.identifier
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Extension and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>MedicationDispense.performer.actor.reference
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td></td>
-                
-            </tr>
-            
-            <tr class="row-extension">
-                <td>MedicationDispense.performer.actor.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
+                        0..*
                     
                 </td>
                 
@@ -937,7 +532,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.performer.function
+                <td>HealthcareService.extraDetails
                     
                 </td>
                 
@@ -962,7 +557,55 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.quantity
+                <td>HealthcareService.identifier
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.identifier:TelematikID
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.implicitRules
                     
                 </td>
                 
@@ -987,7 +630,32 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.receiver
+                <td>HealthcareService.language
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.location
                     
                 </td>
                 
@@ -1012,32 +680,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.status
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.statusReason[x]
+                <td>HealthcareService.meta
                     
                 </td>
                 
@@ -1061,39 +704,12 @@
                 
             </tr>
             
-            <tr class="row-use">
-                <td>MedicationDispense.subject
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.lastUpdated
                     
                 </td>
                 
                 <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.subject.display
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
                     
                 </td>
                 
@@ -1107,49 +723,22 @@
                     
                 </td>
                 
-                    <td>Property and value(s) will be retained</td>
+                    <td>Will remain empty for now, as no source information is available</td>
                 
             </tr>
             
             <tr class="row-manual">
-                <td>MedicationDispense.subject.identifier
+                <td>HealthcareService.meta.profile
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        1..1
-                    
                 </td>
                 
                 <td style="text-align: center;">
                     
-                        1..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Ist mit der Krankenversichertennummer des Versicherten im System "<a href="http://fhir.de/sid/gkv/kvid-10" target="_blank">http://fhir.de/sid/gkv/kvid-10</a>" zu befüllen.</td>
-                
-            </tr>
-            
-            <tr class="row-manual">
-                <td>MedicationDispense.subject.reference
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
+                        0..*
                     
                 </td>
                 
@@ -1161,8 +750,238 @@
                 
             </tr>
             
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.security
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.source
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.tag
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.tag:Origin
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.tag:Origin.code
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.tag:Origin.display
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.tag:Origin.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        1..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.tag:Origin.userSelected
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.tag:Origin.version
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.meta.versionId
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
             <tr class="row-use">
-                <td>MedicationDispense.subject.type
+                <td>HealthcareService.name
                     
                 </td>
                 
@@ -1187,32 +1006,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.substitution
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.substitution.reason
+                <td>HealthcareService.notAvailable
                     
                 </td>
                 
@@ -1237,57 +1031,7 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.substitution.responsibleParty
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..*
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.substitution.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.substitution.wasSubstituted
+                <td>HealthcareService.notAvailable.description
                     
                 </td>
                 
@@ -1312,7 +1056,57 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.supportingInformation
+                <td>HealthcareService.notAvailable.during
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.photo
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.program
                     
                 </td>
                 
@@ -1337,63 +1131,13 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.text
+                <td>HealthcareService.providedBy
                     
                 </td>
                 
                 <td style="text-align: center;">
                     
                         0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.type
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        0..1
-                    
-                </td>
-                
-                <td class="warning-column">
-                    
-                </td>
-                
-                    <td>Property and value(s) will be retained</td>
-                
-            </tr>
-            
-            <tr class="row-use">
-                <td>MedicationDispense.whenHandedOver
-                    
-                </td>
-                
-                <td style="text-align: center;">
-                    
-                        1..1
                     
                 </td>
                 
@@ -1405,6 +1149,12 @@
                 
                 <td class="warning-column">
                     
+                    <ul>
+                        
+                        <li>The minimum cardinality of one of the source profiles is less than the minimum cardinality of the target profile</li>
+                        
+                    </ul>
+                    
                 </td>
                 
                     <td>Property and value(s) will be retained</td>
@@ -1412,7 +1162,222 @@
             </tr>
             
             <tr class="row-use">
-                <td>MedicationDispense.whenPrepared
+                <td>HealthcareService.referralMethod
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.serviceProvisionCode
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.specialty
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.telecom
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.telecom.period
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.telecom.rank
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.telecom.system
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.telecom.use
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-not-use">
+                <td>HealthcareService.telecom.value
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Will remain empty for now, as no source information is available</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.text
                     
                 </td>
                 
@@ -1425,6 +1390,31 @@
                 <td style="text-align: center;">
                     
                         0..1
+                    
+                </td>
+                
+                <td class="warning-column">
+                    
+                </td>
+                
+                    <td>Property and value(s) will be retained</td>
+                
+            </tr>
+            
+            <tr class="row-use">
+                <td>HealthcareService.type
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
+                    
+                </td>
+                
+                <td style="text-align: center;">
+                    
+                        0..*
                     
                 </td>
                 
@@ -1441,7 +1431,7 @@
     <script>
         $(document).ready(function () {
             var warningsVisible = false;
-            var numberOfWarnings = 0;
+            var numberOfWarnings = 1;
             
             $('#resultsTable').DataTable({
                 'pageLength': -1,

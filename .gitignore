@@ -1,3 +1,5 @@
+.DS_Store
+
 # Python specific
 .venv
 __pycache__
