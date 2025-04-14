@@ -3,13 +3,14 @@ import argparse
 import json
 from pathlib import Path
 
+from structure_comparer.config import Config
+
 from structure_comparer import (
     MANUAL_ENTRIES,
     compare_profiles,
     create_results_html,
     gen_mapping_dict,
 )
-from structure_comparer.config import Config
 
 
 def write_mapping_json(structured_mapping: dict, output_file: Path):

@@ -1,15 +1,16 @@
 from pathlib import Path
 
-from structure_comparer import serve
-from structure_comparer.manual_entries import MANUAL_ENTRIES
 from structure_comparer.config import Config
+from structure_comparer.manual_entries import MANUAL_ENTRIES
+
+from structure_comparer import handler
 
 
 def test_init_project():
     project_dir = Path("service/tests/files/project")
     assert project_dir.exists()
 
-    project = serve.init_project(project_dir)
+    project = handler.init_project(project_dir)
     assert project is not None
     assert project.dir == project_dir
 
