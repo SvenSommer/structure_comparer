@@ -430,9 +430,4 @@ def get_args():
 
 
 if __name__ == "__main__":
-    #     args = get_args()
-
-    #     app = create_app(projects_root_dir=args.projects_root_dir)
-    #     app.run()
-
     uvicorn.run(app, host="0.0.0.0", port=8000)
