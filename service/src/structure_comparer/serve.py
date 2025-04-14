@@ -1,4 +1,3 @@
-import json
 import os
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -7,31 +6,31 @@ import uvicorn
 from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 
-from .handler import (
-    get_classifications_int,
-    get_mapping_fields_int,
-    get_mapping_int,
-    get_mappings_int,
-    init_project,
-    post_mapping_classification_int,
+from .errors import (
+    FieldNotFound,
+    MappingActionNotAllowed,
+    MappingNotFound,
+    MappingTargetMissing,
+    MappingTargetNotFound,
+    MappingValueMissing,
+    ProjectAlreadyExists,
+    ProjectNotFound,
 )
+from .handler import ProjectHandler
 from .model.mapping_input import MappingInput
 
 origins = ["http://localhost:4200"]
-projects_dir = Path(os.environ["PROJECTS_DIR"])
-projects = {}
-cur_project: str = None
+handler: ProjectHandler = None
+cur_proj: str = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global projects
+    global handler
 
     # Set up
-    if not projects_dir.exists():
-        raise Exception("PROJECT_DIR does not point to a valid directory")
-
-    projects = {p.name: init_project(p) for p in projects_dir.iterdir() if p.is_dir()}
+    handler = ProjectHandler(Path(os.environ["PROJECTS_DIR"]))
+    handler.load_projects()
 
     # Let the app do its job
     yield
@@ -56,8 +55,8 @@ def hello_world():
 
 
 @app.get("/projects")
-def list_projects():
-    return list(projects.keys())
+def get_projects():
+    return handler.project_names
 
 
 @app.post(
@@ -65,55 +64,36 @@ def list_projects():
     status_code=200,
     responses={400: {"error": {}}, 404: {"error": {}}},
 )
-def init_project_endpoint(project_name: str, response: Response):
-    global cur_project
+def post_init_project(project_name: str, response: Response):
+    global cur_proj
+
     if not project_name:
         response.status_code = 400
         return {"error": "Project name is required"}
 
-    if project_name not in projects:
+    if project_name not in handler.project_names:
         response.status_code = 404
         return {"error": "Project does not exist"}
 
     # Set current project name
-    cur_project = project_name
+    cur_proj = project_name
 
     return {"message": "Project initialized successfully"}
 
 
 @app.post("/create_project", status_code=201, responses={400: {}, 409: {}})
 def create_project(project_name: str, response: Response):
-    global projects
 
     if not project_name:
         response.status_code = 400
         return {"error": "Project name is required"}
 
-    project_path = projects_dir / project_name
+    try:
+        handler.new_project(project_name)
 
-    if project_path.exists():
+    except ProjectAlreadyExists as e:
         response.status_code = 409
-        return {"error": "Project with same name already exists"}
-
-    project_path.mkdir(parents=True, exist_ok=True)
-
-    # Create empty manual_entries.yaml file
-    manual_entries_file = project_path / "manual_entries.yaml"
-    manual_entries_file.touch()
-
-    # Create default config.json file
-    config_file = project_path / "config.json"
-    config_data = {
-        "manual_entries_file": "manual_entries.yaml",
-        "data_dir": "data",
-        "html_output_dir": "docs",
-        "mapping_output_file": "mapping.json",
-        "profiles_to_compare": [],
-    }
-    config_file.write_text(json.dumps(config_data, indent=4))
-
-    # Load the newly created project
-    projects[project_name] = init_project(project_path)
+        return {"error": str(e)}
 
     return {"message": "Project created successfully"}
 
@@ -144,7 +124,7 @@ def get_classifications():
                   instruction:
                     type: string
     """
-    return get_classifications_int()
+    return handler.get_classifications()
 
 
 @app.get("/mappings", responses={412: {}})
@@ -217,11 +197,16 @@ def get_mappings(response: Response):
               items:
                 $ref: "#/definitions/OverviewMapping"
     """
-    if cur_project is None:
+    if cur_proj is None:
         response.status_code = 412
-        return {"error": "project needs to be initialized before accessing"}
+        return {"error": "Project needs to be initialized before accessing"}
 
-    return get_mappings_int(projects[cur_project])
+    try:
+        return handler.get_mappings(cur_proj)
+
+    except ProjectNotFound:
+        response.status_code = 404
+        return {"error": "Project not found"}
 
 
 @app.get("/mapping/{id}", responses={404: {}, 412: {}})
@@ -312,15 +297,16 @@ def get_mapping(id: str, response: Response):
       404:
         description: Mapping not found
     """
-    if cur_project is None:
+    if cur_proj is None:
         response.status_code = 412
-        return {"error": "project needs to be initialized before accessing"}
+        return {"error": "Project needs to be initialized before accessing"}
 
-    if mapping := get_mapping_int(projects[cur_project], id):
-        return mapping
-    else:
+    try:
+        return handler.get_mapping(cur_proj, id)
+
+    except (ProjectNotFound, MappingNotFound) as e:
         response.status_code = 404
-        return ""
+        return {"error": str(e)}
 
 
 @app.get("/mapping/{id}/fields", responses={404: {}, 412: {}})
@@ -370,15 +356,16 @@ def get_mapping_fields(id: str, response: Response):
       404:
         description: Mapping not found
     """
-    if cur_project is None:
+    if cur_proj is None:
         response.status_code = 412
-        return {"error": "project needs to be initialized before accessing"}
+        return {"error": "Project needs to be initialized before accessing"}
 
-    if fields := get_mapping_fields_int(projects[cur_project], id):
-        return fields
-    else:
+    try:
+        return handler.get_mapping_fields(cur_proj, id)
+
+    except (ProjectNotFound, MappingNotFound) as e:
         response.status_code = 404
-        return ""
+        return {"error": str(e)}
 
 
 @app.post(
@@ -440,24 +427,27 @@ def post_mapping_classification(
       404:
         description: Mapping or field not found
     """
-    if cur_project is None:
+    if cur_proj is None:
         response.status_code = 412
-        return {"error": "project needs to be initialized before accessing"}
+        return {"error": "Project needs to be initialized before accessing"}
 
     try:
-        result = post_mapping_classification_int(
-            projects[cur_project], mapping_id, field_id, mapping
+        return handler.set_mapping_classification(
+            cur_proj, mapping_id, field_id, mapping
         )
-    except ValueError as e:
-        error = {"error": str(e)}
-        response.status_code = 400
-        return error
-    else:
-        if result is None:
-            response.status_code = 404
-            return
 
-        return
+    except (ProjectNotFound, MappingNotFound, FieldNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
+
+    except (
+        MappingActionNotAllowed,
+        MappingTargetMissing,
+        MappingTargetNotFound,
+        MappingValueMissing,
+    ) as e:
+        response.status_code = 400
+        return {"error": str(e)}
 
 
 def serve():
