@@ -5,6 +5,7 @@ from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI, Response
+from fastapi.middleware.cors import CORSMiddleware
 from structure_comparer.model.mapping_input import MappingInput
 from structure_comparer.serve import (
     get_classifications_int,
@@ -16,7 +17,16 @@ from structure_comparer.serve import (
 )
 
 app = FastAPI()
-#     # CORS(app, origins="http://localhost:4200")
+
+origins = ["http://localhost:4200"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 setattr(app, "projects_root", Path(os.environ["PROJECTS_DIR"]))
