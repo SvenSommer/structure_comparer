@@ -1,18 +1,17 @@
 from pathlib import Path
 
-from flask import jsonify
-from structure_comparer.consts import INSTRUCTIONS, REMARKS
-
 from .classification import Classification
 from .compare import fill_classification_remark, generate_comparison
 from .compare import load_profiles as _load_profiles
+from .config import Config
+from .consts import INSTRUCTIONS, REMARKS
 from .data.comparison import Comparison, get_field_by_id
 from .manual_entries import (
     MANUAL_ENTRIES,
     MANUAL_ENTRIES_CLASSIFICATION,
     MANUAL_ENTRIES_EXTRA,
 )
-from .config import Config
+from .model.mapping_input import MappingInput
 
 
 def init_project(project_dir: Path):
@@ -45,8 +44,7 @@ def read_manual_entries(project):
 
 
 def load_profiles(project):
-    profile_maps = _load_profiles(
-        project.profiles_to_compare_list, project.data_dir)
+    profile_maps = _load_profiles(project.profiles_to_compare_list, project.data_dir)
     project.comparisons = {
         entry.id: generate_comparison(entry) for entry in profile_maps.values()
     }
@@ -54,11 +52,10 @@ def load_profiles(project):
 
 def get_classifications_int():
     classifications = [
-        {"value": c.value, "remark": REMARKS[c],
-            "instruction": INSTRUCTIONS[c]}
+        {"value": c.value, "remark": REMARKS[c], "instruction": INSTRUCTIONS[c]}
         for c in Classification
     ]
-    return jsonify({"classifications": classifications})
+    return {"classifications": classifications}
 
 
 def get_mappings_int(project):
@@ -123,7 +120,7 @@ def get_mapping_fields_int(project, id: str):
 
 
 def post_mapping_classification_int(
-    project, mapping_id: str, field_id: str, content: dict
+    project, mapping_id: str, field_id: str, mapping: MappingInput
 ):
     comparison = project.comparisons.get(mapping_id)
 
@@ -138,7 +135,7 @@ def post_mapping_classification_int(
     if field is None:
         return None
 
-    action = Classification(content.get("action"))
+    action = Classification(mapping.action)
 
     # Check if action is allowed for this field
     if action not in field.classifications_allowed:
@@ -150,7 +147,7 @@ def post_mapping_classification_int(
     # Build the entry that should be created/updated
     new_entry = {MANUAL_ENTRIES_CLASSIFICATION: action}
     if action == Classification.COPY_FROM or action == Classification.COPY_TO:
-        if target_id := content.get("target"):
+        if target_id := mapping.target:
             target = get_field_by_id(comparison, target_id)
 
             if target is None:
@@ -160,7 +157,7 @@ def post_mapping_classification_int(
         else:
             raise ValueError("field 'target' missing")
     elif action == Classification.FIXED:
-        if fixed := content.get("fixed"):
+        if fixed := mapping.value:
             new_entry[MANUAL_ENTRIES_EXTRA] = fixed
         else:
             raise ValueError("field 'fixed' missing")

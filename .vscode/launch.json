@@ -50,15 +50,14 @@
             "cwd": "${workspaceFolder}/service/src",
         },
         {
-            "name": "Flask App",
+            "name": "Start Server",
             "type": "debugpy",
             "request": "launch",
             "program": "server.py",
-            "args": [
-                "--projects-root-dir",
-                "../../projects"
-            ],
             "cwd": "${workspaceFolder}/service/src",
+            "env": {
+                "PROJECTS_DIR": "../../projects"
+            },
             "jinja": true,
             "justMyCode": true
         },
