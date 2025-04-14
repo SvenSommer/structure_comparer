@@ -6,8 +6,7 @@ from pathlib import Path
 import uvicorn
 from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
-from structure_comparer.model.mapping_input import MappingInput
-from structure_comparer.serve import (
+from structure_comparer.handler import (
     get_classifications_int,
     get_mapping_fields_int,
     get_mapping_int,
@@ -15,6 +14,7 @@ from structure_comparer.serve import (
     init_project,
     post_mapping_classification_int,
 )
+from structure_comparer.model.mapping_input import MappingInput
 
 app = FastAPI()
 
