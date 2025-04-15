@@ -15,7 +15,7 @@ from structure_comparer import (
 
 def write_mapping_json(structured_mapping: dict, output_file: Path):
     mapping_dict = gen_mapping_dict(structured_mapping)
-    output_file.write_text(json.dumps(mapping_dict, indent=4))
+    output_file.write_text(json.dumps(mapping_dict, indent=4), encoding="utf-8")
 
 
 def get_args():
@@ -28,8 +28,7 @@ def get_args():
         type=Path,
         help="The project directory containing the profiles and config",
     )
-    parser.add_argument("--html", action="store_true",
-                        help="Generate html files")
+    parser.add_argument("--html", action="store_true", help="Generate html files")
     parser.add_argument(
         "--json",
         action="store_true",
@@ -55,9 +54,10 @@ if __name__ == "__main__":
         # Create the result html files
         show_remarks = config.show_remarks
         show_warnings = config.show_warnings
-        html_output_dir = args.project_dir / \
-            config.html_output_dir
-        create_results_html(structured_mapping, html_output_dir, show_remarks, show_warnings)
+        html_output_dir = args.project_dir / config.html_output_dir
+        create_results_html(
+            structured_mapping, html_output_dir, show_remarks, show_warnings
+        )
 
     if args.json:
         # Generate the mapping dict and write to file

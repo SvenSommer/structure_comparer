@@ -58,6 +58,6 @@ class Project:
             "mapping_output_file": "mapping.json",
             "profiles_to_compare": [],
         }
-        config_file.write_text(json.dumps(config_data, indent=4))
+        config_file.write_text(json.dumps(config_data, indent=4), encoding="utf-8")
 
         return Project(path)

@@ -1,5 +1,5 @@
-from datetime import datetime, timedelta, timezone
 import json
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Dict, List
 
@@ -17,7 +17,7 @@ class Config:
     @staticmethod
     def from_json(file: str | Path) -> "Config":
         file = Path(file)
-        dict_ = json.loads(file.read_text())
+        dict_ = json.loads(file.read_text(encoding="utf-8"))
         return Config.from_dict(dict_)
 
     @staticmethod
@@ -28,8 +28,7 @@ class Config:
         )
         config.data_dir = dict_.get("data_dir", "data")
         config.html_output_dir = dict_.get("html_output_dir", "docs")
-        config.mapping_output_file = dict_.get(
-            "mapping_output_file", "mapping.json")
+        config.mapping_output_file = dict_.get("mapping_output_file", "mapping.json")
         config.profiles_to_compare = [
             CompareConfig.from_dict(compare)
             for compare in dict_.get("profiles_to_compare")
@@ -78,8 +77,7 @@ class MappingConfig:
         config.source_profiles = [
             ProfileConfig.from_dict(profile) for profile in dict_.get("sourceprofiles")
         ]
-        config.target_profile = ProfileConfig.from_dict(
-            dict_.get("targetprofile"))
+        config.target_profile = ProfileConfig.from_dict(dict_.get("targetprofile"))
         return config
 
 

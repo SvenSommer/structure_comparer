@@ -82,7 +82,7 @@ class Profile:
                     file_path} does not exist. Please check the file path and try again."
             )
 
-        content = json.loads(file_path.read_text())
+        content = json.loads(file_path.read_text(encoding="utf-8"))
 
         profile = Profile(
             name=content["name"],

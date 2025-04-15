@@ -159,7 +159,7 @@ def create_results_html(
             results_folder
             / f"{source_profiles_flat}_to_{data['target_profile']['key'].replace("|", "#")}.html"
         )
-        html_file.write_text(content)
+        html_file.write_text(content, encoding="utf-8")
 
 
 def format_links(text: str) -> str:
