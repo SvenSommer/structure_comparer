@@ -1,5 +1,5 @@
-from structure_comparer.compare import _fill_allowed_classifications
 from structure_comparer.classification import Classification
+from structure_comparer.compare import __fill_allowed_classifications
 from structure_comparer.data.comparison import ComparisonField, ProfileField
 
 PROFILE_SOURCE1 = "source1"
@@ -18,7 +18,7 @@ def test_fill_allowed_classifications_all_present():
         PROFILE_TARGET: ProfileField(PROFILE_TARGET, True),
     }
 
-    _fill_allowed_classifications(field, sources, target)
+    __fill_allowed_classifications(field, sources, target)
 
     assert Classification.USE in field.classifications_allowed
     assert Classification.NOT_USE in field.classifications_allowed
@@ -39,7 +39,7 @@ def test_fill_allowed_classifications_target_present():
         PROFILE_TARGET: ProfileField(PROFILE_TARGET, True),
     }
 
-    _fill_allowed_classifications(field, sources, target)
+    __fill_allowed_classifications(field, sources, target)
 
     assert Classification.COPY_FROM in field.classifications_allowed
     assert Classification.EMPTY in field.classifications_allowed
@@ -60,7 +60,7 @@ def test_fill_allowed_classifications_source_present():
         PROFILE_TARGET: ProfileField(PROFILE_TARGET, False),
     }
 
-    _fill_allowed_classifications(field, sources, target)
+    __fill_allowed_classifications(field, sources, target)
 
     assert Classification.NOT_USE in field.classifications_allowed
     assert Classification.COPY_TO in field.classifications_allowed

@@ -92,6 +92,3 @@ class ManualEntries:
 
     def __setitem__(self, key, value):
         self._data["entries"][key] = value
-
-
-MANUAL_ENTRIES = ManualEntries()

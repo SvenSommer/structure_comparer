@@ -2,10 +2,9 @@ import logging
 from typing import Dict
 
 from .classification import Classification
-from .data.comparison import Comparison
 from .consts import REMARKS
+from .data.comparison import Comparison
 from .helpers import split_parent_child
-
 
 DICT_MAPPINGS = "mappings"
 DICT_FIXED = "fixed"
@@ -47,7 +46,7 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
                     profile_handling[DICT_FIXED][field] = presences.extra
 
                 # Otherwise only if value is present
-                elif presences.profiles[source_profile.profile_key].present:
+                elif presences.profiles[source_profile.key].present:
                     # If field should be used and remark was not changed
                     if (
                         presences.classification
@@ -76,12 +75,12 @@ def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
                     else:
                         # Log fall-through
                         logger.warning(
-                            f"gen_mapping_dict: did not handle {source_profile.profile_key}:{mappings.target.profile_key}:{field}:{presences.classification} {presences.remark}"
+                            f"gen_mapping_dict: did not handle {source_profile.key}:{mappings.target.key}:{field}:{presences.classification} {presences.remark}"
                         )
 
-            if source_profile.profile_key not in result:
-                result[source_profile.profile_key] = {}
-            result[source_profile.profile_key][mappings.target.profile_key] = {
+            if source_profile.key not in result:
+                result[source_profile.key] = {}
+            result[source_profile.key][mappings.target.key] = {
                 "id": mappings.id,
                 "version": mappings.version,
                 "status": mappings.status,

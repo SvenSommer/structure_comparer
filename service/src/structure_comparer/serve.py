@@ -1,198 +1,828 @@
+import os
+from contextlib import asynccontextmanager
 from pathlib import Path
 
-from .classification import Classification
-from .compare import fill_classification_remark, generate_comparison
-from .compare import load_profiles as _load_profiles
-from .config import Config
-from .consts import INSTRUCTIONS, REMARKS
-from .data.comparison import Comparison, get_field_by_id
-from .manual_entries import (
-    MANUAL_ENTRIES,
-    MANUAL_ENTRIES_CLASSIFICATION,
-    MANUAL_ENTRIES_EXTRA,
+import uvicorn
+from fastapi import FastAPI, Response
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+from .errors import (
+    FieldNotFound,
+    MappingActionNotAllowed,
+    MappingNotFound,
+    MappingTargetMissing,
+    MappingTargetNotFound,
+    MappingValueMissing,
+    ProjectAlreadyExists,
+    ProjectNotFound,
 )
+from .handler import ProjectsHandler
+from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
+from .model.project import Project as ProjectModel
+
+origins = ["http://localhost:4200"]
+handler: ProjectsHandler = None
+cur_proj: str = None
 
 
-def init_project(project_dir: Path):
-    def project_obj():
-        return None
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global handler
 
-    project_obj.dir = project_dir
-    project_obj.config = Config.from_json(project_dir / "config.json")
-    project_obj.data_dir = project_dir / project_obj.config.data_dir
+    # Set up
+    handler = ProjectsHandler(Path(os.environ["PROJECTS_DIR"]))
+    handler.load_projects()
 
-    # Get profiles to compare
-    project_obj.profiles_to_compare_list = project_obj.config.profiles_to_compare
+    # Let the app do its job
+    yield
 
-    # Load profiles
-    load_profiles(project_obj)
-
-    # Read the manual entries
-    read_manual_entries(project_obj)
-
-    return project_obj
+    # Tear down
+    pass
 
 
-def read_manual_entries(project):
-    manual_entries_file = project.dir / project.config.manual_entries_file
-
-    if not manual_entries_file.exists():
-        manual_entries_file.touch()
-
-    MANUAL_ENTRIES.read(manual_entries_file)
+class InitProject(BaseModel):
+    project_name: str
 
 
-def load_profiles(project):
-    profile_maps = _load_profiles(project.profiles_to_compare_list, project.data_dir)
-    project.comparisons = {
-        entry.id: generate_comparison(entry) for entry in profile_maps.values()
-    }
+class GetMappingsOutput(BaseModel):
+    mappings: list[MappingModel]
 
 
-def get_classifications_int():
-    classifications = [
-        {"value": c.value, "remark": REMARKS[c], "instruction": INSTRUCTIONS[c]}
-        for c in Classification
-    ]
-    return {"classifications": classifications}
+app = FastAPI(lifespan=lifespan)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
-def get_mappings_int(project):
-    return {
-        "mappings": [
-            {
-                "id": id,
-                "name": profile_map.name,
-                "url": f"/mapping/{id}",
-                "version": profile_map.version,
-                "last_updated": profile_map.last_updated,
-                "status": profile_map.status,
-                "sources": [
-                    {
-                        "profile_key": profile.profile_key,
-                        "name": profile.name,
-                        "version": profile.version,
-                        "simplifier_url": profile.simplifier_url,
-                    }
-                    for profile in profile_map.sources
-                ],
-                "target": {
-                    "profile_key": profile_map.target.profile_key,
-                    "name": profile_map.target.name,
-                    "version": profile_map.target.version,
-                    "simplifier_url": profile_map.target.simplifier_url,
-                },
-            }
-            for id, profile_map in project.comparisons.items()
-        ]
-    }
+@app.get("/")
+async def ping():
+    return "pong"
 
 
-def get_mapping_int(project, id: str):
-    comparison = project.comparisons.get(id)
-
-    if not comparison:
-        return None
-
-    fill_classification_remark(comparison)
-    result = comparison.dict()
-
-    result["id"] = id
-
-    return result
+@app.get("/projects", tags=["Projects"], deprecated=True)
+async def get_projects_old():
+    return handler.project_names
 
 
-def get_mapping_fields_int(project, id: str):
-    comparison = project.comparisons.get(id)
-
-    if not comparison:
-        return None
-
-    fill_classification_remark(comparison)
-
-    result = {"id": id}
-    result["fields"] = [
-        {"name": field.name, "id": field.id} for field in comparison.fields.values()
-    ]
-
-    return result
+@app.get("/project", tags=["Projects"])
+async def get_projects() -> list[str]:
+    return handler.project_names
 
 
-def post_mapping_classification_int(
-    project, mapping_id: str, field_id: str, mapping: MappingInput
+@app.get("/project/{project_name}", tags=["Projects"])
+async def get_project(project_name: str, response: Response) -> ProjectModel:
+    try:
+        proj = handler.get_project(project_name)
+        return proj
+
+    except ProjectNotFound:
+        response.status_code = 404
+        return {"error": "Project not found"}
+
+
+@app.post(
+    "/init_project",
+    tags=["Projects"],
+    status_code=200,
+    responses={400: {"error": {}}, 404: {"error": {}}},
+    deprecated=True,
+)
+async def post_init_project(data: InitProject, response: Response):
+    global cur_proj
+
+    if not data.project_name:
+        response.status_code = 400
+        return {"error": "Project name is required"}
+
+    if data.project_name not in handler.project_names:
+        response.status_code = 404
+        return {"error": "Project does not exist"}
+
+    # Set current project name
+    cur_proj = data.project_name
+
+    return {"message": "Project initialized successfully"}
+
+
+@app.post(
+    "/create_project",
+    tags=["Projects"],
+    status_code=201,
+    responses={400: {}, 409: {}},
+    deprecated=True,
+)
+async def create_project_old(project_name: str, response: Response):
+
+    if not project_name:
+        response.status_code = 400
+        return {"error": "Project name is required"}
+
+    try:
+        handler.new_project(project_name)
+
+    except ProjectAlreadyExists as e:
+        response.status_code = 409
+        return {"error": str(e)}
+
+    return {"message": "Project created successfully"}
+
+
+@app.post(
+    "/project/{project_name}",
+    tags=["Projects"],
+    status_code=201,
+    responses={400: {}, 409: {}},
+)
+async def create_project(project_name: str, response: Response):
+
+    if not project_name:
+        response.status_code = 400
+        return {"error": "Project name is required"}
+
+    try:
+        handler.new_project(project_name)
+
+    except ProjectAlreadyExists as e:
+        response.status_code = 409
+        return {"error": str(e)}
+
+    return {"message": "Project created successfully"}
+
+
+@app.get("/classification", tags=["Classification"])
+async def get_classifications():
+    """
+    Get all classifications
+    ---
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Classifications
+        schema:
+          required:
+            - classifications
+          properties:
+            classifications:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                  remark:
+                    type: string
+                  instruction:
+                    type: string
+    """
+    return handler.get_classifications()
+
+
+@app.get("/mappings", tags=["Mappings"], responses={412: {}}, deprecated=True)
+async def get_mappings_old(response: Response) -> GetMappingsOutput:
+    """
+    Get the available mappings
+    Returns a list with all mappings, including the name and the url to access it.
+    ---
+    produces:
+      - application/json
+    async definitions:
+      - schema:
+          id: OverviewMapping
+          type: object
+          required:
+            - id
+            - name
+            - url
+            - version
+            - last_updated
+            - status
+            - sources
+            - target
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            url:
+              type: string
+            version:
+              type: string
+            last_updated:
+              type: string
+            status:
+              type: string
+            sources:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  profile_key:
+                    type: string
+                  simplifier_url:
+                    type: string
+                  version:
+                    type: string
+            target:
+              type: object
+              properties:
+                name:
+                  type: string
+                profile_key:
+                  type: string
+                simplifier_url:
+                  type: string
+                version:
+                  type: string
+    responses:
+      200:
+        description: Available mappings
+        schema:
+          required:
+            - mappings
+          properties:
+            mappings:
+              type: array
+              items:
+                $ref: "#/async definitions/OverviewMapping"
+    """
+    if cur_proj is None:
+        response.status_code = 412
+        return {"error": "Project needs to be initialized before accessing"}
+
+    try:
+        mappings = handler.get_mappings(cur_proj)
+        return GetMappingsOutput(mappings=mappings)
+
+    except ProjectNotFound:
+        response.status_code = 404
+        return {"error": "Project not found"}
+
+
+@app.get("/project/{project_name}/mapping", tags=["Mappings"], responses={404: {}})
+async def get_mappings(project_name: str, response: Response) -> GetMappingsOutput:
+    """
+    Get the available mappings
+    Returns a list with all mappings, including the name and the url to access it.
+    ---
+    produces:
+      - application/json
+    async definitions:
+      - schema:
+          id: OverviewMapping
+          type: object
+          required:
+            - id
+            - name
+            - url
+            - version
+            - last_updated
+            - status
+            - sources
+            - target
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            url:
+              type: string
+            version:
+              type: string
+            last_updated:
+              type: string
+            status:
+              type: string
+            sources:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  profile_key:
+                    type: string
+                  simplifier_url:
+                    type: string
+                  version:
+                    type: string
+            target:
+              type: object
+              properties:
+                name:
+                  type: string
+                profile_key:
+                  type: string
+                simplifier_url:
+                  type: string
+                version:
+                  type: string
+    responses:
+      200:
+        description: Available mappings
+        schema:
+          required:
+            - mappings
+          properties:
+            mappings:
+              type: array
+              items:
+                $ref: "#/async definitions/OverviewMapping"
+    """
+    try:
+        mappings = handler.get_mappings(project_name)
+        return GetMappingsOutput(mappings=mappings)
+
+    except ProjectNotFound:
+        response.status_code = 404
+        return {"error": "Project not found"}
+
+
+@app.get(
+    "/mapping/{id}", tags=["Mappings"], responses={404: {}, 412: {}}, deprecated=True
+)
+async def get_mapping_old(id: str, response: Response):
+    """
+    Get a specific mapping
+    Returns the mapping with the given id. This includes all details like classifications, presences in profiles, etc.
+    ---
+    produces:
+      - application/json
+    async definitions:
+      - schema:
+          id: MappingFieldProfile
+          type: object
+          required:
+            - name
+            - present
+          properties:
+            name:
+              type: string
+            present:
+                type: boolean
+      - schema:
+          id: MappingField
+          required:
+            - id
+            - name
+            - classification
+            - profiles
+            - remark
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            classification:
+              type: string
+            classifications_allowed:
+              type: array
+              items:
+                string
+            extension:
+              type: string
+            extra:
+              type: string
+            profiles:
+              type: array
+              items:
+                $ref: "#/async definitions/MappingFieldProfile"
+            remark:
+              type: string
+      - schema:
+          id: Mapping
+          type: object
+          required:
+            - id
+            - name
+            - source_profiles
+            - target_profile
+            - fields
+          properties:
+            fields:
+              type: array
+              items:
+                $ref: "#/async definitions/MappingField"
+            id:
+              type: string
+            name:
+              type: string
+            source_profiles:
+              type: array
+              items:
+                type: string
+            target_profile:
+              type: string
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The id of the mapping
+    responses:
+      200:
+        description: The mapping with the given id
+        schema:
+          $ref: "#/async definitions/Mapping"
+      404:
+        description: Mapping not found
+    """
+    if cur_proj is None:
+        response.status_code = 412
+        return {"error": "Project needs to be initialized before accessing"}
+
+    try:
+        return handler.get_mapping(cur_proj, id)
+
+    except (ProjectNotFound, MappingNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
+
+
+@app.get(
+    "/project/{project_name}/mapping/{mapping_id}",
+    tags=["Mappings"],
+    responses={404: {}},
+)
+async def get_mapping(project_name: str, mapping_id: str, response: Response):
+    """
+    Get the available mappings
+    Returns a list with all mappings, including the name and the url to access it.
+    ---
+    produces:
+      - application/json
+    async definitions:
+      - schema:
+          id: OverviewMapping
+          type: object
+          required:
+            - id
+            - name
+            - url
+            - version
+            - last_updated
+            - status
+            - sources
+            - target
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            url:
+              type: string
+            version:
+              type: string
+            last_updated:
+              type: string
+            status:
+              type: string
+            sources:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  profile_key:
+                    type: string
+                  simplifier_url:
+                    type: string
+                  version:
+                    type: string
+            target:
+              type: object
+              properties:
+                name:
+                  type: string
+                profile_key:
+                  type: string
+                simplifier_url:
+                  type: string
+                version:
+                  type: string
+    responses:
+      200:
+        description: Available mappings
+        schema:
+          required:
+            - mappings
+          properties:
+            mappings:
+              type: array
+              items:
+                $ref: "#/async definitions/OverviewMapping"
+    """
+    try:
+        return handler.get_mapping(project_name, mapping_id)
+
+    except (ProjectNotFound, MappingNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
+
+
+@app.get(
+    "/mapping/{id}/fields",
+    tags=["Fields"],
+    responses={404: {}, 412: {}},
+    deprecated=True,
+)
+async def get_mapping_fields_old(id: str, response: Response):
+    """
+    Get the fields of a mapping
+    Returns a brief list of the fields
+    ---
+    produces:
+      - application/json
+    async definitions:
+      - schema:
+          id: MappingFieldShort
+          type: object
+          reuqired:
+            - id
+            - name
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+      - schema:
+          id: MappingShort
+          type: object
+          required:
+            - id
+            - fields
+          properties:
+            fields:
+              type: array
+              items:
+                $ref: "#/async definitions/MappingFieldShort"
+            id:
+              type: string
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The id of the mapping
+    responses:
+      200:
+        description: The fields of the mapping
+        schema:
+          $ref: "#/async definitions/MappingShort"
+      404:
+        description: Mapping not found
+    """
+    if cur_proj is None:
+        response.status_code = 412
+        return {"error": "Project needs to be initialized before accessing"}
+
+    try:
+        return handler.get_mapping_fields(cur_proj, id)
+
+    except (ProjectNotFound, MappingNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
+
+
+@app.get(
+    "/project/{project_name}/mapping/{mapping_id}/field",
+    tags=["Fields"],
+    responses={404: {}},
+)
+async def get_mapping_fields(project_name: str, mapping_id: str, response: Response):
+    """
+    Get the fields of a mapping
+    Returns a brief list of the fields
+    ---
+    produces:
+      - application/json
+    async definitions:
+      - schema:
+          id: MappingFieldShort
+          type: object
+          reuqired:
+            - id
+            - name
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+      - schema:
+          id: MappingShort
+          type: object
+          required:
+            - id
+            - fields
+          properties:
+            fields:
+              type: array
+              items:
+                $ref: "#/async definitions/MappingFieldShort"
+            id:
+              type: string
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The id of the mapping
+    responses:
+      200:
+        description: The fields of the mapping
+        schema:
+          $ref: "#/async definitions/MappingShort"
+      404:
+        description: Mapping not found
+    """
+    try:
+        return handler.get_mapping_fields(project_name, mapping_id)
+
+    except (ProjectNotFound, MappingNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
+
+
+@app.post(
+    "/mapping/{mapping_id}/field/{field_id}/classification",
+    tags=["Fields"],
+    responses={400: {}, 404: {}, 412: {}},
+    deprecated=True,
+)
+async def post_mapping_field_classification_old(
+    mapping_id: str, field_id: str, mapping: MappingInput, response: Response
 ):
-    comparison = project.comparisons.get(mapping_id)
+    """
+    Post a manual classification for a field
+    Overrides the async default action of a field. `action` that should set for the field, `target` is the target of copy action and `value` may be a fixed value.
+    ---
+    consumes:
+      - application/json
+    parameters:
+      - in: path
+        name: mapping_id
+        type: string
+        required: true
+        description: The id of the mapping
+      - in: path
+        name: field_id
+        type: string
+        required: true
+        description: The id of the field
+      - in: body
+        name: body
+        schema:
+          required:
+            - action
+          properties:
+            action:
+              type: string
+              enum:
+                - copy_from
+                - copy_to
+                - fixed
+                - use
+                - not_use
+                - empty
+              description: Which action should be performed
+            target:
+              type: string
+              description: Field that is targetted (for copy actions)
+            value:
+              type: string
+              description: The fixed value
+    responses:
+      200:
+        description: The field was updated
+      400:
+        description: There was something wrong with the request
+        schema:
+          properties:
+            error:
+              type: string
+              description: An error message
+      404:
+        description: Mapping or field not found
+    """
+    if cur_proj is None:
+        response.status_code = 412
+        return {"error": "Project needs to be initialized before accessing"}
 
-    if not comparison:
-        return None
-
-    # Easiest way to get the fields
-    fill_classification_remark(comparison)
-
-    field = get_field_by_id(comparison, field_id)
-
-    if field is None:
-        return None
-
-    action = Classification(mapping.action)
-
-    # Check if action is allowed for this field
-    if action not in field.classifications_allowed:
-        raise ValueError(
-            f"action '{action.value}' not allowed for this field, allowed: {
-                ', '.join([field.value for field in field.classifications_allowed])}"
+    try:
+        return handler.set_mapping_classification(
+            cur_proj, mapping_id, field_id, mapping
         )
 
-    # Build the entry that should be created/updated
-    new_entry = {MANUAL_ENTRIES_CLASSIFICATION: action}
-    if action == Classification.COPY_FROM or action == Classification.COPY_TO:
-        if target_id := mapping.target:
-            target = get_field_by_id(comparison, target_id)
+    except (ProjectNotFound, MappingNotFound, FieldNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
 
-            if target is None:
-                raise ValueError("'target' does not exists")
-
-            new_entry[MANUAL_ENTRIES_EXTRA] = target.name
-        else:
-            raise ValueError("field 'target' missing")
-    elif action == Classification.FIXED:
-        if fixed := mapping.value:
-            new_entry[MANUAL_ENTRIES_EXTRA] = fixed
-        else:
-            raise ValueError("field 'fixed' missing")
-
-    # Clean up possible manual entry this was copied from before
-    manual_entries = MANUAL_ENTRIES[mapping_id]
-    if (manual_entry := manual_entries[field.name]) and (
-        manual_entry[MANUAL_ENTRIES_CLASSIFICATION] == Classification.COPY_FROM
-        or manual_entry[MANUAL_ENTRIES_CLASSIFICATION] == Classification.COPY_TO
-    ):
-        del manual_entries[manual_entry[MANUAL_ENTRIES_EXTRA]]
-
-    # Apply the manual entry
-    manual_entries[field.name] = new_entry
-
-    # Handle the partner entry for copy actions
-    if action == Classification.COPY_FROM:
-        manual_entries[target.name] = {
-            MANUAL_ENTRIES_CLASSIFICATION: Classification.COPY_TO,
-            MANUAL_ENTRIES_EXTRA: field.name,
-        }
-    elif action == Classification.COPY_TO:
-        manual_entries[target.name] = {
-            MANUAL_ENTRIES_CLASSIFICATION: Classification.COPY_FROM,
-            MANUAL_ENTRIES_EXTRA: field.name,
-        }
-
-    # Save the changes
-    MANUAL_ENTRIES.write()
-
-    return True
+    except (
+        MappingActionNotAllowed,
+        MappingTargetMissing,
+        MappingTargetNotFound,
+        MappingValueMissing,
+    ) as e:
+        response.status_code = 400
+        return {"error": str(e)}
 
 
-def _get_field_by_id(field_id: str, comparison: Comparison) -> Comparison | None:
-    for field in comparison.fields.values():
-        if field.id == field_id:
-            return field.name
-    return None
+@app.post(
+    "/project/{project_name}/mapping/{mapping_id}/field/{field_id}/classification",
+    tags=["Fields"],
+    responses={400: {}, 404: {}},
+)
+async def post_mapping_field_classification(
+    project_name: str,
+    mapping_id: str,
+    field_id: str,
+    mapping: MappingInput,
+    response: Response,
+):
+    """
+    Post a manual classification for a field
+    Overrides the async default action of a field. `action` that should set for the field, `target` is the target of copy action and `value` may be a fixed value.
+    ---
+    consumes:
+      - application/json
+    parameters:
+      - in: path
+        name: mapping_id
+        type: string
+        required: true
+        description: The id of the mapping
+      - in: path
+        name: field_id
+        type: string
+        required: true
+        description: The id of the field
+      - in: body
+        name: body
+        schema:
+          required:
+            - action
+          properties:
+            action:
+              type: string
+              enum:
+                - copy_from
+                - copy_to
+                - fixed
+                - use
+                - not_use
+                - empty
+              description: Which action should be performed
+            target:
+              type: string
+              description: Field that is targetted (for copy actions)
+            value:
+              type: string
+              description: The fixed value
+    responses:
+      200:
+        description: The field was updated
+      400:
+        description: There was something wrong with the request
+        schema:
+          properties:
+            error:
+              type: string
+              description: An error message
+      404:
+        description: Mapping or field not found
+    """
+    try:
+        return handler.set_mapping_classification(
+            project_name, mapping_id, field_id, mapping
+        )
+
+    except (ProjectNotFound, MappingNotFound, FieldNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
+
+    except (
+        MappingActionNotAllowed,
+        MappingTargetMissing,
+        MappingTargetNotFound,
+        MappingValueMissing,
+    ) as e:
+        response.status_code = 400
+        return {"error": str(e)}
+
+
+def serve():
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
+if __name__ == "__main__":
+    serve()

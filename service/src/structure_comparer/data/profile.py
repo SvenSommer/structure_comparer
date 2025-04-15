@@ -100,11 +100,11 @@ class Profile:
         return profile
 
     @property
-    def profile_key(self) -> str:
+    def key(self) -> str:
         return f"{self.name}|{self.version}"
 
     def __lt__(self, other: "Profile") -> bool:
-        return self.profile_key < other.profile_key
+        return self.key < other.key
 
 
 class ProfileField:

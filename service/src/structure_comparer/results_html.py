@@ -66,8 +66,8 @@ def create_results_html(
 
         for field, entry in comp.fields.items():
             warnings = set()  # Use a set to collect unique warnings
-            target_min_card = entry.profiles[comp.target.profile_key].min_cardinality
-            target_max_card = entry.profiles[comp.target.profile_key].max_cardinality
+            target_min_card = entry.profiles[comp.target.key].min_cardinality
+            target_max_card = entry.profiles[comp.target.key].max_cardinality
             if target_max_card == "*":
                 target_max_card = float("inf")
             else:
@@ -77,8 +77,8 @@ def create_results_html(
             comparison_parent = comp.fields.get(parent)
 
             for profile in comp.sources:
-                source_min_card = entry.profiles[profile.profile_key].min_cardinality
-                source_max_card = entry.profiles[profile.profile_key].max_cardinality
+                source_min_card = entry.profiles[profile.key].min_cardinality
+                source_max_card = entry.profiles[profile.key].max_cardinality
                 if source_max_card == "*":
                     source_max_card = float("inf")
                 else:
@@ -130,12 +130,12 @@ def create_results_html(
         data = {
             "css_file": STYLE_FILE_NAME,
             "target_profile": {
-                "key": comp.target.profile_key,
+                "key": comp.target.key,
                 "url": comp.target.simplifier_url,
             },
             "source_profiles": [
                 {
-                    "key": profile.profile_key,
+                    "key": profile.key,
                     "url": profile.simplifier_url,
                 }
                 for profile in comp.sources

@@ -3,17 +3,17 @@ from collections import OrderedDict
 from pathlib import Path
 from typing import Dict, List
 
-from .config import CompareConfig
 from .classification import Classification
+from .config import CompareConfig
 from .consts import REMARKS
 from .data.comparison import Comparison, ComparisonField, ProfileField
 from .data.profile import ProfileMap
 from .helpers import split_parent_child
 from .manual_entries import (
-    MANUAL_ENTRIES,
     MANUAL_ENTRIES_CLASSIFICATION,
     MANUAL_ENTRIES_EXTRA,
     MANUAL_ENTRIES_REMARK,
+    ManualEntries,
 )
 
 MANUAL_SUFFIXES = ["reference", "profile"]
@@ -35,18 +35,9 @@ DERIVED_CLASSIFICATIONS = [
 logger = logging.getLogger()
 
 
-def compare_profiles(profiles_to_compare: List[CompareConfig], datapath: Path):
-    """
-    Compares the presence of properties in KBV and ePA profiles.
-    """
-
-    profile_maps = load_profiles(profiles_to_compare, datapath)
-    structured_results = _compare_profiles(profile_maps)
-
-    return structured_results
-
-
-def load_profiles(profiles_to_compare: List[CompareConfig], datapath: Path) -> Dict[str, ProfileMap]:
+def load_profiles(
+    profiles_to_compare: List[CompareConfig], datapath: Path
+) -> Dict[str, ProfileMap]:
     """
     Loads the FHIR structure definitions from the local JSON files.
     """
@@ -55,33 +46,6 @@ def load_profiles(profiles_to_compare: List[CompareConfig], datapath: Path) -> D
         for profiles in profiles_to_compare
     }
     return profiles_maps
-
-
-def _compare_profiles(profile_maps: Dict[str, ProfileMap]) -> Dict[str, Comparison]:
-    mapping = {}
-    for map in profile_maps.values():
-        sources_key = tuple((entry.name, entry.version)
-                            for entry in map.sources)
-        target_key = (map.target.name, map.target.version)
-        key = str((sources_key, target_key))
-        mapping[key] = compare_profile(map)
-    return mapping
-
-
-def compare_profile(profile_map: ProfileMap) -> Comparison:
-    """
-    Generate a structured representation containing the rules for each target profile.
-
-    The returned dictionary contains one item for each item in the argument `presence_data`. Each of these items
-    contains the names of KBV and ePA profiles, presence information for each of their fields and their
-    classifications and remarks.
-    """
-
-    # Iterate over all mappings (each entry are mapping to the same profile)
-    comparison = generate_comparison(profile_map)
-    fill_classification_remark(comparison)
-
-    return comparison
 
 
 def generate_comparison(profile_map: ProfileMap) -> Comparison:
@@ -96,16 +60,15 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
                 not (field_entry := comparison.fields.get(field.name))
                 or field_entry.extension != field.extension
             ):
-                comparison.fields[field.name] = ComparisonField(
-                    field.name, field.id)
+                comparison.fields[field.name] = ComparisonField(field.name, field.id)
                 comparison.fields[field.name].extension = field.extension
 
-            profile_key = source_profile.profile_key
+            profile_key = source_profile.key
             comparison.fields[field.name].profiles[profile_key] = ProfileField(
-                name=profile_key, 
+                name=profile_key,
                 present=True,
                 min_cardinality=field.min_cardinality,
-                max_cardinality=field.max_cardinality
+                max_cardinality=field.max_cardinality,
             )
 
     # Sort the fields by name
@@ -114,33 +77,33 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
     )
 
     # Fill the absent profiles
-    all_profiles_keys = [profile.profile_key for profile in all_profiles]
+    all_profiles_keys = [profile.key for profile in all_profiles]
     for field in comparison.fields.values():
         for profile_key in all_profiles_keys:
             if profile_key not in field.profiles:
                 field.profiles[profile_key] = ProfileField(
-                    name=profile_key, 
+                    name=profile_key,
                     present=False,
                     min_cardinality=0,
-                    max_cardinality=0
+                    max_cardinality=0,
                 )
 
     # Add remarks and classifications for each field
     for field in comparison.fields.values():
-        _fill_allowed_classifications(
+        __fill_allowed_classifications(
             field, all_profiles_keys[:-1], all_profiles_keys[-1]
         )
 
     return comparison
 
 
-def fill_classification_remark(comparison: Comparison):
-    manual_entries = MANUAL_ENTRIES.entries.get(comparison.id)
+def fill_classification_remark(comparison: Comparison, manual_entries: ManualEntries):
+    manual_entries = manual_entries.entries.get(comparison.id)
     for field in comparison.fields.values():
-        _classify_remark_field(field, comparison, manual_entries)
+        __classify_remark_field(field, comparison, manual_entries)
 
 
-def _fill_allowed_classifications(
+def __fill_allowed_classifications(
     field: ComparisonField, source_profiles: List[str], target_profile: str
 ):
     allowed = set([c for c in Classification])
@@ -164,7 +127,7 @@ def _fill_allowed_classifications(
     field.classifications_allowed = list(allowed)
 
 
-def _classify_remark_field(
+def __classify_remark_field(
     field: ComparisonField, comparison: Comparison, manual_entries: Dict
 ) -> None:
     """
@@ -188,8 +151,7 @@ def _classify_remark_field(
         )
 
         # If there is a remark in the manual entry, use it else use the default remark
-        remark = manual_entry.get(
-            MANUAL_ENTRIES_REMARK, REMARKS[classification])
+        remark = manual_entry.get(MANUAL_ENTRIES_REMARK, REMARKS[classification])
 
         # If the classification needs extra information, generate the remark with the extra information
         if classification in EXTRA_CLASSIFICATIONS:
@@ -210,7 +172,7 @@ def _classify_remark_field(
         if classification in EXTRA_CLASSIFICATIONS:
 
             # Cut away the common part with the parent and add the remainder to the parent's extra
-            extra = parent_update.extra + field.name[len(parent):]
+            extra = parent_update.extra + field.name[len(parent) :]
             remark = REMARKS[classification].format(extra)
 
         # Else use the parent's remark
@@ -218,10 +180,8 @@ def _classify_remark_field(
             remark = parent_update.remark
 
     # If present in any of the source profiles
-    elif any(
-        [field.profiles[profile.profile_key].present for profile in comparison.sources]
-    ):
-        if field.profiles[comparison.target.profile_key].present:
+    elif any([field.profiles[profile.key].present for profile in comparison.sources]):
+        if field.profiles[comparison.target.key].present:
             classification = Classification.USE
         else:
             classification = Classification.EXTENSION

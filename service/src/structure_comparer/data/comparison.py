@@ -12,7 +12,6 @@ class ProfileField:
     present: bool
     min_cardinality: int = 0
     max_cardinality: int = 0
-    
 
 
 @dataclass(init=False)
@@ -85,7 +84,7 @@ class Comparison:
             "sources": [
                 {
                     "name": profile.name,
-                    "profile_key": profile.profile_key,
+                    "profile_key": profile.key,
                     "version": profile.version,
                     "simplifier_url": profile.simplifier_url,
                 }
@@ -93,7 +92,7 @@ class Comparison:
             ],
             "target": {
                 "name": self.target.name,
-                "profile_key": self.target.profile_key,
+                "profile_key": self.target.key,
                 "version": self.target.version,
                 "simplifier_url": self.target.simplifier_url,
             },
