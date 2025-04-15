@@ -94,7 +94,7 @@ class ProjectsHandler:
     def get_mapping_fields(self, project_name: str, mapping_id: str):
         mapping = self.__get_mapping(project_name, mapping_id)
 
-        result = {"id": id}
+        result = {"id": mapping_id}
         result["fields"] = [
             {"name": field.name, "id": field.id} for field in mapping.fields.values()
         ]
