@@ -1,10 +1,6 @@
 from pydantic import BaseModel
 
-
-class Profile(BaseModel):
-    profile_key: str
-    name: str
-    version: str
+from .profile import Profile
 
 
 class Mapping(BaseModel):

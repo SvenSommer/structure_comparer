@@ -5,6 +5,7 @@ from typing import Dict
 from ..compare import generate_comparison, load_profiles
 from ..config import Config
 from ..manual_entries import ManualEntries
+from ..model.project import Project as ProjectModel
 from .comparison import Comparison
 
 
@@ -61,3 +62,9 @@ class Project:
         config_file.write_text(json.dumps(config_data, indent=4), encoding="utf-8")
 
         return Project(path)
+
+    def to_model(self, proj_name: str) -> ProjectModel:
+        mappings = [comp.to_model(proj_name) for comp in self.comparisons.values()]
+
+        model = ProjectModel(name=proj_name, mappings=mappings)
+        return model

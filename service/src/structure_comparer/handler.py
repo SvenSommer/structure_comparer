@@ -1,13 +1,10 @@
 from pathlib import Path
 from typing import Dict, List
 
-from pydantic import ValidationError
-
 from .classification import Classification
 from .compare import fill_classification_remark
 from .consts import INSTRUCTIONS, REMARKS
-from .data.comparison import Comparison, get_field_by_id
-from .data.profile import Profile
+from .data.comparison import get_field_by_id
 from .data.project import Project
 from .errors import (
     FieldNotFound,
@@ -19,7 +16,6 @@ from .errors import (
 )
 from .manual_entries import MANUAL_ENTRIES_CLASSIFICATION, MANUAL_ENTRIES_EXTRA
 from .model.mapping import Mapping as MappingModel
-from .model.mapping import Profile as ProfileModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
 
@@ -61,7 +57,7 @@ class ProjectsHandler:
         if proj is None:
             raise ProjectNotFound()
 
-        return _to_project_model(project_name, proj)
+        return proj.to_model(project_name)
 
     def get_mappings(self, project_name: str) -> List[MappingModel]:
         proj = self.__projs.get(project_name)
@@ -69,9 +65,7 @@ class ProjectsHandler:
         if proj is None:
             raise ProjectNotFound()
 
-        return [
-            _to_mapping_model(project_name, comp) for comp in proj.comparisons.values()
-        ]
+        return [comp.to_model(project_name) for comp in proj.comparisons.values()]
 
     def get_mapping(self, project_name: str, mapping_id: str):
         mapping = self.__get_mapping(project_name, mapping_id)
@@ -172,46 +166,3 @@ class ProjectsHandler:
         fill_classification_remark(mapping, proj.manual_entries)
 
         return mapping
-
-
-def _to_project_model(proj_name: str, data: Project) -> ProjectModel:
-    mappings = [
-        _to_mapping_model(proj_name, comp) for comp in data.comparisons.values()
-    ]
-
-    model = ProjectModel(name=proj_name, mappings=mappings)
-    return model
-
-
-def _to_mapping_model(proj_name: str, data: Comparison) -> MappingModel:
-    sources = [_to_profile_model(p) for p in data.sources]
-    target = _to_profile_model(data.target)
-    url = f"/project/{proj_name}/mapping/{data.id}"
-
-    try:
-        model = MappingModel(
-            id=data.id,
-            name=data.name,
-            version=data.version,
-            last_updated=data.last_updated,
-            status=data.status,
-            sources=sources,
-            target=target,
-            url=url,
-        )
-
-    except ValidationError as e:
-        print(e.errors())
-
-    else:
-        return model
-
-
-def _to_profile_model(data: Profile) -> ProfileModel:
-    try:
-        model = ProfileModel(profile_key=data.key, name=data.name, version=data.version)
-    except ValidationError as e:
-        print(e.errors())
-
-    else:
-        return model

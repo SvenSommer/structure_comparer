@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Dict, List
 from uuid import uuid4
 
-from structure_comparer.config import CompareConfig, ProfileConfig
+from ..model.profile import Profile as ProfileModel
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]
 IGNORE_SLICES = [
@@ -100,11 +100,34 @@ class Profile:
         return profile
 
     @property
+    def name(self) -> str:
+        return self.__data.name
+
+    @property
+    def version(self) -> str:
+        return self.__data.version
+
+    @property
+    def fields(self) -> Dict[str, "ProfileField"]:
+        return self.__fields
+
+    @property
     def key(self) -> str:
         return f"{self.name}|{self.version}"
 
     def __lt__(self, other: "Profile") -> bool:
         return self.key < other.key
+
+    def to_model(self) -> ProfileModel:
+        try:
+            model = ProfileModel(
+                profile_key=self.key, name=self.name, version=self.version
+            )
+        except ValidationError as e:
+            print(e.errors())
+
+        else:
+            return model
 
 
 class ProfileField:

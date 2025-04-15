@@ -2,16 +2,11 @@ from collections import OrderedDict
 from dataclasses import dataclass
 from typing import Dict, List
 
-from structure_comparer.classification import Classification
-from structure_comparer.data.profile import Profile, ProfileMap
+from pydantic import ValidationError
 
-
-@dataclass
-class ProfileField:
-    name: str
-    present: bool
-    min_cardinality: int = 0
-    max_cardinality: int = 0
+from ..classification import Classification
+from ..model.mapping import Mapping as MappingModel
+from .profile import Profile, ProfileField, ProfileMap
 
 
 @dataclass(init=False)
@@ -62,7 +57,7 @@ class Comparison:
         self.last_updated: str = None
         self.status: str = None
 
-        if not profile_map is None:
+        if profile_map is not None:
             self.id = profile_map.id
             self.sources = profile_map.sources
             self.target = profile_map.target
@@ -101,6 +96,29 @@ class Comparison:
             "last_updated": self.last_updated,
             "status": self.status,
         }
+
+    def to_model(self, proj_name: str) -> MappingModel:
+        sources = [p.to_model() for p in self.sources]
+        target = self.target.to_model()
+        url = f"/project/{proj_name}/mapping/{self.id}"
+
+        try:
+            model = MappingModel(
+                id=self.id,
+                name=self.name,
+                version=self.version,
+                last_updated=self.last_updated,
+                status=self.status,
+                sources=sources,
+                target=target,
+                url=url,
+            )
+
+        except ValidationError as e:
+            print(e.errors())
+
+        else:
+            return model
 
 
 def get_field_by_id(comparison: Comparison, field_id: str) -> ComparisonField | None:
