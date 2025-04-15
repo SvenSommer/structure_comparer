@@ -6,7 +6,7 @@ from typing import Dict, List
 from .classification import Classification
 from .config import CompareConfig
 from .consts import REMARKS
-from .data.comparison import Comparison, ComparisonField, ProfileField
+from .data.comparison import Comparison, ComparisonField
 from .data.profile import ProfileMap
 from .helpers import split_parent_child
 from .manual_entries import (
@@ -53,23 +53,13 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
 
     all_profiles = [profile_map.target] + profile_map.sources
 
-    for source_profile in all_profiles:
-        for _, field in source_profile.fields.items():
+    for profile in all_profiles:
+        for field in profile.fields.values():
             # Check if field already exists or needs to be created
-            if (
-                not (field_entry := comparison.fields.get(field.name))
-                or field_entry.extension != field.extension
-            ):
-                comparison.fields[field.name] = ComparisonField(field.name, field.id)
-                comparison.fields[field.name].extension = field.extension
+            if field not in comparison.fields:
+                comparison.fields[field.path_full] = ComparisonField()
 
-            profile_key = source_profile.key
-            comparison.fields[field.name].profiles[profile_key] = ProfileField(
-                name=profile_key,
-                present=True,
-                min_cardinality=field.min_cardinality,
-                max_cardinality=field.max_cardinality,
-            )
+            comparison.fields[field.path_full].profiles[profile.key] = field
 
     # Sort the fields by name
     comparison.fields = OrderedDict(
@@ -81,12 +71,7 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
     for field in comparison.fields.values():
         for profile_key in all_profiles_keys:
             if profile_key not in field.profiles:
-                field.profiles[profile_key] = ProfileField(
-                    name=profile_key,
-                    present=False,
-                    min_cardinality=0,
-                    max_cardinality=0,
-                )
+                field.profiles[profile_key] = None
 
     # Add remarks and classifications for each field
     for field in comparison.fields.values():
@@ -109,9 +94,9 @@ def __fill_allowed_classifications(
     allowed = set([c for c in Classification])
 
     any_source_present = any(
-        [field.profiles[profile].present for profile in source_profiles]
+        [field.profiles[profile] is not None for profile in source_profiles]
     )
-    target_present = field.profiles[target_profile].present
+    target_present = field.profiles[target_profile] is not None
 
     if not any_source_present:
         allowed -= set(
@@ -141,9 +126,6 @@ def __classify_remark_field(
     remark = None
     extra = None
 
-    # Split the property in parent and child
-    parent, child = split_parent_child(field.name)
-
     # If there is a manual entry for this property, use it
     if manual_entries is not None and (manual_entry := manual_entries[field.name]):
         classification = manual_entry.get(
@@ -159,12 +141,12 @@ def __classify_remark_field(
             remark = REMARKS[classification].format(extra)
 
     # If the last element from the property is in the manual list, use the manual classification
-    elif child in MANUAL_SUFFIXES:
+    elif field.name_child in MANUAL_SUFFIXES:
         classification = Classification.MANUAL
 
     # If the parent has a classification that can be derived use the parent's classification
     elif (
-        parent_update := comparison.fields.get(parent)
+        parent_update := comparison.fields.get(field.name_parent)
     ) and parent_update.classification in DERIVED_CLASSIFICATIONS:
         classification = parent_update.classification
 
@@ -172,7 +154,7 @@ def __classify_remark_field(
         if classification in EXTRA_CLASSIFICATIONS:
 
             # Cut away the common part with the parent and add the remainder to the parent's extra
-            extra = parent_update.extra + field.name[len(parent) :]
+            extra = parent_update.extra + field.name[len(field.name_parent) :]
             remark = REMARKS[classification].format(extra)
 
         # Else use the parent's remark
@@ -180,8 +162,10 @@ def __classify_remark_field(
             remark = parent_update.remark
 
     # If present in any of the source profiles
-    elif any([field.profiles[profile.key].present for profile in comparison.sources]):
-        if field.profiles[comparison.target.key].present:
+    elif any(
+        [field.profiles[profile.key] is not None for profile in comparison.sources]
+    ):
+        if field.profiles[comparison.target.key] is not None:
             classification = Classification.USE
         else:
             classification = Classification.EXTENSION

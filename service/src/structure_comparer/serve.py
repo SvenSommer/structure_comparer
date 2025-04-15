@@ -349,7 +349,7 @@ async def get_mappings(project_name: str, response: Response) -> GetMappingsOutp
 @app.get(
     "/mapping/{id}", tags=["Mappings"], responses={404: {}, 412: {}}, deprecated=True
 )
-async def get_mapping_old(id: str, response: Response):
+async def get_mapping_old(id: str, response: Response) -> MappingModel:
     """
     Get a specific mapping
     Returns the mapping with the given id. This includes all details like classifications, presences in profiles, etc.
@@ -453,7 +453,9 @@ async def get_mapping_old(id: str, response: Response):
     tags=["Mappings"],
     responses={404: {}},
 )
-async def get_mapping(project_name: str, mapping_id: str, response: Response):
+async def get_mapping(
+    project_name: str, mapping_id: str, response: Response
+) -> MappingModel:
     """
     Get the available mappings
     Returns a list with all mappings, including the name and the url to access it.

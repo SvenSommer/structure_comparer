@@ -67,12 +67,9 @@ class ProjectsHandler:
 
         return [comp.to_model(project_name) for comp in proj.comparisons.values()]
 
-    def get_mapping(self, project_name: str, mapping_id: str):
+    def get_mapping(self, project_name: str, mapping_id: str) -> MappingModel:
         mapping = self.__get_mapping(project_name, mapping_id)
-        result = mapping.dict()
-        result["id"] = mapping_id
-
-        return result
+        return mapping.to_model(project_name)
 
     def get_mapping_fields(self, project_name: str, mapping_id: str):
         mapping = self.__get_mapping(project_name, mapping_id)

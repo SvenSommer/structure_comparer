@@ -11,22 +11,13 @@ from .profile import Profile, ProfileField, ProfileMap
 
 @dataclass(init=False)
 class ComparisonField:
-    classification: Classification
-    extension: str
-    extra: str
-    profiles: Dict[str, ProfileField]
-    remark: str
-    classifications_allowed: List[Classification]
-
-    def __init__(self, name: str, id: str) -> None:
-        self.name: str = name
-        self.classification = None
-        self.extension = None
-        self.extra = None
-        self.profiles = {}
+    def __init__(self) -> None:
+        self.classification: Classification = None
+        self.extension: str = None
+        self.extra: str = None
+        self.profiles: Dict[str, ProfileField] = {}
         self.remark = None
-        self.id = id
-        self.classifications_allowed = []
+        self.classifications_allowed: List[Classification] = []
 
     def dict(self) -> dict:
         result = {
@@ -45,6 +36,22 @@ class ComparisonField:
             result["extra"] = self.extra
 
         return result
+
+    @property
+    def id(self) -> str:
+        return list(self.profiles.values())[0].id
+
+    @property
+    def name(self) -> str:
+        return list(self.profiles.values())[0].path_full
+
+    @property
+    def name_child(self) -> str:
+        return self.name.rsplit(".", 1)[1]
+
+    @property
+    def name_parent(self) -> str:
+        return self.name.rsplit(".", 1)[0]
 
 
 class Comparison:
@@ -72,30 +79,6 @@ class Comparison:
         )
         target_profile = f"{self.target.name}|{self.target.version}"
         return f"{source_profiles} -> {target_profile}"
-
-    def dict(self) -> dict:
-        return {
-            "name": self.name,
-            "sources": [
-                {
-                    "name": profile.name,
-                    "profile_key": profile.key,
-                    "version": profile.version,
-                    "simplifier_url": profile.simplifier_url,
-                }
-                for profile in self.sources
-            ],
-            "target": {
-                "name": self.target.name,
-                "profile_key": self.target.key,
-                "version": self.target.version,
-                "simplifier_url": self.target.simplifier_url,
-            },
-            "fields": [field.dict() for field in self.fields.values()],
-            "version": self.version,
-            "last_updated": self.last_updated,
-            "status": self.status,
-        }
 
     def to_model(self, proj_name: str) -> MappingModel:
         sources = [p.to_model() for p in self.sources]
