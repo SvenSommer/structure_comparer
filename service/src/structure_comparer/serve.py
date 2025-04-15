@@ -18,7 +18,9 @@ from .errors import (
     ProjectNotFound,
 )
 from .handler import ProjectsHandler
+from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
+from .model.project import Project as ProjectModel
 
 origins = ["http://localhost:4200"]
 handler: ProjectsHandler = None
@@ -44,6 +46,10 @@ class InitProject(BaseModel):
     project_name: str
 
 
+class GetMappingsOutput(BaseModel):
+    mappings: list[MappingModel]
+
+
 app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
@@ -55,18 +61,29 @@ app.add_middleware(
 
 
 @app.get("/")
-def ping():
+async def ping():
     return "pong"
 
 
 @app.get("/projects", tags=["Projects"], deprecated=True)
-def get_projects_old():
+async def get_projects_old():
     return handler.project_names
 
 
 @app.get("/project", tags=["Projects"])
-def get_projects():
+async def get_projects() -> list[str]:
     return handler.project_names
+
+
+@app.get("/project/{project_name}", tags=["Projects"])
+async def get_project(project_name: str, response: Response) -> ProjectModel:
+    try:
+        proj = handler.get_project(project_name)
+        return proj
+
+    except ProjectNotFound:
+        response.status_code = 404
+        return {"error": "Project not found"}
 
 
 @app.post(
@@ -76,7 +93,7 @@ def get_projects():
     responses={400: {"error": {}}, 404: {"error": {}}},
     deprecated=True,
 )
-def post_init_project(data: InitProject, response: Response):
+async def post_init_project(data: InitProject, response: Response):
     global cur_proj
 
     if not data.project_name:
@@ -100,7 +117,7 @@ def post_init_project(data: InitProject, response: Response):
     responses={400: {}, 409: {}},
     deprecated=True,
 )
-def create_project_old(project_name: str, response: Response):
+async def create_project_old(project_name: str, response: Response):
 
     if not project_name:
         response.status_code = 400
@@ -122,7 +139,7 @@ def create_project_old(project_name: str, response: Response):
     status_code=201,
     responses={400: {}, 409: {}},
 )
-def create_project(project_name: str, response: Response):
+async def create_project(project_name: str, response: Response):
 
     if not project_name:
         response.status_code = 400
@@ -139,7 +156,7 @@ def create_project(project_name: str, response: Response):
 
 
 @app.get("/classification", tags=["Classification"])
-def get_classifications():
+async def get_classifications():
     """
     Get all classifications
     ---
@@ -168,14 +185,14 @@ def get_classifications():
 
 
 @app.get("/mappings", tags=["Mappings"], responses={412: {}}, deprecated=True)
-def get_mappings_old(response: Response):
+async def get_mappings_old(response: Response) -> GetMappingsOutput:
     """
     Get the available mappings
     Returns a list with all mappings, including the name and the url to access it.
     ---
     produces:
       - application/json
-    definitions:
+    async definitions:
       - schema:
           id: OverviewMapping
           type: object
@@ -235,14 +252,15 @@ def get_mappings_old(response: Response):
             mappings:
               type: array
               items:
-                $ref: "#/definitions/OverviewMapping"
+                $ref: "#/async definitions/OverviewMapping"
     """
     if cur_proj is None:
         response.status_code = 412
         return {"error": "Project needs to be initialized before accessing"}
 
     try:
-        return handler.get_mappings(cur_proj)
+        mappings = handler.get_mappings(cur_proj)
+        return GetMappingsOutput(mappings=mappings)
 
     except ProjectNotFound:
         response.status_code = 404
@@ -250,14 +268,14 @@ def get_mappings_old(response: Response):
 
 
 @app.get("/project/{project_name}/mapping", tags=["Mappings"], responses={404: {}})
-def get_mappings(project_name: str, response: Response):
+async def get_mappings(project_name: str, response: Response) -> GetMappingsOutput:
     """
     Get the available mappings
     Returns a list with all mappings, including the name and the url to access it.
     ---
     produces:
       - application/json
-    definitions:
+    async definitions:
       - schema:
           id: OverviewMapping
           type: object
@@ -317,10 +335,11 @@ def get_mappings(project_name: str, response: Response):
             mappings:
               type: array
               items:
-                $ref: "#/definitions/OverviewMapping"
+                $ref: "#/async definitions/OverviewMapping"
     """
     try:
-        return handler.get_mappings(project_name)
+        mappings = handler.get_mappings(project_name)
+        return GetMappingsOutput(mappings=mappings)
 
     except ProjectNotFound:
         response.status_code = 404
@@ -330,14 +349,14 @@ def get_mappings(project_name: str, response: Response):
 @app.get(
     "/mapping/{id}", tags=["Mappings"], responses={404: {}, 412: {}}, deprecated=True
 )
-def get_mapping_old(id: str, response: Response):
+async def get_mapping_old(id: str, response: Response):
     """
     Get a specific mapping
     Returns the mapping with the given id. This includes all details like classifications, presences in profiles, etc.
     ---
     produces:
       - application/json
-    definitions:
+    async definitions:
       - schema:
           id: MappingFieldProfile
           type: object
@@ -376,7 +395,7 @@ def get_mapping_old(id: str, response: Response):
             profiles:
               type: array
               items:
-                $ref: "#/definitions/MappingFieldProfile"
+                $ref: "#/async definitions/MappingFieldProfile"
             remark:
               type: string
       - schema:
@@ -392,7 +411,7 @@ def get_mapping_old(id: str, response: Response):
             fields:
               type: array
               items:
-                $ref: "#/definitions/MappingField"
+                $ref: "#/async definitions/MappingField"
             id:
               type: string
             name:
@@ -413,7 +432,7 @@ def get_mapping_old(id: str, response: Response):
       200:
         description: The mapping with the given id
         schema:
-          $ref: "#/definitions/Mapping"
+          $ref: "#/async definitions/Mapping"
       404:
         description: Mapping not found
     """
@@ -434,14 +453,14 @@ def get_mapping_old(id: str, response: Response):
     tags=["Mappings"],
     responses={404: {}},
 )
-def get_mapping(project_name: str, mapping_id: str, response: Response):
+async def get_mapping(project_name: str, mapping_id: str, response: Response):
     """
     Get the available mappings
     Returns a list with all mappings, including the name and the url to access it.
     ---
     produces:
       - application/json
-    definitions:
+    async definitions:
       - schema:
           id: OverviewMapping
           type: object
@@ -501,7 +520,7 @@ def get_mapping(project_name: str, mapping_id: str, response: Response):
             mappings:
               type: array
               items:
-                $ref: "#/definitions/OverviewMapping"
+                $ref: "#/async definitions/OverviewMapping"
     """
     try:
         return handler.get_mapping(project_name, mapping_id)
@@ -517,14 +536,14 @@ def get_mapping(project_name: str, mapping_id: str, response: Response):
     responses={404: {}, 412: {}},
     deprecated=True,
 )
-def get_mapping_fields_old(id: str, response: Response):
+async def get_mapping_fields_old(id: str, response: Response):
     """
     Get the fields of a mapping
     Returns a brief list of the fields
     ---
     produces:
       - application/json
-    definitions:
+    async definitions:
       - schema:
           id: MappingFieldShort
           type: object
@@ -546,7 +565,7 @@ def get_mapping_fields_old(id: str, response: Response):
             fields:
               type: array
               items:
-                $ref: "#/definitions/MappingFieldShort"
+                $ref: "#/async definitions/MappingFieldShort"
             id:
               type: string
     parameters:
@@ -559,7 +578,7 @@ def get_mapping_fields_old(id: str, response: Response):
       200:
         description: The fields of the mapping
         schema:
-          $ref: "#/definitions/MappingShort"
+          $ref: "#/async definitions/MappingShort"
       404:
         description: Mapping not found
     """
@@ -580,14 +599,14 @@ def get_mapping_fields_old(id: str, response: Response):
     tags=["Fields"],
     responses={404: {}},
 )
-def get_mapping_fields(project_name: str, mapping_id: str, response: Response):
+async def get_mapping_fields(project_name: str, mapping_id: str, response: Response):
     """
     Get the fields of a mapping
     Returns a brief list of the fields
     ---
     produces:
       - application/json
-    definitions:
+    async definitions:
       - schema:
           id: MappingFieldShort
           type: object
@@ -609,7 +628,7 @@ def get_mapping_fields(project_name: str, mapping_id: str, response: Response):
             fields:
               type: array
               items:
-                $ref: "#/definitions/MappingFieldShort"
+                $ref: "#/async definitions/MappingFieldShort"
             id:
               type: string
     parameters:
@@ -622,7 +641,7 @@ def get_mapping_fields(project_name: str, mapping_id: str, response: Response):
       200:
         description: The fields of the mapping
         schema:
-          $ref: "#/definitions/MappingShort"
+          $ref: "#/async definitions/MappingShort"
       404:
         description: Mapping not found
     """
@@ -640,12 +659,12 @@ def get_mapping_fields(project_name: str, mapping_id: str, response: Response):
     responses={400: {}, 404: {}, 412: {}},
     deprecated=True,
 )
-def post_mapping_field_classification_old(
+async def post_mapping_field_classification_old(
     mapping_id: str, field_id: str, mapping: MappingInput, response: Response
 ):
     """
     Post a manual classification for a field
-    Overrides the default action of a field. `action` that should set for the field, `target` is the target of copy action and `value` may be a fixed value.
+    Overrides the async default action of a field. `action` that should set for the field, `target` is the target of copy action and `value` may be a fixed value.
     ---
     consumes:
       - application/json
@@ -723,7 +742,7 @@ def post_mapping_field_classification_old(
     tags=["Fields"],
     responses={400: {}, 404: {}},
 )
-def post_mapping_field_classification(
+async def post_mapping_field_classification(
     project_name: str,
     mapping_id: str,
     field_id: str,
@@ -732,7 +751,7 @@ def post_mapping_field_classification(
 ):
     """
     Post a manual classification for a field
-    Overrides the default action of a field. `action` that should set for the field, `target` is the target of copy action and `value` may be a fixed value.
+    Overrides the async default action of a field. `action` that should set for the field, `target` is the target of copy action and `value` may be a fixed value.
     ---
     consumes:
       - application/json

@@ -1,10 +1,13 @@
 from pathlib import Path
 from typing import Dict, List
 
+from pydantic import ValidationError
+
 from .classification import Classification
 from .compare import fill_classification_remark
 from .consts import INSTRUCTIONS, REMARKS
-from .data.comparison import get_field_by_id
+from .data.comparison import Comparison, get_field_by_id
+from .data.profile import Profile
 from .data.project import Project
 from .errors import (
     FieldNotFound,
@@ -15,7 +18,10 @@ from .errors import (
     ProjectNotFound,
 )
 from .manual_entries import MANUAL_ENTRIES_CLASSIFICATION, MANUAL_ENTRIES_EXTRA
+from .model.mapping import Mapping as MappingModel
+from .model.mapping import Profile as ProfileModel
 from .model.mapping_input import MappingInput
+from .model.project import Project as ProjectModel
 
 
 class ProjectsHandler:
@@ -49,40 +55,23 @@ class ProjectsHandler:
         ]
         return {"classifications": classifications}
 
-    def get_mappings(self, project_name: str):
+    def get_project(self, project_name: str) -> ProjectModel:
         proj = self.__projs.get(project_name)
 
         if proj is None:
             raise ProjectNotFound()
 
-        return {
-            "mappings": [
-                {
-                    "id": id,
-                    "name": profile_map.name,
-                    "url": f"/mapping/{id}",
-                    "version": profile_map.version,
-                    "last_updated": profile_map.last_updated,
-                    "status": profile_map.status,
-                    "sources": [
-                        {
-                            "profile_key": profile.profile_key,
-                            "name": profile.name,
-                            "version": profile.version,
-                            "simplifier_url": profile.simplifier_url,
-                        }
-                        for profile in profile_map.sources
-                    ],
-                    "target": {
-                        "profile_key": profile_map.target.profile_key,
-                        "name": profile_map.target.name,
-                        "version": profile_map.target.version,
-                        "simplifier_url": profile_map.target.simplifier_url,
-                    },
-                }
-                for id, profile_map in proj.comparisons.items()
-            ]
-        }
+        return _to_project_model(project_name, proj)
+
+    def get_mappings(self, project_name: str) -> List[MappingModel]:
+        proj = self.__projs.get(project_name)
+
+        if proj is None:
+            raise ProjectNotFound()
+
+        return [
+            _to_mapping_model(project_name, comp) for comp in proj.comparisons.values()
+        ]
 
     def get_mapping(self, project_name: str, mapping_id: str):
         mapping = self.__get_mapping(project_name, mapping_id)
@@ -183,3 +172,46 @@ class ProjectsHandler:
         fill_classification_remark(mapping, proj.manual_entries)
 
         return mapping
+
+
+def _to_project_model(proj_name: str, data: Project) -> ProjectModel:
+    mappings = [
+        _to_mapping_model(proj_name, comp) for comp in data.comparisons.values()
+    ]
+
+    model = ProjectModel(name=proj_name, mappings=mappings)
+    return model
+
+
+def _to_mapping_model(proj_name: str, data: Comparison) -> MappingModel:
+    sources = [_to_profile_model(p) for p in data.sources]
+    target = _to_profile_model(data.target)
+    url = f"/project/{proj_name}/mapping/{data.id}"
+
+    try:
+        model = MappingModel(
+            id=data.id,
+            name=data.name,
+            version=data.version,
+            last_updated=data.last_updated,
+            status=data.status,
+            sources=sources,
+            target=target,
+            url=url,
+        )
+
+    except ValidationError as e:
+        print(e.errors())
+
+    else:
+        return model
+
+
+def _to_profile_model(data: Profile) -> ProfileModel:
+    try:
+        model = ProfileModel(profile_key=data.key, name=data.name, version=data.version)
+    except ValidationError as e:
+        print(e.errors())
+
+    else:
+        return model

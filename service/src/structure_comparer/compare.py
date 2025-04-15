@@ -63,7 +63,7 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
                 comparison.fields[field.name] = ComparisonField(field.name, field.id)
                 comparison.fields[field.name].extension = field.extension
 
-            profile_key = source_profile.profile_key
+            profile_key = source_profile.key
             comparison.fields[field.name].profiles[profile_key] = ProfileField(
                 name=profile_key,
                 present=True,
@@ -77,7 +77,7 @@ def generate_comparison(profile_map: ProfileMap) -> Comparison:
     )
 
     # Fill the absent profiles
-    all_profiles_keys = [profile.profile_key for profile in all_profiles]
+    all_profiles_keys = [profile.key for profile in all_profiles]
     for field in comparison.fields.values():
         for profile_key in all_profiles_keys:
             if profile_key not in field.profiles:
@@ -180,10 +180,8 @@ def __classify_remark_field(
             remark = parent_update.remark
 
     # If present in any of the source profiles
-    elif any(
-        [field.profiles[profile.profile_key].present for profile in comparison.sources]
-    ):
-        if field.profiles[comparison.target.profile_key].present:
+    elif any([field.profiles[profile.key].present for profile in comparison.sources]):
+        if field.profiles[comparison.target.key].present:
             classification = Classification.USE
         else:
             classification = Classification.EXTENSION
