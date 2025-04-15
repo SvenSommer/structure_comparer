@@ -5,6 +5,7 @@ from pathlib import Path
 import uvicorn
 from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from .errors import (
     FieldNotFound,
@@ -39,6 +40,10 @@ async def lifespan(app: FastAPI):
     pass
 
 
+class InitProject(BaseModel):
+    project_name: str
+
+
 app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
@@ -71,19 +76,19 @@ def get_projects():
     responses={400: {"error": {}}, 404: {"error": {}}},
     deprecated=True,
 )
-def post_init_project(project_name: str, response: Response):
+def post_init_project(data: InitProject, response: Response):
     global cur_proj
 
-    if not project_name:
+    if not data.project_name:
         response.status_code = 400
         return {"error": "Project name is required"}
 
-    if project_name not in handler.project_names:
+    if data.project_name not in handler.project_names:
         response.status_code = 404
         return {"error": "Project does not exist"}
 
     # Set current project name
-    cur_proj = project_name
+    cur_proj = data.project_name
 
     return {"message": "Project initialized successfully"}
 
