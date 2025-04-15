@@ -16,11 +16,11 @@ from .errors import (
     ProjectAlreadyExists,
     ProjectNotFound,
 )
-from .handler import ProjectHandler
+from .handler import ProjectsHandler
 from .model.mapping_input import MappingInput
 
 origins = ["http://localhost:4200"]
-handler: ProjectHandler = None
+handler: ProjectsHandler = None
 cur_proj: str = None
 
 
@@ -29,7 +29,7 @@ async def lifespan(app: FastAPI):
     global handler
 
     # Set up
-    handler = ProjectHandler(Path(os.environ["PROJECTS_DIR"]))
+    handler = ProjectsHandler(Path(os.environ["PROJECTS_DIR"]))
     handler.load_projects()
 
     # Let the app do its job

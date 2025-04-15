@@ -1,33 +1,27 @@
-import json
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Dict, List
 
 from .classification import Classification
-from .compare import fill_classification_remark, generate_comparison
-from .compare import load_profiles as _load_profiles
-from .config import Config
+from .compare import fill_classification_remark
 from .consts import INSTRUCTIONS, REMARKS
-from .data.comparison import Comparison, get_field_by_id
+from .data.comparison import get_field_by_id
+from .data.project import Project
 from .errors import (
+    FieldNotFound,
     MappingNotFound,
     MappingTargetMissing,
     MappingTargetNotFound,
     MappingValueMissing,
-    ProjectAlreadyExists,
     ProjectNotFound,
 )
-from .manual_entries import (
-    MANUAL_ENTRIES,
-    MANUAL_ENTRIES_CLASSIFICATION,
-    MANUAL_ENTRIES_EXTRA,
-)
+from .manual_entries import MANUAL_ENTRIES_CLASSIFICATION, MANUAL_ENTRIES_EXTRA
 from .model.mapping_input import MappingInput
 
 
-class ProjectHandler:
+class ProjectsHandler:
     def __init__(self, projects_dir: Path):
         self.__projs_dir = projects_dir
-        self.__projs: Dict[str, Any] = None
+        self.__projs: Dict[str, Project] = None
 
     @property
     def project_names(self) -> List[str]:
@@ -38,60 +32,14 @@ class ProjectHandler:
 
         for path in self.__projs_dir.iterdir():
             # Only handle directories
-            if not path.is_dir():
-                continue
-
-            self.__load_project(path)
-
-    def __load_project(self, path: Path) -> None:
-
-        def project_obj():
-            return None
-
-        project_obj.dir = path
-        project_obj.config = Config.from_json(path / "config.json")
-        project_obj.data_dir = path / project_obj.config.data_dir
-
-        # Get profiles to compare
-        project_obj.profiles_to_compare_list = project_obj.config.profiles_to_compare
-
-        # Load profiles
-        load_profiles(project_obj)
-
-        # Read the manual entries
-        read_manual_entries(project_obj)
-
-        if not self.__projs_dir.exists():
-            raise Exception("PROJECT_DIR does not point to a valid directory")
-
-        # Add project to list
-        self.__projs[path.name] = project_obj
+            if path.is_dir():
+                self.__projs[path.name] = Project(path)
 
     def new_project(self, proj_name: str) -> None:
         project_path = self.__projs_dir / proj_name
 
-        if project_path.exists():
-            raise ProjectAlreadyExists()
-
-        project_path.mkdir(parents=True, exist_ok=True)
-
-        # Create empty manual_entries.yaml file
-        manual_entries_file = project_path / "manual_entries.yaml"
-        manual_entries_file.touch()
-
-        # Create default config.json file
-        config_file = project_path / "config.json"
-        config_data = {
-            "manual_entries_file": "manual_entries.yaml",
-            "data_dir": "data",
-            "html_output_dir": "docs",
-            "mapping_output_file": "mapping.json",
-            "profiles_to_compare": [],
-        }
-        config_file.write_text(json.dumps(config_data, indent=4))
-
         # Load the newly created project
-        self.__projs[proj_name] = self.__load_project(project_path)
+        self.__projs[proj_name] = Project.create(project_path)
 
     @staticmethod
     def get_classifications() -> Dict[str, List[Dict[str, str]]]:
@@ -136,40 +84,19 @@ class ProjectHandler:
             ]
         }
 
-    def get_mapping(self, project_name: str, id: str):
-        proj = self.__projs.get(project_name)
-
-        if proj is None:
-            raise ProjectNotFound()
-
-        comparison = proj.comparisons.get(id)
-
-        if not comparison:
-            raise MappingNotFound()
-
-        fill_classification_remark(comparison)
-        result = comparison.dict()
-
-        result["id"] = id
+    def get_mapping(self, project_name: str, mapping_id: str):
+        mapping = self.__get_mapping(project_name, mapping_id)
+        result = mapping.dict()
+        result["id"] = mapping_id
 
         return result
 
-    def get_mapping_fields(self, project_name: str, id: str):
-        proj = self.__projs.get(project_name)
-
-        if proj is None:
-            raise ProjectNotFound()
-
-        comparison = proj.comparisons.get(id)
-
-        if not comparison:
-            raise MappingNotFound()
-
-        fill_classification_remark(comparison)
+    def get_mapping_fields(self, project_name: str, mapping_id: str):
+        mapping = self.__get_mapping(project_name, mapping_id)
 
         result = {"id": id}
         result["fields"] = [
-            {"name": field.name, "id": field.id} for field in comparison.fields.values()
+            {"name": field.name, "id": field.id} for field in mapping.fields.values()
         ]
 
         return result
@@ -179,21 +106,12 @@ class ProjectHandler:
     ):
         proj = self.__projs.get(project_name)
 
-        if proj is None:
-            raise ProjectNotFound()
-
-        comparison = proj.comparisons.get(mapping_id)
-
-        if not comparison:
-            raise MappingNotFound()
-
-        # Easiest way to get the fields
-        fill_classification_remark(comparison)
-
-        field = get_field_by_id(comparison, field_id)
+        # Easiest way to get the fields is from mapping
+        mapping = self.__get_mapping(project_name, mapping_id, proj)
+        field = get_field_by_id(mapping, field_id)
 
         if field is None:
-            return None
+            raise FieldNotFound()
 
         action = Classification(mapping.action)
 
@@ -208,7 +126,7 @@ class ProjectHandler:
         new_entry = {MANUAL_ENTRIES_CLASSIFICATION: action}
         if action == Classification.COPY_FROM or action == Classification.COPY_TO:
             if target_id := mapping.target:
-                target = get_field_by_id(comparison, target_id)
+                target = get_field_by_id(mapping, target_id)
 
                 if target is None:
                     raise MappingTargetNotFound()
@@ -223,7 +141,7 @@ class ProjectHandler:
                 raise MappingValueMissing()
 
         # Clean up possible manual entry this was copied from before
-        manual_entries = MANUAL_ENTRIES[mapping_id]
+        manual_entries = proj.manual_entries[mapping_id]
         if (manual_entry := manual_entries[field.name]) and (
             manual_entry[MANUAL_ENTRIES_CLASSIFICATION] == Classification.COPY_FROM
             or manual_entry[MANUAL_ENTRIES_CLASSIFICATION] == Classification.COPY_TO
@@ -246,29 +164,22 @@ class ProjectHandler:
             }
 
         # Save the changes
-        MANUAL_ENTRIES.write()
+        manual_entries.write()
 
         return True
 
+    def __get_mapping(self, project_name, mapping_id, proj: Project = None):
+        if proj is None:
+            proj = self.__projs.get(project_name)
 
-def read_manual_entries(project):
-    manual_entries_file = project.dir / project.config.manual_entries_file
+        if proj is None:
+            raise ProjectNotFound()
 
-    if not manual_entries_file.exists():
-        manual_entries_file.touch()
+        mapping = proj.comparisons.get(mapping_id)
 
-    MANUAL_ENTRIES.read(manual_entries_file)
+        if not mapping:
+            raise MappingNotFound()
 
+        fill_classification_remark(mapping, proj.manual_entries)
 
-def load_profiles(project):
-    profile_maps = _load_profiles(project.profiles_to_compare_list, project.data_dir)
-    project.comparisons = {
-        entry.id: generate_comparison(entry) for entry in profile_maps.values()
-    }
-
-
-def _get_field_by_id(field_id: str, comparison: Comparison) -> Comparison | None:
-    for field in comparison.fields.values():
-        if field.id == field_id:
-            return field.name
-    return None
+        return mapping
