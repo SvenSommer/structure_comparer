@@ -50,19 +50,26 @@ app.add_middleware(
 
 
 @app.get("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+def ping():
+    return "pong"
 
 
-@app.get("/projects")
+@app.get("/projects", tags=["Projects"], deprecated=True)
+def get_projects_old():
+    return handler.project_names
+
+
+@app.get("/project", tags=["Projects"])
 def get_projects():
     return handler.project_names
 
 
 @app.post(
     "/init_project",
+    tags=["Projects"],
     status_code=200,
     responses={400: {"error": {}}, 404: {"error": {}}},
+    deprecated=True,
 )
 def post_init_project(project_name: str, response: Response):
     global cur_proj
@@ -81,7 +88,35 @@ def post_init_project(project_name: str, response: Response):
     return {"message": "Project initialized successfully"}
 
 
-@app.post("/create_project", status_code=201, responses={400: {}, 409: {}})
+@app.post(
+    "/create_project",
+    tags=["Projects"],
+    status_code=201,
+    responses={400: {}, 409: {}},
+    deprecated=True,
+)
+def create_project_old(project_name: str, response: Response):
+
+    if not project_name:
+        response.status_code = 400
+        return {"error": "Project name is required"}
+
+    try:
+        handler.new_project(project_name)
+
+    except ProjectAlreadyExists as e:
+        response.status_code = 409
+        return {"error": str(e)}
+
+    return {"message": "Project created successfully"}
+
+
+@app.post(
+    "/project/{project_name}",
+    tags=["Projects"],
+    status_code=201,
+    responses={400: {}, 409: {}},
+)
 def create_project(project_name: str, response: Response):
 
     if not project_name:
@@ -98,7 +133,7 @@ def create_project(project_name: str, response: Response):
     return {"message": "Project created successfully"}
 
 
-@app.get("/classification")
+@app.get("/classification", tags=["Classification"])
 def get_classifications():
     """
     Get all classifications
@@ -127,8 +162,8 @@ def get_classifications():
     return handler.get_classifications()
 
 
-@app.get("/mappings", responses={412: {}})
-def get_mappings(response: Response):
+@app.get("/mappings", tags=["Mappings"], responses={412: {}}, deprecated=True)
+def get_mappings_old(response: Response):
     """
     Get the available mappings
     Returns a list with all mappings, including the name and the url to access it.
@@ -209,8 +244,88 @@ def get_mappings(response: Response):
         return {"error": "Project not found"}
 
 
-@app.get("/mapping/{id}", responses={404: {}, 412: {}})
-def get_mapping(id: str, response: Response):
+@app.get("/project/{project_name}/mapping", tags=["Mappings"], responses={404: {}})
+def get_mappings(project_name: str, response: Response):
+    """
+    Get the available mappings
+    Returns a list with all mappings, including the name and the url to access it.
+    ---
+    produces:
+      - application/json
+    definitions:
+      - schema:
+          id: OverviewMapping
+          type: object
+          required:
+            - id
+            - name
+            - url
+            - version
+            - last_updated
+            - status
+            - sources
+            - target
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            url:
+              type: string
+            version:
+              type: string
+            last_updated:
+              type: string
+            status:
+              type: string
+            sources:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  profile_key:
+                    type: string
+                  simplifier_url:
+                    type: string
+                  version:
+                    type: string
+            target:
+              type: object
+              properties:
+                name:
+                  type: string
+                profile_key:
+                  type: string
+                simplifier_url:
+                  type: string
+                version:
+                  type: string
+    responses:
+      200:
+        description: Available mappings
+        schema:
+          required:
+            - mappings
+          properties:
+            mappings:
+              type: array
+              items:
+                $ref: "#/definitions/OverviewMapping"
+    """
+    try:
+        return handler.get_mappings(project_name)
+
+    except ProjectNotFound:
+        response.status_code = 404
+        return {"error": "Project not found"}
+
+
+@app.get(
+    "/mapping/{id}", tags=["Mappings"], responses={404: {}, 412: {}}, deprecated=True
+)
+def get_mapping_old(id: str, response: Response):
     """
     Get a specific mapping
     Returns the mapping with the given id. This includes all details like classifications, presences in profiles, etc.
@@ -309,8 +424,95 @@ def get_mapping(id: str, response: Response):
         return {"error": str(e)}
 
 
-@app.get("/mapping/{id}/fields", responses={404: {}, 412: {}})
-def get_mapping_fields(id: str, response: Response):
+@app.get(
+    "/project/{project_name}/mapping/{mapping_id}",
+    tags=["Mappings"],
+    responses={404: {}},
+)
+def get_mapping(project_name: str, mapping_id: str, response: Response):
+    """
+    Get the available mappings
+    Returns a list with all mappings, including the name and the url to access it.
+    ---
+    produces:
+      - application/json
+    definitions:
+      - schema:
+          id: OverviewMapping
+          type: object
+          required:
+            - id
+            - name
+            - url
+            - version
+            - last_updated
+            - status
+            - sources
+            - target
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            url:
+              type: string
+            version:
+              type: string
+            last_updated:
+              type: string
+            status:
+              type: string
+            sources:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  profile_key:
+                    type: string
+                  simplifier_url:
+                    type: string
+                  version:
+                    type: string
+            target:
+              type: object
+              properties:
+                name:
+                  type: string
+                profile_key:
+                  type: string
+                simplifier_url:
+                  type: string
+                version:
+                  type: string
+    responses:
+      200:
+        description: Available mappings
+        schema:
+          required:
+            - mappings
+          properties:
+            mappings:
+              type: array
+              items:
+                $ref: "#/definitions/OverviewMapping"
+    """
+    try:
+        return handler.get_mapping(project_name, mapping_id)
+
+    except (ProjectNotFound, MappingNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
+
+
+@app.get(
+    "/mapping/{id}/fields",
+    tags=["Fields"],
+    responses={404: {}, 412: {}},
+    deprecated=True,
+)
+def get_mapping_fields_old(id: str, response: Response):
     """
     Get the fields of a mapping
     Returns a brief list of the fields
@@ -368,11 +570,72 @@ def get_mapping_fields(id: str, response: Response):
         return {"error": str(e)}
 
 
+@app.get(
+    "/project/{project_name}/mapping/{mapping_id}/field",
+    tags=["Fields"],
+    responses={404: {}},
+)
+def get_mapping_fields(project_name: str, mapping_id: str, response: Response):
+    """
+    Get the fields of a mapping
+    Returns a brief list of the fields
+    ---
+    produces:
+      - application/json
+    definitions:
+      - schema:
+          id: MappingFieldShort
+          type: object
+          reuqired:
+            - id
+            - name
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+      - schema:
+          id: MappingShort
+          type: object
+          required:
+            - id
+            - fields
+          properties:
+            fields:
+              type: array
+              items:
+                $ref: "#/definitions/MappingFieldShort"
+            id:
+              type: string
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: The id of the mapping
+    responses:
+      200:
+        description: The fields of the mapping
+        schema:
+          $ref: "#/definitions/MappingShort"
+      404:
+        description: Mapping not found
+    """
+    try:
+        return handler.get_mapping_fields(project_name, mapping_id)
+
+    except (ProjectNotFound, MappingNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
+
+
 @app.post(
     "/mapping/{mapping_id}/field/{field_id}/classification",
+    tags=["Fields"],
     responses={400: {}, 404: {}, 412: {}},
+    deprecated=True,
 )
-def post_mapping_classification(
+def post_mapping_field_classification_old(
     mapping_id: str, field_id: str, mapping: MappingInput, response: Response
 ):
     """
@@ -434,6 +697,89 @@ def post_mapping_classification(
     try:
         return handler.set_mapping_classification(
             cur_proj, mapping_id, field_id, mapping
+        )
+
+    except (ProjectNotFound, MappingNotFound, FieldNotFound) as e:
+        response.status_code = 404
+        return {"error": str(e)}
+
+    except (
+        MappingActionNotAllowed,
+        MappingTargetMissing,
+        MappingTargetNotFound,
+        MappingValueMissing,
+    ) as e:
+        response.status_code = 400
+        return {"error": str(e)}
+
+
+@app.post(
+    "/project/{project_name}/mapping/{mapping_id}/field/{field_id}/classification",
+    tags=["Fields"],
+    responses={400: {}, 404: {}},
+)
+def post_mapping_field_classification(
+    project_name: str,
+    mapping_id: str,
+    field_id: str,
+    mapping: MappingInput,
+    response: Response,
+):
+    """
+    Post a manual classification for a field
+    Overrides the default action of a field. `action` that should set for the field, `target` is the target of copy action and `value` may be a fixed value.
+    ---
+    consumes:
+      - application/json
+    parameters:
+      - in: path
+        name: mapping_id
+        type: string
+        required: true
+        description: The id of the mapping
+      - in: path
+        name: field_id
+        type: string
+        required: true
+        description: The id of the field
+      - in: body
+        name: body
+        schema:
+          required:
+            - action
+          properties:
+            action:
+              type: string
+              enum:
+                - copy_from
+                - copy_to
+                - fixed
+                - use
+                - not_use
+                - empty
+              description: Which action should be performed
+            target:
+              type: string
+              description: Field that is targetted (for copy actions)
+            value:
+              type: string
+              description: The fixed value
+    responses:
+      200:
+        description: The field was updated
+      400:
+        description: There was something wrong with the request
+        schema:
+          properties:
+            error:
+              type: string
+              description: An error message
+      404:
+        description: Mapping or field not found
+    """
+    try:
+        return handler.set_mapping_classification(
+            project_name, mapping_id, field_id, mapping
         )
 
     except (ProjectNotFound, MappingNotFound, FieldNotFound) as e:
