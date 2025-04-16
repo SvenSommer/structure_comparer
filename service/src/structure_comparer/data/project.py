@@ -45,7 +45,7 @@ class Project:
         self.manual_entries.read(manual_entries_file)
 
     @staticmethod
-    def create(path: Path, project_name: str, project_key: str) -> "Project":
+    def create(path: Path, project_name: str) -> "Project":
         path.mkdir(parents=True, exist_ok=True)
 
         # Create empty manual_entries.yaml file
