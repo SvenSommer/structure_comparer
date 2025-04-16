@@ -22,6 +22,7 @@ from .model.init_project_input import InitProjectInput
 from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
+from .model.project import ProjectInput as ProjectInputModel
 
 origins = ["http://localhost:4200"]
 handler: ProjectsHandler = None
@@ -117,7 +118,7 @@ async def create_project_old(project_name: str, response: Response):
         return {"error": "Project name is required"}
 
     try:
-        handler.new_project(project_name)
+        handler.update_or_create_project(project_name)
 
     except ProjectAlreadyExists as e:
         response.status_code = 409
@@ -130,22 +131,13 @@ async def create_project_old(project_name: str, response: Response):
     "/project/{project_key}",
     tags=["Projects"],
     status_code=201,
-    responses={400: {}, 409: {}},
 )
-async def create_project(project_key: str, response: Response):
+async def update_or_create_project(
+    project_key: str, project: ProjectInputModel
+) -> ProjectModel:
+    proj = handler.update_or_create_project(project_key, project)
 
-    if not project_key:
-        response.status_code = 400
-        return {"error": "Project name is required"}
-
-    try:
-        handler.new_project(project_key)
-
-    except ProjectAlreadyExists as e:
-        response.status_code = 409
-        return {"error": str(e)}
-
-    return {"message": "Project created successfully"}
+    return proj
 
 
 @app.get("/classification", tags=["Classification"])

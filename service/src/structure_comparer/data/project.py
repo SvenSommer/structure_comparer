@@ -62,6 +62,11 @@ class Project:
     def name(self):
         return self.config.name
 
+    @name.setter
+    def name(self, value: str):
+        self.config.name = value
+        self.config.write()
+
     def to_model(self, project_key: str) -> ProjectModel:
         mappings = [comp.to_model(project_key) for comp in self.comparisons.values()]
 

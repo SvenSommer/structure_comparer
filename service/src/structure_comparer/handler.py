@@ -17,6 +17,7 @@ from .manual_entries import MANUAL_ENTRIES_CLASSIFICATION, MANUAL_ENTRIES_EXTRA
 from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
+from .model.project import ProjectInput as ProjectInputModel
 
 
 class ProjectsHandler:
@@ -36,11 +37,23 @@ class ProjectsHandler:
             if path.is_dir():
                 self.__projs[path.name] = Project(path)
 
-    def new_project(self, proj_name: str) -> None:
-        project_path = self.__projs_dir / proj_name
+    def update_or_create_project(
+        self, proj_key: str, input: ProjectInputModel
+    ) -> ProjectModel:
 
-        # Load the newly created project
-        self.__projs[proj_name] = Project.create(project_path, proj_name)
+        # Check if update
+        if proj := self.__projs.get(proj_key):
+            proj.name = input.name
+
+        # Create new one otherwise
+        else:
+            project_path = self.__projs_dir / proj_key
+
+            # Load the newly created project
+            proj = Project.create(project_path, input.name)
+            self.__projs[proj_key] = proj
+
+        return proj.to_model(proj_key)
 
     @staticmethod
     def get_classifications() -> Dict[str, List[Dict[str, str]]]:
