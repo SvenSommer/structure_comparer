@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from structure_comparer.config import Config
+from structure_comparer.data.config import Config
 from structure_comparer.manual_entries import MANUAL_ENTRIES
 
 from structure_comparer import handler

@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
-from structure_comparer.config import CompareConfig, Config, ProfileConfig
+
+from structure_comparer.data.config import CompareConfig, Config, ProfileConfig
 
 SOURCE_PROFILE = {
     "file": "source1.json",
@@ -85,7 +86,7 @@ def test_compare_config_from_dict_defaults():
         "mappings": {
             "sourceprofiles": [],
             "targetprofile": TARGET_PROFILE,
-        }
+        },
     }
 
     now = datetime.now()
@@ -95,8 +96,9 @@ def test_compare_config_from_dict_defaults():
     assert result.version == "1.0"
     assert result.status == "draft"
     assert result.mappings is not None
-    assert datetime.strptime(result.last_updated, "%Y-%m-%d %H:%M:%S") - \
-        timedelta(hours=2) - now < timedelta(minutes=5)
+    assert datetime.strptime(result.last_updated, "%Y-%m-%d %H:%M:%S") - timedelta(
+        hours=2
+    ) - now < timedelta(minutes=5)
 
     assert len(result.mappings.source_profiles) == 0
     assert result.mappings.target_profile is not None
@@ -115,9 +117,7 @@ def test_profile_config_from_dict():
 
 
 def test_profile_config_from_dict_defaults():
-    input = {
-        "file": "foo.json"
-    }
+    input = {"file": "foo.json"}
 
     result = ProfileConfig.from_dict(input)
 
