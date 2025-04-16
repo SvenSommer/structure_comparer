@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from .profile import Profile
 
 
-class Mapping(BaseModel):
+class MappingOverview(BaseModel):
     id: str
     name: str
     url: str

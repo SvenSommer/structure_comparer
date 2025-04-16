@@ -13,7 +13,7 @@ from ..manual_entries import (
     MANUAL_ENTRIES_REMARK,
     ManualEntries,
 )
-from ..model.mapping import Mapping as MappingModel
+from ..model.mapping import MappingOverview as MappingOverviewModel
 from .config import MappingConfig, MappingProfileConfig
 from .profile import Profile, ProfileField
 
@@ -207,6 +207,10 @@ class Mapping:
         return f"{source_profiles} -> {target_profile}"
 
     @property
+    def url(self) -> str:
+        return f"/project/{self.__project.key}/mapping/{self.id}"
+
+    @property
     def manual_entries(self) -> ManualEntries:
         return self.__project.manual_entries
 
@@ -271,13 +275,12 @@ class Mapping:
         #     return comparison
         pass
 
-    def to_model(self, proj_name: str) -> MappingModel:
+    def to_overview_model(self) -> MappingOverviewModel:
         sources = [p.to_model() for p in self.sources]
         target = self.target.to_model()
-        url = f"/project/{proj_name}/mapping/{self.id}"
 
         try:
-            model = MappingModel(
+            model = MappingOverviewModel(
                 id=self.id,
                 name=self.name,
                 version=self.version,
@@ -285,7 +288,7 @@ class Mapping:
                 status=self.status,
                 sources=sources,
                 target=target,
-                url=url,
+                url=self.url,
             )
 
         except ValidationError as e:
