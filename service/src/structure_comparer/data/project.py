@@ -1,7 +1,6 @@
 from pathlib import Path
 from typing import Dict
 
-from ..compare import generate_comparison
 from ..manual_entries import ManualEntries
 from ..model.project import Project as ProjectModel
 from .comparison import Comparison
@@ -29,7 +28,7 @@ class Project:
 
     def __load_profiles(self):
         self.comparisons = {
-            profiles.id: generate_comparison(
+            profiles.id: Comparison.create(
                 ProfileMap.from_json(profiles, self.data_dir)
             )
             for profiles in self.profiles_to_compare_list

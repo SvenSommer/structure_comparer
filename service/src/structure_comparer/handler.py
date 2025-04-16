@@ -2,9 +2,7 @@ from pathlib import Path
 from typing import Dict, List
 
 from .classification import Classification
-from .compare import fill_classification_remark
 from .consts import INSTRUCTIONS, REMARKS
-from .data.comparison import get_field_by_id
 from .data.project import Project
 from .errors import (
     FieldNotFound,
@@ -14,6 +12,7 @@ from .errors import (
     MappingValueMissing,
     ProjectNotFound,
 )
+from .helpers import get_field_by_id
 from .manual_entries import MANUAL_ENTRIES_CLASSIFICATION, MANUAL_ENTRIES_EXTRA
 from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
@@ -160,6 +159,6 @@ class ProjectsHandler:
         if not mapping:
             raise MappingNotFound()
 
-        fill_classification_remark(mapping, proj.manual_entries)
+        mapping.fill_classification_remark(proj.manual_entries)
 
         return mapping
