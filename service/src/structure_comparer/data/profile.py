@@ -36,8 +36,8 @@ class ProfileMap:
 
     @staticmethod
     def from_json(compare_config: CompareConfig, datapath: Path) -> "ProfileMap":
-        sources = compare_config.mappings.source_profiles
-        target = compare_config.mappings.target_profile
+        sources = compare_config.mappings.sourceprofiles
+        target = compare_config.mappings.targetprofile
 
         profiles_map = ProfileMap()
         profiles_map.id = compare_config.id
