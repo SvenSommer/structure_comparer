@@ -6,6 +6,7 @@ from ..model.project import Project as ProjectModel
 from ..model.project import ProjectOverview as ProjectOverviewModel
 from .comparison import Comparison
 from .config import ProjectConfig
+from .package import Package
 from .profile import ProfileMap
 
 
@@ -13,19 +14,25 @@ class Project:
     def __init__(self, path: Path):
         self.dir = path
         self.config = ProjectConfig.from_json(path / "config.json")
-        self.data_dir = path / self.config.data_dir
 
         self.comparisons: Dict[str, Comparison] = None
         self.manual_entries: ManualEntries = None
 
+        self.pkgs: list[Package] = None
+
         # Get profiles to compare
         self.profiles_to_compare_list = self.config.profiles_to_compare
+
+        self.__load_packages()
 
         # Load profiles
         self.__load_profiles()
 
         # Read the manual entries
         self.__read_manual_entries()
+
+    def __load_packages(self) -> None:
+        self.pkgs = [Package(dir) for dir in self.data_dir.iterdir() if dir.is_dir()]
 
     def __load_profiles(self):
         self.comparisons = {
@@ -76,10 +83,15 @@ class Project:
         self.config.name = value
         self.config.write()
 
+    @property
+    def data_dir(self) -> Path:
+        return self.dir / self.config.data_dir
+
     def to_model(self) -> ProjectModel:
         mappings = [comp.to_model(self.key) for comp in self.comparisons.values()]
+        pkgs = [p.to_model() for p in self.pkgs]
 
-        return ProjectModel(name=self.name, mappings=mappings)
+        return ProjectModel(name=self.name, mappings=mappings, packages=pkgs)
 
     def to_overview_model(self) -> ProjectOverviewModel:
         return ProjectOverviewModel(name=self.name, url=self.url)

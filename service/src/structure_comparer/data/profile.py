@@ -61,10 +61,11 @@ class ProfileMap:
 
 
 class Profile:
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: dict, package=None) -> None:
         self.__data = StructureDefinition.model_validate(data)
         self.__fields: List[str, ProfileField] = None
         self.__init_fields()
+        self.__package = package
 
     def __str__(self) -> str:
         return f"(name={self.name}, version={self.version}, fields={self.fields})"
@@ -80,14 +81,16 @@ class Profile:
                 self.__fields[field.id] = field
 
     @staticmethod
-    def from_json(path: Path) -> "Profile":
+    def from_json(path: Path, package=None) -> "Profile":
         if not path.exists():
             raise FileNotFoundError(
                 f"The file {path} does not exist. Please check the file path and try again."
             )
 
         try:
-            return Profile(data=json.loads(path.read_text(encoding="utf-8")))
+            return Profile(
+                data=json.loads(path.read_text(encoding="utf-8")), package=package
+            )
 
         except Exception as e:
             logger.error("failed to read file '%s'", str(path))
@@ -108,6 +111,10 @@ class Profile:
     @property
     def key(self) -> str:
         return f"{self.name}|{self.version}"
+
+    @property
+    def id(self) -> str:
+        return self.__data.id
 
     def __lt__(self, other: "Profile") -> bool:
         return self.key < other.key
