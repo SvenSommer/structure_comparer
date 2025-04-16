@@ -50,7 +50,7 @@ class GetMappingsOutput(BaseModel):
     mappings: list[MappingModel]
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(title="Structure Comparer", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
