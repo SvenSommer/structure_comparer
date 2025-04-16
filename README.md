@@ -1,11 +1,13 @@
 # KBV and ePA Medication Profile Comparison
 
 ## Overview
+
 This document provides a summary of the differences between the KBV E-Rezept profiles and the ePA Medication profile, as identified by the compare.py script. Additionally, a remark field is generated and adjusted to give advice for the mapping process.
 
-
 ## Hosted Results
+
 The results of the comparison can be viewed directly through these hosted links:
+
 - [GEM_ERP_PR_MedicationDispense|1.3.1 -> EPAMedicationDispense|1.0.2-rc1](https://svensommer.github.io/structure_comparer/projects/erp/docs/GEM_ERP_PR_MedicationDispense|1.3.1_to_EPAMedicationDispense|1.0.2-rc1.html)
 - [GEM_ERP_PR_MedicationDispense|1.3.1 -> GEM_ERP_PR_MedicationDispense|1.4.0-rc1](https://svensommer.github.io/structure_comparer/projects/erp/docs/GEM_ERP_PR_MedicationDispense|1.3.1_to_GEM_ERP_PR_MedicationDispense|1.4.0-rc1.html)
 - [GEM_ERP_PR_MedicationDispense|1.4.0-rc1 -> EPAMedicationDispense|1.0.2-rc1](https://svensommer.github.io/structure_comparer/projects/erp/docs/GEM_ERP_PR_MedicationDispense|1.4.0-rc1_to_EPAMedicationDispense|1.0.2-rc1.html)
@@ -30,7 +32,7 @@ To execute a request, simply click on the `Send Request` link located above the 
 
 ### Frontend
 
-Frontend is currently moved to a seperate Repo: https://github.com/SvenSommer/structure_comparer_frontend
+Frontend is currently moved to a [seperate Repo](https://github.com/SvenSommer/structure_comparer_frontend)
 
 #### Features
 
@@ -43,9 +45,11 @@ Frontend is currently moved to a seperate Repo: https://github.com/SvenSommer/st
 #### Building for Production
 
 To build the frontend for production, run the following command:
-    ```bash
-    ng build --prod
-    ```
+
+```bash
+ng build --prod
+```
+
 This will create a `dist/` directory with optimized files ready to be deployed to a production server.
 
 For more information on Angular development, visit [Angular's official documentation](https://angular.io/docs).
