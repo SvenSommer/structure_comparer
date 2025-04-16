@@ -3,7 +3,7 @@ import argparse
 import json
 from pathlib import Path
 
-from structure_comparer.config import Config
+from structure_comparer.data.config import Config
 
 from structure_comparer import (
     MANUAL_ENTRIES,

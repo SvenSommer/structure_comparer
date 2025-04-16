@@ -36,3 +36,7 @@ class MappingTargetMissing(Exception):
 class MappingValueMissing(Exception):
     def __init__(self, msg="Mapping value missing", *args, **kwargs):
         super().__init__(msg, *args, **kwargs)
+
+
+class InitializationError(Exception):
+    pass

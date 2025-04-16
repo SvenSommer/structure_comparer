@@ -5,7 +5,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, ValidationError
 
-from .errors import InitializationError
+from ..errors import InitializationError
 
 logger = logging.getLogger(__name__)
 

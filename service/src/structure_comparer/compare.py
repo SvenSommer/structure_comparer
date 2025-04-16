@@ -4,11 +4,10 @@ from pathlib import Path
 from typing import Dict, List
 
 from .classification import Classification
-from .config import CompareConfig
 from .consts import REMARKS
 from .data.comparison import Comparison, ComparisonField
+from .data.config import CompareConfig
 from .data.profile import ProfileMap
-from .helpers import split_parent_child
 from .manual_entries import (
     MANUAL_ENTRIES_CLASSIFICATION,
     MANUAL_ENTRIES_EXTRA,

@@ -3,10 +3,10 @@ from pathlib import Path
 from typing import Dict
 
 from ..compare import generate_comparison, load_profiles
-from ..config import Config
 from ..manual_entries import ManualEntries
 from ..model.project import Project as ProjectModel
 from .comparison import Comparison
+from .config import Config
 
 
 class Project:

@@ -7,9 +7,9 @@ from uuid import uuid4
 from fhir.resources.R4B.elementdefinition import ElementDefinition
 from fhir.resources.R4B.structuredefinition import StructureDefinition
 from pydantic import ValidationError
-from structure_comparer.config import CompareConfig
 
 from ..model.profile import Profile as ProfileModel
+from .config import CompareConfig
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]
 IGNORE_SLICES = [
