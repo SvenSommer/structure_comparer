@@ -25,7 +25,7 @@ class ProjectsHandler:
         self.__projs: Dict[str, Project] = None
 
     @property
-    def project_names(self) -> List[str]:
+    def project_keys(self) -> List[str]:
         return list(self.__projs.keys())
 
     def load_projects(self) -> None:
