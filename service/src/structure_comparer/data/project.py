@@ -3,6 +3,7 @@ from typing import Dict
 
 from ..manual_entries import ManualEntries
 from ..model.project import Project as ProjectModel
+from ..model.project import ProjectOverview as ProjectOverviewModel
 from .comparison import Comparison
 from .config import ProjectConfig
 from .profile import ProfileMap
@@ -44,7 +45,7 @@ class Project:
         self.manual_entries.read(manual_entries_file)
 
     @staticmethod
-    def create(path: Path, project_name: str) -> "Project":
+    def create(path: Path, project_name: str, project_key: str) -> "Project":
         path.mkdir(parents=True, exist_ok=True)
 
         # Create empty manual_entries.yaml file
@@ -59,16 +60,26 @@ class Project:
         return Project(path)
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.config.name
+
+    @property
+    def key(self) -> str:
+        return self.dir.name
+
+    @property
+    def url(self) -> str:
+        return "/project/" + self.key
 
     @name.setter
     def name(self, value: str):
         self.config.name = value
         self.config.write()
 
-    def to_model(self, project_key: str) -> ProjectModel:
-        mappings = [comp.to_model(project_key) for comp in self.comparisons.values()]
+    def to_model(self) -> ProjectModel:
+        mappings = [comp.to_model(self.key) for comp in self.comparisons.values()]
 
-        model = ProjectModel(name=self.name, mappings=mappings)
-        return model
+        return ProjectModel(name=self.name, mappings=mappings)
+
+    def to_overview_model(self) -> ProjectOverviewModel:
+        return ProjectOverviewModel(name=self.name, url=self.url)
