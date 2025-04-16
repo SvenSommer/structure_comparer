@@ -23,6 +23,7 @@ from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
 from .model.project import ProjectInput as ProjectInputModel
+from .model.project import ProjectList as ProjectListModel
 
 origins = ["http://localhost:4200"]
 handler: ProjectsHandler = None
@@ -65,8 +66,8 @@ async def get_projects_old():
 
 
 @app.get("/project", tags=["Projects"])
-async def get_project_keys() -> list[str]:
-    return handler.project_keys
+async def get_project_list() -> ProjectListModel:
+    return handler.get_project_list()
 
 
 @app.get("/project/{project_key}", tags=["Projects"])

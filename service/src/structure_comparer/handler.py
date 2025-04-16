@@ -18,6 +18,7 @@ from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
 from .model.project import ProjectInput as ProjectInputModel
+from .model.project import ProjectList as ProjectListModel
 
 
 class ProjectsHandler:
@@ -37,6 +38,18 @@ class ProjectsHandler:
             if path.is_dir():
                 self.__projs[path.name] = Project(path)
 
+    def get_project_list(self) -> ProjectListModel:
+        projects = [p.to_overview_model() for p in self.__projs.values()]
+        return ProjectListModel(projects=projects)
+
+    def get_project(self, project_key: str) -> ProjectModel:
+        proj = self.__projs.get(project_key)
+
+        if proj is None:
+            raise ProjectNotFound()
+
+        return proj.to_model()
+
     def update_or_create_project(
         self, proj_key: str, input: ProjectInputModel
     ) -> ProjectModel:
@@ -53,7 +66,7 @@ class ProjectsHandler:
             proj = Project.create(project_path, input.name)
             self.__projs[proj_key] = proj
 
-        return proj.to_model(proj_key)
+        return proj.to_model()
 
     @staticmethod
     def get_classifications() -> Dict[str, List[Dict[str, str]]]:
@@ -62,14 +75,6 @@ class ProjectsHandler:
             for c in Classification
         ]
         return {"classifications": classifications}
-
-    def get_project(self, project_key: str) -> ProjectModel:
-        proj = self.__projs.get(project_key)
-
-        if proj is None:
-            raise ProjectNotFound()
-
-        return proj.to_model(project_key)
 
     def get_mappings(self, project_key: str) -> List[MappingModel]:
         proj = self.__projs.get(project_key)

@@ -10,3 +10,12 @@ class Project(BaseModel):
 
 class ProjectInput(BaseModel):
     name: str
+
+
+class ProjectOverview(BaseModel):
+    name: str
+    url: str
+
+
+class ProjectList(BaseModel):
+    projects: list[ProjectOverview]
