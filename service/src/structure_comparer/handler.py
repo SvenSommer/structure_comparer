@@ -17,6 +17,7 @@ from .manual_entries import MANUAL_ENTRIES_CLASSIFICATION, MANUAL_ENTRIES_EXTRA
 from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
+from .model.project import ProjectInput as ProjectInputModel
 
 
 class ProjectsHandler:
@@ -25,7 +26,7 @@ class ProjectsHandler:
         self.__projs: Dict[str, Project] = None
 
     @property
-    def project_names(self) -> List[str]:
+    def project_keys(self) -> List[str]:
         return list(self.__projs.keys())
 
     def load_projects(self) -> None:
@@ -36,11 +37,23 @@ class ProjectsHandler:
             if path.is_dir():
                 self.__projs[path.name] = Project(path)
 
-    def new_project(self, proj_name: str) -> None:
-        project_path = self.__projs_dir / proj_name
+    def update_or_create_project(
+        self, proj_key: str, input: ProjectInputModel
+    ) -> ProjectModel:
 
-        # Load the newly created project
-        self.__projs[proj_name] = Project.create(project_path)
+        # Check if update
+        if proj := self.__projs.get(proj_key):
+            proj.name = input.name
+
+        # Create new one otherwise
+        else:
+            project_path = self.__projs_dir / proj_key
+
+            # Load the newly created project
+            proj = Project.create(project_path, input.name)
+            self.__projs[proj_key] = proj
+
+        return proj.to_model(proj_key)
 
     @staticmethod
     def get_classifications() -> Dict[str, List[Dict[str, str]]]:
@@ -50,28 +63,28 @@ class ProjectsHandler:
         ]
         return {"classifications": classifications}
 
-    def get_project(self, project_name: str) -> ProjectModel:
-        proj = self.__projs.get(project_name)
+    def get_project(self, project_key: str) -> ProjectModel:
+        proj = self.__projs.get(project_key)
 
         if proj is None:
             raise ProjectNotFound()
 
-        return proj.to_model(project_name)
+        return proj.to_model(project_key)
 
-    def get_mappings(self, project_name: str) -> List[MappingModel]:
-        proj = self.__projs.get(project_name)
+    def get_mappings(self, project_key: str) -> List[MappingModel]:
+        proj = self.__projs.get(project_key)
 
         if proj is None:
             raise ProjectNotFound()
 
-        return [comp.to_model(project_name) for comp in proj.comparisons.values()]
+        return [comp.to_model(project_key) for comp in proj.comparisons.values()]
 
-    def get_mapping(self, project_name: str, mapping_id: str) -> MappingModel:
-        mapping = self.__get_mapping(project_name, mapping_id)
-        return mapping.to_model(project_name)
+    def get_mapping(self, project_key: str, mapping_id: str) -> MappingModel:
+        mapping = self.__get_mapping(project_key, mapping_id)
+        return mapping.to_model(project_key)
 
-    def get_mapping_fields(self, project_name: str, mapping_id: str):
-        mapping = self.__get_mapping(project_name, mapping_id)
+    def get_mapping_fields(self, project_key: str, mapping_id: str):
+        mapping = self.__get_mapping(project_key, mapping_id)
 
         result = {"id": mapping_id}
         result["fields"] = [
@@ -81,12 +94,12 @@ class ProjectsHandler:
         return result
 
     def set_mapping_classification(
-        self, project_name: str, mapping_id: str, field_id: str, mapping: MappingInput
+        self, project_key: str, mapping_id: str, field_id: str, mapping: MappingInput
     ):
-        proj = self.__projs.get(project_name)
+        proj = self.__projs.get(project_key)
 
         # Easiest way to get the fields is from mapping
-        mapping = self.__get_mapping(project_name, mapping_id, proj)
+        mapping = self.__get_mapping(project_key, mapping_id, proj)
         field = get_field_by_id(mapping, field_id)
 
         if field is None:
@@ -147,9 +160,9 @@ class ProjectsHandler:
 
         return True
 
-    def __get_mapping(self, project_name, mapping_id, proj: Project = None):
+    def __get_mapping(self, project_key, mapping_id, proj: Project = None):
         if proj is None:
-            proj = self.__projs.get(project_name)
+            proj = self.__projs.get(project_key)
 
         if proj is None:
             raise ProjectNotFound()

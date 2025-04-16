@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from structure_comparer.data.config import CompareConfig, Config, ProfileConfig
+from structure_comparer.data.config import CompareConfig, ProfileConfig, ProjectConfig
 
 SOURCE_PROFILE = {
     "file": "source1.json",
@@ -39,7 +39,7 @@ FULL_EXAMPLE = {
 
 
 def test_config_from_dict():
-    result = Config.from_dict(FULL_EXAMPLE)
+    result = ProjectConfig.from_dict(FULL_EXAMPLE)
 
     assert result.manual_entries_file == "manual_entries.json"
     assert result.data_dir == "data"
@@ -55,7 +55,7 @@ def test_config_from_dict_defaults():
         "profiles_to_compare": [],
     }
 
-    result = Config.from_dict(input)
+    result = ProjectConfig.from_dict(input)
 
     assert result.manual_entries_file == "manual_entries.yaml"
     assert result.data_dir == "data"

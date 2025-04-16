@@ -22,6 +22,7 @@ from .model.init_project_input import InitProjectInput
 from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
+from .model.project import ProjectInput as ProjectInputModel
 
 origins = ["http://localhost:4200"]
 handler: ProjectsHandler = None
@@ -60,18 +61,18 @@ async def ping():
 
 @app.get("/projects", tags=["Projects"], deprecated=True)
 async def get_projects_old():
-    return handler.project_names
+    return handler.project_keys
 
 
 @app.get("/project", tags=["Projects"])
-async def get_projects() -> list[str]:
-    return handler.project_names
+async def get_project_keys() -> list[str]:
+    return handler.project_keys
 
 
-@app.get("/project/{project_name}", tags=["Projects"])
-async def get_project(project_name: str, response: Response) -> ProjectModel:
+@app.get("/project/{project_key}", tags=["Projects"])
+async def get_project(project_key: str, response: Response) -> ProjectModel:
     try:
-        proj = handler.get_project(project_name)
+        proj = handler.get_project(project_key)
         return proj
 
     except ProjectNotFound:
@@ -93,7 +94,7 @@ async def post_init_project(data: InitProjectInput, response: Response):
         response.status_code = 400
         return {"error": "Project name is required"}
 
-    if data.project_name not in handler.project_names:
+    if data.project_name not in handler.project_keys:
         response.status_code = 404
         return {"error": "Project does not exist"}
 
@@ -117,7 +118,7 @@ async def create_project_old(project_name: str, response: Response):
         return {"error": "Project name is required"}
 
     try:
-        handler.new_project(project_name)
+        handler.update_or_create_project(project_name)
 
     except ProjectAlreadyExists as e:
         response.status_code = 409
@@ -127,25 +128,16 @@ async def create_project_old(project_name: str, response: Response):
 
 
 @app.post(
-    "/project/{project_name}",
+    "/project/{project_key}",
     tags=["Projects"],
     status_code=201,
-    responses={400: {}, 409: {}},
 )
-async def create_project(project_name: str, response: Response):
+async def update_or_create_project(
+    project_key: str, project: ProjectInputModel
+) -> ProjectModel:
+    proj = handler.update_or_create_project(project_key, project)
 
-    if not project_name:
-        response.status_code = 400
-        return {"error": "Project name is required"}
-
-    try:
-        handler.new_project(project_name)
-
-    except ProjectAlreadyExists as e:
-        response.status_code = 409
-        return {"error": str(e)}
-
-    return {"message": "Project created successfully"}
+    return proj
 
 
 @app.get("/classification", tags=["Classification"])
@@ -261,12 +253,12 @@ async def get_mappings_old(response: Response) -> GetMappingsOutput:
 
 
 @app.get(
-    "/project/{project_name}/mapping",
+    "/project/{project_key}/mapping",
     tags=["Mappings"],
     responses={404: {}},
     deprecated=True,
 )
-async def get_mappings(project_name: str, response: Response) -> GetMappingsOutput:
+async def get_mappings(project_key: str, response: Response) -> GetMappingsOutput:
     """
     Get the available mappings
     Returns a list with all mappings, including the name and the url to access it.
@@ -336,7 +328,7 @@ async def get_mappings(project_name: str, response: Response) -> GetMappingsOutp
                 $ref: "#/async definitions/OverviewMapping"
     """
     try:
-        mappings = handler.get_mappings(project_name)
+        mappings = handler.get_mappings(project_key)
         return GetMappingsOutput(mappings=mappings)
 
     except ProjectNotFound:
@@ -447,12 +439,12 @@ async def get_mapping_old(id: str, response: Response) -> MappingModel:
 
 
 @app.get(
-    "/project/{project_name}/mapping/{mapping_id}",
+    "/project/{project_key}/mapping/{mapping_id}",
     tags=["Mappings"],
     responses={404: {}},
 )
 async def get_mapping(
-    project_name: str, mapping_id: str, response: Response
+    project_key: str, mapping_id: str, response: Response
 ) -> MappingModel:
     """
     Get the available mappings
@@ -523,7 +515,7 @@ async def get_mapping(
                 $ref: "#/async definitions/OverviewMapping"
     """
     try:
-        return handler.get_mapping(project_name, mapping_id)
+        return handler.get_mapping(project_key, mapping_id)
 
     except (ProjectNotFound, MappingNotFound) as e:
         response.status_code = 404
@@ -595,11 +587,11 @@ async def get_mapping_fields_old(id: str, response: Response):
 
 
 @app.get(
-    "/project/{project_name}/mapping/{mapping_id}/field",
+    "/project/{project_key}/mapping/{mapping_id}/field",
     tags=["Fields"],
     responses={404: {}},
 )
-async def get_mapping_fields(project_name: str, mapping_id: str, response: Response):
+async def get_mapping_fields(project_key: str, mapping_id: str, response: Response):
     """
     Get the fields of a mapping
     Returns a brief list of the fields
@@ -646,7 +638,7 @@ async def get_mapping_fields(project_name: str, mapping_id: str, response: Respo
         description: Mapping not found
     """
     try:
-        return handler.get_mapping_fields(project_name, mapping_id)
+        return handler.get_mapping_fields(project_key, mapping_id)
 
     except (ProjectNotFound, MappingNotFound) as e:
         response.status_code = 404
@@ -738,12 +730,12 @@ async def post_mapping_field_classification_old(
 
 
 @app.post(
-    "/project/{project_name}/mapping/{mapping_id}/field/{field_id}/classification",
+    "/project/{project_key}/mapping/{mapping_id}/field/{field_id}/classification",
     tags=["Fields"],
     responses={400: {}, 404: {}},
 )
 async def post_mapping_field_classification(
-    project_name: str,
+    project_key: str,
     mapping_id: str,
     field_id: str,
     mapping: MappingInput,
@@ -803,7 +795,7 @@ async def post_mapping_field_classification(
     """
     try:
         return handler.set_mapping_classification(
-            project_name, mapping_id, field_id, mapping
+            project_key, mapping_id, field_id, mapping
         )
 
     except (ProjectNotFound, MappingNotFound, FieldNotFound) as e:
