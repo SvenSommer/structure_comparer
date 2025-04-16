@@ -39,6 +39,7 @@ class Config(BaseModel):
     profiles_to_compare: list[CompareConfig] = []
     show_remarks: bool = True
     show_warnings: bool = True
+    _file_path: Path
 
     @staticmethod
     def from_json(file: str | Path) -> "Config":
@@ -46,10 +47,19 @@ class Config(BaseModel):
 
         try:
             content = file.read_text(encoding="utf-8")
-            return Config.model_validate_json(content)
+            config = Config.model_validate_json(content)
 
         except ValidationError as e:
             msg = f"failed to load config from {str(file)}"
             logger.error(msg)
             logger.error(e.errors())
             raise InitializationError(msg)
+
+        else:
+            config._file_path = file
+            config.write()
+            return config
+
+    def write(self):
+        content = self.model_dump_json(indent=4)
+        self._file_path.write_text(content, encoding="utf-8")

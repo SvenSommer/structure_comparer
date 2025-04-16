@@ -23,7 +23,8 @@
                     "simplifier_url": "https://simplifier.net/packages/de.basisprofil.r4/1.5.0-ballot2/files/2367779",
                     "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2367779&format=json"
                 }
-            }
+            },
+            "last_updated": "2025-04-16 11:15:26"
         },
         {
             "id": "5246017e-ae19-40f9-a428-bbd32d3674ee",
@@ -44,7 +45,10 @@
                     "simplifier_url": "https://simplifier.net/packages/de.basisprofil.r4/1.5.0-ballot2/files/2367763",
                     "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2367763&format=json"
                 }
-            }
+            },
+            "last_updated": "2025-04-16 11:15:26"
         }
-    ]
+    ],
+    "show_remarks": true,
+    "show_warnings": true
 }
