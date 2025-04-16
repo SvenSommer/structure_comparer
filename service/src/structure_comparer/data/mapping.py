@@ -32,7 +32,7 @@ DERIVED_CLASSIFICATIONS = [
 
 
 @dataclass(init=False)
-class ComparisonField:
+class MappingField:
     def __init__(self) -> None:
         self.classification: Classification = None
         self.extension: str = None
@@ -99,7 +99,7 @@ class ComparisonField:
         self.classifications_allowed = list(allowed)
 
     def classify_remark_field(
-        self, comparison: "Comparison", manual_entries: Dict
+        self, comparison: "Mapping", manual_entries: Dict
     ) -> None:
         """
         Classify and get the remark for the property
@@ -166,12 +166,12 @@ class ComparisonField:
         self.extra = extra
 
 
-class Comparison:
+class Mapping:
     def __init__(self, profile_map: ProfileMap = None) -> None:
         self.id: str = None
         self.sources: List[Profile] = []
         self.target: Profile = None
-        self.fields: OrderedDict[str, ComparisonField] = OrderedDict()
+        self.fields: OrderedDict[str, MappingField] = OrderedDict()
         self.version: str = None
         self.last_updated: str = None
         self.status: str = None
@@ -216,8 +216,8 @@ class Comparison:
             return model
 
     @staticmethod
-    def create(profile_map: ProfileMap) -> "Comparison":
-        comparison = Comparison(profile_map)
+    def create(profile_map: ProfileMap) -> "Mapping":
+        comparison = Mapping(profile_map)
 
         all_profiles = [profile_map.target] + profile_map.sources
 
@@ -225,7 +225,7 @@ class Comparison:
             for field in profile.fields.values():
                 # Check if field already exists or needs to be created
                 if field not in comparison.fields:
-                    comparison.fields[field.path_full] = ComparisonField()
+                    comparison.fields[field.path_full] = MappingField()
 
                 comparison.fields[field.path_full].profiles[profile.key] = field
 

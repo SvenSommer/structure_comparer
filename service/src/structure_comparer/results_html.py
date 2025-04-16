@@ -7,7 +7,7 @@ from jinja2 import Environment, FileSystemLoader
 from structure_comparer.helpers import split_parent_child
 
 from .classification import Classification
-from .data.comparison import Comparison
+from .data.mapping import Mapping
 
 CSS_CLASS = {
     Classification.USE: "row-use",
@@ -37,7 +37,7 @@ def format_cardinality(value):
 
 
 def create_results_html(
-    structured_mapping: Dict[str, Comparison],
+    structured_mapping: Dict[str, Mapping],
     results_folder: str | Path,
     show_remarks: bool,
     show_warnings: bool,

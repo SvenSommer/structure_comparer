@@ -1,6 +1,10 @@
 from datetime import datetime, timedelta
 
-from structure_comparer.data.config import CompareConfig, ProfileConfig, ProjectConfig
+from structure_comparer.data.config import (
+    MappingProfileConfig,
+    MappingProfilesConfig,
+    ProjectConfig,
+)
 
 SOURCE_PROFILE = {
     "file": "source1.json",
@@ -67,7 +71,7 @@ def test_config_from_dict_defaults():
 
 
 def test_compare_config_from_dict():
-    result = CompareConfig.from_dict(MAPPINGS)
+    result = MappingProfilesConfig.from_dict(MAPPINGS)
 
     assert result.id == "91db64da-9777-4c5f-a7d4-e0601ab51ad1"
     assert result.version == "1.0"
@@ -90,7 +94,7 @@ def test_compare_config_from_dict_defaults():
     }
 
     now = datetime.now()
-    result = CompareConfig.from_dict(input)
+    result = MappingProfilesConfig.from_dict(input)
 
     assert result.id == "91db64da-9777-4c5f-a7d4-e0601ab51ad1"
     assert result.version == "1.0"
@@ -105,7 +109,7 @@ def test_compare_config_from_dict_defaults():
 
 
 def test_profile_config_from_dict():
-    result = ProfileConfig.from_dict(SOURCE_PROFILE)
+    result = MappingProfileConfig.from_dict(SOURCE_PROFILE)
 
     assert result.file == "source1.json"
     assert result.version == "1.0"
@@ -119,7 +123,7 @@ def test_profile_config_from_dict():
 def test_profile_config_from_dict_defaults():
     input = {"file": "foo.json"}
 
-    result = ProfileConfig.from_dict(input)
+    result = MappingProfileConfig.from_dict(input)
 
     assert result.file == "foo.json"
     assert result.version is None

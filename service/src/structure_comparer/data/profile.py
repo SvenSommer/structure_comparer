@@ -9,7 +9,7 @@ from fhir.resources.R4B.structuredefinition import StructureDefinition
 from pydantic import ValidationError
 
 from ..model.profile import Profile as ProfileModel
-from .config import CompareConfig
+from .config import MappingProfilesConfig
 
 IGNORE_ENDS = ["id", "extension", "modifierExtension"]
 IGNORE_SLICES = [
@@ -35,7 +35,7 @@ class ProfileMap:
         self.status: str = None
 
     @staticmethod
-    def from_json(compare_config: CompareConfig, datapath: Path) -> "ProfileMap":
+    def from_json(compare_config: MappingProfilesConfig) -> "ProfileMap":
         sources = compare_config.mappings.sourceprofiles
         target = compare_config.mappings.targetprofile
 

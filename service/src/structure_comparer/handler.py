@@ -82,7 +82,7 @@ class ProjectsHandler:
         if proj is None:
             raise ProjectNotFound()
 
-        return [comp.to_model(project_key) for comp in proj.comparisons.values()]
+        return [comp.to_model(project_key) for comp in proj.mappings.values()]
 
     def get_mapping(self, project_key: str, mapping_id: str) -> MappingModel:
         mapping = self.__get_mapping(project_key, mapping_id)
@@ -172,7 +172,7 @@ class ProjectsHandler:
         if proj is None:
             raise ProjectNotFound()
 
-        mapping = proj.comparisons.get(mapping_id)
+        mapping = proj.mappings.get(mapping_id)
 
         if not mapping:
             raise MappingNotFound()

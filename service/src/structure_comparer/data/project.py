@@ -4,8 +4,8 @@ from typing import Dict
 from ..manual_entries import ManualEntries
 from ..model.project import Project as ProjectModel
 from ..model.project import ProjectOverview as ProjectOverviewModel
-from .comparison import Comparison
 from .config import ProjectConfig
+from .mapping import Mapping
 from .package import Package
 from .profile import ProfileMap
 
@@ -15,7 +15,7 @@ class Project:
         self.dir = path
         self.config = ProjectConfig.from_json(path / "config.json")
 
-        self.comparisons: Dict[str, Comparison] = None
+        self.mappings: Dict[str, Mapping] = None
         self.manual_entries: ManualEntries = None
 
         self.pkgs: list[Package] = None
@@ -24,21 +24,15 @@ class Project:
         self.profiles_to_compare_list = self.config.profiles_to_compare
 
         self.__load_packages()
-
-        # Load profiles
-        self.__load_profiles()
-
-        # Read the manual entries
+        self.__load_mappings()
         self.__read_manual_entries()
 
     def __load_packages(self) -> None:
         self.pkgs = [Package(dir) for dir in self.data_dir.iterdir() if dir.is_dir()]
 
-    def __load_profiles(self):
-        self.comparisons = {
-            profiles.id: Comparison.create(
-                ProfileMap.from_json(profiles, self.data_dir)
-            )
+    def __load_mappings(self):
+        self.mappings = {
+            profiles.id: Mapping.create(ProfileMap.from_json(profiles, self.data_dir))
             for profiles in self.profiles_to_compare_list
         }
 
@@ -88,7 +82,7 @@ class Project:
         return self.dir / self.config.data_dir
 
     def to_model(self) -> ProjectModel:
-        mappings = [comp.to_model(self.key) for comp in self.comparisons.values()]
+        mappings = [comp.to_model(self.key) for comp in self.mappings.values()]
         pkgs = [p.to_model() for p in self.pkgs]
 
         return ProjectModel(name=self.name, mappings=mappings, packages=pkgs)
