@@ -52,14 +52,8 @@ class Project:
 
         # Create default config.json file
         config_file = path / "config.json"
-        config_data = {
-            "manual_entries_file": "manual_entries.yaml",
-            "data_dir": "data",
-            "html_output_dir": "docs",
-            "mapping_output_file": "mapping.json",
-            "profiles_to_compare": [],
-        }
-        config_file.write_text(json.dumps(config_data, indent=4), encoding="utf-8")
+        config_data = Config()
+        config_file.write_text(config_data.model_dump_json(indent=4), encoding="utf-8")
 
         return Project(path)
 

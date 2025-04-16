@@ -260,7 +260,12 @@ async def get_mappings_old(response: Response) -> GetMappingsOutput:
         return {"error": "Project not found"}
 
 
-@app.get("/project/{project_name}/mapping", tags=["Mappings"], responses={404: {}})
+@app.get(
+    "/project/{project_name}/mapping",
+    tags=["Mappings"],
+    responses={404: {}},
+    deprecated=True,
+)
 async def get_mappings(project_name: str, response: Response) -> GetMappingsOutput:
     """
     Get the available mappings

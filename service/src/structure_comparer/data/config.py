@@ -1,4 +1,3 @@
-import json
 import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -37,17 +36,17 @@ class Config(BaseModel):
     data_dir: str = "data"
     html_output_dir: str = "docs"
     mapping_output_file: str = "mapping.json"
-    profiles_to_compare: list[CompareConfig]
+    profiles_to_compare: list[CompareConfig] = []
     show_remarks: bool = True
     show_warnings: bool = True
 
     @staticmethod
     def from_json(file: str | Path) -> "Config":
         file = Path(file)
-        dict_ = json.loads(file.read_text(encoding="utf-8"))
 
         try:
-            return Config.model_validate(dict_)
+            content = file.read_text(encoding="utf-8")
+            return Config.model_validate_json(content)
 
         except ValidationError as e:
             msg = f"failed to load config from {str(file)}"
