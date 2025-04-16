@@ -1,12 +1,12 @@
-import json
 from pathlib import Path
 from typing import Dict
 
-from ..compare import generate_comparison, load_profiles
+from ..compare import generate_comparison
 from ..manual_entries import ManualEntries
 from ..model.project import Project as ProjectModel
 from .comparison import Comparison
 from .config import Config
+from .profile import ProfileMap
 
 
 class Project:
@@ -28,9 +28,11 @@ class Project:
         self.__read_manual_entries()
 
     def __load_profiles(self):
-        profile_maps = load_profiles(self.profiles_to_compare_list, self.data_dir)
         self.comparisons = {
-            entry.id: generate_comparison(entry) for entry in profile_maps.values()
+            profiles.id: generate_comparison(
+                ProfileMap.from_json(profiles, self.data_dir)
+            )
+            for profiles in self.profiles_to_compare_list
         }
 
     def __read_manual_entries(self):

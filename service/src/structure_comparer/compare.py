@@ -34,19 +34,6 @@ DERIVED_CLASSIFICATIONS = [
 logger = logging.getLogger()
 
 
-def load_profiles(
-    profiles_to_compare: List[CompareConfig], datapath: Path
-) -> Dict[str, ProfileMap]:
-    """
-    Loads the FHIR structure definitions from the local JSON files.
-    """
-    profiles_maps = {
-        str(profiles): ProfileMap.from_json(profiles, datapath)
-        for profiles in profiles_to_compare
-    }
-    return profiles_maps
-
-
 def generate_comparison(profile_map: ProfileMap) -> Comparison:
     comparison = Comparison(profile_map)
 
