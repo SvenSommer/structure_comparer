@@ -2,36 +2,22 @@ from collections import OrderedDict
 from dataclasses import dataclass
 from typing import Dict, List
 
-from structure_comparer.classification import Classification
-from structure_comparer.data.profile import Profile, ProfileMap
+from pydantic import ValidationError
 
-
-@dataclass
-class ProfileField:
-    name: str
-    present: bool
-    min_cardinality: int = 0
-    max_cardinality: int = 0
+from ..classification import Classification
+from ..model.mapping import Mapping as MappingModel
+from .profile import Profile, ProfileField, ProfileMap
 
 
 @dataclass(init=False)
 class ComparisonField:
-    classification: Classification
-    extension: str
-    extra: str
-    profiles: Dict[str, ProfileField]
-    remark: str
-    classifications_allowed: List[Classification]
-
-    def __init__(self, name: str, id: str) -> None:
-        self.name: str = name
-        self.classification = None
-        self.extension = None
-        self.extra = None
-        self.profiles = {}
+    def __init__(self) -> None:
+        self.classification: Classification = None
+        self.extension: str = None
+        self.extra: str = None
+        self.profiles: Dict[str, ProfileField] = {}
         self.remark = None
-        self.id = id
-        self.classifications_allowed = []
+        self.classifications_allowed: List[Classification] = []
 
     def dict(self) -> dict:
         result = {
@@ -51,6 +37,22 @@ class ComparisonField:
 
         return result
 
+    @property
+    def id(self) -> str:
+        return list(self.profiles.values())[0].id
+
+    @property
+    def name(self) -> str:
+        return list(self.profiles.values())[0].path_full
+
+    @property
+    def name_child(self) -> str:
+        return self.name.rsplit(".", 1)[1]
+
+    @property
+    def name_parent(self) -> str:
+        return self.name.rsplit(".", 1)[0]
+
 
 class Comparison:
     def __init__(self, profile_map: ProfileMap = None) -> None:
@@ -62,7 +64,7 @@ class Comparison:
         self.last_updated: str = None
         self.status: str = None
 
-        if not profile_map is None:
+        if profile_map is not None:
             self.id = profile_map.id
             self.sources = profile_map.sources
             self.target = profile_map.target
@@ -78,29 +80,28 @@ class Comparison:
         target_profile = f"{self.target.name}|{self.target.version}"
         return f"{source_profiles} -> {target_profile}"
 
-    def dict(self) -> dict:
-        return {
-            "name": self.name,
-            "sources": [
-                {
-                    "name": profile.name,
-                    "profile_key": profile.key,
-                    "version": profile.version,
-                    "simplifier_url": profile.simplifier_url,
-                }
-                for profile in self.sources
-            ],
-            "target": {
-                "name": self.target.name,
-                "profile_key": self.target.key,
-                "version": self.target.version,
-                "simplifier_url": self.target.simplifier_url,
-            },
-            "fields": [field.dict() for field in self.fields.values()],
-            "version": self.version,
-            "last_updated": self.last_updated,
-            "status": self.status,
-        }
+    def to_model(self, proj_name: str) -> MappingModel:
+        sources = [p.to_model() for p in self.sources]
+        target = self.target.to_model()
+        url = f"/project/{proj_name}/mapping/{self.id}"
+
+        try:
+            model = MappingModel(
+                id=self.id,
+                name=self.name,
+                version=self.version,
+                last_updated=self.last_updated,
+                status=self.status,
+                sources=sources,
+                target=target,
+                url=url,
+            )
+
+        except ValidationError as e:
+            print(e.errors())
+
+        else:
+            return model
 
 
 def get_field_by_id(comparison: Comparison, field_id: str) -> ComparisonField | None:
