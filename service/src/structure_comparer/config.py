@@ -1,99 +1,56 @@
 import json
+import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Dict, List
+
+from pydantic import BaseModel, ValidationError
+
+from .errors import InitializationError
+
+logger = logging.getLogger(__name__)
 
 
-class Config:
-    def __init__(self) -> None:
-        self.manual_entries_file: str = None
-        self.data_dir: str = None
-        self.html_output_dir: str = None
-        self.mapping_output_file: str = None
-        self.profiles_to_compare: List[CompareConfig] = None
-        self.show_remarks: bool = None
-        self.show_warnings: bool = None
+class ProfileConfig(BaseModel):
+    file: Path
+    version: str = None
+    simplifier_url: str = None
+    file_download_url: str = None
+
+
+class MappingConfig(BaseModel):
+    sourceprofiles: list[ProfileConfig]
+    targetprofile: ProfileConfig
+
+
+class CompareConfig(BaseModel):
+    id: str
+    version: str
+    status: str = "draft"
+    mappings: MappingConfig = []
+    last_updated: str = (datetime.now(timezone.utc) + timedelta(hours=2)).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
+
+
+class Config(BaseModel):
+    manual_entries_file: str = "manual_entries.yaml"
+    data_dir: str = "data"
+    html_output_dir: str = "docs"
+    mapping_output_file: str = "mapping.json"
+    profiles_to_compare: list[CompareConfig]
+    show_remarks: bool = True
+    show_warnings: bool = True
 
     @staticmethod
     def from_json(file: str | Path) -> "Config":
         file = Path(file)
         dict_ = json.loads(file.read_text(encoding="utf-8"))
-        return Config.from_dict(dict_)
 
-    @staticmethod
-    def from_dict(dict_: Dict) -> "Config":
-        config = Config()
-        config.manual_entries_file = dict_.get(
-            "manual_entries_file", "manual_entries.yaml"
-        )
-        config.data_dir = dict_.get("data_dir", "data")
-        config.html_output_dir = dict_.get("html_output_dir", "docs")
-        config.mapping_output_file = dict_.get("mapping_output_file", "mapping.json")
-        config.profiles_to_compare = [
-            CompareConfig.from_dict(compare)
-            for compare in dict_.get("profiles_to_compare")
-        ]
-        config.show_remarks = dict_.get("show_remarks", True)
-        config.show_warnings = dict_.get("show_warnings", True)
-        return config
+        try:
+            return Config.model_validate(dict_)
 
-
-class CompareConfig:
-    def __init__(self) -> None:
-        self.id = None
-        self.version: str = None
-        self.status: str = None
-        self.mappings: MappingConfig = None
-        self.last_updated: str = None
-        self.status: str = None
-
-    @staticmethod
-    def from_dict(dict_: Dict) -> "CompareConfig":
-        config = CompareConfig()
-        config.id = dict_["id"]
-        config.version = dict_.get("version")
-
-        if config.version is None:
-            raise KeyError(
-                "The 'version' key is not set in the configuration of the mapping. Please set the version and try again."
-            )
-
-        config.status = dict_.get("status", "draft")
-        config.mappings = MappingConfig.from_dict(dict_.get("mappings"))
-        config.last_updated = dict_.get("last_updated") or (
-            datetime.now(timezone.utc) + timedelta(hours=2)
-        ).strftime("%Y-%m-%d %H:%M:%S")
-        return config
-
-
-class MappingConfig:
-    def __init__(self) -> None:
-        self.source_profiles: List[ProfileConfig] = None
-        self.target_profile: ProfileConfig = None
-
-    @staticmethod
-    def from_dict(dict_: Dict) -> "MappingConfig":
-        config = MappingConfig()
-        config.source_profiles = [
-            ProfileConfig.from_dict(profile) for profile in dict_.get("sourceprofiles")
-        ]
-        config.target_profile = ProfileConfig.from_dict(dict_.get("targetprofile"))
-        return config
-
-
-class ProfileConfig:
-    def __init__(self) -> None:
-        self.file: str = None
-        self.version: str = None
-        self.simplifier_url: str = None
-        self.file_download_url: str = None
-
-    @staticmethod
-    def from_dict(dict_: Dict) -> "ProfileConfig":
-        config = ProfileConfig()
-        config.file = dict_["file"]
-        config.version = dict_.get("version")
-        config.simplifier_url = dict_.get("simplifier_url")
-        config.file_download_url = dict_.get("file_download_url")
-
-        return config
+        except ValidationError as e:
+            msg = f"failed to load config from {str(file)}"
+            logger.error(msg)
+            logger.error(e.errors())
+            raise InitializationError(msg)
