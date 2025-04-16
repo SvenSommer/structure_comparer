@@ -7,7 +7,6 @@ from ..model.project import ProjectOverview as ProjectOverviewModel
 from .config import ProjectConfig
 from .mapping import Mapping
 from .package import Package
-from .profile import ProfileMap
 
 
 class Project:
@@ -32,8 +31,8 @@ class Project:
 
     def __load_mappings(self):
         self.mappings = {
-            profiles.id: Mapping.create(ProfileMap.from_json(profiles, self.data_dir))
-            for profiles in self.mappings_list
+            mapping_conf.id: Mapping(mapping_conf, self)
+            for mapping_conf in self.mappings_list
         }
 
     def __read_manual_entries(self):
@@ -80,6 +79,14 @@ class Project:
     @property
     def data_dir(self) -> Path:
         return self.dir / self.config.data_dir
+
+    def get_profile(self, id: str, version: str):
+        for pkg in self.pkgs:
+            for profile in pkg.profiles:
+                if profile.id == id and profile.version == version:
+                    return profile
+
+        return None
 
     def to_model(self) -> ProjectModel:
         mappings = [comp.to_model(self.key) for comp in self.mappings.values()]

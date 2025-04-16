@@ -1,5 +1,8 @@
+import logging
 from pathlib import Path
 from typing import Dict, List
+
+from pydantic import ValidationError
 
 from .classification import Classification
 from .consts import INSTRUCTIONS, REMARKS
@@ -20,6 +23,8 @@ from .model.project import Project as ProjectModel
 from .model.project import ProjectInput as ProjectInputModel
 from .model.project import ProjectList as ProjectListModel
 
+logger = logging.getLogger(__name__)
+
 
 class ProjectsHandler:
     def __init__(self, projects_dir: Path):
@@ -36,7 +41,11 @@ class ProjectsHandler:
         for path in self.__projs_dir.iterdir():
             # Only handle directories
             if path.is_dir():
-                self.__projs[path.name] = Project(path)
+                try:
+                    self.__projs[path.name] = Project(path)
+                except ValidationError as e:
+                    logger.error(e.errors())
+                    raise e
 
     def get_project_list(self) -> ProjectListModel:
         projects = [p.to_overview_model() for p in self.__projs.values()]

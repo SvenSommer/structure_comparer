@@ -9,55 +9,8 @@ from fhir.resources.R4B.structuredefinition import StructureDefinition
 from pydantic import ValidationError
 
 from ..model.profile import Profile as ProfileModel
-from .config import MappingProfilesConfig
-
-IGNORE_ENDS = ["id", "extension", "modifierExtension"]
-IGNORE_SLICES = [
-    "slice(url)",
-    "slice($this)",
-    "slice(system)",
-    "slice(type)",
-    "slice(use)",
-    # workaround for 'slice(code.coding.system)'
-    "system)",
-]
 
 logger = logging.getLogger(__name__)
-
-
-class ProfileMap:
-    def __init__(self) -> None:
-        self.id: str = None
-        self.sources: List[Profile] = []
-        self.target: Profile = None
-        self.version: str = None
-        self.last_updated: str = None
-        self.status: str = None
-
-    @staticmethod
-    def from_json(compare_config: MappingProfilesConfig) -> "ProfileMap":
-        sources = compare_config.mappings.sourceprofiles
-        target = compare_config.mappings.targetprofile
-
-        profiles_map = ProfileMap()
-        profiles_map.id = compare_config.id
-        profiles_map.sources = [
-            Profile.from_json(datapath / source.file) for source in sources
-        ]
-        profiles_map.target = Profile.from_json(datapath / target.file)
-        profiles_map.version = compare_config.version
-        profiles_map.last_updated = compare_config.last_updated
-        profiles_map.status = compare_config.status
-
-        return profiles_map
-
-    @property
-    def name(self) -> str:
-        source_profiles = ", ".join(
-            f"{profile.name}|{profile.version}" for profile in self.sources
-        )
-        target_profile = f"{self.target.name}|{self.target.version}"
-        return f"{source_profiles} -> {target_profile}"
 
 
 class Profile:

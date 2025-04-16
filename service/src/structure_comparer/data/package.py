@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from ..model.project import Project as ProjectModel
+from ..model.package import Package as PackageModel
 from .profile import Profile
 
 
@@ -25,6 +25,6 @@ class Package:
             if file.is_file()
         ]
 
-    def to_model(self) -> ProjectModel:
+    def to_model(self) -> PackageModel:
         profiles = [p.to_model() for p in self.profiles]
-        return ProjectModel(name=self.name, version=self.version, profiles=profiles)
+        return PackageModel(name=self.name, version=self.version, profiles=profiles)
