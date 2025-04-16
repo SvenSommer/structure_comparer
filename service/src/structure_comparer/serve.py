@@ -5,7 +5,6 @@ from pathlib import Path
 import uvicorn
 from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
 
 from .errors import (
     FieldNotFound,
@@ -18,6 +17,8 @@ from .errors import (
     ProjectNotFound,
 )
 from .handler import ProjectsHandler
+from .model.get_mappings_output import GetMappingsOutput
+from .model.init_project_input import InitProjectInput
 from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
@@ -40,14 +41,6 @@ async def lifespan(app: FastAPI):
 
     # Tear down
     pass
-
-
-class InitProject(BaseModel):
-    project_name: str
-
-
-class GetMappingsOutput(BaseModel):
-    mappings: list[MappingModel]
 
 
 app = FastAPI(title="Structure Comparer", lifespan=lifespan)
@@ -93,7 +86,7 @@ async def get_project(project_name: str, response: Response) -> ProjectModel:
     responses={400: {"error": {}}, 404: {"error": {}}},
     deprecated=True,
 )
-async def post_init_project(data: InitProject, response: Response):
+async def post_init_project(data: InitProjectInput, response: Response):
     global cur_proj
 
     if not data.project_name:
@@ -267,7 +260,12 @@ async def get_mappings_old(response: Response) -> GetMappingsOutput:
         return {"error": "Project not found"}
 
 
-@app.get("/project/{project_name}/mapping", tags=["Mappings"], responses={404: {}})
+@app.get(
+    "/project/{project_name}/mapping",
+    tags=["Mappings"],
+    responses={404: {}},
+    deprecated=True,
+)
 async def get_mappings(project_name: str, response: Response) -> GetMappingsOutput:
     """
     Get the available mappings

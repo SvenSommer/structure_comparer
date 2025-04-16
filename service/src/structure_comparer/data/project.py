@@ -1,12 +1,11 @@
-import json
 from pathlib import Path
 from typing import Dict
 
-from ..compare import generate_comparison, load_profiles
 from ..manual_entries import ManualEntries
 from ..model.project import Project as ProjectModel
 from .comparison import Comparison
 from .config import Config
+from .profile import ProfileMap
 
 
 class Project:
@@ -28,9 +27,11 @@ class Project:
         self.__read_manual_entries()
 
     def __load_profiles(self):
-        profile_maps = load_profiles(self.profiles_to_compare_list, self.data_dir)
         self.comparisons = {
-            entry.id: generate_comparison(entry) for entry in profile_maps.values()
+            profiles.id: Comparison.create(
+                ProfileMap.from_json(profiles, self.data_dir)
+            )
+            for profiles in self.profiles_to_compare_list
         }
 
     def __read_manual_entries(self):
@@ -52,14 +53,8 @@ class Project:
 
         # Create default config.json file
         config_file = path / "config.json"
-        config_data = {
-            "manual_entries_file": "manual_entries.yaml",
-            "data_dir": "data",
-            "html_output_dir": "docs",
-            "mapping_output_file": "mapping.json",
-            "profiles_to_compare": [],
-        }
-        config_file.write_text(json.dumps(config_data, indent=4), encoding="utf-8")
+        config_data = Config()
+        config_file.write_text(config_data.model_dump_json(indent=4), encoding="utf-8")
 
         return Project(path)
 

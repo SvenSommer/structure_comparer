@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Dict
 
 import yaml
+from pydantic import BaseModel
 
 from .classification import Classification
 
@@ -15,15 +16,15 @@ MANUAL_ENTRIES_EXTRA = "extra"
 logger = logging.getLogger(__name__)
 
 
-class ManualMappings:
-    def __init__(self, data: Dict) -> None:
-        self.data = data
+class ManualMapping(BaseModel):
+    classification: Classification
+    extra: str = None
+    remark: str = None
 
-        for value in self.data.values():
-            # Interpret the classification as an enum
-            value[MANUAL_ENTRIES_CLASSIFICATION] = Classification(
-                value[MANUAL_ENTRIES_CLASSIFICATION]
-            )
+
+class ManualMappings:
+    def __init__(self, data: Dict[str, dict]) -> None:
+        self.data = {k: ManualMapping(**v) for k, v in data.items()}
 
     def __iter__(self):
         return iter(self.data)
@@ -60,16 +61,18 @@ class ManualEntries:
 
     def read(self, file: str | Path):
         self._file = Path(file)
+        content = self._file.read_text(encoding="utf-8")
 
         if self._file.suffix == ".json":
-            data = json.loads(self._file.read_text(encoding="utf-8"))
+            data = json.loads(content)
         elif self._file.suffix == ".yaml":
-            data = yaml.safe_load(self._file.read_text(encoding="utf-8"))
+            data = yaml.safe_load(content)
 
         self._data["entries"] = {}
         if data is not None:
-            for id, mappings in data.items():
-                self._data["entries"][id] = ManualMappings(mappings)
+            self._data["entries"] = {
+                id: ManualMappings(mappings) for id, mappings in data.items()
+            }
 
     def write(self):
         data = {}
@@ -80,9 +83,12 @@ class ManualEntries:
                 e.add_note(f"with ID {id}")
                 raise
         if self._file.suffix == ".json":
-            self._file.write_text(json.dumps(data, indent=4), encoding="utf-8")
+            content = json.dumps(data, indent=4)
         elif self._file.suffix == ".yaml":
-            self._file.write_text(yaml.safe_dump(data), encoding="utf-8")
+            content = yaml.safe_dump(data)
+
+        if content is not None:
+            self._file.write_text(content, encoding="utf-8")
 
     def __iter__(self):
         return iter(self._data["entries"])
