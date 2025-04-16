@@ -3,7 +3,7 @@ import argparse
 import json
 from pathlib import Path
 
-from structure_comparer.data.config import Config
+from structure_comparer.data.config import ProjectConfig
 
 from structure_comparer import (
     MANUAL_ENTRIES,
@@ -41,7 +41,7 @@ def get_args():
 if __name__ == "__main__":
     args = get_args()
 
-    config = Config.from_json(args.project_dir / "config.json")
+    config = ProjectConfig.from_json(args.project_dir / "config.json")
 
     # Read the manual entries
     manual_entries_file = config.manual_entries_file

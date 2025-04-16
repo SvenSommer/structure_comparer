@@ -31,7 +31,8 @@ class CompareConfig(BaseModel):
     )
 
 
-class Config(BaseModel):
+class ProjectConfig(BaseModel):
+    name: str | None = None
     manual_entries_file: str = "manual_entries.yaml"
     data_dir: str = "data"
     html_output_dir: str = "docs"
@@ -42,12 +43,12 @@ class Config(BaseModel):
     _file_path: Path
 
     @staticmethod
-    def from_json(file: str | Path) -> "Config":
+    def from_json(file: str | Path) -> "ProjectConfig":
         file = Path(file)
 
         try:
             content = file.read_text(encoding="utf-8")
-            config = Config.model_validate_json(content)
+            config = ProjectConfig.model_validate_json(content)
 
         except ValidationError as e:
             msg = f"failed to load config from {str(file)}"
@@ -57,6 +58,11 @@ class Config(BaseModel):
 
         else:
             config._file_path = file
+
+            # Fix name if missing
+            if config.name is None:
+                config.name = file.parent.name
+
             config.write()
             return config
 

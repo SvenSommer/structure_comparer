@@ -40,7 +40,7 @@ class ProjectsHandler:
         project_path = self.__projs_dir / proj_name
 
         # Load the newly created project
-        self.__projs[proj_name] = Project.create(project_path)
+        self.__projs[proj_name] = Project.create(project_path, proj_name)
 
     @staticmethod
     def get_classifications() -> Dict[str, List[Dict[str, str]]]:
@@ -50,28 +50,28 @@ class ProjectsHandler:
         ]
         return {"classifications": classifications}
 
-    def get_project(self, project_name: str) -> ProjectModel:
-        proj = self.__projs.get(project_name)
+    def get_project(self, project_key: str) -> ProjectModel:
+        proj = self.__projs.get(project_key)
 
         if proj is None:
             raise ProjectNotFound()
 
-        return proj.to_model(project_name)
+        return proj.to_model(project_key)
 
-    def get_mappings(self, project_name: str) -> List[MappingModel]:
-        proj = self.__projs.get(project_name)
+    def get_mappings(self, project_key: str) -> List[MappingModel]:
+        proj = self.__projs.get(project_key)
 
         if proj is None:
             raise ProjectNotFound()
 
-        return [comp.to_model(project_name) for comp in proj.comparisons.values()]
+        return [comp.to_model(project_key) for comp in proj.comparisons.values()]
 
-    def get_mapping(self, project_name: str, mapping_id: str) -> MappingModel:
-        mapping = self.__get_mapping(project_name, mapping_id)
-        return mapping.to_model(project_name)
+    def get_mapping(self, project_key: str, mapping_id: str) -> MappingModel:
+        mapping = self.__get_mapping(project_key, mapping_id)
+        return mapping.to_model(project_key)
 
-    def get_mapping_fields(self, project_name: str, mapping_id: str):
-        mapping = self.__get_mapping(project_name, mapping_id)
+    def get_mapping_fields(self, project_key: str, mapping_id: str):
+        mapping = self.__get_mapping(project_key, mapping_id)
 
         result = {"id": mapping_id}
         result["fields"] = [
@@ -81,12 +81,12 @@ class ProjectsHandler:
         return result
 
     def set_mapping_classification(
-        self, project_name: str, mapping_id: str, field_id: str, mapping: MappingInput
+        self, project_key: str, mapping_id: str, field_id: str, mapping: MappingInput
     ):
-        proj = self.__projs.get(project_name)
+        proj = self.__projs.get(project_key)
 
         # Easiest way to get the fields is from mapping
-        mapping = self.__get_mapping(project_name, mapping_id, proj)
+        mapping = self.__get_mapping(project_key, mapping_id, proj)
         field = get_field_by_id(mapping, field_id)
 
         if field is None:
@@ -147,9 +147,9 @@ class ProjectsHandler:
 
         return True
 
-    def __get_mapping(self, project_name, mapping_id, proj: Project = None):
+    def __get_mapping(self, project_key, mapping_id, proj: Project = None):
         if proj is None:
-            proj = self.__projs.get(project_name)
+            proj = self.__projs.get(project_key)
 
         if proj is None:
             raise ProjectNotFound()

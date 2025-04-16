@@ -1,4 +1,5 @@
 {
+    "name": "apovzd",
     "manual_entries_file": "manual_entries.json",
     "data_dir": "data",
     "html_output_dir": "docs",

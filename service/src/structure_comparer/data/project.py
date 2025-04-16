@@ -4,14 +4,14 @@ from typing import Dict
 from ..manual_entries import ManualEntries
 from ..model.project import Project as ProjectModel
 from .comparison import Comparison
-from .config import Config
+from .config import ProjectConfig
 from .profile import ProfileMap
 
 
 class Project:
     def __init__(self, path: Path):
         self.dir = path
-        self.config = Config.from_json(path / "config.json")
+        self.config = ProjectConfig.from_json(path / "config.json")
         self.data_dir = path / self.config.data_dir
 
         self.comparisons: Dict[str, Comparison] = None
@@ -44,7 +44,7 @@ class Project:
         self.manual_entries.read(manual_entries_file)
 
     @staticmethod
-    def create(path: Path) -> "Project":
+    def create(path: Path, project_name: str) -> "Project":
         path.mkdir(parents=True, exist_ok=True)
 
         # Create empty manual_entries.yaml file
@@ -53,13 +53,17 @@ class Project:
 
         # Create default config.json file
         config_file = path / "config.json"
-        config_data = Config()
+        config_data = ProjectConfig(name=project_name)
         config_file.write_text(config_data.model_dump_json(indent=4), encoding="utf-8")
 
         return Project(path)
 
-    def to_model(self, proj_name: str) -> ProjectModel:
-        mappings = [comp.to_model(proj_name) for comp in self.comparisons.values()]
+    @property
+    def name(self):
+        return self.config.name
 
-        model = ProjectModel(name=proj_name, mappings=mappings)
+    def to_model(self, project_key: str) -> ProjectModel:
+        mappings = [comp.to_model(project_key) for comp in self.comparisons.values()]
+
+        model = ProjectModel(name=self.name, mappings=mappings)
         return model
