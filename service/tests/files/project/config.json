@@ -3,7 +3,7 @@
     "data_dir": "data",
     "html_output_dir": "docs",
     "mapping_output_file": "mapping.json",
-    "profiles_to_compare": [
+    "mappings": [
         {
             "id": "10ac71f3-3204-4b82-b8a3-f7ecc4a7a98a",
             "version": "0.1",

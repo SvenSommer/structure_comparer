@@ -36,7 +36,7 @@ FULL_EXAMPLE = {
     "data_dir": "data",
     "html_output_dir": "docs",
     "mapping_output_file": "mapping.json",
-    "profiles_to_compare": [MAPPINGS],
+    "mappings": [MAPPINGS],
     "show_remarks": True,
     "show_warnings": False,
 }
@@ -51,12 +51,12 @@ def test_config_from_dict():
     assert result.mapping_output_file == "mapping.json"
     assert result.show_remarks is True
     assert result.show_warnings is False
-    assert len(result.profiles_to_compare) == 1
+    assert len(result.mappings) == 1
 
 
 def test_config_from_dict_defaults():
     input = {
-        "profiles_to_compare": [],
+        "mappings": [],
     }
 
     result = ProjectConfig.from_dict(input)
@@ -67,7 +67,7 @@ def test_config_from_dict_defaults():
     assert result.mapping_output_file == "mapping.json"
     assert result.show_remarks is True
     assert result.show_warnings is True
-    assert len(result.profiles_to_compare) == 0
+    assert len(result.mappings) == 0
 
 
 def test_compare_config_from_dict():

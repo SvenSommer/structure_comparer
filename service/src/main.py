@@ -48,7 +48,7 @@ if __name__ == "__main__":
     MANUAL_ENTRIES.read(args.project_dir / manual_entries_file)
 
     data_dir = args.project_dir / config.data_dir
-    structured_mapping = compare_profiles(config.profiles_to_compare, data_dir)
+    structured_mapping = compare_profiles(config.mappings, data_dir)
 
     if args.html:
         # Create the result html files

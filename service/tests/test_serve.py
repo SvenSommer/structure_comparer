@@ -19,10 +19,10 @@ def test_init_project():
 
     assert project.data_dir == project_dir / "data"
 
-    assert project.profiles_to_compare_list is not None
-    assert len(project.profiles_to_compare_list) > 0
+    assert project.mappings_list is not None
+    assert len(project.mappings_list) > 0
 
     assert project.comparisons is not None
-    assert len(project.comparisons) == len(project.profiles_to_compare_list)
+    assert len(project.comparisons) == len(project.mappings_list)
 
     assert MANUAL_ENTRIES._data is not None

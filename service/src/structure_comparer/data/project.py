@@ -21,7 +21,7 @@ class Project:
         self.pkgs: list[Package] = None
 
         # Get profiles to compare
-        self.profiles_to_compare_list = self.config.profiles_to_compare
+        self.mappings_list = self.config.mappings
 
         self.__load_packages()
         self.__load_mappings()
@@ -33,7 +33,7 @@ class Project:
     def __load_mappings(self):
         self.mappings = {
             profiles.id: Mapping.create(ProfileMap.from_json(profiles, self.data_dir))
-            for profiles in self.profiles_to_compare_list
+            for profiles in self.mappings_list
         }
 
     def __read_manual_entries(self):

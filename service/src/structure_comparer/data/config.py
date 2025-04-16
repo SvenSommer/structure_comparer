@@ -37,7 +37,7 @@ class ProjectConfig(BaseModel):
     data_dir: str = "data"
     html_output_dir: str = "docs"
     mapping_output_file: str = "mapping.json"
-    profiles_to_compare: list[MappingConfig] = []
+    mappings: list[MappingConfig] = []
     show_remarks: bool = True
     show_warnings: bool = True
     _file_path: Path
