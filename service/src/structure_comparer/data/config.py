@@ -10,10 +10,8 @@ logger = logging.getLogger(__name__)
 
 
 class MappingProfileConfig(BaseModel):
-    file: Path
-    version: str = None
-    simplifier_url: str = None
-    file_download_url: str = None
+    id: str
+    version: str
 
 
 class MappingProfilesConfig(BaseModel):
