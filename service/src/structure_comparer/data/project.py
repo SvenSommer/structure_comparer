@@ -4,35 +4,35 @@ from typing import Dict
 from ..manual_entries import ManualEntries
 from ..model.project import Project as ProjectModel
 from ..model.project import ProjectOverview as ProjectOverviewModel
-from .comparison import Comparison
 from .config import ProjectConfig
-from .profile import ProfileMap
+from .mapping import Mapping
+from .package import Package
 
 
 class Project:
     def __init__(self, path: Path):
         self.dir = path
         self.config = ProjectConfig.from_json(path / "config.json")
-        self.data_dir = path / self.config.data_dir
 
-        self.comparisons: Dict[str, Comparison] = None
+        self.mappings: Dict[str, Mapping] = None
         self.manual_entries: ManualEntries = None
 
+        self.pkgs: list[Package] = None
+
         # Get profiles to compare
-        self.profiles_to_compare_list = self.config.profiles_to_compare
+        self.mappings_list = self.config.mappings
 
-        # Load profiles
-        self.__load_profiles()
-
-        # Read the manual entries
+        self.__load_packages()
+        self.__load_mappings()
         self.__read_manual_entries()
 
-    def __load_profiles(self):
-        self.comparisons = {
-            profiles.id: Comparison.create(
-                ProfileMap.from_json(profiles, self.data_dir)
-            )
-            for profiles in self.profiles_to_compare_list
+    def __load_packages(self) -> None:
+        self.pkgs = [Package(dir) for dir in self.data_dir.iterdir() if dir.is_dir()]
+
+    def __load_mappings(self):
+        self.mappings = {
+            mapping_conf.id: Mapping(mapping_conf, self)
+            for mapping_conf in self.mappings_list
         }
 
     def __read_manual_entries(self):
@@ -76,10 +76,23 @@ class Project:
         self.config.name = value
         self.config.write()
 
-    def to_model(self) -> ProjectModel:
-        mappings = [comp.to_model(self.key) for comp in self.comparisons.values()]
+    @property
+    def data_dir(self) -> Path:
+        return self.dir / self.config.data_dir
 
-        return ProjectModel(name=self.name, mappings=mappings)
+    def get_profile(self, id: str, version: str):
+        for pkg in self.pkgs:
+            for profile in pkg.profiles:
+                if profile.id == id and profile.version == version:
+                    return profile
+
+        return None
+
+    def to_model(self) -> ProjectModel:
+        mappings = [comp.to_overview_model() for comp in self.mappings.values()]
+        pkgs = [p.to_model() for p in self.pkgs]
+
+        return ProjectModel(name=self.name, mappings=mappings, packages=pkgs)
 
     def to_overview_model(self) -> ProjectOverviewModel:
         return ProjectOverviewModel(name=self.name, url=self.url)

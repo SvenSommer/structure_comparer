@@ -4,7 +4,7 @@
     "data_dir": "data",
     "html_output_dir": "docs",
     "mapping_output_file": "mapping.json",
-    "profiles_to_compare": [
+    "mappings": [
         {
             "id": "3c1d70bb-6765-4d1d-a541-4a043f3b9d1d",
             "version": "0.1",
@@ -12,17 +12,13 @@
             "mappings": {
                 "sourceprofiles": [
                     {
-                        "file": "epa-observation-body-height#1.0.0.json",
-                        "version": "1.1-rc1",
-                        "simplifier_url": "https://simplifier.net/dev-epa/epaobservationbodyheight",
-                        "file_download_url": "https://simplifier.net/dev-epa/epaobservationbodyheight/$downloadsnapshot?format=json"
+                        "id": "epa-observation-body-height",
+                        "version": "1.0.0"
                     }
                 ],
                 "targetprofile": {
-                    "file": "VitalSignDE_Koerpergroesse#1.5.0-ballot2.json",
-                    "version": "1.5.0-ballot2",
-                    "simplifier_url": "https://simplifier.net/packages/de.basisprofil.r4/1.5.0-ballot2/files/2367779",
-                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadas?packageFileId=2367779&format=json"
+                    "id": "observation-de-vitalsign-koerpergroesse",
+                    "version": "1.5.0-ballot"
                 }
             },
             "last_updated": "2025-04-16 11:15:26"
@@ -34,17 +30,13 @@
             "mappings": {
                 "sourceprofiles": [
                     {
-                        "file": "epa-observation-body-weight#1.0.0.json",
-                        "version": "1.0.0",
-                        "simplifier_url": "https://simplifier.net/dev-epa/epaobservationbodyweight",
-                        "file_download_url": "https://simplifier.net/dev-epa/epaobservationbodyweight/$downloadsnapshot?format=json"
+                        "id": "epa-observation-body-weight",
+                        "version": "1.0.0"
                     }
                 ],
                 "targetprofile": {
-                    "file": "VitalSignDE_Koerpergewicht#1.5.0-ballot2.json",
-                    "version": "1.5.0-ballot2",
-                    "simplifier_url": "https://simplifier.net/packages/de.basisprofil.r4/1.5.0-ballot2/files/2367763",
-                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2367763&format=json"
+                    "id": "observation-de-vitalsign-koerpergewicht",
+                    "version": "1.5.0-ballot"
                 }
             },
             "last_updated": "2025-04-16 11:15:26"

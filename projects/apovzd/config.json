@@ -4,7 +4,7 @@
     "data_dir": "data",
     "html_output_dir": "docs",
     "mapping_output_file": "mapping.json",
-    "profiles_to_compare": [
+    "mappings": [
         {
             "id": "91db64da-9777-4c5f-a7d4-e0601ab51ad1",
             "version": "0.9",
@@ -12,17 +12,13 @@
             "mappings": {
                 "sourceprofiles": [
                     {
-                        "file": "HealthcareServiceApoVzd.json",
-                        "version": "1.0",
-                        "simplifier_url": "unknown",
-                        "file_download_url": "unknown"
+                        "id": "HealthcareServiceApoVzd",
+                        "version": "1.0"
                     }
                 ],
                 "targetprofile": {
-                    "file": "HealthcareServiceDirectory.json",
-                    "version": "0.11.6",
-                    "simplifier_url": "https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6/files/2433299",
-                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2433299&format=json"
+                    "id": "HealthcareServiceDirectory",
+                    "version": "0.11.6"
                 }
             },
             "last_updated": "2025-04-16 11:15:26"
@@ -34,17 +30,13 @@
             "mappings": {
                 "sourceprofiles": [
                     {
-                        "file": "LocationApoVzd.json",
-                        "version": "1.0",
-                        "simplifier_url": "unknown",
-                        "file_download_url": "unknown"
+                        "id": "LocationApoVzd",
+                        "version": "1.0"
                     }
                 ],
                 "targetprofile": {
-                    "file": "LocationDirectory.json",
-                    "version": "0.11.6",
-                    "simplifier_url": "https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6/files/2433304",
-                    "file_download_url": "https://simplifier.net/ui/packagefile/downloadsnapshotas?packageFileId=2433304&format=json"
+                    "id": "LocationDirectory",
+                    "version": "0.11.6"
                 }
             },
             "last_updated": "2025-04-16 11:15:26"

@@ -3,7 +3,7 @@ from typing import Dict
 
 from .classification import Classification
 from .consts import REMARKS
-from .data.comparison import Comparison
+from .data.mapping import Mapping
 from .helpers import split_parent_child
 
 DICT_MAPPINGS = "mappings"
@@ -21,7 +21,7 @@ IGNORE_CLASSIFICATIONS = [
 logger = logging.getLogger(__name__)
 
 
-def gen_mapping_dict(structured_mapping: Dict[str, Comparison]):
+def gen_mapping_dict(structured_mapping: Dict[str, Mapping]):
     result = {}
 
     # Iterate over the different mappings

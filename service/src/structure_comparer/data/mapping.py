@@ -1,3 +1,4 @@
+import logging
 from collections import OrderedDict
 from dataclasses import dataclass
 from typing import Dict, List
@@ -12,8 +13,9 @@ from ..manual_entries import (
     MANUAL_ENTRIES_REMARK,
     ManualEntries,
 )
-from ..model.mapping import Mapping as MappingModel
-from .profile import Profile, ProfileField, ProfileMap
+from ..model.mapping import MappingOverview as MappingOverviewModel
+from .config import MappingConfig, MappingProfileConfig
+from .profile import Profile, ProfileField
 
 MANUAL_SUFFIXES = ["reference", "profile"]
 
@@ -30,9 +32,11 @@ DERIVED_CLASSIFICATIONS = [
     Classification.NOT_USE,
 ] + EXTRA_CLASSIFICATIONS
 
+logger = logging.getLogger(__name__)
+
 
 @dataclass(init=False)
-class ComparisonField:
+class MappingField:
     def __init__(self) -> None:
         self.classification: Classification = None
         self.extension: str = None
@@ -99,7 +103,7 @@ class ComparisonField:
         self.classifications_allowed = list(allowed)
 
     def classify_remark_field(
-        self, comparison: "Comparison", manual_entries: Dict
+        self, comparison: "Mapping", manual_entries: Dict
     ) -> None:
         """
         Classify and get the remark for the property
@@ -166,23 +170,33 @@ class ComparisonField:
         self.extra = extra
 
 
-class Comparison:
-    def __init__(self, profile_map: ProfileMap = None) -> None:
-        self.id: str = None
+class Mapping:
+    def __init__(self, config: MappingConfig, project) -> None:
+        self.__config = config
+        self.__project = project
         self.sources: List[Profile] = []
         self.target: Profile = None
-        self.fields: OrderedDict[str, ComparisonField] = OrderedDict()
-        self.version: str = None
-        self.last_updated: str = None
-        self.status: str = None
+        self.fields: OrderedDict[str, MappingField] = OrderedDict()
 
-        if profile_map is not None:
-            self.id = profile_map.id
-            self.sources = profile_map.sources
-            self.target = profile_map.target
-            self.version = profile_map.version
-            self.last_updated = profile_map.last_updated
-            self.status = profile_map.status
+        self.__get_sources()
+        self.__get_target()
+        self.__gen_fields()
+
+    @property
+    def id(self) -> str:
+        return self.__config.id
+
+    @property
+    def version(self) -> str:
+        return self.__config.version
+
+    @property
+    def last_updated(self) -> str:
+        return self.__config.last_updated
+
+    @property
+    def status(self) -> str:
+        return self.__config.status
 
     @property
     def name(self) -> str:
@@ -192,13 +206,81 @@ class Comparison:
         target_profile = f"{self.target.name}|{self.target.version}"
         return f"{source_profiles} -> {target_profile}"
 
-    def to_model(self, proj_name: str) -> MappingModel:
+    @property
+    def url(self) -> str:
+        return f"/project/{self.__project.key}/mapping/{self.id}"
+
+    @property
+    def manual_entries(self) -> ManualEntries:
+        return self.__project.manual_entries
+
+    def fill_classification_remark(self, manual_entries: ManualEntries):
+        manual_entries = manual_entries.entries.get(self.id)
+        for field in self.fields.values():
+            field.classify_remark_field(self, manual_entries)
+
+    def __get_sources(self) -> None:
+        self.sources = []
+        for source in self.__config.mappings.sourceprofiles:
+            profile = self.__get_profile(source)
+            if profile:
+                self.sources.append(profile)
+
+    def __get_target(self) -> None:
+        profile = self.__get_profile(self.__config.mappings.targetprofile)
+        if profile:
+            self.target = profile
+
+    def __get_profile(self, mapping_profile_config: MappingProfileConfig) -> Profile:
+        id = mapping_profile_config.id
+        version = mapping_profile_config.version
+        if profile := self.__project.get_profile(id, version):
+            return profile
+        else:
+            logger.error("source %s#%s not found", id, version)
+
+    def __gen_fields(self) -> None:
+        # @staticmethod
+        # def create(profile_map: ProfileMap) -> "Mapping":
+        #     comparison = Mapping(profile_map)
+
+        # all_profiles = [profile_map.target] + profile_map.sources
+
+        # for profile in all_profiles:
+        #     for field in profile.fields.values():
+        #         # Check if field already exists or needs to be created
+        #         if field not in comparison.fields:
+        #             comparison.fields[field.path_full] = MappingField()
+
+        #         comparison.fields[field.path_full].profiles[profile.key] = field
+
+        #     # Sort the fields by name
+        #     comparison.fields = OrderedDict(
+        #         sorted(comparison.fields.items(), key=lambda x: x[0])
+        #     )
+
+        #     # Fill the absent profiles
+        #     all_profiles_keys = [profile.key for profile in all_profiles]
+        #     for field in comparison.fields.values():
+        #         for profile_key in all_profiles_keys:
+        #             if profile_key not in field.profiles:
+        #                 field.profiles[profile_key] = None
+
+        #     # Add remarks and classifications for each field
+        #     for field in comparison.fields.values():
+        #         field.fill_allowed_classifications(
+        #             all_profiles_keys[:-1], all_profiles_keys[-1]
+        #         )
+
+        #     return comparison
+        pass
+
+    def to_overview_model(self) -> MappingOverviewModel:
         sources = [p.to_model() for p in self.sources]
         target = self.target.to_model()
-        url = f"/project/{proj_name}/mapping/{self.id}"
 
         try:
-            model = MappingModel(
+            model = MappingOverviewModel(
                 id=self.id,
                 name=self.name,
                 version=self.version,
@@ -206,7 +288,7 @@ class Comparison:
                 status=self.status,
                 sources=sources,
                 target=target,
-                url=url,
+                url=self.url,
             )
 
         except ValidationError as e:
@@ -214,42 +296,3 @@ class Comparison:
 
         else:
             return model
-
-    @staticmethod
-    def create(profile_map: ProfileMap) -> "Comparison":
-        comparison = Comparison(profile_map)
-
-        all_profiles = [profile_map.target] + profile_map.sources
-
-        for profile in all_profiles:
-            for field in profile.fields.values():
-                # Check if field already exists or needs to be created
-                if field not in comparison.fields:
-                    comparison.fields[field.path_full] = ComparisonField()
-
-                comparison.fields[field.path_full].profiles[profile.key] = field
-
-        # Sort the fields by name
-        comparison.fields = OrderedDict(
-            sorted(comparison.fields.items(), key=lambda x: x[0])
-        )
-
-        # Fill the absent profiles
-        all_profiles_keys = [profile.key for profile in all_profiles]
-        for field in comparison.fields.values():
-            for profile_key in all_profiles_keys:
-                if profile_key not in field.profiles:
-                    field.profiles[profile_key] = None
-
-        # Add remarks and classifications for each field
-        for field in comparison.fields.values():
-            field.fill_allowed_classifications(
-                all_profiles_keys[:-1], all_profiles_keys[-1]
-            )
-
-        return comparison
-
-    def fill_classification_remark(self, manual_entries: ManualEntries):
-        manual_entries = manual_entries.entries.get(self.id)
-        for field in self.fields.values():
-            field.classify_remark_field(self, manual_entries)

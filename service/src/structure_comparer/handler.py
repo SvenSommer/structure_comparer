@@ -1,5 +1,8 @@
+import logging
 from pathlib import Path
 from typing import Dict, List
+
+from pydantic import ValidationError
 
 from .classification import Classification
 from .consts import INSTRUCTIONS, REMARKS
@@ -14,11 +17,13 @@ from .errors import (
 )
 from .helpers import get_field_by_id
 from .manual_entries import MANUAL_ENTRIES_CLASSIFICATION, MANUAL_ENTRIES_EXTRA
-from .model.mapping import Mapping as MappingModel
+from .model.mapping import MappingOverview as MappingOverviewModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
 from .model.project import ProjectInput as ProjectInputModel
 from .model.project import ProjectList as ProjectListModel
+
+logger = logging.getLogger(__name__)
 
 
 class ProjectsHandler:
@@ -36,7 +41,11 @@ class ProjectsHandler:
         for path in self.__projs_dir.iterdir():
             # Only handle directories
             if path.is_dir():
-                self.__projs[path.name] = Project(path)
+                try:
+                    self.__projs[path.name] = Project(path)
+                except ValidationError as e:
+                    logger.error(e.errors())
+                    raise e
 
     def get_project_list(self) -> ProjectListModel:
         projects = [p.to_overview_model() for p in self.__projs.values()]
@@ -76,17 +85,17 @@ class ProjectsHandler:
         ]
         return {"classifications": classifications}
 
-    def get_mappings(self, project_key: str) -> List[MappingModel]:
+    def get_mappings(self, project_key: str) -> List[MappingOverviewModel]:
         proj = self.__projs.get(project_key)
 
         if proj is None:
             raise ProjectNotFound()
 
-        return [comp.to_model(project_key) for comp in proj.comparisons.values()]
+        return [comp.to_overview_model() for comp in proj.mappings.values()]
 
-    def get_mapping(self, project_key: str, mapping_id: str) -> MappingModel:
+    def get_mapping(self, project_key: str, mapping_id: str) -> MappingOverviewModel:
         mapping = self.__get_mapping(project_key, mapping_id)
-        return mapping.to_model(project_key)
+        return mapping.to_overview_model()
 
     def get_mapping_fields(self, project_key: str, mapping_id: str):
         mapping = self.__get_mapping(project_key, mapping_id)
@@ -172,7 +181,7 @@ class ProjectsHandler:
         if proj is None:
             raise ProjectNotFound()
 
-        mapping = proj.comparisons.get(mapping_id)
+        mapping = proj.mappings.get(mapping_id)
 
         if not mapping:
             raise MappingNotFound()

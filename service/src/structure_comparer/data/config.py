@@ -9,23 +9,21 @@ from ..errors import InitializationError
 logger = logging.getLogger(__name__)
 
 
-class ProfileConfig(BaseModel):
-    file: Path
-    version: str = None
-    simplifier_url: str = None
-    file_download_url: str = None
+class MappingProfileConfig(BaseModel):
+    id: str
+    version: str
+
+
+class MappingProfilesConfig(BaseModel):
+    sourceprofiles: list[MappingProfileConfig]
+    targetprofile: MappingProfileConfig
 
 
 class MappingConfig(BaseModel):
-    sourceprofiles: list[ProfileConfig]
-    targetprofile: ProfileConfig
-
-
-class CompareConfig(BaseModel):
     id: str
     version: str
     status: str = "draft"
-    mappings: MappingConfig = []
+    mappings: MappingProfilesConfig = []
     last_updated: str = (datetime.now(timezone.utc) + timedelta(hours=2)).strftime(
         "%Y-%m-%d %H:%M:%S"
     )
@@ -37,7 +35,7 @@ class ProjectConfig(BaseModel):
     data_dir: str = "data"
     html_output_dir: str = "docs"
     mapping_output_file: str = "mapping.json"
-    profiles_to_compare: list[CompareConfig] = []
+    mappings: list[MappingConfig] = []
     show_remarks: bool = True
     show_warnings: bool = True
     _file_path: Path

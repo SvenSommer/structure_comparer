@@ -1,11 +1,13 @@
 from pydantic import BaseModel
 
-from .mapping import Mapping
+from .mapping import MappingOverview
+from .package import Package
 
 
 class Project(BaseModel):
     name: str
-    mappings: list[Mapping]
+    mappings: list[MappingOverview]
+    packages: list[Package]
 
 
 class ProjectInput(BaseModel):
