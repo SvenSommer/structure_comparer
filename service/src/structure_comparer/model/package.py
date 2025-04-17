@@ -4,6 +4,7 @@ from .profile import Profile as Profile
 
 
 class Package(BaseModel):
+    display: str | None = None
     name: str
-    version: str | None = None
+    version: str
     profiles: list[Profile]
