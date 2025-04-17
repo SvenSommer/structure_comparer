@@ -9,6 +9,7 @@ from fhir.resources.R4B.structuredefinition import StructureDefinition
 from pydantic import ValidationError
 
 from ..model.profile import Profile as ProfileModel
+from ..model.profile import ProfileField as ProfileFieldModel
 
 logger = logging.getLogger(__name__)
 
@@ -121,5 +122,10 @@ class ProfileField:
         return self.__data.max
 
     @property
-    def must_support(self):
-        return self.__data.mustSupport
+    def must_support(self) -> bool:
+        return self.__data.mustSupport if self.__data.mustSupport else False
+
+    def to_model(self) -> ProfileFieldModel:
+        return ProfileFieldModel(
+            min=self.min, max=self.max, must_support=self.must_support
+        )

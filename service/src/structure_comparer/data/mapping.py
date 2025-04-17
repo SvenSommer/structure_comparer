@@ -13,7 +13,8 @@ from ..manual_entries import (
     MANUAL_ENTRIES_REMARK,
     ManualEntries,
 )
-from ..model.mapping import MappingOverview as MappingOverviewModel
+from ..model.mapping import Mapping as MappingModel
+from ..model.mapping import MappingField as MappingFieldModel
 from .config import MappingConfig, MappingProfileConfig
 from .profile import Profile, ProfileField
 
@@ -169,13 +170,26 @@ class MappingField:
         self.remark = remark
         self.extra = extra
 
+    def to_model(self) -> MappingFieldModel:
+        profiles = {k: p.to_model() for k, p in self.profiles.items() if p}
+
+        return MappingFieldModel(
+            id=self.id,
+            name=self.name,
+            classification=self.classification,
+            extra=self.extra,
+            profiles=profiles,
+            remark=self.remark,
+            classifications_allowed=self.classifications_allowed,
+        )
+
 
 class Mapping:
     def __init__(self, config: MappingConfig, project) -> None:
         self.__config = config
         self.__project = project
-        self.sources: List[Profile] = []
-        self.target: Profile = None
+        self.sources: List[Profile] | None = None
+        self.target: Profile | None = None
         self.fields: OrderedDict[str, MappingField] = OrderedDict()
 
         self.__get_sources()
@@ -240,47 +254,38 @@ class Mapping:
             logger.error("source %s#%s not found", id, version)
 
     def __gen_fields(self) -> None:
-        # @staticmethod
-        # def create(profile_map: ProfileMap) -> "Mapping":
-        #     comparison = Mapping(profile_map)
+        all_profiles = [self.target] + self.sources
 
-        # all_profiles = [profile_map.target] + profile_map.sources
+        for profile in all_profiles:
+            for field in profile.fields.values():
+                # Check if field already exists or needs to be created
+                if field not in self.fields:
+                    self.fields[field.path_full] = MappingField()
 
-        # for profile in all_profiles:
-        #     for field in profile.fields.values():
-        #         # Check if field already exists or needs to be created
-        #         if field not in comparison.fields:
-        #             comparison.fields[field.path_full] = MappingField()
+                self.fields[field.path_full].profiles[profile.key] = field
 
-        #         comparison.fields[field.path_full].profiles[profile.key] = field
+            # Sort the fields by name
+            self.fields = OrderedDict(sorted(self.fields.items(), key=lambda x: x[0]))
 
-        #     # Sort the fields by name
-        #     comparison.fields = OrderedDict(
-        #         sorted(comparison.fields.items(), key=lambda x: x[0])
-        #     )
+            # Fill the absent profiles
+            all_profiles_keys = [profile.key for profile in all_profiles]
+            for field in self.fields.values():
+                for profile_key in all_profiles_keys:
+                    if profile_key not in field.profiles:
+                        field.profiles[profile_key] = None
 
-        #     # Fill the absent profiles
-        #     all_profiles_keys = [profile.key for profile in all_profiles]
-        #     for field in comparison.fields.values():
-        #         for profile_key in all_profiles_keys:
-        #             if profile_key not in field.profiles:
-        #                 field.profiles[profile_key] = None
+            # Add remarks and classifications for each field
+            for field in self.fields.values():
+                field.fill_allowed_classifications(
+                    all_profiles_keys[:-1], all_profiles_keys[-1]
+                )
 
-        #     # Add remarks and classifications for each field
-        #     for field in comparison.fields.values():
-        #         field.fill_allowed_classifications(
-        #             all_profiles_keys[:-1], all_profiles_keys[-1]
-        #         )
-
-        #     return comparison
-        pass
-
-    def to_overview_model(self) -> MappingOverviewModel:
+    def to_model(self) -> MappingModel:
         sources = [p.to_model() for p in self.sources]
         target = self.target.to_model()
 
         try:
-            model = MappingOverviewModel(
+            model = MappingModel(
                 id=self.id,
                 name=self.name,
                 version=self.version,
