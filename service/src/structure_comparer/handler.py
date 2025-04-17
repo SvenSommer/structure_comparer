@@ -17,7 +17,7 @@ from .errors import (
 )
 from .helpers import get_field_by_id
 from .manual_entries import MANUAL_ENTRIES_CLASSIFICATION, MANUAL_ENTRIES_EXTRA
-from .model.mapping import MappingOverview as MappingOverviewModel
+from .model.mapping import Mapping as MappingModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
 from .model.project import ProjectInput as ProjectInputModel
@@ -85,17 +85,17 @@ class ProjectsHandler:
         ]
         return {"classifications": classifications}
 
-    def get_mappings(self, project_key: str) -> List[MappingOverviewModel]:
+    def get_mappings(self, project_key: str) -> List[MappingModel]:
         proj = self.__projs.get(project_key)
 
         if proj is None:
             raise ProjectNotFound()
 
-        return [comp.to_overview_model() for comp in proj.mappings.values()]
+        return [comp.to_model() for comp in proj.mappings.values()]
 
-    def get_mapping(self, project_key: str, mapping_id: str) -> MappingOverviewModel:
+    def get_mapping(self, project_key: str, mapping_id: str) -> MappingModel:
         mapping = self.__get_mapping(project_key, mapping_id)
-        return mapping.to_overview_model()
+        return mapping.to_model()
 
     def get_mapping_fields(self, project_key: str, mapping_id: str):
         mapping = self.__get_mapping(project_key, mapping_id)

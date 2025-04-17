@@ -89,7 +89,7 @@ class Project:
         return None
 
     def to_model(self) -> ProjectModel:
-        mappings = [comp.to_overview_model() for comp in self.mappings.values()]
+        mappings = [comp.to_model() for comp in self.mappings.values()]
         pkgs = [p.to_model() for p in self.pkgs]
 
         return ProjectModel(name=self.name, mappings=mappings, packages=pkgs)

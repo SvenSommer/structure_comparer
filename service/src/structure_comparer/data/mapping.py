@@ -13,7 +13,7 @@ from ..manual_entries import (
     MANUAL_ENTRIES_REMARK,
     ManualEntries,
 )
-from ..model.mapping import MappingOverview as MappingOverviewModel
+from ..model.mapping import Mapping as MappingModel
 from .config import MappingConfig, MappingProfileConfig
 from .profile import Profile, ProfileField
 
@@ -275,12 +275,12 @@ class Mapping:
         #     return comparison
         pass
 
-    def to_overview_model(self) -> MappingOverviewModel:
+    def to_overview_model(self) -> MappingModel:
         sources = [p.to_model() for p in self.sources]
         target = self.target.to_model()
 
         try:
-            model = MappingOverviewModel(
+            model = MappingModel(
                 id=self.id,
                 name=self.name,
                 version=self.version,

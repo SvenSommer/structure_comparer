@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
-from .mapping import MappingOverview
+from .mapping import Mapping
 
 
 class GetMappingsOutput(BaseModel):
-    mappings: list[MappingOverview]
+    mappings: list[Mapping]
