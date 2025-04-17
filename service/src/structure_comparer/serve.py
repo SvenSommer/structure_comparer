@@ -20,6 +20,7 @@ from .handler import ProjectsHandler
 from .model.get_mappings_output import GetMappingsOutput
 from .model.init_project_input import InitProjectInput
 from .model.mapping import Mapping as MappingModel
+from .model.mapping import MappingFieldsOutput as MappingFieldsOutputModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
 from .model.project import ProjectInput as ProjectInputModel
@@ -529,7 +530,9 @@ async def get_mapping(
     responses={404: {}, 412: {}},
     deprecated=True,
 )
-async def get_mapping_fields_old(id: str, response: Response):
+async def get_mapping_fields_old(
+    id: str, response: Response
+) -> MappingFieldsOutputModel:
     """
     Get the fields of a mapping
     Returns a brief list of the fields
@@ -592,7 +595,9 @@ async def get_mapping_fields_old(id: str, response: Response):
     tags=["Fields"],
     responses={404: {}},
 )
-async def get_mapping_fields(project_key: str, mapping_id: str, response: Response):
+async def get_mapping_fields(
+    project_key: str, mapping_id: str, response: Response
+) -> MappingFieldsOutputModel:
     """
     Get the fields of a mapping
     Returns a brief list of the fields

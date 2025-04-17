@@ -14,6 +14,7 @@ from ..manual_entries import (
     ManualEntries,
 )
 from ..model.mapping import Mapping as MappingModel
+from ..model.mapping import MappingField as MappingFieldModel
 from .config import MappingConfig, MappingProfileConfig
 from .profile import Profile, ProfileField
 
@@ -169,13 +170,26 @@ class MappingField:
         self.remark = remark
         self.extra = extra
 
+    def to_model(self) -> MappingFieldModel:
+        profiles = {k: p.to_model() for k, p in self.profiles.items() if p}
+
+        return MappingFieldModel(
+            id=self.id,
+            name=self.name,
+            classification=self.classification,
+            extra=self.extra,
+            profiles=profiles,
+            remark=self.remark,
+            classifications_allowed=self.classifications_allowed,
+        )
+
 
 class Mapping:
     def __init__(self, config: MappingConfig, project) -> None:
         self.__config = config
         self.__project = project
-        self.sources: List[Profile] = []
-        self.target: Profile = None
+        self.sources: List[Profile] | None = None
+        self.target: Profile | None = None
         self.fields: OrderedDict[str, MappingField] = OrderedDict()
 
         self.__get_sources()

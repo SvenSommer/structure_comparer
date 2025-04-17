@@ -18,6 +18,7 @@ from .errors import (
 from .helpers import get_field_by_id
 from .manual_entries import MANUAL_ENTRIES_CLASSIFICATION, MANUAL_ENTRIES_EXTRA
 from .model.mapping import Mapping as MappingModel
+from .model.mapping import MappingFieldsOutput as MappingFieldsOutputModel
 from .model.mapping_input import MappingInput
 from .model.project import Project as ProjectModel
 from .model.project import ProjectInput as ProjectInputModel
@@ -97,15 +98,14 @@ class ProjectsHandler:
         mapping = self.__get_mapping(project_key, mapping_id)
         return mapping.to_model()
 
-    def get_mapping_fields(self, project_key: str, mapping_id: str):
+    def get_mapping_fields(
+        self, project_key: str, mapping_id: str
+    ) -> MappingFieldsOutputModel:
         mapping = self.__get_mapping(project_key, mapping_id)
 
-        result = {"id": mapping_id}
-        result["fields"] = [
-            {"name": field.name, "id": field.id} for field in mapping.fields.values()
-        ]
+        fields = [f.to_model() for f in mapping.fields.values()]
 
-        return result
+        return MappingFieldsOutputModel(id=mapping_id, fields=fields)
 
     def set_mapping_classification(
         self, project_key: str, mapping_id: str, field_id: str, mapping: MappingInput
