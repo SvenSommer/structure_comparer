@@ -9,6 +9,12 @@ from ..errors import InitializationError
 logger = logging.getLogger(__name__)
 
 
+class PackageConfig(BaseModel):
+    name: str
+    version: str
+    display: str | None = None
+
+
 class MappingProfileConfig(BaseModel):
     id: str
     version: str
@@ -34,6 +40,7 @@ class ProjectConfig(BaseModel):
     manual_entries_file: str = "manual_entries.yaml"
     data_dir: str = "data"
     html_output_dir: str = "docs"
+    packages: list[PackageConfig] = []
     mapping_output_file: str = "mapping.json"
     mappings: list[MappingConfig] = []
     show_remarks: bool = True

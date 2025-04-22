@@ -3,6 +3,18 @@
     "manual_entries_file": "manual_entries.yaml",
     "data_dir": "data",
     "html_output_dir": "docs",
+    "packages": [
+        {
+            "name": "de.gematik.dev.epa",
+            "version": "1.0.0",
+            "display": null
+        },
+        {
+            "name": "de.basisprofil.r4",
+            "version": "1.5.0-ballot2",
+            "display": null
+        }
+    ],
     "mapping_output_file": "mapping.json",
     "mappings": [
         {

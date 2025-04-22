@@ -4,7 +4,7 @@ from typing import Dict
 from ..manual_entries import ManualEntries
 from ..model.project import Project as ProjectModel
 from ..model.project import ProjectOverview as ProjectOverviewModel
-from .config import ProjectConfig
+from .config import PackageConfig, ProjectConfig
 from .mapping import Mapping
 from .package import Package
 
@@ -27,7 +27,21 @@ class Project:
         self.__read_manual_entries()
 
     def __load_packages(self) -> None:
-        self.pkgs = [Package(dir) for dir in self.data_dir.iterdir() if dir.is_dir()]
+        # Load packages from config
+        self.pkgs = [Package(self.data_dir, p) for p in self.config.packages]
+
+        # Check for local packages not in config
+        for dir in self.data_dir.iterdir():
+            if dir.is_dir():
+                name, version = dir.name.split("#")
+                if not self.__has_pkg(name, version):
+                    # Create new config entry
+                    cfg = PackageConfig(name=name, version=version)
+                    self.config.packages.append(cfg)
+                    self.config.write()
+
+                    # Create and append package
+                    self.pkgs.append(Package(self.data_dir, cfg))
 
     def __load_mappings(self):
         self.mappings = {
@@ -96,3 +110,6 @@ class Project:
 
     def to_overview_model(self) -> ProjectOverviewModel:
         return ProjectOverviewModel(name=self.name, url=self.url)
+
+    def __has_pkg(self, name: str, version: str) -> bool:
+        return any([p.name == name and p.version == version for p in self.pkgs])
